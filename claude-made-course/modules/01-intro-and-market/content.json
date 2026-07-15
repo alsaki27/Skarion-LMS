@@ -1,43 +1,84 @@
 {
-  "title": "Introduction to OSP Engineering Finance",
+  "title": "The Accounting Profession — Reality vs. The Textbook",
   "moduleTag": "Module 01",
   "dayMapping": "Day 1",
-  "subhead": "Welcome to Skarion Engineering. We design the physical infrastructure that connects America.",
+  "subhead": "What separates candidates who get hired from candidates who get generic rejections — and why the gap has nothing to do with GPA.",
+  "hook": "\"Tell me about yourself.\" You're about to hear what makes a candidate sound credible in the first 60 seconds — and what instantly flags them as a textbook memorizer who has never touched a real set of books.",
   "chunks": [
     {
       "type": "content",
-      "title": "The Skarion Approach",
-      "bodyHtml": "<p>You have just been hired as a Staff Accountant at <strong>Skarion Engineering</strong>, an Outside Plant (OSP) and GIS engineering firm designing fiber networks across the US.</p><p>We don't manufacture widgets. We sell <em>expertise</em> and <em>time</em>. Accounting for a project-based services firm is entirely different from what you learn in a textbook.</p>"
+      "kicker": "The reality",
+      "title": "What accounting actually is — and why your professor probably wasn't clear about it",
+      "bodyHtml": "<p>Accounting is the discipline of <strong>measuring economic activity and communicating it to decision-makers</strong>. The core deliverable isn't journal entries — it's <em>trust</em>. A CFO, a bank, an auditor, or a board of directors has to be able to trust the numbers you produce. Your entire career is built on whether people trust the financials you prepare.</p><p>That sounds philosophical until you understand the practical implications:</p><ul><li>A misclassified expense can cost a company millions in tax overpayments.</li><li>An AR balance that isn't collected on time kills cash flow.</li><li>A payroll entry that's off by one decimal point lands in an employment tribunal.</li><li>A bank reconciliation that isn't done properly is fraud waiting to happen.</li></ul><p>This is why accounting jobs — even entry-level ones — pay well and demand precision. The job isn't hard because the math is complex. It's hard because being consistently right under pressure, with incomplete information and tight deadlines, is genuinely difficult.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>The hiring manager's first filter:</strong> Do they understand what accounting <em>is for</em>? Or do they just know how to record journal entries? The best answer to \"Tell me about yourself\" names the purpose of the function, not just the tasks."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The foundation",
+      "title": "GAAP, accrual accounting, and why cash basis is almost always wrong for a real business",
+      "bodyHtml": "<p><strong>Generally Accepted Accounting Principles (GAAP)</strong> are the rulebook. In the US, virtually all businesses above a certain size — and all public companies — are required to follow them. GAAP is written and maintained by the Financial Accounting Standards Board (FASB).</p><p>The single most important GAAP concept is the <strong>accrual basis of accounting</strong>, and it works on one principle: <em>record economic events when they happen, not when cash moves</em>.</p><table class='data'><tr><th>Scenario</th><th>Cash Basis records when...</th><th>Accrual Basis records when...</th></tr><tr><td>Client signs a contract and we deliver 300 miles of fiber design</td><td>Client wires the payment (often 60 days later)</td><td>We deliver the work and send the invoice (today)</td></tr><tr><td>We receive a vendor invoice for offshore drafting labor</td><td>We cut the check or wire the payment</td><td>We receive the invoice and the liability exists</td></tr><tr><td>We pay 12 months of software licenses upfront in January</td><td>The whole $48,000 hits expense in January</td><td>$4,000/month is expensed over 12 months (Prepaid)</td></tr></table><p>Accrual accounting gives a <em>true picture</em> of the business's financial health. Cash basis is misleading — a company can look profitable on a cash basis while actually bleeding money on accrual, and vice versa. Staff accountants who don't understand this difference get flagged immediately in interviews.</p>"
     },
     {
       "type": "timeline",
-      "title": "The Lifecycle of an OSP Project",
+      "title": "The Career Ladder — From Staff Accountant to Controller",
       "steps": [
-        {"title": "1. Intake", "desc": "We receive ROW shapefiles from the client and scope the job."},
-        {"title": "2. HLD & LLD", "desc": "Engineers use AutoCAD and Vetro to draft the High-Level and Low-Level Designs. (This is our WIP)."},
-        {"title": "3. Permitting", "desc": "We submit permit packages to the DOT and municipalities."},
-        {"title": "4. Delivery & Billing", "desc": "We deliver the final construction-ready splice packages and recognize revenue."}
+        {"title": "Staff Accountant", "desc": "Journal entries, bank recs, AP/AR processing. Learning the workflow and building trust. 0–3 years."},
+        {"title": "Senior Accountant", "desc": "Owns month-end close, accruals, fixed assets. Reviews junior work. 3–6 years."},
+        {"title": "Accounting Manager", "desc": "Manages the team, improves processes, owns the trial balance. 6–10 years."},
+        {"title": "Controller", "desc": "Oversees all accounting operations, owns financial reporting, interfaces with external auditors and the CFO. 10+ years."},
+        {"title": "CFO", "desc": "Strategic financial leadership. Has usually passed through the audit world or built deep FP&A experience alongside accounting."}
       ]
     },
     {
       "type": "content",
-      "title": "What Employers Actually Want",
-      "bodyHtml": "<p>When hiring an accountant for an engineering firm, hiring managers look for specific skills:</p><ul><li><strong>Project-Based Accounting:</strong> Can you allocate software costs (like ArcGIS) to specific client projects?</li><li><strong>WIP Tracking:</strong> Can you calculate the value of a fiber design that is only 50% complete at month-end?</li><li><strong>Advanced Excel:</strong> Can you VLOOKUP thousands of labor hours from our offshore drafting team?</li></ul>",
+      "kicker": "The first 90 days",
+      "title": "What an entry-level accounting job actually looks like, week by week",
+      "bodyHtml": "<p>Most entry-level candidates have no idea what they're walking into. Here is what a typical Staff Accountant's first three months look like at a mid-size professional services firm like Skarion Engineering:</p><table class='data'><tr><th>Week</th><th>Focus</th><th>You will be expected to...</th></tr><tr><td>1–2</td><td>Orientation & shadow</td><td>Understand the Chart of Accounts, read the accounting policies, shadow month-end close.</td></tr><tr><td>3–4</td><td>AP processing</td><td>Enter vendor invoices, match POs, flag discrepancies, process payment runs.</td></tr><tr><td>5–8</td><td>AR and cash</td><td>Apply customer payments, chase overdue invoices, assist with bank reconciliation.</td></tr><tr><td>9–12</td><td>Month-end participation</td><td>Post assigned journal entries (depreciation, prepaids, accruals), contribute to the reconciliation package.</td></tr></table><p>By month three, the people who thrive are the ones who understand the <em>why</em> behind every entry — not just the mechanics of how to post it. That is what this course is designed to give you.</p>",
       "callout": {
-        "type": "tip",
-        "html": "Understanding <em>Revenue Recognition</em> (when a project is actually 'done' and billable) is the hardest part of this job."
+        "type": "warning",
+        "html": "The fastest way to get fired in your first 90 days: <strong>posting an adjusting entry without manager approval and supporting documentation.</strong> Every adjustment needs a ticket, an email chain, or a supervisor's sign-off. Never post based on your own judgment alone, no matter how obvious the fix seems."
       }
     },
     {
+      "type": "flip_cards",
+      "title": "Accounting vocabulary — the words that separate entry-level from experienced",
+      "railLabel": "Core Vocabulary",
+      "cards": [
+        {"front": "General Ledger (GL)", "back": "The master record of all financial transactions. Every journal entry flows into the GL. When someone says 'pull it from the GL,' they mean look up the actual transaction history for a specific account."},
+        {"front": "Chart of Accounts (COA)", "back": "The numbered list of every account the company uses. Assets start with 1000, Liabilities with 2000, Equity with 3000, Revenue with 4000, Expenses with 5000-6999. Every company's COA is slightly different — learn yours on day one."},
+        {"front": "Trial Balance", "back": "A report showing all accounts and their balances at a point in time. Debits must equal credits. Running a trial balance is one of the first things you do during month-end close to confirm nothing is out of balance."},
+        {"front": "Subledger", "back": "A detailed record that feeds into the GL. AR has a subledger (one line per invoice per customer). AP has a subledger (one line per invoice per vendor). The subledger total must match the GL account balance — this is called 'tying the subledger.'"},
+        {"front": "Accrual", "back": "An entry to record an expense or revenue that has been earned or incurred but not yet invoiced or paid. Example: your offshore draftsmen worked 2,000 hours in January that won't be invoiced until February — you still accrue the expense in January."},
+        {"front": "Prepaid Expense", "back": "Cash paid now for something that benefits a future period. If you pay $48,000 for an annual ArcGIS license in January, you debit Prepaid Software $48,000 and credit Cash. Then each month you expense $4,000 as the benefit is consumed."},
+        {"front": "Cutoff", "back": "The accounting principle that transactions must be recorded in the correct period. A purchase on January 31st belongs in January — not February. Cutoff errors are one of the most common reasons financial statements are restated."},
+        {"front": "Materiality", "back": "A threshold concept: errors below a certain size (often 5% of net income or a fixed dollar amount set by the company) may not require correction. An auditor's definition of material is usually different from a controller's — learn what threshold your employer uses."}
+      ]
+    },
+    {
       "type": "quiz",
-      "intro": "Let's see if you understand our business model.",
-      "title": "Market Reality Check",
+      "intro": "This is a calibration quiz. Nail it and you already have a head start. Miss it and you now know exactly what to focus on.",
+      "title": "Reality Check — How much do you actually know?",
       "questions": [
         {
-          "q": "What is the primary 'product' that Skarion Engineering sells?",
-          "options": ["Physical fiber optic cables", "Telecommunications hardware", "Engineering design packages and permits", "Manufacturing equipment"],
+          "q": "Skarion Engineering delivers a 500-mile High-Level Design (HLD) package to a client on January 28th. The client pays on March 15th. Under accrual accounting, when is the revenue recognized?",
+          "options": ["March 15th — when cash is received", "January 28th — when the service is delivered", "February 28th — at month-end", "When the client signs the contract in December"],
+          "correct_index": 1,
+          "explanation": "Accrual accounting records revenue when it's earned — meaning when the performance obligation is satisfied. Skarion delivered the HLD package on January 28th, so that is when revenue is recognized, regardless of when the client pays."
+        },
+        {
+          "q": "What is the difference between a debit and a credit in accounting?",
+          "options": ["Debits are always good, credits are always bad", "Debits increase assets and expenses; credits increase liabilities, equity, and revenue", "Debits go on the right side of the T-account; credits go on the left", "Debits reduce the balance; credits increase it"],
+          "correct_index": 1,
+          "explanation": "The most important rule in accounting: Debits increase Assets and Expenses. Credits increase Liabilities, Equity, and Revenue. There is no 'good' or 'bad' — just the normal balance of each account type."
+        },
+        {
+          "q": "A staff accountant notices a $4,200 variance between the AP subledger and the GL account 2000. What is the correct first step?",
+          "options": ["Post a manual journal entry to make them match", "Delete the oldest invoice to reduce the balance", "Investigate the source of the discrepancy before making any adjustment", "Assume it's a system error and ignore it"],
           "correct_index": 2,
-          "explanation": "We are a services firm. We don't lay the cable; we deliver the blueprints (HLD, LLD, permits) so the construction crews can build it."
+          "explanation": "Never force a reconciliation. Always trace the discrepancy to its source transaction first. The correct process: pull both reports, sort by date, and identify what transaction exists in one and not the other."
         }
       ]
     }
