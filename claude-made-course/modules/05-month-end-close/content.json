@@ -1,0 +1,36 @@
+{
+  "title": "Month-End Close",
+  "moduleTag": "Module 05",
+  "dayMapping": "Day 5",
+  "subhead": "The most important week of an accountant's month.",
+  "chunks": [
+    {
+      "type": "content",
+      "title": "Why We Close the Books",
+      "bodyHtml": "<p>At the end of every month, the accounting team 'closes' the books. This means finalizing all transactions so leadership can look at accurate financial statements.</p><p>If you don't accrue an unpaid electric bill, your Profit & Loss will look artificially good, leading to bad business decisions.</p>"
+    },
+    {
+      "type": "timeline",
+      "title": "The 5-Day Close Process",
+      "steps": [
+        {"title": "Day 1: Cutoff & AP", "desc": "Stop entering new invoices. Ensure all bills from last month are entered."},
+        {"title": "Day 2: Bank Recon", "desc": "Reconcile all bank and credit card accounts to the penny."},
+        {"title": "Day 3: Accruals", "desc": "Post journal entries for expenses incurred but not yet billed (e.g., accrued payroll)."},
+        {"title": "Day 4: Depreciation", "desc": "Record the monthly wear-and-tear on fixed assets."},
+        {"title": "Day 5: Financials", "desc": "Generate the Profit & Loss and Balance Sheet for management review."}
+      ]
+    },
+    {
+      "type": "quiz",
+      "title": "Month-End Knowledge Check",
+      "questions": [
+        {
+          "q": "What is the primary purpose of an accrual journal entry?",
+          "options": ["To hide cash from the IRS", "To record an expense that occurred, even if the bill hasn't arrived", "To reconcile the bank statement", "To pay vendors faster"],
+          "correct_index": 1,
+          "explanation": "Accruals ensure expenses are matched to the period they occurred in, regardless of cash flow."
+        }
+      ]
+    }
+  ]
+}

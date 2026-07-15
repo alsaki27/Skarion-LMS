@@ -1,0 +1,35 @@
+{
+  "title": "Advanced Excel Toolkit",
+  "moduleTag": "Module 06",
+  "dayMapping": "Day 6",
+  "subhead": "Master the tools real accountants use to tame messy data.",
+  "chunks": [
+    {
+      "type": "content",
+      "title": "Welcome to the Data Dungeon",
+      "bodyHtml": "<p>In school, you get clean T-accounts. In the real world, you get a 5,000-row CSV export from a broken expense system.</p><p>As a Staff Accountant, your job is to turn raw, messy data into clean Journal Entries. To do this, you need three tools: <strong>Data Cleaning</strong>, <strong>VLOOKUP/XLOOKUP</strong>, and <strong>PivotTables</strong>.</p>"
+    },
+    {
+      "type": "exercise",
+      "title": "Lab: The Messy Expense Export",
+      "instructionsHtml": "<p><strong>Your Task:</strong></p><ol><li>Download the raw expense data below.</li><li>Use Text-to-Columns to split the messy Date column.</li><li>Use VLOOKUP to assign a GL Account Number to each expense category.</li><li>Create a PivotTable summarizing total expenses by GL Account.</li></ol>",
+      "files": [
+        { "label": "Raw_Expense_Export.csv", "href": "Raw_Expense_Export.csv" },
+        { "label": "GL_Mapping_Table.xlsx", "href": "GL_Mapping_Table.xlsx" }
+      ],
+      "reflectionPrompt": "What was the total for Travel Expenses (GL 6400)?"
+    },
+    {
+      "type": "quiz",
+      "title": "Excel Knowledge Check",
+      "questions": [
+        {
+          "q": "Why is XLOOKUP generally preferred over VLOOKUP in modern accounting?",
+          "options": ["It looks cooler", "It defaults to an exact match and can look left", "It uses less memory", "It automatically creates PivotTables"],
+          "correct_index": 1,
+          "explanation": "XLOOKUP defaults to exact match (no more adding 'FALSE' at the end) and can return arrays to the left of the lookup value."
+        }
+      ]
+    }
+  ]
+}

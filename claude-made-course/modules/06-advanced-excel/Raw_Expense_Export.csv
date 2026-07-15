@@ -1,0 +1,501 @@
+TxnDate_Messy,Employee,Description,Category,Amount
+2026_1_19,B. Williams,Staples #439,Office Supplies,161.72
+2026_1_24,A. Johnson,Lyft #888,Travel,154.54
+2026_1_8,A. Johnson,Amazon #379,Office Supplies,383.45
+2026_1_30,B. Williams,AWS #726,Software,173.42
+2026_1_27,E. Smith,Slack #843,Software,496.55
+2026_1_4,E. Smith,Chipotle #564,Meals,211.5
+2026_1_5,B. Williams,Amazon #515,Office Supplies,28.41
+2026_1_16,A. Johnson,Dell #769,Hardware,498.55
+2026_1_15,J. Doe,Marriott #894,Travel,421.57
+2026_1_3,B. Williams,Office Depot #689,Office Supplies,93.31
+2026_1_31,J. Doe,Zoom #633,Software,196.15
+2026_1_24,A. Johnson,GitHub #334,Software,144.34
+2026_1_7,J. Doe,Best Buy #540,Hardware,41.62
+2026_1_29,J. Doe,Amazon #439,Office Supplies,325.88
+2026_1_21,J. Doe,Panera #205,Meals,427.4
+2026_1_9,E. Smith,GitHub #692,Software,195.61
+2026_1_15,E. Smith,Office Depot #189,Office Supplies,413.75
+2026_1_3,J. Doe,Uber Eats #717,Meals,489.51
+2026_1_10,B. Williams,Amazon #690,Office Supplies,359.79
+2026_1_28,B. Williams,Apple #698,Hardware,460.31
+2026_1_14,J. Doe,Uber #229,Travel,479.82
+2026_1_4,A. Johnson,Dell #328,Hardware,351.67
+2026_1_19,J. Doe,Starbucks #375,Meals,231.44
+2026_1_19,E. Smith,Panera #428,Meals,410.8
+2026_1_27,J. Doe,Slack #360,Software,163.67
+2026_1_20,A. Johnson,AWS #195,Software,39.03
+2026_1_30,E. Smith,Panera #637,Meals,189.58
+2026_1_3,B. Williams,Amazon #446,Office Supplies,353.04
+2026_1_2,B. Williams,Delta #139,Travel,150.96
+2026_1_21,J. Doe,Starbucks #352,Meals,307.32
+2026_1_9,B. Williams,Panera #211,Meals,401.12
+2026_1_27,A. Johnson,Delta #759,Travel,21.5
+2026_1_10,E. Smith,GitHub #748,Software,35.77
+2026_1_4,B. Williams,Staples #738,Office Supplies,351.92
+2026_1_29,E. Smith,Chipotle #466,Meals,326.79
+2026_1_24,A. Johnson,Amazon #820,Office Supplies,76.48
+2026_1_17,J. Doe,Uber Eats #693,Meals,431.66
+2026_1_6,A. Johnson,Delta #348,Travel,487.45
+2026_1_17,B. Williams,Starbucks #444,Meals,460.09
+2026_1_1,E. Smith,Apple #321,Hardware,208.54
+2026_1_13,A. Johnson,Uber Eats #119,Meals,79.34
+2026_1_6,J. Doe,Uber Eats #272,Meals,216.1
+2026_1_21,B. Williams,Panera #259,Meals,370.51
+2026_1_24,E. Smith,Panera #165,Meals,87.97
+2026_1_12,A. Johnson,Uber Eats #440,Meals,206.22
+2026_1_10,E. Smith,Delta #781,Travel,56.08
+2026_1_4,B. Williams,Dell #912,Hardware,227.09
+2026_1_15,E. Smith,Lyft #830,Travel,457.08
+2026_1_8,E. Smith,Office Depot #420,Office Supplies,270.93
+2026_1_2,A. Johnson,Panera #694,Meals,318.13
+2026_1_1,A. Johnson,AWS #240,Software,233.88
+2026_1_5,A. Johnson,Amazon #671,Office Supplies,125.15
+2026_1_11,A. Johnson,Uber #131,Travel,23.14
+2026_1_9,B. Williams,Marriott #511,Travel,460.53
+2026_1_8,E. Smith,Amazon #311,Office Supplies,444.2
+2026_1_9,B. Williams,Uber Eats #732,Meals,252.4
+2026_1_30,E. Smith,Office Depot #659,Office Supplies,455.43
+2026_1_4,A. Johnson,Marriott #125,Travel,180.96
+2026_1_4,B. Williams,Amazon #864,Office Supplies,280.42
+2026_1_18,B. Williams,Slack #695,Software,50.57
+2026_1_1,A. Johnson,Delta #608,Travel,182.21
+2026_1_12,B. Williams,Lyft #787,Travel,457.24
+2026_1_27,J. Doe,Lyft #238,Travel,474.86
+2026_1_5,A. Johnson,Apple #234,Hardware,86.13
+2026_1_29,A. Johnson,Amazon #937,Office Supplies,73.57
+2026_1_11,J. Doe,Best Buy #416,Hardware,288.35
+2026_1_5,J. Doe,Delta #407,Travel,142.03
+2026_1_10,B. Williams,AWS #561,Software,156.09
+2026_1_16,A. Johnson,AWS #666,Software,259.1
+2026_1_17,B. Williams,Apple #712,Hardware,151.52
+2026_1_10,J. Doe,Amazon #188,Office Supplies,78.34
+2026_1_13,A. Johnson,Lyft #904,Travel,55.01
+2026_1_12,J. Doe,Dell #275,Hardware,217.69
+2026_1_8,E. Smith,GitHub #970,Software,487.82
+2026_1_4,A. Johnson,Lyft #868,Travel,66.7
+2026_1_20,B. Williams,Uber Eats #333,Meals,310.8
+2026_1_14,A. Johnson,Starbucks #410,Meals,45.55
+2026_1_19,A. Johnson,Chipotle #826,Meals,47.04
+2026_1_7,A. Johnson,Starbucks #756,Meals,248.39
+2026_1_15,E. Smith,Marriott #399,Travel,25.97
+2026_1_16,E. Smith,Uber #858,Travel,498.77
+2026_1_11,A. Johnson,Uber #993,Travel,180.22
+2026_1_8,J. Doe,Uber Eats #601,Meals,321.21
+2026_1_11,B. Williams,Starbucks #202,Meals,143.9
+2026_1_8,A. Johnson,Dell #898,Hardware,366.78
+2026_1_6,J. Doe,Office Depot #360,Office Supplies,39.33
+2026_1_19,J. Doe,Uber #629,Travel,171.71
+2026_1_9,E. Smith,Starbucks #277,Meals,42.23
+2026_1_6,A. Johnson,Panera #702,Meals,113.65
+2026_1_26,E. Smith,Starbucks #525,Meals,404.39
+2026_1_19,E. Smith,Amazon #727,Office Supplies,149.61
+2026_1_21,J. Doe,Lyft #266,Travel,308.72
+2026_1_25,B. Williams,Apple #706,Hardware,182.78
+2026_1_12,J. Doe,Chipotle #884,Meals,470.08
+2026_1_15,A. Johnson,Marriott #292,Travel,145.82
+2026_1_20,A. Johnson,Slack #191,Software,201.18
+2026_1_29,A. Johnson,Amazon #661,Office Supplies,435.82
+2026_1_26,B. Williams,Marriott #891,Travel,380.53
+2026_1_26,J. Doe,Panera #805,Meals,224.67
+2026_1_1,A. Johnson,Best Buy #205,Hardware,263.86
+2026_1_16,J. Doe,Slack #643,Software,23.12
+2026_1_16,J. Doe,Office Depot #420,Office Supplies,266.0
+2026_1_24,J. Doe,Panera #707,Meals,22.32
+2026_1_24,B. Williams,Delta #526,Travel,392.25
+2026_1_7,B. Williams,Office Depot #209,Office Supplies,353.19
+2026_1_23,E. Smith,Delta #751,Travel,148.88
+2026_1_9,E. Smith,Slack #892,Software,121.48
+2026_1_13,E. Smith,Chipotle #184,Meals,101.66
+2026_1_6,A. Johnson,Lyft #782,Travel,274.16
+2026_1_31,A. Johnson,AWS #341,Software,332.83
+2026_1_18,B. Williams,Best Buy #389,Hardware,494.59
+2026_1_1,J. Doe,Best Buy #521,Hardware,73.91
+2026_1_13,E. Smith,Staples #726,Office Supplies,23.2
+2026_1_17,B. Williams,Dell #934,Hardware,435.87
+2026_1_29,B. Williams,Slack #301,Software,344.27
+2026_1_15,E. Smith,Panera #269,Meals,406.54
+2026_1_17,A. Johnson,Dell #802,Hardware,222.01
+2026_1_29,A. Johnson,Apple #309,Hardware,457.28
+2026_1_12,J. Doe,Starbucks #290,Meals,312.0
+2026_1_10,J. Doe,Panera #609,Meals,22.58
+2026_1_26,E. Smith,Uber #676,Travel,75.22
+2026_1_10,B. Williams,Lyft #308,Travel,164.58
+2026_1_5,A. Johnson,Marriott #362,Travel,424.51
+2026_1_7,B. Williams,Zoom #564,Software,274.79
+2026_1_18,A. Johnson,Staples #281,Office Supplies,115.75
+2026_1_3,B. Williams,Office Depot #886,Office Supplies,389.55
+2026_1_10,E. Smith,GitHub #958,Software,416.84
+2026_1_30,E. Smith,Slack #423,Software,155.17
+2026_1_30,A. Johnson,Starbucks #873,Meals,331.17
+2026_1_18,J. Doe,Slack #257,Software,402.65
+2026_1_21,J. Doe,Apple #247,Hardware,480.23
+2026_1_24,B. Williams,Staples #993,Office Supplies,190.93
+2026_1_2,E. Smith,Office Depot #935,Office Supplies,190.82
+2026_1_19,J. Doe,Marriott #653,Travel,39.7
+2026_1_2,E. Smith,Best Buy #181,Hardware,400.41
+2026_1_18,E. Smith,Lyft #985,Travel,408.5
+2026_1_6,J. Doe,Best Buy #913,Hardware,301.17
+2026_1_10,B. Williams,Office Depot #391,Office Supplies,181.72
+2026_1_1,A. Johnson,Dell #791,Hardware,336.54
+2026_1_11,E. Smith,Office Depot #414,Office Supplies,468.16
+2026_1_2,E. Smith,Apple #665,Hardware,401.83
+2026_1_6,A. Johnson,Best Buy #277,Hardware,89.93
+2026_1_4,B. Williams,Zoom #347,Software,393.53
+2026_1_14,E. Smith,Starbucks #300,Meals,28.2
+2026_1_16,A. Johnson,Office Depot #260,Office Supplies,479.95
+2026_1_3,E. Smith,Lyft #989,Travel,152.99
+2026_1_24,E. Smith,Delta #863,Travel,84.26
+2026_1_27,A. Johnson,Zoom #900,Software,78.91
+2026_1_5,J. Doe,Zoom #392,Software,253.98
+2026_1_31,J. Doe,Amazon #147,Office Supplies,241.21
+2026_1_14,J. Doe,Apple #202,Hardware,428.27
+2026_1_8,E. Smith,Starbucks #145,Meals,443.15
+2026_1_22,J. Doe,Delta #961,Travel,185.14
+2026_1_11,A. Johnson,Dell #165,Hardware,186.4
+2026_1_25,B. Williams,Panera #966,Meals,297.76
+2026_1_15,A. Johnson,AWS #820,Software,402.26
+2026_1_14,J. Doe,Lyft #675,Travel,436.39
+2026_1_21,A. Johnson,Apple #234,Hardware,26.34
+2026_1_19,E. Smith,Starbucks #774,Meals,37.12
+2026_1_1,A. Johnson,Apple #801,Hardware,139.54
+2026_1_15,E. Smith,Chipotle #533,Meals,361.24
+2026_1_10,E. Smith,Apple #802,Hardware,466.69
+2026_1_25,A. Johnson,Zoom #356,Software,417.71
+2026_1_1,B. Williams,Best Buy #153,Hardware,89.56
+2026_1_13,J. Doe,Lyft #488,Travel,205.37
+2026_1_23,J. Doe,Delta #653,Travel,82.94
+2026_1_18,E. Smith,Lyft #297,Travel,480.89
+2026_1_18,B. Williams,AWS #304,Software,492.17
+2026_1_25,A. Johnson,Uber Eats #627,Meals,75.18
+2026_1_29,A. Johnson,Starbucks #102,Meals,169.79
+2026_1_23,E. Smith,Delta #916,Travel,163.85
+2026_1_21,E. Smith,Uber Eats #154,Meals,426.89
+2026_1_23,E. Smith,Staples #978,Office Supplies,292.58
+2026_1_8,B. Williams,Amazon #888,Office Supplies,422.93
+2026_1_18,E. Smith,Staples #890,Office Supplies,290.16
+2026_1_8,B. Williams,Amazon #995,Office Supplies,57.24
+2026_1_27,J. Doe,Delta #450,Travel,314.11
+2026_1_20,E. Smith,Marriott #166,Travel,49.11
+2026_1_11,B. Williams,Best Buy #790,Hardware,87.81
+2026_1_3,B. Williams,Apple #678,Hardware,358.12
+2026_1_28,A. Johnson,Office Depot #923,Office Supplies,198.02
+2026_1_19,A. Johnson,Panera #318,Meals,110.79
+2026_1_22,J. Doe,Amazon #760,Office Supplies,298.36
+2026_1_31,B. Williams,Uber Eats #889,Meals,182.84
+2026_1_27,B. Williams,Slack #498,Software,439.24
+2026_1_31,A. Johnson,Office Depot #513,Office Supplies,70.51
+2026_1_5,A. Johnson,Apple #200,Hardware,437.09
+2026_1_13,J. Doe,Amazon #883,Office Supplies,10.27
+2026_1_26,J. Doe,Dell #735,Hardware,301.77
+2026_1_26,A. Johnson,Uber #722,Travel,65.09
+2026_1_18,A. Johnson,Lyft #878,Travel,354.84
+2026_1_12,J. Doe,Apple #598,Hardware,239.68
+2026_1_31,J. Doe,Amazon #769,Office Supplies,157.49
+2026_1_24,J. Doe,Zoom #904,Software,249.07
+2026_1_5,J. Doe,Marriott #452,Travel,328.74
+2026_1_1,J. Doe,Amazon #187,Office Supplies,194.02
+2026_1_15,B. Williams,Delta #818,Travel,62.42
+2026_1_31,B. Williams,Apple #884,Hardware,465.68
+2026_1_12,E. Smith,Slack #163,Software,101.02
+2026_1_21,A. Johnson,Uber #354,Travel,411.95
+2026_1_9,B. Williams,Panera #823,Meals,270.97
+2026_1_4,E. Smith,Panera #697,Meals,369.03
+2026_1_30,B. Williams,Staples #585,Office Supplies,263.67
+2026_1_3,A. Johnson,Delta #548,Travel,301.6
+2026_1_2,A. Johnson,Marriott #658,Travel,42.62
+2026_1_18,E. Smith,Slack #569,Software,206.57
+2026_1_6,J. Doe,Staples #494,Office Supplies,244.18
+2026_1_5,A. Johnson,Chipotle #811,Meals,78.55
+2026_1_27,J. Doe,GitHub #656,Software,324.22
+2026_1_8,J. Doe,Delta #453,Travel,149.18
+2026_1_14,J. Doe,Chipotle #150,Meals,470.56
+2026_1_24,E. Smith,Uber #113,Travel,87.71
+2026_1_2,J. Doe,Amazon #408,Office Supplies,133.07
+2026_1_3,J. Doe,Marriott #672,Travel,34.1
+2026_1_22,B. Williams,AWS #579,Software,467.27
+2026_1_29,J. Doe,Zoom #796,Software,422.11
+2026_1_11,E. Smith,Amazon #806,Office Supplies,266.48
+2026_1_11,A. Johnson,GitHub #261,Software,244.38
+2026_1_30,J. Doe,Chipotle #659,Meals,239.01
+2026_1_26,A. Johnson,Starbucks #511,Meals,142.66
+2026_1_31,A. Johnson,Panera #351,Meals,426.72
+2026_1_12,A. Johnson,AWS #305,Software,158.1
+2026_1_31,J. Doe,Best Buy #673,Hardware,472.4
+2026_1_7,A. Johnson,Zoom #987,Software,275.25
+2026_1_18,E. Smith,Delta #321,Travel,284.77
+2026_1_17,A. Johnson,Delta #833,Travel,244.65
+2026_1_27,E. Smith,Slack #492,Software,472.11
+2026_1_6,A. Johnson,Best Buy #315,Hardware,261.03
+2026_1_7,E. Smith,Office Depot #569,Office Supplies,64.67
+2026_1_12,J. Doe,Office Depot #639,Office Supplies,443.9
+2026_1_18,E. Smith,Slack #509,Software,361.75
+2026_1_7,E. Smith,Starbucks #705,Meals,380.11
+2026_1_24,J. Doe,Apple #530,Hardware,495.8
+2026_1_1,B. Williams,AWS #299,Software,121.78
+2026_1_9,J. Doe,Uber Eats #538,Meals,297.5
+2026_1_13,B. Williams,Office Depot #973,Office Supplies,23.12
+2026_1_27,B. Williams,Office Depot #609,Office Supplies,339.07
+2026_1_25,E. Smith,Panera #453,Meals,448.58
+2026_1_3,E. Smith,Chipotle #574,Meals,242.98
+2026_1_27,E. Smith,Zoom #742,Software,388.64
+2026_1_25,B. Williams,Slack #148,Software,455.19
+2026_1_18,E. Smith,Zoom #132,Software,49.79
+2026_1_20,E. Smith,Lyft #228,Travel,60.54
+2026_1_23,E. Smith,Best Buy #166,Hardware,282.86
+2026_1_19,B. Williams,GitHub #621,Software,326.48
+2026_1_28,J. Doe,Chipotle #632,Meals,246.12
+2026_1_19,J. Doe,AWS #676,Software,445.29
+2026_1_11,J. Doe,Staples #520,Office Supplies,169.3
+2026_1_10,B. Williams,Marriott #706,Travel,252.04
+2026_1_13,A. Johnson,Apple #120,Hardware,168.76
+2026_1_4,A. Johnson,AWS #674,Software,237.52
+2026_1_15,B. Williams,GitHub #696,Software,290.62
+2026_1_21,A. Johnson,Dell #725,Hardware,78.93
+2026_1_24,E. Smith,AWS #304,Software,364.98
+2026_1_9,A. Johnson,Slack #373,Software,361.86
+2026_1_23,J. Doe,Staples #278,Office Supplies,206.21
+2026_1_4,E. Smith,Uber #147,Travel,209.52
+2026_1_26,J. Doe,Apple #887,Hardware,38.32
+2026_1_11,A. Johnson,Amazon #458,Office Supplies,96.42
+2026_1_26,J. Doe,Slack #264,Software,329.24
+2026_1_4,J. Doe,Amazon #992,Office Supplies,208.05
+2026_1_7,J. Doe,Staples #592,Office Supplies,384.23
+2026_1_24,J. Doe,Zoom #585,Software,376.2
+2026_1_14,B. Williams,Uber Eats #978,Meals,319.02
+2026_1_3,A. Johnson,Amazon #660,Office Supplies,234.67
+2026_1_11,A. Johnson,Uber #613,Travel,390.24
+2026_1_9,J. Doe,GitHub #781,Software,94.73
+2026_1_14,B. Williams,Panera #523,Meals,345.1
+2026_1_7,B. Williams,Starbucks #229,Meals,374.89
+2026_1_19,A. Johnson,Apple #422,Hardware,229.74
+2026_1_2,B. Williams,Best Buy #881,Hardware,322.47
+2026_1_7,B. Williams,Chipotle #416,Meals,28.01
+2026_1_22,B. Williams,Apple #758,Hardware,101.46
+2026_1_14,A. Johnson,Staples #994,Office Supplies,19.26
+2026_1_27,A. Johnson,Slack #474,Software,350.59
+2026_1_21,A. Johnson,Lyft #661,Travel,121.71
+2026_1_14,A. Johnson,Marriott #256,Travel,377.95
+2026_1_24,B. Williams,Chipotle #799,Meals,259.21
+2026_1_30,B. Williams,Delta #255,Travel,238.64
+2026_1_7,A. Johnson,Marriott #393,Travel,309.09
+2026_1_3,J. Doe,Dell #464,Hardware,423.61
+2026_1_15,E. Smith,Dell #999,Hardware,472.17
+2026_1_10,E. Smith,Delta #721,Travel,407.72
+2026_1_24,J. Doe,GitHub #116,Software,394.07
+2026_1_1,J. Doe,Lyft #236,Travel,163.83
+2026_1_17,J. Doe,Best Buy #983,Hardware,424.45
+2026_1_2,B. Williams,Office Depot #792,Office Supplies,378.25
+2026_1_2,E. Smith,Chipotle #590,Meals,40.68
+2026_1_7,E. Smith,Amazon #891,Office Supplies,202.93
+2026_1_10,B. Williams,AWS #336,Software,213.72
+2026_1_22,B. Williams,Panera #920,Meals,408.12
+2026_1_17,J. Doe,Office Depot #371,Office Supplies,63.12
+2026_1_31,A. Johnson,Office Depot #224,Office Supplies,450.85
+2026_1_8,A. Johnson,Office Depot #646,Office Supplies,224.03
+2026_1_23,A. Johnson,Panera #154,Meals,254.65
+2026_1_23,B. Williams,GitHub #826,Software,155.03
+2026_1_10,B. Williams,Chipotle #440,Meals,108.96
+2026_1_9,B. Williams,AWS #540,Software,228.27
+2026_1_17,E. Smith,Lyft #884,Travel,455.81
+2026_1_13,B. Williams,Zoom #584,Software,178.14
+2026_1_28,A. Johnson,Delta #636,Travel,60.35
+2026_1_14,J. Doe,Staples #459,Office Supplies,330.91
+2026_1_31,A. Johnson,Office Depot #932,Office Supplies,44.73
+2026_1_15,A. Johnson,Uber #884,Travel,490.25
+2026_1_5,E. Smith,Chipotle #546,Meals,381.35
+2026_1_15,B. Williams,Panera #611,Meals,25.31
+2026_1_17,J. Doe,Dell #294,Hardware,218.12
+2026_1_5,B. Williams,Uber #575,Travel,404.23
+2026_1_24,B. Williams,Slack #238,Software,275.26
+2026_1_25,B. Williams,Zoom #744,Software,482.52
+2026_1_31,B. Williams,AWS #333,Software,90.85
+2026_1_22,B. Williams,Zoom #150,Software,466.17
+2026_1_12,E. Smith,Apple #295,Hardware,31.62
+2026_1_24,J. Doe,Lyft #880,Travel,302.32
+2026_1_8,E. Smith,GitHub #674,Software,397.21
+2026_1_19,B. Williams,Slack #246,Software,187.61
+2026_1_18,E. Smith,Panera #754,Meals,480.38
+2026_1_18,B. Williams,Best Buy #192,Hardware,158.0
+2026_1_5,J. Doe,Staples #728,Office Supplies,194.95
+2026_1_28,E. Smith,Staples #592,Office Supplies,239.41
+2026_1_22,B. Williams,Panera #441,Meals,441.2
+2026_1_10,A. Johnson,Dell #492,Hardware,209.8
+2026_1_1,E. Smith,Starbucks #210,Meals,157.06
+2026_1_28,J. Doe,Starbucks #664,Meals,490.83
+2026_1_15,E. Smith,Starbucks #428,Meals,117.34
+2026_1_27,E. Smith,Best Buy #715,Hardware,93.33
+2026_1_18,A. Johnson,AWS #845,Software,12.66
+2026_1_16,B. Williams,Uber Eats #898,Meals,117.74
+2026_1_18,E. Smith,Lyft #391,Travel,56.5
+2026_1_28,A. Johnson,AWS #207,Software,491.37
+2026_1_4,J. Doe,Apple #481,Hardware,59.66
+2026_1_11,A. Johnson,Panera #333,Meals,87.41
+2026_1_19,J. Doe,Zoom #308,Software,317.28
+2026_1_13,E. Smith,Staples #545,Office Supplies,325.77
+2026_1_6,B. Williams,Dell #567,Hardware,226.93
+2026_1_8,E. Smith,Best Buy #165,Hardware,276.57
+2026_1_1,A. Johnson,Zoom #541,Software,217.83
+2026_1_21,A. Johnson,Office Depot #539,Office Supplies,396.94
+2026_1_27,B. Williams,Dell #957,Hardware,343.57
+2026_1_7,E. Smith,Dell #486,Hardware,351.55
+2026_1_13,A. Johnson,Best Buy #941,Hardware,380.37
+2026_1_17,J. Doe,Staples #663,Office Supplies,406.56
+2026_1_18,J. Doe,Marriott #883,Travel,198.85
+2026_1_18,A. Johnson,Dell #179,Hardware,462.48
+2026_1_23,E. Smith,Staples #582,Office Supplies,233.79
+2026_1_30,E. Smith,GitHub #480,Software,249.24
+2026_1_2,B. Williams,Apple #761,Hardware,393.07
+2026_1_27,E. Smith,Zoom #543,Software,300.97
+2026_1_7,J. Doe,Apple #704,Hardware,154.73
+2026_1_20,E. Smith,Dell #612,Hardware,104.24
+2026_1_14,E. Smith,Lyft #378,Travel,186.78
+2026_1_29,J. Doe,GitHub #606,Software,284.95
+2026_1_4,B. Williams,AWS #359,Software,301.55
+2026_1_24,J. Doe,Best Buy #799,Hardware,59.24
+2026_1_15,B. Williams,Dell #128,Hardware,41.39
+2026_1_7,B. Williams,Delta #763,Travel,20.3
+2026_1_15,E. Smith,Amazon #494,Office Supplies,329.62
+2026_1_25,E. Smith,Zoom #803,Software,460.79
+2026_1_20,B. Williams,Uber Eats #435,Meals,57.87
+2026_1_25,A. Johnson,Uber #758,Travel,324.56
+2026_1_1,J. Doe,Dell #304,Hardware,129.86
+2026_1_1,B. Williams,Slack #991,Software,414.25
+2026_1_15,E. Smith,Office Depot #192,Office Supplies,291.73
+2026_1_25,J. Doe,Uber #131,Travel,118.47
+2026_1_4,J. Doe,Starbucks #666,Meals,124.93
+2026_1_28,J. Doe,Chipotle #573,Meals,63.88
+2026_1_31,J. Doe,AWS #538,Software,237.0
+2026_1_31,J. Doe,GitHub #282,Software,26.18
+2026_1_16,E. Smith,GitHub #206,Software,50.86
+2026_1_24,A. Johnson,Lyft #804,Travel,124.35
+2026_1_14,A. Johnson,Uber Eats #928,Meals,129.13
+2026_1_21,J. Doe,Office Depot #825,Office Supplies,89.45
+2026_1_2,B. Williams,Staples #492,Office Supplies,273.71
+2026_1_30,J. Doe,AWS #669,Software,280.53
+2026_1_20,A. Johnson,Amazon #901,Office Supplies,294.3
+2026_1_1,E. Smith,Delta #820,Travel,334.54
+2026_1_24,E. Smith,Office Depot #240,Office Supplies,470.87
+2026_1_13,A. Johnson,Marriott #791,Travel,195.2
+2026_1_13,A. Johnson,GitHub #354,Software,88.4
+2026_1_26,J. Doe,Best Buy #842,Hardware,461.26
+2026_1_1,B. Williams,GitHub #712,Software,56.27
+2026_1_31,A. Johnson,Best Buy #459,Hardware,273.83
+2026_1_4,A. Johnson,Dell #509,Hardware,25.4
+2026_1_28,B. Williams,Staples #502,Office Supplies,436.1
+2026_1_12,J. Doe,Chipotle #916,Meals,312.82
+2026_1_7,A. Johnson,Staples #919,Office Supplies,316.14
+2026_1_7,J. Doe,AWS #708,Software,328.89
+2026_1_5,J. Doe,Staples #345,Office Supplies,153.36
+2026_1_12,J. Doe,Delta #129,Travel,43.87
+2026_1_22,B. Williams,Zoom #824,Software,140.82
+2026_1_3,J. Doe,Zoom #279,Software,36.54
+2026_1_3,J. Doe,Uber #101,Travel,224.72
+2026_1_29,A. Johnson,Uber #240,Travel,53.44
+2026_1_29,J. Doe,Starbucks #558,Meals,237.27
+2026_1_5,B. Williams,Zoom #709,Software,274.38
+2026_1_29,J. Doe,Starbucks #366,Meals,370.88
+2026_1_31,J. Doe,Delta #770,Travel,190.77
+2026_1_31,E. Smith,Staples #567,Office Supplies,391.54
+2026_1_11,B. Williams,Apple #733,Hardware,186.18
+2026_1_5,J. Doe,Dell #509,Hardware,342.31
+2026_1_5,A. Johnson,Office Depot #189,Office Supplies,247.08
+2026_1_12,E. Smith,Lyft #574,Travel,175.52
+2026_1_29,A. Johnson,Office Depot #218,Office Supplies,161.12
+2026_1_10,A. Johnson,Uber Eats #187,Meals,480.42
+2026_1_24,A. Johnson,Staples #650,Office Supplies,282.78
+2026_1_21,A. Johnson,Office Depot #563,Office Supplies,200.62
+2026_1_29,B. Williams,Office Depot #378,Office Supplies,54.17
+2026_1_21,J. Doe,Apple #488,Hardware,12.78
+2026_1_31,B. Williams,AWS #110,Software,390.74
+2026_1_11,E. Smith,Amazon #589,Office Supplies,471.45
+2026_1_24,A. Johnson,Amazon #548,Office Supplies,488.66
+2026_1_13,E. Smith,Staples #834,Office Supplies,110.92
+2026_1_29,J. Doe,Lyft #447,Travel,348.51
+2026_1_17,A. Johnson,Zoom #614,Software,77.61
+2026_1_10,B. Williams,AWS #234,Software,304.81
+2026_1_29,B. Williams,Delta #673,Travel,285.53
+2026_1_1,J. Doe,AWS #236,Software,377.05
+2026_1_4,A. Johnson,Chipotle #649,Meals,21.5
+2026_1_21,B. Williams,Dell #361,Hardware,211.13
+2026_1_11,B. Williams,Panera #454,Meals,219.72
+2026_1_4,A. Johnson,Apple #416,Hardware,261.35
+2026_1_20,A. Johnson,Uber #614,Travel,47.0
+2026_1_21,A. Johnson,Amazon #188,Office Supplies,218.11
+2026_1_29,J. Doe,Chipotle #395,Meals,234.64
+2026_1_19,E. Smith,Marriott #947,Travel,122.69
+2026_1_5,E. Smith,Marriott #474,Travel,109.22
+2026_1_24,E. Smith,Panera #967,Meals,453.75
+2026_1_10,A. Johnson,Amazon #109,Office Supplies,208.48
+2026_1_16,B. Williams,Uber #102,Travel,144.31
+2026_1_28,B. Williams,Slack #302,Software,346.67
+2026_1_10,J. Doe,AWS #493,Software,158.68
+2026_1_6,B. Williams,Apple #105,Hardware,119.35
+2026_1_26,A. Johnson,Staples #662,Office Supplies,135.94
+2026_1_5,A. Johnson,Delta #883,Travel,297.42
+2026_1_29,B. Williams,Dell #837,Hardware,241.35
+2026_1_6,B. Williams,Best Buy #327,Hardware,210.42
+2026_1_6,E. Smith,Apple #397,Hardware,371.18
+2026_1_11,A. Johnson,Office Depot #327,Office Supplies,318.29
+2026_1_7,E. Smith,Dell #322,Hardware,495.27
+2026_1_23,J. Doe,Dell #646,Hardware,432.27
+2026_1_31,E. Smith,Delta #990,Travel,83.17
+2026_1_12,A. Johnson,Apple #616,Hardware,140.2
+2026_1_11,E. Smith,AWS #778,Software,319.27
+2026_1_16,J. Doe,AWS #841,Software,374.63
+2026_1_13,A. Johnson,Delta #120,Travel,243.84
+2026_1_6,A. Johnson,Lyft #896,Travel,420.49
+2026_1_18,E. Smith,Staples #933,Office Supplies,200.62
+2026_1_18,A. Johnson,Amazon #253,Office Supplies,401.25
+2026_1_28,J. Doe,Marriott #168,Travel,159.12
+2026_1_1,B. Williams,GitHub #295,Software,241.44
+2026_1_4,A. Johnson,GitHub #208,Software,169.92
+2026_1_8,B. Williams,Staples #129,Office Supplies,252.48
+2026_1_6,A. Johnson,AWS #463,Software,279.5
+2026_1_16,A. Johnson,Amazon #785,Office Supplies,328.41
+2026_1_8,B. Williams,Best Buy #273,Hardware,172.44
+2026_1_2,B. Williams,Uber #321,Travel,480.95
+2026_1_15,J. Doe,Slack #114,Software,401.17
+2026_1_6,E. Smith,Office Depot #867,Office Supplies,474.52
+2026_1_23,E. Smith,Delta #322,Travel,162.69
+2026_1_21,E. Smith,Chipotle #135,Meals,65.59
+2026_1_22,B. Williams,Apple #841,Hardware,148.4
+2026_1_13,J. Doe,Staples #746,Office Supplies,213.64
+2026_1_19,E. Smith,Apple #480,Hardware,368.02
+2026_1_23,J. Doe,Apple #275,Hardware,170.82
+2026_1_28,J. Doe,Staples #202,Office Supplies,398.39
+2026_1_31,J. Doe,Delta #171,Travel,207.92
+2026_1_9,A. Johnson,Uber Eats #772,Meals,494.63
+2026_1_5,A. Johnson,Chipotle #427,Meals,453.02
+2026_1_20,E. Smith,Best Buy #851,Hardware,50.65
+2026_1_2,A. Johnson,Uber #899,Travel,95.16
+2026_1_16,A. Johnson,Lyft #617,Travel,194.94
+2026_1_11,A. Johnson,AWS #663,Software,334.99
+2026_1_19,E. Smith,Best Buy #303,Hardware,473.76
+2026_1_31,B. Williams,Office Depot #789,Office Supplies,222.04
+2026_1_3,E. Smith,Zoom #963,Software,366.01
+2026_1_25,A. Johnson,Office Depot #826,Office Supplies,56.09
+2026_1_20,J. Doe,Dell #236,Hardware,403.47
+2026_1_31,E. Smith,Marriott #442,Travel,427.14
+2026_1_15,A. Johnson,Best Buy #156,Hardware,133.73
+2026_1_12,A. Johnson,Dell #114,Hardware,219.07
+2026_1_14,J. Doe,GitHub #699,Software,102.47
+2026_1_20,A. Johnson,Zoom #181,Software,142.36
+2026_1_23,E. Smith,Office Depot #130,Office Supplies,287.97
+2026_1_21,E. Smith,Best Buy #896,Hardware,115.24
+2026_1_11,E. Smith,Chipotle #602,Meals,149.41
+2026_1_30,B. Williams,Dell #332,Hardware,191.81
+2026_1_14,B. Williams,AWS #800,Software,384.28
+2026_1_31,E. Smith,Dell #564,Hardware,229.83
+2026_1_6,E. Smith,Panera #860,Meals,485.82
+2026_1_7,B. Williams,GitHub #261,Software,430.06
+2026_1_17,J. Doe,Panera #257,Meals,321.27
+2026_1_18,B. Williams,Delta #776,Travel,369.97
+2026_1_20,E. Smith,AWS #891,Software,30.77
+2026_1_7,J. Doe,Dell #672,Hardware,459.78
+2026_1_9,B. Williams,Lyft #669,Travel,399.63
+2026_1_6,J. Doe,Amazon #384,Office Supplies,285.79
+2026_1_29,J. Doe,Lyft #168,Travel,437.24
+2026_1_27,A. Johnson,Office Depot #441,Office Supplies,194.45
+2026_1_8,J. Doe,Lyft #571,Travel,384.7
+2026_1_26,A. Johnson,Office Depot #812,Office Supplies,243.8

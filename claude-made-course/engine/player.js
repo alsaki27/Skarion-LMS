@@ -147,8 +147,89 @@
       case "quiz": return renderQuiz(c, idx);
       case "journal_entry_builder": return renderJE(c, idx);
       case "exercise": return renderExercise(c);
-      default: return "<p>Unknown chunk type.</p>";
+      case "timeline": return renderTimeline(c);
+      case "drag_and_drop": return renderDragAndDrop(c, idx);
+      case "hotspot": return renderHotspot(c, idx);
+      default: return "<p>Unknown chunk type: " + esc(c.type) + "</p>";
     }
+  }
+
+  function renderTimeline(c) {
+    var html = '<div class="chunk-kicker">Process Flow</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="timeline">';
+    c.steps.forEach(function(step, i) {
+      html += '<div class="timeline-step" style="animation-delay: ' + (i * 0.2) + 's">';
+      html += '<div class="timeline-dot"></div>';
+      html += '<div class="timeline-content"><h3>' + esc(step.title) + '</h3><p>' + esc(step.desc) + '</p></div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function renderDragAndDrop(c, idx) {
+    var html = '<div class="chunk-kicker">Interactive Exercise</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose">' + esc(c.instruction) + '</p>';
+    html += '<div class="dnd-container">';
+    html += '<div class="dnd-items">';
+    c.items.forEach(function(item, i) {
+      html += '<div class="dnd-item" draggable="true" id="drag-' + idx + '-' + i + '" data-target="' + esc(item.target) + '">' + esc(item.draggable) + '</div>';
+    });
+    html += '</div>';
+    html += '<div class="dnd-targets">';
+    var uniqueTargets = [];
+    c.items.forEach(function(item) { if(uniqueTargets.indexOf(item.target) === -1) uniqueTargets.push(item.target); });
+    uniqueTargets.forEach(function(tgt) {
+      html += '<div class="dnd-target" data-accept="' + esc(tgt) + '"><h3>' + esc(tgt) + '</h3><div class="dnd-zone"></div></div>';
+    });
+    html += '</div></div>';
+    
+    // Add initialization script for this specific DOM node after render
+    setTimeout(function() { initDragAndDrop(idx); }, 100);
+    return html;
+  }
+
+  function initDragAndDrop(idx) {
+    var items = $all('.dnd-item[id^="drag-' + idx + '-"]');
+    var zones = $all('.dnd-container .dnd-zone');
+    items.forEach(function(item) {
+      item.addEventListener('dragstart', function(e) {
+        e.dataTransfer.setData('text/plain', item.id);
+        item.classList.add('dragging');
+      });
+      item.addEventListener('dragend', function() { item.classList.remove('dragging'); });
+    });
+    zones.forEach(function(zone) {
+      zone.addEventListener('dragover', function(e) { e.preventDefault(); zone.parentElement.classList.add('drag-over'); });
+      zone.addEventListener('dragleave', function(e) { zone.parentElement.classList.remove('drag-over'); });
+      zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        zone.parentElement.classList.remove('drag-over');
+        var id = e.dataTransfer.getData('text/plain');
+        var dragged = document.getElementById(id);
+        if(dragged && dragged.dataset.target === zone.parentElement.dataset.accept) {
+          zone.appendChild(dragged);
+          dragged.draggable = false;
+          dragged.style.background = 'var(--success-color, #059669)';
+          dragged.style.color = 'white';
+        } else {
+          alert('Incorrect! Try again.');
+        }
+      });
+    });
+  }
+
+  function renderHotspot(c, idx) {
+    var html = '<div class="chunk-kicker">Visual Analysis</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="hotspot-container" style="position:relative; display:inline-block; max-width:100%; border:1px solid #333; border-radius:8px; overflow:hidden;">';
+    html += '<img src="' + esc(c.image) + '" style="display:block; max-width:100%; height:auto;" />';
+    c.hotspots.forEach(function(hs, i) {
+      html += '<div class="hotspot-dot" style="left:' + hs.x + '%; top:' + hs.y + '%;" onclick="this.querySelector(\'.hotspot-tooltip\').classList.toggle(\'show\')">';
+      html += '<div class="hotspot-tooltip"><strong>' + esc(hs.label) + '</strong><br>' + esc(hs.info) + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
   }
 
   function renderContent(c) {

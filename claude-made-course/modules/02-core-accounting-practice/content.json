@@ -1,0 +1,46 @@
+{
+  "title": "Core Accounting Theory",
+  "moduleTag": "Module 02",
+  "dayMapping": "Day 2",
+  "subhead": "Master the language of business: Accounts, Debits, and Credits.",
+  "chunks": [
+    {
+      "type": "content",
+      "title": "The Accounting Equation",
+      "bodyHtml": "<p>Everything in accounting is built on one simple equation: <strong>Assets = Liabilities + Equity</strong>.</p><p>If Skarion Manufacturing buys a $10,000 piece of equipment (Asset) using a bank loan (Liability), the equation remains balanced: $10,000 = $10,000 + $0.</p>"
+    },
+    {
+      "type": "drag_and_drop",
+      "title": "Categorize the Accounts",
+      "instruction": "Drag each account to its correct classification on the Balance Sheet or Income Statement.",
+      "items": [
+        {"draggable": "Operating Checking", "target": "Asset"},
+        {"draggable": "Accounts Payable", "target": "Liability"},
+        {"draggable": "Sales Revenue", "target": "Revenue"},
+        {"draggable": "Rent Expense", "target": "Expense"},
+        {"draggable": "Accounts Receivable", "target": "Asset"}
+      ]
+    },
+    {
+      "type": "content",
+      "title": "Debits and Credits (DEAD CLIC)",
+      "bodyHtml": "<p>Forget what you know about your personal bank account. In accounting, Debit just means <em>Left</em>, and Credit means <em>Right</em>.</p><p>Use the <strong>DEAD CLIC</strong> acronym to remember what increases an account:</p><ul><li><strong>D</strong>ebit increases <strong>E</strong>xpenses, <strong>A</strong>ssets, and <strong>D</strong>raws (Dividends).</li><li><strong>C</strong>redit increases <strong>L</strong>iabilities, <strong>I</strong>ncome (Revenue), and <strong>C</strong>apital (Equity).</li></ul>"
+    },
+    {
+      "type": "journal_entry_builder",
+      "title": "Your First Journal Entry",
+      "scenarioHtml": "<p>Skarion Manufacturing just paid $2,000 cash for this month's rent. Record the journal entry.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 - Operating Checking",
+        "2000 - Accounts Payable",
+        "4000 - Sales Revenue",
+        "6100 - Rent Expense"
+      ],
+      "solution": [
+        { "account": "6100 - Rent Expense", "side": "debit", "amount": 2000 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 2000 }
+      ]
+    }
+  ]
+}

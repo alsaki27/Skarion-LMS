@@ -1,0 +1,43 @@
+{
+  "title": "Introduction & Job Market Research",
+  "moduleTag": "Module 01",
+  "dayMapping": "Day 1",
+  "subhead": "Welcome to the Skarion Accounting Track. Let's explore what the job market actually demands.",
+  "chunks": [
+    {
+      "type": "content",
+      "title": "The Skarion Approach",
+      "bodyHtml": "<p>Most accounting courses teach you how to pass the CPA exam. We teach you how to do the actual job of a Staff Accountant.</p><p>You will step into the role of a newly hired accountant at <strong>Skarion Manufacturing LLC</strong>. By the end of this track, you will have reconciled actual bank statements, processed messy payroll, and completed a full month-end close.</p>"
+    },
+    {
+      "type": "timeline",
+      "title": "The Modern Accountant's Workflow",
+      "steps": [
+        {"title": "Daily", "desc": "Process vendor bills, record customer payments, and categorize bank feed transactions."},
+        {"title": "Weekly", "desc": "Run payroll, issue customer invoices, and review Accounts Receivable aging."},
+        {"title": "Month-End", "desc": "Reconcile bank accounts, post accrual journal entries, and generate financial statements."}
+      ]
+    },
+    {
+      "type": "content",
+      "title": "What Employers Actually Want",
+      "bodyHtml": "<p>We analyzed over 40 real-world job postings for Entry-Level and Staff Accountants. The results might surprise you.</p><ul><li><strong>Excel</strong> is listed more often than QuickBooks.</li><li><strong>Month-end close</strong> experience is the #1 differentiator.</li><li>Employers expect you to understand <strong>Accrual Accounting</strong>, not just basic bookkeeping.</li></ul>",
+      "callout": {
+        "type": "tip",
+        "html": "Don't just list 'Excel' on your resume. List 'VLOOKUP, PivotTables, and Bank Reconciliation in Excel'."
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Market Reality Check",
+      "questions": [
+        {
+          "q": "Based on market research, which software skill is most frequently explicitly required for Staff Accountants?",
+          "options": ["QuickBooks Online", "Microsoft Excel", "SAP", "Oracle NetSuite"],
+          "correct_index": 1,
+          "explanation": "Excel is the undisputed king. Every company uses it, even if they have an ERP like SAP or NetSuite."
+        }
+      ]
+    }
+  ]
+}
