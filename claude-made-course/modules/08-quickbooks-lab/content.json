@@ -6,6 +6,39 @@
   "hook": "\"Do you actually know your way around a GL system, or only the textbook?\" SkarionBooks lets you prove it: open the simulator, post the entries you learned in Modules 02–06, and produce real reports off real Skarion Engineering numbers.",
   "chunks": [
     {
+      "type": "review_quiz",
+      "title": "Scenario judgment check — before SkarionBooks",
+      "railLabel": "Review scenarios",
+      "intro": "Before we go hands-on in SkarionBooks, let's make sure your judgment on real workplace situations is locked in. Type your answer for each — there's no multiple choice, because the work is in the reasoning.",
+      "questions": [
+        {
+          "q": "You are posting the AP batch and notice invoice #0891 is the same vendor, same amount, same date as invoice #0847 you posted two weeks ago. What do you do?",
+          "type": "open",
+          "explanation": "Likely duplicate. Hold #0891, do not pay. Compare line-by-line to #0847, confirm with the vendor in writing. If a true duplicate, void it and document. Never pay a suspected duplicate on faith."
+        },
+        {
+          "q": "A client sends a wire for $45,000 but your open invoice is for $47,500. The client didn't send remittance advice. What steps do you take before posting anything?",
+          "type": "open",
+          "explanation": "Do not guess which invoice or post blind. Email/call the client for remittance advice, confirm whether $45,000 is a partial payment, a discounted payment, or a different invoice entirely. Once confirmed in writing, post the cash to the correct invoice and document the $2,500 short-pay with a dispute flag if needed."
+        },
+        {
+          "q": "Your manager tells you to just \"plug the difference\" on the bank reconciliation because it's only $340 and the audit is tomorrow. What do you do?",
+          "type": "open",
+          "explanation": "Push back professionally. Ask to walk through the business reason and note that plugging hides the real error and creates audit risk. Offer to trace the $340 to its source in the next hour. Never post a plug to force a reconciliation — escalate in writing if pressured."
+        },
+        {
+          "q": "You notice that last month's accrual for offshore labor ($14,800) was never reversed on the first of this month. How does this affect the current month's financials and what do you do?",
+          "type": "open",
+          "explanation": "The accrual is still sitting on the books, so COGS is overstated this month and Accrued Liabilities are overstated — IF the real invoice was also entered this month (double-counted). Reverse the missed accrual now (Dr Accrued Liabilities $14,800 / Cr COGS $14,800), document the correction, and confirm the real invoice booked once (net effect = one correct expense)."
+        },
+        {
+          "q": "A vendor is threatening to stop services unless you pay their invoice immediately. The invoice failed the 3-way match two weeks ago. What do you do?",
+          "type": "open",
+          "explanation": "Do not pay a failed match under pressure. Acknowledge the urgency, escalate to the PM and controller, request the vendor send a corrected invoice or credit memo, and document the dispute. If services truly can't pause, get supervisor approval to pay the undisputed portion only — never the disputed amount."
+        }
+      ]
+    },
+    {
       "type": "content",
       "kicker": "Before you start",
       "title": "What SkarionBooks is — and what it isn't",

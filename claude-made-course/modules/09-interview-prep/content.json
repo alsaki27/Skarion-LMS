@@ -6,6 +6,81 @@
   "hook": "\"Tell me about a time you found an error in the books.\" Every candidate has an answer. The question is whether yours is specific enough to believe. This module gives you the structure and the numbers to make yours unfakeable.",
   "chunks": [
     {
+      "type": "review_quiz",
+      "title": "Final course recall — mixed from all modules",
+      "railLabel": "Final review",
+      "intro": "One last spaced-repetition check, drawn from the hardest items across all 8 modules, before we prep for the interview.",
+      "questions": [
+        {
+          "q": "What is the GAAP-compliant timing for revenue recognition on a service-contract milestone?",
+          "options": ["When the contract is signed", "When the client pays", "When (or as) the specific performance obligation is satisfied (ASC 606)", "At year-end only"],
+          "correct_index": 2,
+          "explanation": "ASC 606 step 5: recognize when/as each obligation is satisfied — HLD delivery, not contract signing or cash receipt."
+        },
+        {
+          "q": "What is the normal balance of Accumulated Depreciation?",
+          "options": ["Debit (it's an asset)", "Credit (it's a contra-asset)", "It has no balance", "Debit in the first year, credit after"],
+          "correct_index": 1,
+          "explanation": "Accumulated Depreciation is a contra-asset — credit-normal. It reduces the net book value of the related asset."
+        },
+        {
+          "q": "A $250,000 loan at 7.25% — what is the monthly interest accrual?",
+          "options": ["$1,510.42", "$2,708.33", "$1,000.00", "$18,125.00"],
+          "correct_index": 0,
+          "explanation": "$250,000 × 7.25% ÷ 12 = $1,510.42. (The earlier-variable loan figure; the current Phase 1 canonical term loan is $500K @ 6.5% = $2,708.33 — know both.)"
+        },
+        {
+          "q": "What three documents make up a 3-way match?",
+          "options": ["Bank statement, GL, trial balance", "Purchase Order, Receiving Report, Vendor Invoice", "Contract, timesheet, payroll", "Invoice, check, deposit slip"],
+          "correct_index": 1,
+          "explanation": "PO (authorized) + Receiving Report (delivered) + Vendor Invoice (billed) must agree on quantity, unit price, and total."
+        },
+        {
+          "q": "Bank statement: $312,450. GL: $346,823.60. Adjusted bank: $336,250. What is the total of items on the bank side (deposits in transit − outstanding checks)?",
+          "options": ["+$23,800", "+$28,000", "−$10,602", "$34,373.60"],
+          "correct_index": 0,
+          "explanation": "Adjusted bank $336,250 = $312,450 + deposits in transit − outstanding checks. Net bank-side items = $336,250 − $312,450 = +$23,800 (= +$28,000 deposit in transit − $4,200 outstanding check)."
+        },
+        {
+          "q": "What journal entry reverses a month-end accrual on the first day of the next month?",
+          "options": ["Dr the expense account / Cr Accrued Liabilities", "Dr Accrued Liabilities / Cr the expense account (opposite of the accrual)", "Dr Cash / Cr Revenue", "No entry — accruals carry forward"],
+          "correct_index": 1,
+          "explanation": "Reversal is the exact opposite of the accrual: Dr Accrued Liabilities / Cr the expense account, so the real invoice (entered in the new month) doesn't double-count."
+        },
+        {
+          "q": "When does a deferred revenue balance become recognized revenue?",
+          "options": ["When cash is received", "When the performance obligation is satisfied (work delivered)", "At year-end automatically", "Never — it stays a liability"],
+          "correct_index": 1,
+          "explanation": "Deferred Revenue converts to earned revenue when (or as) the underlying obligation is satisfied. Then Dr Deferred Revenue / Cr Revenue."
+        },
+        {
+          "q": "What is the DSO for a company with $997,700 AR and $4.8M annual revenue?",
+          "options": ["32.4 days", "60.1 days", "75.8 days", "112.7 days"],
+          "correct_index": 2,
+          "explanation": "$997,700 ÷ $4,800,000 × 365 ≈ 75.8 days — about 76 days to collect a dollar of billed revenue."
+        },
+        {
+          "q": "What is the correcting entry for a duplicate customer deposit of $9,503.60 (entered twice)?",
+          "options": ["Dr Sales Revenue / Cr Cash", "Dr Accounts Receivable / Cr Cash", "Dr Cash / Cr Accounts Receivable", "Dr Bad Debt Expense / Cr Allowance"],
+          "correct_index": 1,
+          "explanation": "Reverse the duplicate: Dr AR $9,503.60 / Cr Cash $9,503.60. Revenue was never overstated — only cash/AR were."
+        },
+        {
+          "q": "Name the 5 steps of ASC 606.",
+          "type": "open",
+          "explanation": "1) Identify the contract; 2) Identify distinct performance obligations; 3) Determine the transaction price; 4) Allocate the price to each obligation; 5) Recognize revenue when (or as) each obligation is satisfied."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 38 — Watch first",
+      "title": "How to Answer Any Accounting Interview Question",
+      "railLabel": "Video: Interview",
+      "intro": "Every candidate in your interview knows basic accounting. The real question is whether you can tell a specific story from real work that proves it.",
+      "transcript": "<p><strong>0:00 —</strong> Every candidate in your interview knows basic accounting. The question the interviewer is actually asking is: can you tell me a specific story from real work that proves it? That's what separates hires from rejections.</p><p><strong>0:30 —</strong> The framework is Context, Action, Result. Context: what company, what month, what situation. Action: what you did, what you checked, what you found. Result: the correction, the effect, the lesson. Every answer fits this structure.</p><p><strong>1:30 —</strong> Here's the weak answer to \"Tell me about a time you found an error in the books\": \"I'm very detail-oriented and I always catch errors.\" That's a motivational poster. Here's the strong answer: \"During a bank reconciliation in January, the GL showed more cash than the bank statement. I compared deposits by date and amount, found a customer payment — $10,547.10 — entered twice. I confirmed the bank only received it once, reversed the duplicate with a Dr AR / Cr Cash, and the reconciliation balanced to $336,250.\" The second answer is unfakeable.</p><p><strong>2:30 —</strong> Three things make it strong: a specific dollar amount, the company and document named, and the journal-entry direction exactly right — Dr AR not Sales Revenue, because the sale was never double-counted. That level of detail proves you actually did the work.</p><p><strong>3:30 —</strong> In the interview prep module, you'll get 10 must-know questions with Skarion-specific answers. Practice out loud. The goal isn't to memorize — it's to internalize the structure so you can apply it to any question.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The framework",
       "title": "Context → Action → Result, and the 126-question bank",
@@ -32,6 +107,62 @@
         { "front": "What is a bank reconciliation?", "back": "A two-sided proof: bank statement + deposits in transit − outstanding checks = adjusted bank balance; GL + credits not recorded − debits not recorded = adjusted book balance. The two must meet exactly. January: both sides converged on $336,250.00 after finding a $10,547.10 duplicate deposit." },
         { "front": "How do you handle a short payment from a customer?", "back": "Apply the cash to the oldest invoice and document the dispute on the remainder — do not write it off. Southeast Broadband paid $190,000 of their $405,000 balance with a note that the rest was in dispute. Entry: Dr Cash $190,000 / Cr AR $190,000; the remaining $215,000 stays open in the subledger with a dispute flag." },
         { "front": "What is an allowance for doubtful accounts and why is it needed?", "back": "GAAP requires estimating uncollectible AR in the period the sale is made (matching principle), not waiting for a specific invoice to fail. Skarion estimates 1.5% of $997,700 = $14,965.50. Entry: Dr Bad Debt Expense $14,965.50 / Cr Allowance for Doubtful Accounts $14,965.50. Write-offs later go against the allowance, not expense." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 57 — honest framing",
+      "title": "How to Talk About This Course in an Interview Without Sounding Fake",
+      "bodyHtml": "<p>This course is a <strong>portfolio project</strong> — a structured simulation, not employment. You need language to present it honestly without underselling or misrepresenting it.</p><p><strong>The exact language framework:</strong></p><ul><li>✅ <em>\"In my accounting simulation portfolio project with Skarion Engineering, I...\"</em></li><li>✅ <em>\"Through a structured accounting simulation, I processed over 30 vendor invoices using the 3-way match...\"</em></li><li>✅ <em>\"I completed a full month-end close simulation including bank reconciliation, accruals, depreciation, and financial statement preparation.\"</em></li><li>❌ <em>\"I worked at Skarion Engineering.\"</em> (misrepresentation)</li><li>❌ <em>\"I just did some practice exercises.\"</em> (underselling)</li></ul><p><strong>The key insight:</strong> simulation experience is <em>real experience</em>. A pilot doesn't need to have crashed a real plane to know how to handle engine failure — they practiced on a simulator. An interviewer who understands modern accounting training knows this. The skills you built here — reconciliation investigation, accrual timing, subledger tying, adjusting entries — are the same work a junior accountant actually does, on the same kind of documents.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Why this framing works:</strong> it is honest (you never claim paid employment), specific (you name the artifacts — bank rec, accruals, journal entries — and the numbers attached), and it signals you understand the difference between simulation and lived work. That judgment is itself part of what employers hire for."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Reframe it in 6 contexts",
+      "title": "Flip cards — simulation language for 6 interview contexts",
+      "railLabel": "Framing cards",
+      "cards": [
+        {"front": "LinkedIn profile headline", "back": "\"Staff Accountant | Completed full accrual-basis close & bank reconciliation simulation (Skarion Engineering portfolio)\" — honest, specific, discoverable for recruiters."},
+        {"front": "Resume bullet point", "back": "\"Performed a 3-way match on 30+ simulated vendor invoices, holding a $178.75 GCS-2026-087 price variance for credit-memo resolution.\" — quantified, action-led, document-specific."},
+        {"front": "\"Tell me about yourself\"", "back": "\"I'm a Staff Accountant candidate whose portfolio work included closing the books for a simulated $2M fiber-design firm — bank rec to $336,250, payroll entries, adjusting entries, and a duplicate deposit I traced and corrected.\""},
+        {"front": "Behavioral question", "back": "Lead with the situation: \"In my Skarion simulation close, the bank rec had a $10,547 gap...\" — Context, Action, Result, with the simulation named honestly up front."},
+        {"front": "Technical question", "back": "Answer the treatment correctly, then anchor it: \"In January's Skarion close I posted exactly this entry — Dr COGS $14,800 / Cr Accrued Liabilities for offshore work done before the invoice arrived.\""},
+        {"front": "Reference / background-check question", "back": "Be upfront with whoever offered the simulation (instructor, program, self-directed course) that you'd like to describe it honestly on applications — share the deliverables so they can speak to them if asked."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 58 — professional communication",
+      "title": "Professional Communication in Accounting — What to Say and When",
+      "bodyHtml": "<p>Most new accountants get fired for communication failures, not technical ones. Five scenarios you will face in the first 90 days — and the draft you'd actually send.</p><table class='data'><tr><th>Scenario</th><th>Drafted opener</th></tr><tr><td><strong>Escalating an error</strong></td><td>\"I found a discrepancy I can't resolve alone. Here's what I found, here's what I've already tried, and here's my recommendation.\"</td></tr><tr><td><strong>Pushing back on a bad instruction</strong></td><td>\"I want to make sure I understand — you'd like me to adjust the balance to match without tracing the source. Can you walk me through the business reason? I want to make sure we have documentation.\"</td></tr><tr><td><strong>Chasing a late vendor invoice</strong></td><td>\"Hi [Vendor], I'm closing January's books and we have an outstanding [X] for [description]. Can you confirm the invoice status?\"</td></tr><tr><td><strong>Delivering bad news on cash position</strong></td><td>Clear, factual, solution-oriented. Never alarmist. \"Cash is lower than projected — here's why, here's the impact, here's what I'd recommend.\"</td></tr><tr><td><strong>Asking for help without looking incompetent</strong></td><td>\"I've reviewed [X], tried [Y], and I'm getting [Z] — which isn't matching because of [suspected reason]. Can I get 5 minutes to walk through it with you?\"</td></tr></table><p>The pattern across all five: you lead with what you've <em>already</em> done, not a blank question. That's the difference between \"I'm stuck\" and \"I'm stuck and here's my current best read.\"</p>"
+    },
+    {
+      "type": "quiz",
+      "kicker": "Role-play — pick the best email draft",
+      "title": "Communication scenario role-play quiz",
+      "intro": "Read each situation and pick the best email draft. The right answer is the one that is factual, professional, and leads with what you've already done.",
+      "questions": [
+        {
+          "q": "A manager asks you to \"just plug\" the $340 bank-rec difference because the audit is tomorrow. Which email is best?",
+          "options": ["\"Sure, I'll plug it.\"", "\"I traced 29 transactions and found a likely $340 unrecorded wire fee. I can post that documented entry to clear the rec in 15 minutes — should I proceed, or would you prefer I keep digging?\"", "\"I'm uncomfortable with that — the audit is tomorrow and we need to reconcile.\"", "\"There's no way to find a $340 error in time; let's just adjust it.\""],
+          "correct_index": 1,
+          "explanation": "Leads with the work already done, names the likely cause, offers a documented fix on a timeline, and asks for direction. Never plugs blindly and never refuses without an alternative."
+        },
+        {
+          "q": "You need to chase a vendor's missing $9,625 invoice before close. Best email?",
+          "options": ["\"Where's our invoice?\"", "\"Hi Global CAD — I'm closing January's books and we haven't received invoice GCS-2026-091 for the Tennessee Corridor drafting (~$9,625). Can you confirm the invoice status and send a copy by Friday?\"", "\"Pay us.\":", "\"I can't close without your invoice. Please expedite.\""],
+          "correct_index": 1,
+          "explanation": "Names the vendor, the invoice number, the project, the approximate amount, the reason (close), and a specific deadline. Factual and professional — no pressure language."
+        },
+        {
+          "q": "You need to ask your supervisor for 5 minutes of help on a subledger tie-out. Best ask?",
+          "options": ["\"Can you help me?\"", "\"I don't understand the AP subledger.\"", "\"I've reconciled line-by-line and a $4,200 payment is in the GL but not the subledger — likely a posting-date boundary issue. Can I get 5 minutes to walk you through it?\"", "\"The subledger is broken.\""],
+          "correct_index": 2,
+          "explanation": "States what you've already checked, your best read of the cause, the specific amount, and a bounded ask. That's asking for help without looking incompetent."
+        }
       ]
     },
     {

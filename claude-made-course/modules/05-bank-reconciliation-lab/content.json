@@ -6,6 +6,70 @@
   "hook": "\"Walk me through a bank reconciliation.\" After this module your answer is not generic — it names the two-sided method, the $336,250 adjusted balance, and the duplicate deposit you traced and corrected. That is the answer that gets the offer.",
   "chunks": [
     {
+      "type": "review_quiz",
+      "title": "Recall check — Modules 01–03 (spaced repetition)",
+      "railLabel": "Review 1-3",
+      "intro": "Before we start Bank Reconciliation, let's make sure AP, payroll, and the accounting cycle are locked in.",
+      "questions": [
+        {
+          "q": "What are the three documents required for a 3-way match?",
+          "options": ["Invoice, check, deposit slip", "Purchase Order, Receiving Report, Vendor Invoice", "Contract, timesheet, payroll register", "Bank statement, GL, trial balance"],
+          "correct_index": 1,
+          "explanation": "PO (authorized), Receiving Report (delivered), and Vendor Invoice (billed) must all agree on quantity, unit price, and total."
+        },
+        {
+          "q": "Skarion's $79,167 gross payroll has $21,056 of employee withholdings and $6,256 of employer taxes. What is the net pay credit to Cash?",
+          "options": ["$79,167", "$58,895", "$58,111", "$73,167"],
+          "correct_index": 2,
+          "explanation": "$79,167 gross − $21,056 withheld = $58,111 net pay. Employer taxes are a separate debit to expense, not taken out of the employee's gross."
+        },
+        {
+          "q": "What is the journal entry to accrue $14,800 of offshore drafting labor at month-end (invoice not yet received)?",
+          "options": ["Dr Accounts Payable / Cr Cash", "Dr COGS — Subcontractor Drafting / Cr Accrued Liabilities", "Dr Prepaid Software / Cr Cash", "No entry until the invoice arrives"],
+          "correct_index": 1,
+          "explanation": "Expense belongs in the period incurred: Dr COGS $14,800 / Cr Accrued Liabilities $14,800. Reverse on the first day of the next period."
+        },
+        {
+          "q": "What is the difference between Accounts Payable and Accrued Liabilities?",
+          "options": ["They are the same account", "AP is backed by a vendor invoice; accruals are for incurred-but-unbilled amounts", "AP is an asset; accruals are expenses", "Accruals only apply to payroll"],
+          "correct_index": 1,
+          "explanation": "AP is a documented vendor obligation (you have the invoice). Accrued liabilities are estimated obligations where the invoice has not yet arrived."
+        },
+        {
+          "q": "Where on the balance sheet does Accounts Receivable appear?",
+          "options": ["Current Liabilities", "Long-term Assets", "Current Assets", "Equity"],
+          "correct_index": 2,
+          "explanation": "AR is a current asset — expected to convert to cash within one year (within terms, typically 30–45 days)."
+        },
+        {
+          "q": "A vendor invoices at $42.00/mile. Your PO and MSA rate were $38.50/mile. What do you do?",
+          "options": ["Pay it and adjust the MSA later", "Hold it, document the discrepancy, and request a credit memo", "Split the difference and pay $40.25", "Pay the PO price and ignore the invoice"],
+          "correct_index": 1,
+          "explanation": "Never pay through a failed match. Hold the invoice, contact the vendor, document, and request a credit memo for the variance."
+        },
+        {
+          "q": "What account is debited when you record employer FICA tax expense?",
+          "options": ["6000 Salaries — US Engineering PMs", "6100 Payroll Tax Expense", "2200 Payroll Tax Liabilities", "1000 Operating Checking"],
+          "correct_index": 1,
+          "explanation": "Employer taxes are the company's own expense — Dr 6100 Payroll Tax Expense. 2200 is the liability side (credit), to be remitted later."
+        },
+        {
+          "q": "How does a payroll entry affect the accounting equation (Assets = Liabilities + Equity)?",
+          "options": ["Assets up, Liabilities up", "Assets down, Liabilities up, Equity down (expense recognized)", "Assets up, Equity up", "No effect — payroll is below the line"],
+          "correct_index": 1,
+          "explanation": "Cash (asset) is credited down, withheld amounts create/raise liabilities, and the salary expense reduces equity through net income. The equation still balances exactly."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 35 — Watch first",
+      "title": "How Bank Reconciliation Actually Works — The Two-Sided Method",
+      "railLabel": "Video: Bank rec",
+      "intro": "'Walk me through a bank reconciliation' is the most common technical question in entry-level accounting interviews. After this, you'll have a real answer with a real dollar amount.",
+      "transcript": "<p><strong>0:00 —</strong> \"Walk me through a bank reconciliation.\" This is the most common technical question in entry-level accounting interviews. After this video, you will have a real answer with a real dollar amount — not a textbook definition.</p><p><strong>0:30 —</strong> A bank reconciliation proves your books and the bank's records show the same true cash balance, after accounting for timing differences. The bank doesn't know about the check you wrote yesterday. Your books don't know about the $18.50 of interest the bank credited this morning. These are not errors — they are expected.</p><p><strong>1:30 —</strong> The method, both directions. Bank side: start with the ending balance, add deposits in transit, subtract outstanding checks, that's the adjusted bank balance. Book side: start with the GL balance, add bank credits not yet recorded, subtract bank fees not yet recorded, that's the adjusted book balance. These two adjusted numbers must be identical. If they aren't, there is a real error — and finding it is the job.</p><p><strong>3:00 —</strong> In Skarion's January reconciliation, the bank showed $312,450 and the books showed $346,823.60. Four items were timing differences, and one was a real error: a $10,547.10 customer deposit had been entered twice in the GL. The correcting entry: debit Accounts Receivable, credit Cash. The reconciliation then balanced to exactly $336,250.</p><p><strong>4:00 —</strong> Notice we did not debit Sales Revenue — the sale was never overstated. We only debit AR, because the cash side was overstated. Details like that make an interviewer actually believe you.</p><p><strong>4:30 —</strong> In the lab, you will reconcile three months of Skarion's bank statements. Each one has a seeded error. Find it, fix it, document it.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The concept",
       "title": "Why the bank balance and the book balance almost never match — and shouldn't",
@@ -201,6 +265,23 @@
         { "label": "Template 01 — Bank Rec Worksheet.xlsx", "href": "/download/07-excel-toolkit/Template_01_Bank_Rec.xlsx" }
       ],
       "reflectionPrompt": "Write your January reconciliation memo: what were the four items, how did you find the duplicate, and what were your two correcting entries?"
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — The NSF Check That Started a Collections Problem",
+      "railLabel": "Lab: NSF",
+      "time": "45 min",
+      "intro": "A customer's $50,000 check bounces, then the customer goes silent. Reinstate the receivable, rethink the bad-debt allowance, write the collections memo, and post the eventual partial-recovery entry.",
+      "setup": "<p>TeleCom Builders sent a <strong>$50,000</strong> check in March, which the bank deposited and a bookkeeper applied to invoice <strong>TC-2026-011</strong>. Two weeks later the bank reverses the deposit — <strong>NSF</strong> — and charges a <strong>$35</strong> NSF fee. TeleCom Builders has gone silent. After this reversal, TeleCom's full open AR is <strong>$162,700</strong> across three invoices.</p>",
+      "tasks": [
+        "Post the NSF reversal: reinstate the $50,000 receivable and record the $35 fee the bank charged (Dr AR $50,000 + Dr Bank Fees $35 / Cr Cash $50,035).",
+        "Review TeleCom's full AR aging ($162,700 across 3 invoices) and decide whether the bad-debt allowance should be increased. With a silent customer and $162,700 outstanding, justify a higher estimate (e.g. raise the allowance to target ~30% of the TeleCom balance).",
+        "Post the adjusted allowance entry — increase Bad Debt Expense and Allowance for Doubtful Accounts to cover the now riskier TeleCom balance.",
+        "Write the collections memo: the ordered steps you would take (dunning letter → account-manager call → formal demand → consider collection agency / write-off).",
+        "Six months later TeleCom pays an $80,000 settlement. Post the recovery (reverse the relevant portion of the write-off) and the write-off of any remaining uncollectible balance."
+      ],
+      "submissionPrompt": "Paste the NSF reversal entry, your adjusted allowance entry with the new % and dollar figure, your collections memo, and the eventual settlement recovery + write-off entries.",
+      "solution": "<p><strong>1. NSF reversal:</strong> Dr 1100 Accounts Receivable $50,000 + Dr 6900 Bank Fees Expense $35 / Cr 1000 Operating Checking $50,035. TeleCom owes the $50,000 again.</p><p><strong>2. Allowance review:</strong> TeleCom is silent with $162,700 outstanding — well past 90 days. Estimate ~30% now uncollectible on TeleCom = $48,810. If the current TeleCom allowance is less than that, top it up.</p><p><strong>3. Adjusted allowance entry</strong> (assume prior TeleCom-targeted allowance was ~$14,965 general; increase to $48,810 TeleCom-specific): Dr 6720 Bad Debt Expense $33,845 (= $48,810 − $14,965) / Cr 1200 Allowance for Doubtful Accounts $33,845. Document the basis: NSF event + customer silence + aging.</p><p><strong>4. Collections memo:</strong> (a) Send formal dunning letter citing invoice numbers and the NSF date, demanding payment within 10 business days; (b) Account manager calls TeleCom's AP directly, logs the call; (c) If no response in 15 days, send formal demand letter and place the account on credit hold; (d) After 30 days with no payment plan, engage a collection agency or write off the remaining balance with controller approval. Document every step with date stamps.</p><p><strong>5. Settlement recovery:</strong> Assume final outstanding written off = $162,700 − $80,000 = $82,700. First reverse the portion of the write-off being recovered: Dr 1100 AR $80,000 / Cr 1200 Allowance $80,000. Then record the cash: Dr 1000 Cash $80,000 / Cr 1100 AR $80,000. Net effect: Dr Cash $80,000 / Cr Allowance $80,000 — the recovery flows back through the allowance (matching principle), not through revenue. The remaining $82,700 stays written off against the allowance.</p>"
     }
   ]
 }

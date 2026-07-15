@@ -205,6 +205,11 @@
       html += "</div>";
     });
     html += '<div class="quiz-score-banner gamified-banner" id="score-r-' + idx + '"></div>';
+    var hasOpen = c.questions.some(function (q) { return q.type === "open"; });
+    if (hasOpen) {
+      html += '<button type="button" class="nav-btn primary" style="margin-top:18px;" onclick="SkarionPlayer.submitOpenReview(' + idx + ')">Mark review complete</button>';
+      html += '<div class="je-feedback" id="openreview-fb-' + idx + '"></div>';
+    }
     return html;
   }
 
@@ -524,6 +529,148 @@
       }
     },
 
+    markVideoDone: function (chunkIdx) {
+      chunks[chunkIdx + 1].satisfied = true;
+      var fb = $("#video-fb-" + chunkIdx);
+      if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Marked complete."; }
+      updateNav();
+    },
+
+    answerReview: function (chunkIdx, qi, oi) {
+      var qDef = LESSON.chunks[chunkIdx].questions[qi];
+      var screen = chunks[chunkIdx + 1].el;
+      var qEl = $('.quiz-q.review[data-qi="' + qi + '"]', screen);
+      var buttons = $all(".quiz-opt-card", qEl);
+      buttons.forEach(function (b, i) {
+        b.disabled = true;
+        if (i === qDef.correct_index) b.classList.add("correct");
+        else if (i === oi) b.classList.add("incorrect");
+      });
+      var explainBox = $("#explain-r-" + chunkIdx + "-" + qi);
+      var isCorrect = (oi === qDef.correct_index);
+      qEl.classList.add(isCorrect ? "animate-burst" : "animate-shake");
+      explainBox.innerHTML = (isCorrect ? "🎉 <strong>Locked in.</strong> " : "💡 <strong>Recall gap.</strong> ") + esc(qDef.explanation || "");
+      explainBox.className = "quiz-explain playful show " + (isCorrect ? "success-text" : "error-text");
+      finishReview(chunkIdx);
+    },
+
+    submitOpenReview: function (chunkIdx) {
+      var screen = chunks[chunkIdx + 1].el;
+      var openRows = $all(".review-open", screen);
+      if (openRows.length === 0) { finishReview(chunkIdx); return; }
+      var allFilled = true;
+      openRows.forEach(function (ta) { if ((ta.value || "").trim().length < 10) allFilled = false; });
+      var fb = $("#openreview-fb-" + chunkIdx);
+      if (!allFilled) {
+        fb.className = "je-feedback show incorrect";
+        fb.innerHTML = "⚠️ Answer each written question (a short reason is enough) before marking complete.";
+        return;
+      }
+      // Reveal explanations for open-ended questions
+      openRows.forEach(function (ta) {
+        var qi = parseInt(ta.dataset.qi, 10);
+        var qDef = LESSON.chunks[chunkIdx].questions[isNaN(qi) ? -1 : qi];
+        var explainBox = ta.closest(".quiz-q.review") && ta.closest(".quiz-q.review").querySelector(".quiz-explain");
+        if (explainBox && qDef && qDef.explanation) {
+          explainBox.innerHTML = "💡 <strong>Model reasoning.</strong> " + esc(qDef.explanation);
+          explainBox.className = "quiz-explain playful show success-text";
+        }
+        ta.readOnly = true;
+      });
+      if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Review complete — answers saved locally."; }
+      finishReview(chunkIdx);
+    },
+
+    startDrill: function (chunkIdx) {
+      var startBtn = $("#drill-start-" + chunkIdx);
+      if (startBtn) startBtn.style.display = "none";
+      SkarionPlayer._drill = SkarionPlayer._drill || {};
+      SkarionPlayer._drill[chunkIdx] = { current: 0, correct: 0, timedOut: 0, timers: {} };
+      SkarionPlayer.showDrillQ(chunkIdx, 0);
+    },
+
+    showDrillQ: function (chunkIdx, qi) {
+      var drill = SkarionPlayer._drill[chunkIdx];
+      var total = LESSON.chunks[chunkIdx].questions.length;
+      // hide all
+      $all(".quiz-q.timed", chunks[chunkIdx + 1].el).forEach(function (el) { el.style.display = "none"; });
+      var qEl = $("#drill-q-" + chunkIdx + "-" + qi);
+      if (!qEl) return;
+      qEl.style.display = "block";
+      $("#drill-status-" + chunkIdx).innerHTML = "Question " + (qi + 1) + " / " + total + " · Score: " + drill.correct + "/" + qi;
+      var seconds = 60;
+      var timerEl = $("#drill-timer-" + chunkIdx + "-" + qi);
+      if (drill.timers[chunkIdx + "-" + qi]) clearInterval(drill.timers[chunkIdx + "-" + qi]);
+      timerEl.textContent = seconds;
+      drill.timers[chunkIdx + "-" + qi] = setInterval(function () {
+        seconds--;
+        if (timerEl) timerEl.textContent = seconds;
+        if (seconds <= 0) {
+          clearInterval(drill.timers[chunkIdx + "-" + qi]);
+          SkarionPlayer.answerDrill(chunkIdx, qi, -1);
+        }
+      }, 1000);
+    },
+
+    answerDrill: function (chunkIdx, qi, oi) {
+      var drill = SkarionPlayer._drill[chunkIdx];
+      if (!drill) return;
+      clearInterval(drill.timers[chunkIdx + "-" + qi]);
+      var qDef = LESSON.chunks[chunkIdx].questions[qi];
+      var qEl = $("#drill-q-" + chunkIdx + "-" + qi);
+      var buttons = $all(".quiz-opt-card", qEl);
+      buttons.forEach(function (b, i) {
+        b.disabled = true;
+        if (i === qDef.correct_index) b.classList.add("correct");
+        else if (i === oi) b.classList.add("incorrect");
+      });
+      var explainBox = $("#drill-explain-" + chunkIdx + "-" + qi);
+      var isCorrect = (oi === qDef.correct_index);
+      if (isCorrect) drill.correct++;
+      if (oi === -1) drill.timedOut++;
+      explainBox.innerHTML = (isCorrect ? "✅ " : (oi === -1 ? "⏱️ <strong>Timed out.</strong> " : "❌ ")) + esc(qDef.explanation || "");
+      explainBox.className = "quiz-explain playful show " + (isCorrect ? "success-text" : "error-text");
+      var total = LESSON.chunks[chunkIdx].questions.length;
+      if (qi + 1 < total) {
+        setTimeout(function () { SkarionPlayer.showDrillQ(chunkIdx, qi + 1); }, 1300);
+      } else {
+        setTimeout(function () {
+          var banner = $("#drill-score-" + chunkIdx);
+          banner.innerHTML = "⏱️ <strong>Drill complete.</strong> " + drill.correct + "/" + total + " correct · " + drill.timedOut + " timed out.";
+          banner.classList.add("show");
+          chunks[chunkIdx + 1].satisfied = true;
+          updateNav();
+        }, 1300);
+      }
+    },
+
+    scenarioTab: function (chunkIdx, which) {
+      $all(".scenario-tab", chunks[chunkIdx + 1].el).forEach(function (t) { t.classList.remove("active"); });
+      $("#sp-work-" + chunkIdx).style.display = (which === "work") ? "block" : "none";
+      $("#sp-sol-" + chunkIdx).style.display = (which === "sol") ? "block" : "none";
+    },
+
+    submitScenario: function (chunkIdx) {
+      var sub = $("#sc-sub-" + chunkIdx);
+      var fb = $("#sc-fb-" + chunkIdx);
+      if (!sub || (sub.value || "").trim().length < 20) {
+        fb.className = "je-feedback show incorrect";
+        fb.innerHTML = "⚠️ Write at least a short memo before submitting — it's saved in this browser only.";
+        return;
+      }
+      var solBtn = $("#st-sol-" + chunkIdx);
+      // Reveal the solution tab after submission
+      if (solBtn) solBtn.style.opacity = "1";
+      var solPanel = $("#sp-sol-" + chunkIdx);
+      if (solPanel) {
+        var fullSol = LESSON.chunks[chunkIdx].solution || "<em>No model solution provided.</em>";
+        solPanel.querySelector(".prose").innerHTML = fullSol;
+      }
+      fb.className = "je-feedback show correct";
+      fb.innerHTML = "✅ <strong>Submitted.</strong> Your work is saved locally. The Model Solution tab is now unlocked — compare your approach.";
+      chunks[chunkIdx + 1].satisfied = true;
+      updateNav();
+    },
     nextModule: function() {
       if (state.mod < CATALOG.length - 1) {
         loadModule(state.mod + 1);
@@ -541,13 +688,59 @@
     updateNav();
     updateSidebarUI();
     $("#stage").scrollTop = 0;
-    
+
+    // Wire video tracking for the active screen (idempotent via class flag)
+    var activeScreen = chunks[i] && chunks[i].el;
+    if (activeScreen && activeScreen.querySelector("video[id^='vid-']")) {
+      var vids = $all("video[id^='vid-']", activeScreen);
+      vids.forEach(function (vv) {
+        var idx = parseInt((vv.id || "").replace("vid-", ""), 10);
+        if (!isNaN(idx) && !vv.dataset.wired) { vv.dataset.wired = "1"; wireVideoTracking(idx); }
+      });
+    }
+
     // Overall progress approximation across modules
     var globalPct = ((state.mod + (i / chunks.length)) / CATALOG.length);
     window.SkarionSCORM.setProgress(globalPct);
     if (state.mod === CATALOG.length - 1 && i === chunks.length - 1) {
       window.SkarionSCORM.complete(true);
     }
+  }
+
+  function finishReview(chunkIdx) {
+    var total = LESSON.chunks[chunkIdx].questions.length;
+    var screen = chunks[chunkIdx + 1].el;
+    var qEls = $all(".quiz-q.review", screen);
+    var allAnswered = true;
+    qEls.forEach(function (qEl) {
+      if (qEl.querySelector(".quiz-opt-card") && !qEl.querySelector(".quiz-opt-card[disabled]") &&
+          !qEl.querySelector(".review-open")) allAnswered = false;
+    });
+    // Open-ended (textarea) answers count as answered immediately (self-graded)
+    var openAnswered = $all(".review-open", screen).length;
+    var multiAnswered = $all(".quiz-q.review .quiz-opt-card[disabled]", screen).length > 0 ? true : openAnswered > 0;
+    var answeredCount = $all(".quiz-q.review", screen).filter(function (el) {
+      return el.querySelector(".review-open") || el.querySelector(".quiz-opt-card[disabled]");
+    }).length;
+    if (answeredCount === total) {
+      var banner = $("#score-r-" + chunkIdx);
+      if (banner) { banner.innerHTML = "✅ <strong>Review complete.</strong> Recall reinforced — let's continue."; banner.classList.add("show"); }
+      chunks[chunkIdx + 1].satisfied = true;
+      updateNav();
+    }
+  }
+
+  // Mark a video chunk satisfied when playback reaches 80%
+  function wireVideoTracking(idx) {
+    var v = document.getElementById("vid-" + idx);
+    if (!v) return;
+    v.addEventListener("timeupdate", function () {
+      if (v.duration && (v.currentTime / v.duration) >= 0.8) {
+        chunks[idx + 1].satisfied = true;
+        var fb = $("#video-fb-" + idx);
+        if (fb && !fb.classList.contains("correct")) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Watched 80% — complete."; updateNav(); }
+      }
+    });
   }
 
   function updateRail() {

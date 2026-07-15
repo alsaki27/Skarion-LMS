@@ -6,6 +6,70 @@
   "hook": "\"Walk me through a month-end close.\" The interview answer is the five-day timeline, the four types of adjusting entries, and the $242,000 January net income that comes out the other side. This module is that entire walkthrough.",
   "chunks": [
     {
+      "type": "review_quiz",
+      "title": "Recall check — Modules 01–04 (spaced repetition)",
+      "railLabel": "Review 1-4",
+      "intro": "Before we start Month-End Close, let's make sure AR, billing, and the earlier modules are locked in.",
+      "questions": [
+        {
+          "q": "Under ASC 606, which of the 5 steps triggers revenue recognition?",
+          "options": ["Identify the contract", "Identify distinct performance obligations", "Determine the transaction price", "Recognize revenue when/as each obligation is satisfied"],
+          "correct_index": 3,
+          "explanation": "Revenue is recognized at step 5 — when (or as) each distinct performance obligation is satisfied. The contract and price steps set it up; satisfaction books it."
+        },
+        {
+          "q": "A client prepays $120,000 before work begins. What is credited?",
+          "options": ["Engineering Design Revenue", "Accounts Receivable", "Deferred Revenue (a liability)", "Unbilled AR (WIP)"],
+          "correct_index": 2,
+          "explanation": "Cash received before the obligation is satisfied is a liability — Deferred Revenue. It becomes revenue only when the work is delivered."
+        },
+        {
+          "q": "Skarion writes off TeleCom Builders' $112,700 balance. What is the journal entry?",
+          "options": ["Dr Bad Debt Expense / Cr AR", "Dr Allowance for Doubtful Accounts / Cr Accounts Receivable", "Dr Allowance / Cr Bad Debt Expense", "Dr AR / Cr Cash"],
+          "correct_index": 1,
+          "explanation": "Write-off goes against the existing allowance: Dr Allowance / Cr AR. Bad Debt Expense was already recorded when the allowance was established — it is not touched at write-off."
+        },
+        {
+          "q": "What is Days Sales Outstanding (DSO) and how is it calculated?",
+          "options": ["Average AR ÷ Credit Revenue × Days", "Net Income ÷ Revenue × Days", "COGS ÷ Revenue × 365", "Cash ÷ Revenue × 365"],
+          "correct_index": 0,
+          "explanation": "DSO = Average AR ÷ Credit Revenue × Days. Skarion: $997,700 ÷ $4.8M × 365 ≈ 75.8 days. Lower is better; controllers watch it month over month."
+        },
+        {
+          "q": "What is the difference between Unbilled AR (WIP) and regular AR?",
+          "options": ["They are the same account", "WIP is work performed but not yet billable; AR is invoiced and awaiting payment", "WIP is a liability; AR is an asset", "Regular AR relates to completed contracts only"],
+          "correct_index": 1,
+          "explanation": "WIP/Unbilled AR captures value created before a billing milestone triggers (percentage-of-completion). Regular AR is an invoice already cut and awaiting cash."
+        },
+        {
+          "q": "What is the allowance for doubtful accounts and why is it required by GAAP?",
+          "options": ["A cash reserve set aside for bad customers", "A contra-asset estimating uncollectible AR in the period of sale (matching principle)", "An expense recorded only when an invoice defaults", "A liability for disputed invoices"],
+          "correct_index": 1,
+          "explanation": "The allowance is a contra-asset that reduces net AR. GAAP requires estimating uncollectible AR in the period the sale is made — the matching principle."
+        },
+        {
+          "q": "A customer pays $190,000 of a $405,000 balance and disputes the rest. What do you record?",
+          "options": ["Write off the entire $405,000", "Dr Cash $190,000 / Cr AR $190,000; leave $215,000 open with a dispute flag (no write-off)", "Dr Cash $190,000 / Cr Revenue $190,000", "Hold the $190,000 in a suspense account until the dispute is resolved"],
+          "correct_index": 1,
+          "explanation": "Apply the cash to the oldest invoice and document the dispute on the remainder — never silently write off a disputed balance. The remaining $215,000 stays open in the subledger."
+        },
+        {
+          "q": "What is the two-sided bank reconciliation method?",
+          "options": ["Match the bank to the GL line by line and post the difference", "Adjusted bank balance = statement + deposits in transit − outstanding checks must equal adjusted book balance = GL + credits − debits not recorded", "Force the GL to equal the bank statement", "Only reconcile assets, not liabilities"],
+          "correct_index": 1,
+          "explanation": "Both sides adjust for timing, then must meet exactly. Adjusted bank = statement + deposits in transit − outstanding checks; adjusted book = GL + unrecorded credits − unrecorded debits. Equal, or there's a real error."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 36 — Watch first",
+      "title": "What Happens During Month-End Close — A Real Close, Step by Step",
+      "railLabel": "Video: Close",
+      "intro": "Month-end close is when accounting stops being data entry and becomes a high-stakes deadline operation. Everything in the right order, on the right day, nothing skipped.",
+      "transcript": "<p><strong>0:00 —</strong> Month-end close is when accounting stops being an ongoing data-entry job and becomes a high-stakes deadline operation. Everything has to be done in the right order, on the right day, and nothing can be skipped.</p><p><strong>0:30 —</strong> Here is Skarion's five-day close schedule. Day one: lock all timesheets and AP — any invoice not entered by 5 PM goes into next month. Day two: post payroll, employer taxes, and all offshore contractor accruals. Day three: calculate WIP, post depreciation, post the loan interest accrual. Day four: bank reconciliation, tie the AR subledger to the GL, tie the AP subledger to the GL. Day five: review the P&amp;L against budget, produce the financial package, get controller sign-off.</p><p><strong>2:00 —</strong> The hardest part for a services firm is the adjusting entries — entries for things that happened but haven't been invoiced yet. Your offshore drafting team worked 400 hours in January. The invoice won't arrive until February 4th. But the expense belongs in January. So on January 31st, you accrue it: debit COGS Subcontractors $14,800, credit Accrued Liabilities $14,800.</p><p><strong>3:00 —</strong> Then on February 1st, you reverse that accrual. When the invoice actually arrives on the 4th, you post it normally. The reversal ensures the expense doesn't get double-counted.</p><p><strong>4:00 —</strong> The close playbook in your course materials lists every entry you need to post during Skarion's January close. Work through it in SkarionBooks — the right order, the right amounts, every one.</p>"
+    },
+    {
       "type": "content",
       "kicker": "Why it exists",
       "title": "The month-end close process",
@@ -164,6 +228,78 @@
           "explanation": "The Cash Flow Statement reconciles profit to cash. If cash is falling despite profit, the answer is almost always in Operations — usually uncollected AR (or growing inventory/prepaids). The Cash Flow Statement makes the gap visible."
         }
       ]
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — The Month Where Everything Went Wrong",
+      "railLabel": "Lab: Feb close",
+      "time": "75 min",
+      "intro": "Skarion's February close has seven compounding errors seeded in the data. Find and fix all seven before the trial balance balances.",
+      "setup": "<p>Download the February data workbook below. It contains an <strong>Instructions</strong> tab, a <strong>Raw Data</strong> tab (the unadjusted February trial balance + transactions), a <strong>Candidate Trial Balance</strong> tab, and a <strong>Corrections Log</strong> tab. Seven problems are baked in:</p><ol><li><strong>Payroll understated</strong> — February gross was $82,450 (overtime month) but was posted at $79,167. Understated by $3,283.</li><li><strong>Vetro prepaid amortization skipped</strong> — $3,000 of monthly Software Expense and the corresponding reduction in Prepaid Software never recorded.</li><li><strong>January offshore accrual never reversed</strong> — the $14,800 January accrual was not reversed on Feb 1, so it still sits on the books.</li><li><strong>Cash posted to the wrong customer</strong> — a $215,000 customer wire was credited to Southeast Broadband instead of Atlantic Fiber Co.</li><li><strong>Depreciation typo</strong> — posted at $1,200 instead of the correct $1,000 (a $200 over). Less wrong-direction; still a correction.</li><li><strong>Bank fee unrecorded</strong> — the $45 February monthly bank service charge never hit the books.</li><li><strong>Prepaid insurance forgotten</strong> — a policy paid in January ($1,800/quarter = $600/month) has never been amortized.</li></ol>",
+      "tasks": [
+        "Open the workbook and identify each of the seven problems by tracing Raw Data against expectations.",
+        "Post each correction in the Corrections Log tab with: Problem, Journal Entry, and Dollar Impact.",
+        "Recompute the corrected February trial balance — total debits must equal total credits.",
+        "Write a one-page close memo for the controller summarizing the seven fixes and any that needed supervisor escalation (the cash-to-wrong-customer error requires it)."
+      ],
+      "files": [
+        { "label": "February_Close_Errors.xlsx", "href": "/download/scenario-labs/February_Close_Errors.xlsx" }
+      ],
+      "submissionPrompt": "Paste your seven correcting journal entries (with amounts) and your corrected trial balance totals (total debits = total credits). Note any entry that required supervisor escalation.",
+      "solution": "<p><strong>Corrections:</strong></p><ol><li>Dr 6000 Salaries — US Engineering PMs $3,283 / Cr 2200 Payroll Tax Liabilities (recompute the employer-tax side proportionally) — or simplest: Dr Salaries $3,283 / Cr 2200 Payroll Tax Liabilities $260 & Cr 1000 Checking $3,023 for the extra net+tax. Document the overtime.</li><li>Dr 6500 Software &amp; Subscriptions $3,000 / Cr 1400 Prepaid Software Licenses $3,000 — the skipped amortization.</li><li>Dr 2400 Accrued Liabilities $14,800 / Cr 5100 COGS — Subcontractor Drafting $14,800 — reverse the January accrual so the real invoice (entered normally in February) doesn't double-count.</li><li>Dr 1100 Accounts Receivable — Southeast Broadband $215,000 / Cr 1100 Accounts Receivable — Atlantic Fiber Co. $215,000 — net-zero to total AR, but corrects whose subledger it belongs in. Escalate to supervisor for sign-off.</li><li>Dr 1590 Accumulated Depreciation $200 / Cr 6700 Depreciation Expense $200 — back out the $200 over.</li><li>Dr 6900 Bank Fees Expense $45 / Cr 1000 Operating Checking $45 — book the unrecorded fee.</li><li>Dr 6500 Software &amp; Subscriptions (or dedicated Insurance Expense) $600 / Cr 1400 Prepaid (or Prepaid Insurance asset) $600 — record February's amortization of the prepaid insurance.</li></ol><p><strong>Net effect:</strong> each entry is balanced, total debits equal total credits, and the corrected February trial balance ties. The cash-to-wrong-customer and the un-reversed accrual are the two that needed documented escalation.</p>"
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — Fixed Assets: Capitalize or Expense?",
+      "railLabel": "Lab: capex",
+      "time": "45 min",
+      "intro": "Five Q1 purchases — classify each as capital expenditure or operating expense, justify the call using the capitalization threshold, post the entries, and build the depreciation schedule.",
+      "setup": "<p>Skarion makes five purchases in Q1. For each, decide capitalize (asset + depreciate) vs. expense immediately. The IRS de minimis safe harbor threshold is $2,500 per item (or $5,000 with audited financials). Apply judgment using both threshold and useful life.</p><table class='data'><tr><th>Purchase</th><th>Amount</th><th>Notes</th></tr><tr><td>5 new GIS workstations</td><td>$14,500 each</td><td>5-year useful life, $500 salvage each</td></tr><tr><td>Annual ArcGIS Pro license renewal</td><td>$8,000</td><td>12-month benefit</td></tr><tr><td>Desk chairs for engineering office</td><td>$3,200</td><td>Single cost; office furniture</td></tr><tr><td>Server rack for GIS database hosting</td><td>$22,000</td><td>7-year useful life, $0 salvage</td></tr><tr><td>Repair of existing server (fan replacement)</td><td>$450</td><td>Restores function, no improvement</td></tr></table>",
+      "tasks": [
+        "Classify each purchase as capitalize or expense, and justify using the de minimis threshold and the useful-life / betterment tests.",
+        "Post the journal entry for each purchase.",
+        "Build the first-year depreciation schedule for each capitalized asset (straight-line; for assets bought mid-period, apply half-month convention or full-month per the policy you choose — state it).",
+        "Explain the one purchase that is a repair, not a betterment, and why it is expensed regardless of dollar amount."
+      ],
+      "submissionPrompt": "Paste your five classification calls with justifications, the five journal entries, and the first-year depreciation schedule with monthly and annual amounts.",
+      "solution": "<p><strong>1. 5 GIS workstations @ $14,500 each = $72,500:</strong> Capitalize. Well above $2,500, 5-year useful life. Entry: Dr 1500 GIS Servers &amp; Workstations $72,500 / Cr 1000 Operating Checking $72,500. Depreciation (straight-line, $500 salvage each → $14,000 depreciable × 5 = $70,000 / 5 yrs / 12 = $1,166.67/month total; first year ~$14,000).</p><p><strong>2. Annual ArcGIS Pro $8,000:</strong> Capitalize as <em>prepaid</em> (intangible/subscription asset), not depreciate. Entry: Dr 1400 Prepaid Software Licenses $8,000 / Cr 1000 Operating Checking $8,000. Amortize $666.67/month ($8,000/12) to 6500 Software Expense over 12 months.</p><p><strong>3. Desk chairs $3,200:</strong> This is the judgment call. Above the $2,500 de minimis safe harbor, so technically must be capitalized — BUT many firms have a higher internally-set capitalization threshold (often $5,000) for furniture. The defensible answer: <em>capitalize under the strict IRS safe harbor</em>, depreciate over ~5 years; or expense under an audit-supported $5,000 internal threshold if documented. State the policy you'd follow.</p><p><strong>4. Server rack $22,000:</strong> Capitalize. 7-year life, $0 salvage. Entry: Dr 1500 GIS Servers &amp; Workstations $22,000 / Cr 1000 $22,000. Depreciation $22,000 / 7 / 12 = $261.90/month; first year ~$3,143.</p><p><strong>5. Server fan repair $450:</strong> <em>Expense, regardless of amount.</em> A repair restores existing function without improving the asset — it is never capitalized under the betterment test. Below the safe harbor too. Entry: Dr 6500 Software &amp; Subscriptions (or Repairs &amp; Maintenance) $450 / Cr 1000 $450.</p>"
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — Year-End and the Closing Entries",
+      "railLabel": "Lab: year-end",
+      "time": "60 min",
+      "intro": "Year-end: post the closing entries that zero out every temporary account and roll net income into Retained Earnings, then verify the post-closing trial balance.",
+      "setup": "<p>You are given Skarion's December 31 adjusted trial balance. All monthly closes were done correctly. Now post the closing entries to zero out every temporary account and roll net income into Retained Earnings.</p>",
+      "tasks": [
+        "Identify every temporary account (all revenue and expense accounts) on the December 31 trial balance.",
+        "Calculate Skarion's net income for the year (total revenue − total expenses).",
+        "Post the four closing entries: (a) close Revenue accounts to Income Summary; (b) close Expense accounts to Income Summary; (c) close Income Summary to Retained Earnings; (d) close any Drawings/Distributions to Retained Earnings if applicable.",
+        "Verify the post-closing trial balance — only permanent accounts (Assets, Liabilities, Equity) remain with balances.",
+        "Confirm Assets = Liabilities + Updated Equity after the close."
+      ],
+      "submissionPrompt": "Paste the four closing entries with account names and amounts, your net income figure, and confirm Assets = Liabilities + Equity post-close (paste the totals).",
+      "solution": "<p><strong>Net income for the year</strong> ≈ annual revenue − annual COGS − annual OpEx (per the monthly pattern, ~$242,000/month net in the Jan example scaled across the year ≈ material annual figure — use the actual Dec 31 trial balance totals).</p><p><strong>Closing entries:</strong></p><ol><li><em>Close Revenue to Income Summary:</em> Dr 4000 Engineering Design Revenue [annual total] / Dr 4100 Permitting Services Revenue [annual total] / Cr <em>Income Summary</em> [sum].</li><li><em>Close Expenses to Income Summary:</em> Dr <em>Income Summary</em> [sum of all expense accounts: 5100, 5200, 6000, 6100, 6400, 6500, 6700, 6800, 6900, 6720] / Cr each expense account [its annual total].</li><li><em>Close Income Summary to Retained Earnings:</em> If net income is positive (credits exceeded debits on Income Summary): Dr Income Summary [net income] / Cr 3100 Retained Earnings [net income]. If a loss, reverse.</li><li><em>Close Drawings/Distributions</em> (if the owner took a distribution): Dr 3000 Owner's Equity (or 3100 Retained Earnings) [distribution] / Cr 1000 Operating Checking [distribution].</li></ol><p><strong>Post-closing verification:</strong> only 1000s/1100s/1200s/1400/1500/1590/2000s/3000s remain with balances; all 4000s and 5000s–6999 are zero. Total assets = total liabilities + updated equity — still balances to the cent.</p>"
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — Build the Financial Statement Package",
+      "railLabel": "Lab: statements",
+      "time": "60 min",
+      "intro": "Using the January adjusted trial balance, build the three core financial statements from scratch in Excel and write a 3-sentence CFO memo.",
+      "setup": "<p>Use the January adjusted trial balance from Chunk 23 (the month-end close). Build the three core financial statements in Excel using the financial statement package template below:</p><ol><li><strong>Income Statement:</strong> Revenue → COGS → Gross Profit → Operating Expenses → Net Income. Calculate Gross Margin % and Operating Margin %.</li><li><strong>Balance Sheet:</strong> Current Assets, Long-Term Assets, Current Liabilities, Long-Term Liabilities, Equity. Verify Assets = Liabilities + Equity.</li><li><strong>Cash Flow Statement (simplified indirect method):</strong> Start with Net Income, adjust for non-cash items (depreciation), change in working capital (AR, AP), investing activities (any capex), financing activities (loan repayment / distributions).</li></ol>",
+      "tasks": [
+        "Download the financial statement package template and the January adjusted trial balance figures (from the month-end close module).",
+        "Build the Income Statement with sections and the two margin ratios (target: Gross Margin ~70.8%, Operating Margin ~50.4% for January per Chunk 23).",
+        "Build the Balance Sheet and confirm Assets = Liabilities + Equity on the bottom line.",
+        "Build the simplified indirect Cash Flow Statement and reconcile the ending cash to the bank rec's adjusted balance ($336,250).",
+        "Write a 3-sentence CFO memo: what happened financially in January, what concerns you, and what to watch in February."
+      ],
+      "files": [
+        { "label": "Template 06 — Financial Statement Package.xlsx", "href": "/download/07-excel-toolkit/Template_06_Financial_Statement_Package.xlsx" }
+      ],
+      "submissionPrompt": "Paste your three statement bottom lines (Net Income, Total Assets = Total Liabilities + Equity, ending Cash), your two margin ratios, your Cash Flow reconciliation to $336,250 ending cash, and your 3-sentence CFO memo.",
+      "solution": "<p><strong>Income Statement (January):</strong> Revenue $480,000 − COGS $140,000 = <strong>Gross Profit $340,000 (70.8%)</strong> − Operating Expenses $98,000 = <strong>Net Income $242,000 (50.4%)</strong>.</p><p><strong>Balance Sheet (Jan 31):</strong> Total Assets (Cash ~$336,250 + AR ~$997,700 + Prepaids + Workstations net of depreciation + others) = Total Liabilities (AP + Accrued Liabilities + Loan Payable + Deferred Revenue) + Equity (Owner's + Retained Earnings raised by $242,000 net income). Confirms Assets = Liabilities + Equity.</p><p><strong>Cash Flow (indirect, simplified):</strong> Net Income $242,000 + Depreciation $1,000 (add back non-cash) + changes in working capital (increase in AR −$480,000 from HLD invoice, decrease in AP, etc.) + Investing (no capex in Jan) + Financing (loan interest accrual is non-cash) = reconciles <strong>ending Cash to the bank rec's $336,250</strong>. If it doesn't tie, the discrepancy is in the working-capital changes — trace each AR/AP movement.</p><p><strong>CFO memo template:</strong> \"January delivered $242,000 of net income on $480,000 of revenue, with strong 70.8% gross margins. My concern is cash — DSO is ~76 days and $112,700 of TeleCom Builders AR is overdue. In February, watch TeleCom collections and the $215,000 Southeast Broadband dispute.\"</p>"
     }
   ]
 }

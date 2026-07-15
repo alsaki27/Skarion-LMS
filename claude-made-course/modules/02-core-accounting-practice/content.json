@@ -6,6 +6,14 @@
   "hook": "\"Post this journal entry.\" A real controller does not hand you a pre-filled form. They hand you a vendor invoice and expect you to know which accounts move, in which direction, and why. This module is the entire reason that expectation exists.",
   "chunks": [
     {
+      "type": "video",
+      "kicker": "Chunk 32 — Watch first",
+      "title": "Accrual vs. Cash — The Most Important Concept in Accounting",
+      "railLabel": "Video: Accrual",
+      "intro": "If you only understand one thing from this course, make it this: accounting records economic events when they happen — not when cash moves.",
+      "transcript": "<p><strong>0:00 —</strong> If you only understand one thing from this course, make it this: accounting records economic events when they happen — not when cash moves.</p><p><strong>0:20 —</strong> Here is a real example. Skarion completes a 500-mile HLD package and delivers it to Atlantic Fiber Co. on January 28th. Atlantic Fiber doesn't pay until March 15th. Under cash accounting, we record $480,000 of revenue in March. Under accrual accounting — which is what GAAP requires — we record $480,000 in January, the day we delivered the work.</p><p><strong>1:10 —</strong> Why does this matter? Because cash accounting lies. You could have a wildly profitable January in reality — you delivered millions of dollars of work — but your cash basis P&amp;L shows almost nothing because no one paid you yet. Investors, banks, and your own CFO can't make good decisions from that.</p><p><strong>2:00 —</strong> The flip side is also true. If you prepay $36,000 for your annual Vetro license on July 1st, that is not a $36,000 expense in July. That benefits your entire year. So accrual accounting says: record $3,000 per month as expense, for twelve months. The rest sits on your balance sheet as a Prepaid Asset until you've consumed it.</p><p><strong>3:00 —</strong> This is called the matching principle — match your expenses to the revenue they helped generate. And it is the foundation of every adjusting entry you will ever make during month-end close.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The constraint",
       "title": "The accounting equation and the T-account",
@@ -14,6 +22,14 @@
         "type": "warning",
         "html": "<strong>Stop thinking \"debit = good.\"</strong> Debits are <em>directional</em>, not evaluative. A debit to Cash is good. A debit to Accounts Receivable means a customer owes you more (also fine). A debit to Salary Expense means you owe your staff more money (less fine). The side tells you the direction of movement, not whether the business is winning."
       }
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 33 — Watch first",
+      "title": "How to Read a Chart of Accounts in 5 Minutes",
+      "railLabel": "Video: COA",
+      "intro": "The Chart of Accounts is the master list of every bucket money can go into. If you don't understand it, you can't do the job.",
+      "transcript": "<p><strong>0:00 —</strong> The Chart of Accounts is the master list of every bucket that money can go into at a company. Every journal entry, every financial statement, every report — all of it traces back to this list.</p><p><strong>0:25 —</strong> Here is the pattern that never changes: accounts starting with 1 are Assets — things the company owns. 2s are Liabilities — things the company owes. 3s are Equity. 4s are Revenue. And 5 through 6 are Expenses. This numbering is not arbitrary — it maps directly to the accounting equation.</p><p><strong>1:15 —</strong> Let me show you Skarion Engineering's actual Chart of Accounts... [walks through 1000 Operating Checking, 1200 Unbilled AR (WIP), 2100 Accrued Wages, 5100 COGS — Subcontractor Drafting, explaining each]. Notice 1200 is an asset even though nothing's been billed yet — that's WIP, work already performed but not yet invoiced.</p><p><strong>2:30 —</strong> One thing interviewers always ask: what's the difference between a temporary and a permanent account? Permanent accounts — Assets, Liabilities, Equity — carry their balance forward year after year. Temporary accounts — Revenue and Expenses — get zeroed out at year-end and their net balance flows into Retained Earnings.</p><p><strong>3:15 —</strong> In the next section, you will do a drag-and-drop exercise with Skarion's actual transactions. Let's see if you can classify them correctly.</p>"
     },
     {
       "type": "content",

@@ -6,6 +6,14 @@
   "hook": "\"When do you record revenue on a $2.4 million contract?\" The wrong answer is \"when we get paid\" or \"when the contract is signed.\" The right answer walks through the five-step ASC 606 model and names exactly when each deliverable is satisfied. After this module, that is your answer.",
   "chunks": [
     {
+      "type": "video",
+      "kicker": "Chunk 39 — Watch first",
+      "title": "Revenue Recognition in 3 Minutes (ASC 606)",
+      "railLabel": "Video: ASC 606",
+      "intro": "A client signs a $2.4M contract. When do you record the $2.4M? The wrong answer costs companies millions in restatements.",
+      "transcript": "<p><strong>0:00 —</strong> A client signs a $2.4 million contract. When do you record the $2.4M of revenue? The wrong answer costs companies millions in restatements, so listen carefully.</p><p><strong>0:20 —</strong> ASC 606 is a five-step model. Identify the contract. Identify the distinct performance obligations — for a fiber design that's HLD, LLD, and a splice/permit package, three separate obligations. Determine the transaction price. Allocate that price to each obligation. Then recognize revenue when (or as) each obligation is satisfied.</p><p><strong>1:00 —</strong> For Skarion's $2.4M contract over 3,000 miles: the $2.4M is not revenue at signing. It's not revenue when cash arrives. It becomes revenue as each deliverable is accepted — 40% at HLD delivery, 40% at LLD, 20% at the final permit package.</p><p><strong>1:40 —</strong> Two balance-sheet accounts keep this honest. Deferred Revenue is cash received before work is done — a liability, not revenue. Unbilled AR (WIP) is work done but not yet at a billing milestone — an asset, value already created. Both exist precisely because \"when cash moves\" is the wrong question.</p><p><strong>2:20 —</strong> Get this wrong and you overstate revenue. Get it right and your financials match the economics of the contract. That's the entire point of ASC 606.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The standard",
       "title": "Revenue recognition and ASC 606 — the 5-step model",
@@ -100,10 +108,26 @@
       ]
     },
     {
+      "type": "video",
+      "kicker": "Chunk 41 — Watch first",
+      "title": "What is Accounts Receivable Aging and Why It Matters",
+      "railLabel": "Video: AR aging",
+      "intro": "A business can be profitable and still run out of cash. The AR aging report tells you why.",
+      "transcript": "<p><strong>0:00 —</strong> A business can be profitable and still run out of cash. The AR aging report tells you why.</p><p><strong>0:10 —</strong> The aging report buckets every open invoice by how long it has gone unpaid: 0–30 days (current, on terms), 31–60, 61–90, and 90+ days (delinquent). As invoices age into the older buckets, the risk of non-collection rises and cash is tied up instead of in the bank.</p><p><strong>0:45 —</strong> Here is Skarion's aging snapshot. Atlantic Fiber: $480,000, all current. Southeast Broadband: $405,000, half in the 31–60 bucket — watch it. TeleCom Builders: $112,700, split between 61–90 and 90+ days — this is the problem customer, and they get a dunning letter this week.</p><p><strong>1:30 —</strong> Total AR is $997,700. Against $4.8M annual credit revenue, that's a DSO of about 75.8 days — it takes Skarion 76 days to collect a dollar of billed revenue. Controllers watch DSO month over month as a leading indicator of cash flow trouble.</p><p><strong>2:00 —</strong> The aging report is how you turn AR from a number on a balance sheet into an action list: who to call, who to escalate, and which balances to add to the allowance for doubtful accounts.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The management tool",
       "title": "AR aging, collections, and bad debt",
       "bodyHtml": "<p>The <strong>AR Aging Report</strong> is the single most important AR management tool. It buckets every customer's outstanding invoices by how long they have been unpaid. As buckets grow to 90+ days, the firm escalates: dunning letters, account-manager outreach, and eventually collections or write-off.</p><p><strong>Skarion's AR aging snapshot:</strong></p><table class='data'><tr><th>Customer</th><th>0–30 days</th><th>31–60 days</th><th>61–90 days</th><th>90+ days</th><th>Total</th></tr><tr><td>Atlantic Fiber Co.</td><td>$480,000</td><td>—</td><td>—</td><td>—</td><td>$480,000</td></tr><tr><td>Southeast Broadband</td><td>$215,000</td><td>$190,000</td><td>—</td><td>—</td><td>$405,000</td></tr><tr><td>TeleCom Builders</td><td>—</td><td>—</td><td>$78,500</td><td>$34,200</td><td>$112,700</td></tr><tr><td><strong>Total</strong></td><td><strong>$695,000</strong></td><td><strong>$190,000</strong></td><td><strong>$78,500</strong></td><td><strong>$34,200</strong></td><td><strong>$997,700</strong></td></tr></table><p>TeleCom Builders is the problem customer here: $112,700 sitting entirely in the older buckets, $34,200 of it past 90 days. That calls for a dunning letter and an account-manager call this week.</p><p><strong>Allowance for Doubtful Accounts.</strong> GAAP requires you to <em>estimate</em> uncollectible AR as you earn revenue — not wait until a specific invoice goes bad. This is the <em>allowance method</em>, and it matches the bad debt expense to the period that produced the revenue (the matching principle).</p><ul><li><strong>Establish the allowance:</strong> Debit Bad Debt Expense / Credit Allowance for Doubtful Accounts (a contra-asset that reduces net AR).</li><li><strong>Write off a specific invoice:</strong> Debit Allowance for Doubtful Accounts / Credit Accounts Receivable. <em>Expense is NOT affected</em> at write-off — the expense was already recorded when the allowance was established.</li></ul><p><strong>DSO (Days Sales Outstanding):</strong> Average AR ÷ Credit Revenue × Days. Skarion: $997,700 ÷ $4.8M × 365 ≈ <strong>75.8 days</strong> — meaning it takes roughly 76 days to collect a dollar of billed revenue. The lower, the better; controllers watch DSO month-over-month as a leading cash-flow indicator.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 42 — Watch first",
+      "title": "Bad Debt — Estimating What You Won't Collect (Allowance Method)",
+      "railLabel": "Video: Bad debt",
+      "intro": "GAAP doesn't let you wait until a customer files bankruptcy to record the loss. You estimate it every month.",
+      "transcript": "<p><strong>0:00 —</strong> GAAP doesn't let you wait until a customer files bankruptcy to record the loss. You estimate it every month, in the period you actually earned the revenue — that's the matching principle.</p><p><strong>0:15 —</strong> The allowance method uses two entries. First, <em>establish the allowance</em>: estimate a percentage of AR you won't collect and post Dr Bad Debt Expense / Cr Allowance for Doubtful Accounts — a contra-asset that reduces net AR. Skarion estimates 1.5% of $997,700 = $14,965.50.</p><p><strong>0:55 —</strong> Second, <em>write off</em> a specific invoice when it's confirmed uncollectible: Dr Allowance for Doubtful Accounts / Cr Accounts Receivable. Notice: <strong>Bad Debt Expense is not touched at write-off</strong> — the expense was already recorded when the allowance was set up.</p><p><strong>1:35 —</strong> The surprise recovery. TeleCom Builders unexpectedly pays $40,000 six months after being written off. You first reverse the write-off (Dr AR $40,000 / Cr Allowance $40,000), then record the cash receipt (Dr Cash $40,000 / Cr AR $40,000). The net effect is Dr Cash $40,000 / Cr Allowance $40,000 — recovery flows back through the allowance, not through revenue.</p><p><strong>2:15 —</strong> Compare this with the <em>direct write-off</em> method, which only records bad debt when a specific invoice fails. It's not GAAP-compliant because it books the expense in the wrong period — but small cash-basis firms sometimes use it. Know the difference; an interview will ask.</p>"
     },
     {
       "type": "flip_cards",
@@ -202,6 +226,23 @@
           "explanation": "DSO = Average AR ÷ Credit Revenue × 365 = $997,700 ÷ $4,800,000 × 365 ≈ 75.8 days. It takes Skarion roughly 76 days to collect a dollar of billed revenue."
         }
       ]
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — The Client Who Pays in Three Pieces",
+      "railLabel": "Lab: 3-wire",
+      "time": "45 min",
+      "intro": "A customer sends three separate wires over six weeks, one without remittance, one with a surprise early-pay discount. Apply each correctly and decide what to do with the remaining short payment.",
+      "setup": "<p>Southeast Broadband owes Skarion <strong>$405,000</strong> on two open invoices: <strong>SE-2026-004 ($215,000)</strong> and <strong>SE-2026-005 ($190,000)</strong>. Their agreed terms are <strong>2/10 Net 30</strong>. They send three separate wires over six weeks:</p><ul><li><strong>Wire 1 — $215,000</strong> with a note: \"Payment for Invoice SE-2026-004\"</li><li><strong>Wire 2 — $100,000</strong> with no remittance advice and no reference number</li><li><strong>Wire 3 — $89,750</strong> with a note: \"Final payment less 1.25% early payment discount\"</li></ul>",
+      "tasks": [
+        "Wire 1: identify the invoice, confirm the payment clears SE-2026-004 exactly, and post Dr Cash $215,000 / Cr AR $215,000.",
+        "Wire 2: no remittance advice — before posting anything, confirm with Southeast Broadband which invoice it applies to and document the chase. Assume it applies to SE-2026-005 (the older open invoice) only after written confirmation.",
+        "Wire 3: calculate whether a discount was legitimately earned. Assume Wire 3 is 28 days after SE-2026-005's invoice date (inside the Net 30 window but after the 10-day discount period). State whether the 1.25% discount is valid, and what the discounted invoice value should be.",
+        "Reconcile all three: total paid vs. total owed. Note the remaining short payment and open a dispute with a documented reason (no valid early-pay discount was earned within the 10-day window).",
+        "Post the journal entries for all three wires, including any discount taken as a contra-revenue or expense as the policy dictates, and the documented short-pay balance remaining in AR."
+      ],
+      "submissionPrompt": "Paste your three journal entries, your remittance-advice chase note for Wire 2, your discount-validity conclusion for Wire 3, and the remaining AR short-pay with the dispute documentation you'd file.",
+      "solution": "<p><strong>Wire 1 ($215,000, SE-2026-004):</strong> Dr 1000 Operating Checking $215,000 / Cr 1100 Accounts Receivable $215,000. SE-2026-004 is fully cleared.</p><p><strong>Wire 2 ($100,000, no remittance):</strong> Do NOT post blind. Email the customer: \"We received a $100,000 wire on [date] with no reference — please confirm which invoice it applies to.\" After written confirmation it applies to SE-2026-005: Dr 1000 Cash $100,000 / Cr 1100 AR $100,000 (partial payment against SE-2026-005; remaining $90,000 stays open).</p><p><strong>Wire 3 ($89,750, SE-2026-005 remainder):</strong> Terms are 2/10 Net 30 — the 2% discount is only valid if paid within 10 days of invoice. The note claims 1.25%, but at 28 days it is <em>outside</em> the 10-day discount window — so <strong>no discount was legitimately earned</strong>. The full $90,000 remaining on SE-2026-005 is still owed; $89,750 is a short payment of $250.</p><p><strong>Discount incorrectly taken = $250 short.</strong> Post the cash received and document the dispute, do <em>not</em> book a discount: Dr 1000 Cash $89,750 / Cr 1100 AR $89,750. The remaining $250 stays open in the AR subledger with a dispute flag — follow up in writing and request the $250 remittance (it was not contractually discountable). Never silently write off a disputed short payment without manager approval.</p><p><strong>Total reconciled:</strong> $215,000 + $100,000 + $89,750 = $404,750 collected of $405,000 owed; $250 disputed short-pay remains open and documented.</p>"
     }
   ]
 }

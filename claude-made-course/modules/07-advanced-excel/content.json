@@ -6,6 +6,82 @@
   "hook": "\"What's the first thing you do with a 5,000-row payroll export?\" The wrong answer is \"start vouching.\" The right answer is \"clean it.\" Raw exports from payroll, bank feeds, and offshore timesheet apps are always messy, and cleaning is an accounting skill, not an IT one.",
   "chunks": [
     {
+      "type": "timed_drill",
+      "title": "Timed speed drill — 10 journal entries, 60 seconds each",
+      "railLabel": "Drill",
+      "intro": "Full mixed recall under pressure. 60 seconds per entry. Recall fast — your brain needs to retrieve journal entries without notes.",
+      "questions": [
+        {
+          "q": "Record a $7,200 offshore drafting invoice (no cash yet).",
+          "options": ["Dr 5100 COGS — Subcontractor Drafting / Cr 2000 Accounts Payable", "Dr 2000 Accounts Payable / Cr 5100 COGS", "Dr 1000 Cash / Cr 4000 Revenue", "Dr 4000 Revenue / Cr 1100 AR"],
+          "correct_index": 0,
+          "explanation": "Expense + liability: Dr COGS $7,200 / Cr AP $7,200. Cash untouched until payment."
+        },
+        {
+          "q": "Record a $36,000 annual software license payment (capitalize).",
+          "options": ["Dr 6500 Software Expense / Cr 1000 Cash", "Dr 1400 Prepaid Software / Cr 1000 Operating Checking", "Dr 1000 Cash / Cr 1400 Prepaid", "Dr 5000 COGS / Cr 2000 AP"],
+          "correct_index": 1,
+          "explanation": "Capitalize as prepaid: Dr 1400 $36,000 / Cr 1000 $36,000. Expense it monthly later via amortization."
+        },
+        {
+          "q": "Post January depreciation for 5 workstations @ $200/month each (total $1,000).",
+          "options": ["Dr 1590 Accumulated Depreciation / Cr 6700 Depreciation Expense", "Dr 6700 Depreciation Expense / Cr 1590 Accumulated Depreciation", "Dr 1500 Workstations / Cr 1000 Cash", "Dr 6700 / Cr 1400"],
+          "correct_index": 1,
+          "explanation": "Dr 6700 Depreciation Expense $1,000 / Cr 1590 Accumulated Depreciation $1,000."
+        },
+        {
+          "q": "Accrue January loan interest: $500K loan @ 6.5%.",
+          "options": ["Dr 6800 Interest Expense $2,708 / Cr 2300 Accrued Interest $2,708", "Dr 2300 / Cr 1000 Cash", "Dr 6800 / Cr 1000", "Dr 1000 / Cr 6800"],
+          "correct_index": 0,
+          "explanation": "$500,000 × 6.5% ÷ 12 = $2,708.33. Dr Interest Expense / Cr Accrued Interest."
+        },
+        {
+          "q": "Record the month-end amortization of Prepaid Software for one month ($3,000).",
+          "options": ["Dr 6500 Software & Subscriptions / Cr 1400 Prepaid Software", "Dr 1400 / Cr 6500", "Dr 6500 / Cr 1000", "Dr 1400 / Cr 1000"],
+          "correct_index": 0,
+          "explanation": "Dr 6500 Software Expense $3,000 / Cr 1400 Prepaid Software $3,000 — move one month's benefit off the asset onto the P&L."
+        },
+        {
+          "q": "Correct a duplicate $9,503.60 customer deposit (entered twice).",
+          "options": ["Dr 1100 AR / Cr 1000 Cash", "Dr 1000 Cash / Cr 1100 AR", "Dr 4000 Revenue / Cr 1000", "Dr 1100 AR / Cr 4000 Revenue"],
+          "correct_index": 0,
+          "explanation": "Reverse the duplicate: Dr AR $9,503.60 / Cr Cash $9,503.60. Revenue was never overstated — only cash/AR were."
+        },
+        {
+          "q": "Record a $480,000 AR invoice issued to Atlantic Fiber for an HLD milestone.",
+          "options": ["Dr 1100 AR $480,000 / Cr 4000 Engineering Design Revenue $480,000", "Dr 4000 / Cr 1100", "Dr 1000 / Cr 1100", "Dr 2500 Deferred / Cr 4000"],
+          "correct_index": 0,
+          "explanation": "Dr AR / Cr Revenue — performance obligation satisfied at HLD milestone. No cash yet."
+        },
+        {
+          "q": "Record Atlantic Fiber's wire payment of $479,975 (after $25 bank fee).",
+          "options": ["Dr 1000 Cash $479,975 + Dr 6900 Bank Fees $25 / Cr 1100 AR $480,000", "Dr 1000 $480,000 / Cr 1100 $480,000", "Dr 1100 / Cr 1000 $480,000", "Dr 1000 $479,975 / Cr 1100 $479,975"],
+          "correct_index": 0,
+          "explanation": "Net cash $479,975 debited, $25 fee to expense, full $480,000 AR credited and cleared."
+        },
+        {
+          "q": "Write off TeleCom Builders' $112,700 AR (against existing allowance).",
+          "options": ["Dr 1200 Allowance / Cr 1100 AR $112,700", "Dr 6720 Bad Debt Expense / Cr 1100 AR", "Dr 1100 AR / Cr 1200 Allowance", "Dr 1100 / Cr 1000"],
+          "correct_index": 0,
+          "explanation": "Dr Allowance / Cr AR. Expense was already booked when the allowance was established — not touched at write-off."
+        },
+        {
+          "q": "Establish the bad debt allowance for 1.5% of $997,700 AR.",
+          "options": ["Dr 6720 Bad Debt Expense $14,965.50 / Cr 1200 Allowance $14,965.50", "Dr 1200 / Cr 6720", "Dr 1100 AR / Cr 1200", "Dr 6720 / Cr 1100"],
+          "correct_index": 0,
+          "explanation": "1.5% × $997,700 = $14,965.50. Dr Bad Debt Expense / Cr Allowance for Doubtful Accounts."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 37 — Watch first",
+      "title": "Excel for Accountants — The 3 Functions That Do 80% of the Work",
+      "railLabel": "Video: Excel 3",
+      "intro": "If you can only learn three Excel functions before your first accounting job, learn these: VLOOKUP, SUMIFS, and PivotTables.",
+      "transcript": "<p><strong>0:00 —</strong> If you can only learn three Excel functions before your first accounting job, learn these: VLOOKUP, SUMIFS, and PivotTables. Everything else is optional. These three handle 80% of the real work you will actually do.</p><p><strong>0:30 —</strong> VLOOKUP — or its modern replacement XLOOKUP — is how you match data from two tables. The most common accounting use: a 3,000-row expense report and a separate table of GL account numbers. VLOOKUP pulls the GL number into the right row automatically. Without it, you do that manually for 3,000 rows.</p><p><strong>1:30 —</strong> SUMIFS adds up numbers that meet multiple conditions at once. \"Give me total COGS for Tennessee Corridor, in January, from Global CAD Solutions.\" That's a SUMIFS with three criteria. Syntax: SUMIFS(sum range, criteria range 1, criteria 1, criteria range 2, criteria 2...).</p><p><strong>2:30 —</strong> PivotTables summarize large data sets fastest. Project Code to rows, Vendor Name to columns, Amount to values — in 10 seconds you have a summary that would take an hour of formulas.</p><p><strong>3:30 —</strong> In the Excel lab, raw offshore drafting data — 1,200 rows. Tag project codes with VLOOKUP. Sum by project with SUMIFS. Present with a PivotTable. All three.</p>"
+    },
+    {
       "type": "content",
       "kicker": "Chunk 24 — data cleaning & lookups",
       "title": "Data cleaning, VLOOKUP/XLOOKUP, and SUMIFS",
@@ -84,6 +160,51 @@
           "explanation": "Power Query captures your cleanup steps and replays them every month on refresh — turning a manual Text-to-Columns + TRIM + lookup routine into a repeatable, automated pipeline. That automation is the whole point."
         }
       ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 59 — AI in accounting",
+      "title": "AI Tools in Modern Accounting — What's Real, What's Hype",
+      "bodyHtml": "<p>AI tools have moved from marketing into actual accounting workflows in 2025–2026. Knowing where they genuinely help — and where they don't — is now a real interview topic.</p><p><strong>What AI is good at now:</strong></p><ul><li>Categorizing transactions (QuickBooks' AI suggestions, Sage Intacct's AI features)</li><li>Matching invoices to POs at scale</li><li>Flagging anomalies in large datasets (duplicate-looking amounts, out-of-pattern vendors)</li><li>Auto-populating expense reports from receipt images</li><li>Drafting first-pass reconciliation explanations and journal entry memos (with ChatGPT/Copilot)</li></ul><p><strong>What AI is not good at:</strong></p><ul><li>Exercising accounting judgment — when to hold, correct, document, or escalate</li><li>Catching context-dependent fraud (a transaction that looks normal but isn't, given the business relationship)</li><li>GAAP compliance decisions that require reading the contract and the business intent</li><li>Signing off. <em>AI does not sign off. You do.</em></li></ul><p><strong>Tools worth knowing:</strong> Sage Intacct's AI features, QuickBooks AI categorization, Microsoft Copilot for Excel, ChatGPT for first-draft memos. The safe position for a junior accountant: <em>AI handles the volume work, you handle the judgment calls and documentation.</em></p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Interview positioning:</strong> \"I use AI tools to handle the mechanical volume of data preparation, which lets me spend more time on judgment-intensive work like reconciliation investigation and adjusting-entry review.\" That answer shows you understand the line — and you will be asked it."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "AI tools — know the limits",
+      "title": "5 AI accounting tools — what each does and can't",
+      "railLabel": "AI cards",
+      "cards": [
+        {"front": "QuickBooks AI categorization", "back": "Suggests account categories for bank-feed transactions from historical patterns. Can't tell when a transaction is genuinely unusual or a one-off — review every flagged exception, don't auto-accept. Interview line: \"I use QB's AI suggestions as a first pass, then review exceptions manually.\""},
+        {"front": "Sage Intacct AI", "back": "Automates transaction matching, anomaly flagging, and some reconciliations at scale. Still requires a human sign-off on accruals and judgment entries. Can't interpret the business reason behind a variance."},
+        {"front": "Microsoft Copilot for Excel", "back": "Drafts formulas, builds PivotTables, summarizes ranges, cleans data on instruction. Useful for first drafts and bulk clean-up. Can't validate that the underlying accounting treatment is correct — it's a formula tool, not a GAAP tool."},
+        {"front": "ChatGPT for memos/first drafts", "back": "Drafts reconciliation explanations and journal-entry memos from raw facts. Excellent first draft. Cannot verify the numbers are right or decide when an adjusting entry is actually needed — always verify before posting."},
+        {"front": "Receipt/expense OCR AI", "back": "Reads receipts and auto-populates expense reports. Great volume work. Still needs human review for category coding, policy compliance, and duplicate detection."}
+      ]
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — The Excel Clean-Up Assignment From Hell",
+      "railLabel": "Lab: Excel hell",
+      "time": "90 min",
+      "intro": "The hardest Excel exercise in the course. A 3,000-row offshore labor export with eight deliberate quality problems. Fix all eight, produce clean data, and build the project profitability summary.",
+      "setup": "<p>You receive <code>Offshore_Labor_Raw_Q1_2026.csv</code> — 3,000 rows of individual CAD and GIS task entries from 4 offshore firms across 12 projects. Eight deliberate quality problems are baked in:</p><ol><li><strong>Date column</strong> is a single text field like \"Jan-15-2026\" — needs Text-to-Columns.</li><li><strong>Vendor names</strong> have inconsistent spacing (\"Global CAD Solutions \" with a trailing space).</li><li><strong>Duplicate entries</strong> — the same task ID entered twice for two vendors.</li><li><strong>Project codes</strong> have typos (\"Proj-Alpha\" vs \"Proj Alpha\" vs \"ProjAlpha\").</li><li>One <strong>column uses a comma as a decimal separator</strong> (European format) — needs conversion to US format.</li><li><strong>Three rows</strong> have $0 amounts but non-zero hours — a fee-structure error to investigate.</li><li>A <strong>VLOOKUP to the project master fails for 47 rows</strong> due to a case mismatch.</li><li>The <strong>billing rate column has mixed currency</strong> ($, £, €) for different offshore offices.</li></ol>",
+      "tasks": [
+        "Download the raw CSV and the project master mapping below.",
+        "Fix all eight problems in order, documenting the tool used for each (Text-to-Columns, TRIM/PROPER/CLEAN, Remove Duplicates, Find/Replace for project codes, comma-to-decimal conversion, FLAG vs. fix the $0/hours rows in writing, EXACT/CASE match for the VLOOKUP, currency conversion to USD).",
+        "Run a clean VLOOKUP to attach the project code to every row.",
+        "Use SUMIFS to total dollar cost and hours per project.",
+        "Build a PivotTable showing hours and cost by project and by vendor.",
+        "Identify which project has the highest cost overrun vs. its budget and write a one-line flag."
+      ],
+      "files": [
+        { "label": "Offshore_Labor_Raw_Q1_2026.csv", "href": "/download/scenario-labs/Offshore_Labor_Raw_Q1_2026.csv" },
+        { "label": "Project_Mapping_Table.csv", "href": "GL_Mapping_Table.csv" }
+      ],
+      "submissionPrompt": "Paste: (1) the tool you used for each of the 8 problems, (2) your final cleaned row count, (3) the Tennessee Corridor and Texas Long-Haul totals (hours and $), and (4) the project with the largest cost overrun + your one-line flag.",
+      "solution": "<p><strong>Eight fixes (tools):</strong> (1) Text-to-Columns on the date field, delimiter \"-\"; (2) TRIM + PROPER on vendor names, then Remove Duplicates on Task ID + Date + Vendor; (3) Remove Duplicates or pivot-count to surface duplicate task IDs; (4) Find/Replace + a helper column with a normalized key (spaces/dashes stripped) to unify the project codes; (5) SUBSTITUTE(\",\",\".\") or value-conversion on the comma-decimal column; (6) Flag the three $0/positive-hours rows in writing — likely a rate-missing error, do NOT silently zero-fill; route to the offshore PM for confirmation; (7) use UPPER() on both the lookup key and the master to fix the case mismatch, then VLOOKUP succeeds for all 47; (8) multiply the billing-rate column by each offshore office's currency-to-USD rate and store a single USD column.</p><p><strong>Clean row count</strong> ≈ 3,000 minus the duplicates removed (typically ~2,984 after the 16 duplicate rows are stripped).</p><p><strong>Tennessee Corridor</strong> should be the highest-volume project (hundreds of hours, the largest $ total — the dominant share of Q1 offshore drafting). <strong>Texas Long-Haul</strong> is the second-largest by hours.</p><p><strong>Cost-overrun flag:</strong> the project whose SUMIFS total exceeds the master-table budget for that project — flag it as \"Over budget — review with PM before next PO revision.\" The exact overrun dollar figure depends on the seeded data, but the comparison method is the deliverable.</p>"
     }
   ]
 }

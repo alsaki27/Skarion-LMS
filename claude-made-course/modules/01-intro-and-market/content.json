@@ -6,6 +6,14 @@
   "hook": "\"Tell me about yourself.\" You're about to hear what makes a candidate sound credible in the first 60 seconds — and what instantly flags them as a textbook memorizer who has never touched a real set of books.",
   "chunks": [
     {
+      "type": "video",
+      "kicker": "Chunk 31 — Watch first",
+      "title": "Why Accounting Exists",
+      "railLabel": "Video: Why",
+      "intro": "Watch this 3-minute opener before anything else. The deliverable of accounting is trust — not journal entries.",
+      "transcript": "<p><strong>0:00 —</strong> Every business decision — every hire, every loan, every expansion — is made based on numbers. Your job is to make sure those numbers are right.</p><p><strong>0:10 —</strong> Accounting isn't about debits and credits. It's about trust. A bank lends $500,000 based on a balance sheet you prepared. A CEO decides whether to hire ten more engineers based on a P&amp;L you closed. If your numbers are wrong, real people are hurt by real decisions.</p><p><strong>0:35 —</strong> This is why accounting jobs — even entry-level ones — require precision under pressure. And it's why every company, from a two-person startup to a Fortune 500, has someone who does exactly what you're about to learn.</p><p><strong>1:20 —</strong> In this course, you are the Staff Accountant for Skarion Engineering — a $2M Virginia fiber-design firm. You are not reading about accounting. You are doing it. Real invoices, real bank statements, real discrepancies that need to be found and fixed.</p><p><strong>2:00 —</strong> By the end of this course you will be able to say — truthfully — that you closed the books for a real company, reconciled bank statements, caught a $10,547 duplicate deposit, and ran a full payroll entry. That is not theory. That is experience.</p><p><strong>2:40 —</strong> Let's get started. Module 1: The Accounting Profession — what it actually is, and what employers are actually looking for.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The reality",
       "title": "What accounting actually is — and why your professor probably wasn't clear about it",

@@ -6,6 +6,64 @@
   "hook": "\"How do you process a vendor invoice?\" Most candidates describe data entry. The right answer describes the three-way match, the hold-for-discrepancy process, and exactly which accounts move and when. This is the module that separates those two answers.",
   "chunks": [
     {
+      "type": "review_quiz",
+      "title": "Recall check — Modules 01–02 (spaced repetition)",
+      "railLabel": "Review 1-2",
+      "intro": "Before we start Accounts Payable, let's make sure the last two modules are locked in.",
+      "questions": [
+        {
+          "q": "Under accrual accounting, when is revenue from an HLD delivery recognized?",
+          "options": ["When the contract is signed", "When the client wires payment", "When the HLD is delivered and the obligation is satisfied", "At year-end"],
+          "correct_index": 2,
+          "explanation": "Accrual records revenue when earned — the HLD delivery date. Cash timing is irrelevant."
+        },
+        {
+          "q": "What is the normal balance of an expense account — debit or credit?",
+          "options": ["Debit", "Credit", "Either, depending on the entry", "Expenses have no balance"],
+          "correct_index": 0,
+          "explanation": "Expenses increase with a debit. That's why Dr Depreciation Expense increases it."
+        },
+        {
+          "q": "A $36,000 software license paid in January (12-month term) — what is the balance in Prepaid Software on March 31st?",
+          "options": ["$36,000", "$3,000", "$27,000", "$9,000"],
+          "correct_index": 2,
+          "explanation": "3 months amortized × $3,000 = $9,000 expensed. Prepaid remaining = $36,000 − $9,000 = $27,000."
+        },
+        {
+          "q": "What does the COA number range 2000–2999 represent?",
+          "options": ["Assets", "Liabilities", "Equity", "Revenue"],
+          "correct_index": 1,
+          "explanation": "2000s are Liabilities — AP, accrued wages, payroll tax liabilities, etc."
+        },
+        {
+          "q": "What does GAAP stand for and who writes it?",
+          "options": ["Generally Accepted Accounting Principles — the IRS", "Generally Accepted Accounting Principles — the FASB", "Government Accounting Audit Procedures — the SEC", "General Accounting Assessment Process — the AICPA"],
+          "correct_index": 1,
+          "explanation": "GAAP = Generally Accepted Accounting Principles, written and maintained by the FASB."
+        },
+        {
+          "q": "A company records $500K of revenue in December but doesn't receive cash until February. Which basis of accounting is this?",
+          "options": ["Cash basis", "Accrual basis", "Tax basis", "Hybrid basis"],
+          "correct_index": 1,
+          "explanation": "Recording revenue when earned (December) rather than when cash arrives (February) is accrual basis."
+        },
+        {
+          "q": "What is the accounting equation?",
+          "options": ["Debits = Credits", "Revenue − Expenses = Net Income", "Assets = Liabilities + Equity", "Beginning Retained Earnings + Net Income − Dividends"],
+          "correct_index": 2,
+          "explanation": "Assets = Liabilities + Equity. It governs every entry — Debits = Credits is the mechanical check of it."
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 34 — Watch first",
+      "title": "The 3-Way Match — Why You Never Pay an Invoice on Faith",
+      "railLabel": "Video: 3-way",
+      "intro": "One of the most powerful internal controls in AP — and one of the most common interview questions. Here is exactly how it works.",
+      "transcript": "<p><strong>0:00 —</strong> The 3-way match is one of the most powerful internal controls in accounts payable. And it is one of the most common interview questions for any entry-level accounting role.</p><p><strong>0:30 —</strong> You need three documents to agree before you can pay a vendor invoice: the Purchase Order (your company authorized the spend), the Receiving Report (the goods/services were actually delivered), and the Vendor Invoice (the amount billed matches what was ordered and delivered). All three numbers have to align on quantity, unit price, and total. Where all three overlap: pay it. Where only two overlap: hold it.</p><p><strong>1:30 —</strong> A real example from Skarion's AP files. Invoice GCS-2026-087 from Global CAD Solutions. The MSA rate was $38.50 per mile. But the invoice billed $42.00 per mile — a $178.75 overage on 50 miles. The right move: hold the invoice and request a credit memo. Do not pay it.</p><p><strong>2:30 —</strong> The 3-way match catches vendor billing errors, pricing changes that slipped through, duplicate invoices, and in worst cases, fraud. It only works if you actually do it on every invoice — not just the big ones.</p><p><strong>3:20 —</strong> In the exercise coming up, you will get a batch of invoices and decide: pay, hold, or escalate. Use the 3-way match. The answer is in the documents.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The cycle",
       "title": "AP workflow and the 3-way match",
@@ -79,6 +137,14 @@
       ]
     },
     {
+      "type": "video",
+      "kicker": "Chunk 40 — Watch first",
+      "title": "Payroll — What Actually Gets Withheld and Why",
+      "railLabel": "Video: Payroll",
+      "intro": "Gross pay is what the employee earns. Net pay is what they take home. The difference is your problem.",
+      "transcript": "<p><strong>0:00 —</strong> Gross pay is what the employee earns. Net pay is what they take home. The difference is your problem — you have to withhold it, remit it, and account for it correctly.</p><p><strong>0:15 —</strong> There are four big things withheld from a W2 employee's paycheck. Federal income tax — based on the W-4 the employee filed. FICA, which is Social Security (6.2% up to a wage cap) plus Medicare (1.45%, no cap). State income tax where applicable. And any voluntary deductions like 401(k) or health premiums.</p><p><strong>1:00 —</strong> The employer also pays a matching FICA — another 7.65% — plus FUTA and SUTA unemployment. So on Skarion's $79,167 monthly gross payroll, employee withholdings total $21,056, employer taxes add $6,256, and $58,111 is the net cash wired to employees.</p><p><strong>2:00 —</strong> The full entry: Debit Salaries Expense $79,167 and Payroll Tax Expense $6,256; Credit Payroll Tax Liabilities $27,312 and Credit Cash $58,111. The liabilities get cleared later when the tax deposits are made.</p><p><strong>3:00 —</strong> 1099 contractors are different. No withholding, no employer FICA. You just pay the invoice through Accounts Payable. That's why misclassifying a W2 worker as a 1099 creates real IRS exposure — the company is skipping withholdings it legally owed.</p><p><strong>3:40 —</strong> In the payroll entry lab next, you will post this full compound entry yourself.</p>"
+    },
+    {
       "type": "content",
       "kicker": "The legal line",
       "title": "W2 employees vs. 1099 contractors — and why accounting cares",
@@ -149,6 +215,23 @@
           "explanation": "Employer FICA is 7.65% — matching the employee's 7.65%. Both pay 6.2% Social Security (up to the wage cap) plus 1.45% Medicare (no cap). Skarion's ~$79,167 monthly gross ≈ $6,056/month employer FICA."
         }
       ]
+    },
+    {
+      "type": "scenario_lab",
+      "title": "Scenario Lab — The Offshore Invoice Dispute",
+      "railLabel": "Lab: dispute",
+      "time": "60 min",
+      "intro": "A vendor invoice fails the 3-way match on a contract clause that was never agreed. Diagnose, hold, and decide the journal entries for both possible outcomes.",
+      "setup": "<p>Global CAD Solutions sends invoice <strong>GCS-2026-147</strong> for <strong>$18,750</strong>. The PO covers 500 miles of HLD drafting at <strong>$35.00/mile</strong> = $17,500 of agreed work. But the invoice also includes a line item for <strong>\"Rush premium — 15%\" = $2,812.50</strong>. No rush premium was agreed to in the Master Services Agreement.</p><p>The receiving report confirms 500 miles were actually drafted and delivered.</p>",
+      "tasks": [
+        "Run the 3-way match and document each discrepancy (price agreed vs. billed; the disputed rush-premium line).",
+        "Calculate what should be paid ($17,500) vs. what was billed ($18,750) and state the disputed amount ($2,812.50).",
+        "Draft the hold-notice memo to GCS — request removal of the rush-premium line or a formal credit memo.",
+        "Post the correct <em>partial</em> accrual for the undisputed $17,500 portion only (Dr COGS — Subcontractor Drafting $17,500 / Cr Accrued Liabilities $17,500) until the dispute is resolved.",
+        "Explain the journal entry if the dispute is resolved in Skarion's favor (rush premium dropped) vs. in GCS's favor (Skarion accepts the $2,812.50 premium)."
+      ],
+      "submissionPrompt": "Paste your 3-way match notes, the hold memo, the partial-acrual journal entry, and the two resolution journal entries. Confirm which supervisor you escalated to.",
+      "solution": "<p><strong>3-way match result:</strong> Quantity (500 miles) matches across PO, receiving, and invoice — OK. Unit price ($35/mile) matches the PO — OK. <em>But</em> the rush-premium line ($2,812.50) is not in the PO or the MSA — it fails the match and the invoice must be held.</p><p><strong>Amounts:</strong> Undisputed $17,500. Disputed $2,812.50. Do not pay the disputed portion.</p><p><strong>Partial accrual (undisputed only):</strong> Dr 5100 COGS — Subcontractor Drafting $17,500 / Cr 2400 Accrued Liabilities $17,500. Book only what is genuinely owed; the disputed amount stays off the books until resolved.</p><p><strong>If resolved in Skarion's favor</strong> (premium dropped): on invoice payment, Dr 2000 Accounts Payable $17,500 / Cr 1000 Operating Checking $17,750 (= $17,500 + ~$25 wire fee) and Cr 6900 Bank Fees $25 — actually wire net via AP. The disputed $2,812.50 is never recorded as an expense.</p><p><strong>If resolved in GCS's favor</strong> (premium accepted): Dr 5100 COGS — Subcontractor Drafting $2,812.50 / Cr 2000 Accounts Payable $2,812.50 to add the now-accepted premium, then pay the full $20,062.50 ($18,750 + fees). Always document the supervisor's written approval before accepting an out-of-contract charge.</p>"
     }
   ]
 }
