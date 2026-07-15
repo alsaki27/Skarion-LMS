@@ -7,24 +7,32 @@
 <style>{{THEME_CSS}}</style>
 </head>
 <body>
-<div class="app">
-  <div class="topbar">
-    <span class="module-tag" id="module-tag"></span>
-    <span class="module-title" id="module-title"></span>
-    <button onclick="window.open('skarionbooks/index.html', '_blank')" style="margin-left:auto; margin-right:20px; padding:6px 12px; background:#1E2761; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">Launch SkarionBooks 🚀</button>
-    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
-    <span class="progress-label" id="progress-label">0%</span>
+<div class="layout">
+  <div class="sidebar" id="catalog-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Skarion Accounting Track</div>
+    </div>
+    <div class="sidebar-nav" id="sidebar-nav"></div>
   </div>
-  <div class="chunk-rail" id="chunk-rail"></div>
-  <div class="stage" id="stage"><div class="stage-inner" id="stage-inner"></div></div>
-  <div class="navbar">
-    <div class="navbar-inner">
-      <button class="nav-btn secondary" id="nav-prev">← Back</button>
-      <button class="nav-btn primary" id="nav-next">Continue →</button>
+  <div class="app">
+    <div class="topbar">
+      <span class="module-tag" id="module-tag"></span>
+      <span class="module-title" id="module-title"></span>
+      <button onclick="window.open('skarionbooks/index.html', '_self')" style="margin-left:auto; margin-right:20px; padding:6px 12px; background:#1E2761; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">Launch SkarionBooks 🚀</button>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <span class="progress-label" id="progress-label">0%</span>
+    </div>
+    <div class="chunk-rail" id="chunk-rail"></div>
+    <div class="stage" id="stage"><div class="stage-inner" id="stage-inner"></div></div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <button class="nav-btn secondary" id="nav-prev">← Back</button>
+        <button class="nav-btn primary" id="nav-next">Continue →</button>
+      </div>
     </div>
   </div>
 </div>
-<script>window.LESSON = {{LESSON_JSON}};</script>
+<script>window.COURSE_CATALOG = {{CATALOG_JSON}};</script>
 <script>{{SCORM_JS}}</script>
 <script>{{PLAYER_JS}}</script>
 </body>

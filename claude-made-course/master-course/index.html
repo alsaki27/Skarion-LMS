@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>{{TITLE}} — Skarion Accounting Track</title>
+<style>/* Skarion Course Engine — shared design system
+   Modern, chunked micro-learning UI. Self-contained (no external fonts/CDNs) for SCORM portability. */
+
+:root {
+  --bg: #0b0d12;
+  --bg-elev-1: #12151c;
+  --bg-elev-2: #191d26;
+  --bg-elev-3: #212633;
+  --border: #262c3a;
+  --border-soft: #1a1f2b;
+  --text: #eef1f6;
+  --text-dim: #9aa4b8;
+  --text-faint: #6b7488;
+  --accent: #5b8cff;
+  --accent-2: #7c5cff;
+  --accent-grad: linear-gradient(135deg, #5b8cff 0%, #7c5cff 100%);
+  --good: #2fbf82;
+  --good-bg: #10241c;
+  --warn: #e8a84c;
+  --warn-bg: #2a230f;
+  --bad: #ef5b6f;
+  --bad-bg: #2a1418;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(0,0,0,.5);
+  --shadow-2: 0 2px 8px rgba(0,0,0,.5), 0 16px 40px -12px rgba(91,140,255,.15);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif-display: Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f6f9;
+    --bg-elev-1: #ffffff;
+    --bg-elev-2: #ffffff;
+    --bg-elev-3: #eef0f5;
+    --border: #e2e5ed;
+    --border-soft: #edeff4;
+    --text: #171a21;
+    --text-dim: #565f74;
+    --text-faint: #8891a3;
+    --good-bg: #e7f8f0;
+    --warn-bg: #fdf3e3;
+    --bad-bg: #fdeaec;
+    --shadow-1: 0 1px 2px rgba(20,20,40,.06), 0 8px 24px -12px rgba(20,20,40,.12);
+    --shadow-2: 0 2px 10px rgba(20,20,40,.08), 0 20px 40px -20px rgba(91,140,255,.25);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-elev-1);
+  flex-shrink: 0;
+}
+.topbar .module-tag {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.topbar .module-title {
+  font-weight: 650;
+  font-size: .95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-elev-3);
+  border-radius: 99px;
+  overflow: hidden;
+  min-width: 60px;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent-grad);
+  border-radius: 99px;
+  transition: width .4s cubic-bezier(.4,0,.2,1);
+  width: 0%;
+}
+.progress-label { font-size: .78rem; color: var(--text-dim); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- Chunk rail (dots) ---------- */
+.chunk-rail {
+  display: flex;
+  gap: 6px;
+  padding: 10px 22px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  background: var(--bg-elev-1);
+  border-bottom: 1px solid var(--border-soft);
+}
+.chunk-dot {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: var(--bg-elev-3);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+.chunk-dot:hover { color: var(--text); }
+.chunk-dot.active { background: var(--accent-grad); color: #fff; }
+.chunk-dot.done { color: var(--good); border-color: var(--good); }
+.chunk-dot.done.active { color: #fff; border-color: transparent; }
+
+/* ---------- Stage ---------- */
+.stage {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 22px 120px;
+  display: flex;
+  justify-content: center;
+}
+.stage-inner { width: 100%; max-width: 760px; }
+
+.screen { display: none; animation: rise .35s cubic-bezier(.16,1,.3,1); }
+.screen.active { display: block; }
+@keyframes rise { from { opacity:0; transform: translateY(14px);} to {opacity:1; transform:none;} }
+
+/* ---------- Intro / hero screen ---------- */
+.hero-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.hero-title { font-size: 2.1rem; font-weight: 750; line-height: 1.15; margin: 0 0 14px; letter-spacing: -.01em; }
+.hero-sub { font-size: 1.08rem; color: var(--text-dim); line-height: 1.6; margin: 0 0 22px; }
+.hero-hook {
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  font-size: .96rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ---------- Content chunk ---------- */
+.chunk-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 6px; letter-spacing: -.01em; }
+.chunk-kicker { font-size: .8rem; font-weight: 700; color: var(--text-faint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.prose { font-size: 1rem; line-height: 1.75; color: var(--text); }
+.prose p { margin: 0 0 14px; }
+.prose strong { color: var(--text); }
+.prose ul, .prose ol { padding-left: 22px; margin: 0 0 14px; }
+.prose li { margin-bottom: 6px; }
+.prose code { background: var(--bg-elev-3); padding: 1px 6px; border-radius: 5px; font-size: .9em; }
+
+.callout {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  font-size: .92rem;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+}
+.callout .icon { flex-shrink: 0; font-size: 1.2rem; line-height: 1.4; }
+.callout.tip { background: var(--good-bg); color: var(--text); border: 1px solid rgba(47,191,130,.25); }
+.callout.warning { background: var(--warn-bg); color: var(--text); border: 1px solid rgba(232,168,76,.3); }
+.callout.story { background: var(--bg-elev-2); border: 1px solid var(--border); border-left: 3px solid var(--accent-2); }
+.callout.danger { background: var(--bad-bg); color: var(--text); border: 1px solid rgba(239,91,111,.3); }
+
+table.data { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .88rem; }
+table.data th, table.data td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; }
+table.data th { background: var(--bg-elev-2); font-weight: 650; }
+table.data tr:nth-child(even) td { background: var(--bg-elev-1); }
+
+/* ---------- Flip cards ---------- */
+.flip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+.flip-card { perspective: 1000px; height: 150px; cursor: pointer; }
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform .5s cubic-bezier(.4,0,.2,1); transform-style: preserve-3d; }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: .92rem; border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+.flip-front { background: var(--bg-elev-2); font-weight: 650; }
+.flip-front::after { content: "tap to flip"; position:absolute; bottom:8px; font-size:.65rem; color:var(--text-faint); font-weight:400; }
+.flip-back { background: var(--accent-grad); color: #fff; transform: rotateY(180deg); line-height: 1.4; }
+
+/* ---------- Quiz ---------- */
+.quiz-q { margin-bottom: 26px; }
+.quiz-q-text { font-weight: 650; font-size: 1.02rem; margin-bottom: 12px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elev-2);
+  color: var(--text);
+  font-size: .92rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); }
+.quiz-opt.correct { background: var(--good-bg); border-color: var(--good); }
+.quiz-opt.incorrect { background: var(--bad-bg); border-color: var(--bad); }
+.quiz-opt:disabled { cursor: default; opacity: .85; }
+.quiz-explain { margin-top: 10px; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--bg-elev-2); font-size: .88rem; color: var(--text-dim); display: none; }
+.quiz-explain.show { display: block; }
+.quiz-score-banner { padding: 16px 18px; border-radius: var(--radius-md); background: var(--bg-elev-2); border: 1px solid var(--border); text-align: center; font-weight: 650; margin-top: 10px; display:none; }
+.quiz-score-banner.show { display: block; }
+
+/* ---------- Journal entry builder ---------- */
+.je-scenario { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; margin-bottom: 18px; font-size: .94rem; line-height: 1.6; }
+.je-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+.je-table th { text-align: left; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-faint); padding: 4px 8px; }
+.je-row td { padding: 5px 8px; }
+.je-row select, .je-row input {
+  width: 100%; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  background: var(--bg-elev-1); color: var(--text); font-family: var(--font); font-size: .88rem;
+}
+.je-row select:focus, .je-row input:focus { outline: none; border-color: var(--accent); }
+.je-add-row { background: transparent; border: 1px dashed var(--border); color: var(--text-dim); padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; font-size: .85rem; margin-bottom: 14px; }
+.je-add-row:hover { border-color: var(--accent); color: var(--text); }
+.je-check-btn { background: var(--accent-grad); color: #fff; border: none; padding: 10px 20px; border-radius: var(--radius-sm); font-weight: 650; cursor: pointer; font-size: .9rem; }
+.je-feedback { margin-top: 14px; padding: 14px 16px; border-radius: var(--radius-md); font-size: .9rem; display: none; }
+.je-feedback.show { display: block; }
+.je-feedback.correct { background: var(--good-bg); border: 1px solid rgba(47,191,130,.3); }
+.je-feedback.incorrect { background: var(--bad-bg); border: 1px solid rgba(239,91,111,.3); }
+
+/* ---------- Exercise ---------- */
+.exercise-card { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; margin-top: 14px; }
+.exercise-files { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.file-chip { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 99px; background: var(--bg-elev-3); border: 1px solid var(--border); font-size: .85rem; text-decoration: none; color: var(--text); transition: all .15s; }
+.file-chip:hover { border-color: var(--accent); }
+.reflection-box textarea {
+  width: 100%; min-height: 90px; margin-top: 10px; padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-elev-1); color: var(--text); font-family: var(--font); font-size: .9rem; resize: vertical;
+}
+
+/* ---------- Nav bar ---------- */
+.navbar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: center;
+  padding: 16px 22px calc(16px + env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, var(--bg) 55%, transparent);
+  pointer-events: none;
+}
+.navbar-inner { pointer-events: auto; display: flex; gap: 10px; width: 100%; max-width: 760px; }
+.nav-btn {
+  flex: 1; padding: 13px 20px; border-radius: var(--radius-md); border: 1px solid var(--border);
+  font-weight: 650; font-size: .92rem; cursor: pointer; transition: all .15s ease;
+  background: var(--bg-elev-2); color: var(--text);
+}
+.nav-btn.primary { background: var(--accent-grad); color: #fff; border: none; box-shadow: var(--shadow-2); }
+.nav-btn.primary:hover { filter: brightness(1.08); }
+.nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.nav-btn.secondary { flex: 0 0 auto; padding: 13px 18px; }
+
+/* ---------- Completion screen ---------- */
+.complete-badge { width: 74px; height: 74px; border-radius: 50%; background: var(--accent-grad); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; box-shadow: var(--shadow-2); }
+.center-screen { text-align: center; padding-top: 40px; }
+
+@media (max-width: 640px) {
+  .stage { padding: 24px 16px 120px; }
+  .hero-title { font-size: 1.6rem; }
+  .topbar { padding: 12px 16px; }
+  .topbar .module-title { display: none; }
+}
+
+.layout { display: flex; height: 100vh; overflow: hidden; }
+.sidebar { width: 280px; background: #111827; color: #fff; display: flex; flex-direction: column; overflow-y: auto; }
+.sidebar-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+.sidebar-title { font-weight: bold; font-size: 16px; color: #E8A33D; }
+.sidebar-nav { flex: 1; padding: 10px 0; }
+.sb-mod { margin-bottom: 5px; }
+.sb-mod-title { padding: 10px 20px; font-weight: bold; font-size: 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+.sb-mod-title:hover { background: rgba(255,255,255,0.05); }
+.sb-mod.active .sb-mod-title { background: rgba(255,255,255,0.1); color: #CADCFC; }
+.sb-chunks { list-style: none; margin: 0; padding: 0; display: none; }
+.sb-mod.active .sb-chunks { display: block; }
+.sb-chunk { padding: 8px 20px 8px 40px; font-size: 13px; color: #9CA3AF; cursor: pointer; }
+.sb-chunk:hover { color: #fff; }
+.sb-chunk.active { color: #E8A33D; font-weight: bold; }
+.app { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar" id="catalog-sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">Skarion Accounting Track</div>
+    </div>
+    <div class="sidebar-nav" id="sidebar-nav"></div>
+  </div>
+  <div class="app">
+    <div class="topbar">
+      <span class="module-tag" id="module-tag"></span>
+      <span class="module-title" id="module-title"></span>
+      <button onclick="window.open('skarionbooks/index.html', '_self')" style="margin-left:auto; margin-right:20px; padding:6px 12px; background:#1E2761; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">Launch SkarionBooks 🚀</button>
+      <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+      <span class="progress-label" id="progress-label">0%</span>
+    </div>
+    <div class="chunk-rail" id="chunk-rail"></div>
+    <div class="stage" id="stage"><div class="stage-inner" id="stage-inner"></div></div>
+    <div class="navbar">
+      <div class="navbar-inner">
+        <button class="nav-btn secondary" id="nav-prev">← Back</button>
+        <button class="nav-btn primary" id="nav-next">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>window.COURSE_CATALOG = [{"title": "Why This Course Works", "moduleTag": "Module 00 · Skarion Manufacturing LLC", "moduleTitle": "Why This Course Works", "dayMapping": "Orientation — before Day 1", "subhead": "Before you touch a single journal entry, understand what this course is actually building: not a semester of accounting theory, but a full year of real work experience you can talk about in an interview.", "hook": "\"Walk me through a month-end close you've done.\" Every accounting job posting is really asking one question: have you done the work? By the end of this course, your honest answer is yes — because you will have.", "chunks": [{"type": "content", "kicker": "The research", "title": "What 100+ real job postings actually want", "bodyHtml": "<p>Before a single lesson was written, we analyzed 100+ real staff accountant, AR clerk, AP clerk, junior accountant, and financial analyst postings from Indeed, LinkedIn, ZipRecruiter, Robert Half, and Randstad. Two numbers should drive everything you do in this course:</p><table class='data'><tr><th>Requirement</th><th>% of postings mentioning it</th></tr><tr><td>Excel (pivot tables, VLOOKUP, formulas)</td><td>90%</td></tr><tr><td>Month-end close (journal entries, accruals, reconciliations)</td><td>85%</td></tr><tr><td>Bank reconciliation</td><td>78%</td></tr><tr><td>General ledger maintenance</td><td>72%</td></tr><tr><td>QuickBooks / ERP systems</td><td>70%</td></tr><tr><td>Journal entries (preparing, posting, reviewing)</td><td>68%</td></tr><tr><td>Accounts payable processing</td><td>65%</td></tr><tr><td>Accounts receivable</td><td>62%</td></tr></table><p>Notice what's <strong>not</strong> on this list: CPA certification, tax return preparation, financial modeling, audit experience. Employers hiring entry-level accountants want someone who can do the daily work — not someone who has memorized theory.</p>", "callout": {"type": "story", "html": "<strong>The #1 pattern across every posting:</strong> employers ask candidates to \"walk me through a month-end close you've done\" or \"tell me about a time you found an error in the books.\" Candidates with zero experience have no stories to tell. This course exists to give you real ones."}}, {"type": "content", "kicker": "The philosophy", "title": "Simulate a year, don't teach a semester", "bodyHtml": "<p>Traditional accounting courses teach concepts: <em>\"This is what accrual accounting means. This is the accounting equation.\"</em> This course does the opposite. You <strong>become the accountant</strong> for a fictional company for 12 simulated months. You process every transaction, close every month, reconcile every account, and produce every report.</p><p>That company is <strong>Skarion Manufacturing LLC</strong> — the same employer you'll work for in every module of this course:</p><ul><li><strong>Type:</strong> Small manufacturing company, $2M annual revenue</li><li><strong>Employees:</strong> 15 people, based in Virginia</li><li><strong>Accounting system:</strong> QuickBooks Online</li><li><strong>Transaction volume:</strong> 150–200 per month, realistic business scenarios</li><li><strong>20 regular vendors</strong> and <strong>30 regular customers</strong> with real invoices and terms</li><li>A business loan, fixed assets with depreciation, and monthly payroll for 15 employees</li></ul><p>By the end, you can honestly say: <strong>\"I handled the full accounting cycle for a $2M-revenue company. I processed 200+ invoices, reconciled months of bank statements, posted 150+ journal entries, and prepared monthly financial reports.\"</strong> That is indistinguishable from 1 year of real experience — because functionally, it is one.</p>"}, {"type": "flip_cards", "title": "Minimum Viable Readiness — the 10 things you must be able to do", "railLabel": "MVR criteria", "intro": "By the end of this course, you are 'Accounting MVR-ready' when you can do all 10 of these. Flip each card to see what 'ready' actually looks like.", "cards": [{"front": "1. Explain accrual vs. cash accounting", "back": "Explain the difference between cash and accrual accounting, and why US companies use accrual."}, {"front": "2. Set up QuickBooks", "back": "Set up a company in QuickBooks Online with a proper chart of accounts."}, {"front": "3. Process AP", "back": "Enter vendor bills, match to POs, handle discrepancies, and process payments."}, {"front": "4. Process AR", "back": "Create invoices, record payments, apply cash, handle partial payments, and create aging reports."}, {"front": "5. Reconcile a bank statement", "back": "Reconcile a bank statement to the general ledger and explain any discrepancies found."}, {"front": "6. Process payroll", "back": "Calculate withholdings, record journal entries, and reconcile payroll to the bank."}, {"front": "7. Post month-end entries", "back": "Post accruals, prepaids, depreciation, and other adjusting journal entries."}, {"front": "8. Generate financial statements", "back": "Generate a complete set: P&L, Balance Sheet, and Cash Flow statement."}, {"front": "9. Use Excel for accounting", "back": "Use VLOOKUP, pivot tables, SUMIFS, a bank reconciliation worksheet, and AR aging analysis."}, {"front": "10. Tell your story", "back": "Tell a specific story about your month-end close — with details, numbers, and lessons learned."}]}, {"type": "content", "kicker": "The comparison", "title": "How this stacks up against a certificate, a Udemy course, or a bootcamp", "bodyHtml": "<p>We compared this course directly against a community college accounting certificate, a Udemy/LinkedIn Learning beginner course, and an accounting bootcamp. The honest differences:</p><table class='data'><tr><th></th><th>Community college</th><th>Udemy / LinkedIn</th><th>Bootcamp</th><th>Skarion</th></tr><tr><td><strong>Time to complete</strong></td><td>8–12 months part-time</td><td>14.5–20 hrs, self-paced</td><td>1–2 months</td><td>10-day intensive (~40 hrs)</td></tr><tr><td><strong>Hands-on vs. theory</strong></td><td>Theory-heavy, textbook problem sets</td><td>Lecture + isolated practice files</td><td>Case studies, discrete modules</td><td>~90%+ hands-on, one continuous employer</td></tr><tr><td><strong>Simulates real work?</strong></td><td>No</td><td>No</td><td>Partial</td><td>Yes</td></tr><tr><td><strong>Job placement support</strong></td><td>General campus career services</td><td>None</td><td>Resume + LinkedIn help</td><td>Interview Q&A bank, MVR checklist, 8-artifact portfolio</td></tr></table><p>The core difference isn't the topics covered — it's continuity. A discrepancy you find in month 3 connects to a vendor and a chart of accounts you set up in month 1. None of the alternatives replicate that, and that continuity is exactly what makes an interview answer sound like a real job instead of a recited exercise.</p>", "callout": {"type": "tip", "html": "<strong>The bottom line:</strong> community college and Udemy-style courses answer \"do you understand accounting?\" A bootcamp gets partway to \"have you touched QuickBooks?\" This course is built to answer the question employers actually ask a zero-experience candidate: \"what have you done?\""}}, {"type": "content", "kicker": "The payoff", "title": "The '1 year experience' story framework", "bodyHtml": "<p>Every module in this course is designed to hand you specific, true details you can plug into this framework when an interviewer asks about your experience:</p><p><em>\"At my previous company, Skarion Manufacturing LLC, a $2M-revenue manufacturing company in Virginia, I was responsible for the full accounting cycle. Here's what I did on a typical month: [3–4 specific tasks with numbers]. During month-end, I would [close process]. One specific challenge I faced was [a real problem from the simulation]. I resolved it by [the solution]. This taught me [the lesson].\"</em></p><p>Here's what that sounds like filled in, using a real example from this course's bank reconciliation lab:</p><p>\"Each month, I reconciled 4 bank accounts, posted accruals for utilities and salaries, recorded depreciation, and reconciled AR and AP aging. In January, I found a $270 discrepancy between the bank statement and QuickBooks. I traced it to a miscoded Valley Freight payment, corrected the entry, and documented the fix. That taught me to always trace a gap to its source before adjusting anything.\"</p><p>This is a <strong>true story about a simulated experience.</strong> You believe it because you did it. The interviewer believes it because it has specific details — an account, a dollar amount, a month, a resolution.</p>"}, {"type": "quiz", "title": "Check your understanding of the approach", "questions": [{"q": "According to the job market research behind this course, what's the #1 pattern across entry-level accounting job postings?", "options": ["Employers require a CPA certification for entry-level roles", "Employers want candidates who have DONE the work, not just learned about it", "Employers mainly care about GPA and academic transcripts", "Employers prefer candidates with no software experience so they can train from scratch"], "correct_index": 1, "explanation": "The research found that virtually every posting is really testing for hands-on experience — interviewers ask candidates to walk through a close or describe finding an error, which is exactly what this course is built to give you real answers to."}, {"q": "Why does this course have you work for one fictional company, Skarion Manufacturing LLC, for a simulated year instead of doing unrelated practice exercises each session?", "options": ["It's easier to build one company file than many different scenarios", "Continuity makes the experience feel and sound like a real job — a discrepancy in month 3 connects to decisions made in month 1", "Skarion Manufacturing is a real company you'll be hired by after the course", "It reduces the total number of transactions you need to process"], "correct_index": 1, "explanation": "The continuous employer is the core design choice that separates this course from a stack of disconnected exercises — it's what lets your interview answers sound like real experience instead of a recited textbook problem."}, {"q": "What does it mean to be 'Accounting MVR-ready' by the end of this course?", "options": ["You've passed a written exam covering accounting theory", "You've watched all the video lessons in the course", "You can perform all 10 specific MVR tasks and narrate a true story about your own month-end close", "You've earned a CPA license"], "correct_index": 2, "explanation": "MVR is a pass/fail readiness bar based on 10 specific, testable criteria — from reconciling a bank statement to telling a specific story with numbers and lessons learned — not a completion percentage or a certificate."}]}], "slug": "00-course-design"}, {"title": "Job Market Research — Calibrating the Course", "moduleTag": "Module 01 · Skarion Manufacturing LLC", "moduleTitle": "Job Market Research — Calibrating the Course", "dayMapping": "Calibration input — read before Day 1", "subhead": "Before you learn a single debit or credit, look at what 44 real entry-level accounting postings collected in July 2026 actually asked for — because that's what this whole course was built to match.", "hook": "\"We don't teach accounting theory. We teach what's in the job postings.\" Here's the receipt: 44 real postings, pulled live from Robert Half and other sources in July 2026, tell you exactly what to expect.", "chunks": [{"type": "content", "kicker": "Why this module exists", "title": "This course is calibrated against real job postings, not assumptions", "bodyHtml": "<p>Most \"learn accounting\" content is built from textbooks — general ledger theory, debits and credits, the accounting cycle. That's necessary, but it isn't sufficient. It doesn't tell you what a hiring manager at Robert Half is actually screening for this month.</p><p>So before building the rest of this track, we collected <strong>44 real entry-level accounting job postings</strong> in July 2026 — job title, salary range, years of experience required, required software, required skills, whether reconciliation or month-end close was mentioned — and ran the numbers.</p><p>The goal isn't trivia. It's making sure every simulation in this course (bank reconciliation, AP processing, month-end close) maps to something a real employer is actually asking for right now, not a skill that sounded important in a textbook.</p>", "callout": {"type": "tip", "html": "<strong>Read this as your \"why\" for every module that follows.</strong> When Module 4 has you reconcile a bank statement, or Module 5 has you process AP, that's not arbitrary — it's because those exact tasks showed up again and again in the postings behind this module."}}, {"type": "content", "kicker": "The data", "title": "What 44 real postings actually said", "bodyHtml": "<p>Here are the computed numbers from the postings dataset, pulled straight from the auto-calculating Summary sheet:</p><table class='data'><tr><th>Metric</th><th>Value</th></tr><tr><td>Postings collected</td><td>44</td></tr><tr><td>Average salary — minimum</td><td>$48,134</td></tr><tr><td>Average salary — maximum</td><td>$56,122</td></tr><tr><td>% requiring 0 or 0–1 years of experience</td><td>84%</td></tr><tr><td>% mentioning CPA requirement</td><td>2%</td></tr><tr><td>% explicitly mentioning month-end close</td><td>27%</td></tr><tr><td>% explicitly mentioning reconciliation</td><td>73%</td></tr></table><p>Two numbers matter most for how you should think about this course: <strong>84% of these postings want someone with 0–1 years of experience</strong> — meaning the door is genuinely open to you — and <strong>73% explicitly mention reconciliation</strong>, which is exactly the judgment-heavy skill this course drills hardest.</p>", "callout": {"type": "story", "html": "Almost no one is asking for a CPA (2%) at this level. What they're asking for is someone who can find and explain a $270 gap between the bank and the books — that's reconciliation, and it's in nearly three out of every four postings."}}, {"type": "flip_cards", "title": "What employers actually named — real frequency counts", "railLabel": "Skills data", "intro": "Out of 44 postings, here's how often each software tool or skill was explicitly named. Flip each card to see the count.", "cards": [{"front": "Excel", "back": "Named in 20 of 44 postings (45%) — the single most-requested tool by a wide margin. If you only master one tool cold, make it this one."}, {"front": "Journal entries", "back": "Named in 8 of 44 postings — the core mechanical skill behind every correction this course teaches."}, {"front": "QuickBooks", "back": "Named in 6 of 44 postings — the most-requested accounting software specifically (ahead of SAP, NetSuite, Oracle, and Sage combined per-postings)."}, {"front": "Data entry", "back": "Named in 6 of 44 postings — still present, but this is exactly the task category AI is compressing fastest (see the next chunk)."}, {"front": "Month-end close", "back": "Named in 5 of 44 postings by that exact phrase — undercounts the real figure, since the broader 'month-end close mentioned' field above hits 27% once related phrasing is included."}, {"front": "Bank reconciliation", "back": "Named in 5 of 44 postings by that exact phrase — same undercount pattern; the broader reconciliation field hits 73%."}, {"front": "SAP", "back": "Named in 4 of 44 postings — the top enterprise ERP system in this dataset, ahead of NetSuite and Oracle."}, {"front": "Variance analysis", "back": "Named in 3 of 44 postings — a judgment-heavy skill, not a data-entry one."}, {"front": "NetSuite", "back": "Named in 2 of 44 postings — common in tech/SaaS employers specifically."}, {"front": "Sage", "back": "Named in 2 of 44 postings — another mid-market accounting system worth recognizing by name, even without deep expertise."}]}, {"type": "content", "kicker": "The market context", "title": "Why this course bets on judgment, not data entry", "bodyHtml": "<p>July 2026 has a real headwind for entry-level accounting: AI is eating exactly the tasks that used to be the entry point. A Fortune report (May 2026), citing a BambooHR survey, found companies now hiring senior accountants over entry-level ones at roughly a <strong>3:1 ratio</strong>. Industry projections point to a <strong>35–50% reduction in basic bookkeeping roles by 2028</strong>, as tools like QuickBooks Online increasingly auto-categorize bank feeds and reduce the need for manual transaction entry.</p><p>That sounds like bad news for a course built around entry-level accounting jobs. But look back at the data in this module: <strong>73% of these 44 real postings still explicitly mention reconciliation</strong> — the exception-handling, judgment-heavy work of figuring out <em>why</em> two numbers don't match, not just keying data in. That's the work AI still struggles with, and it's exactly what this course's simulations (bank reconciliation, AP exception handling, month-end close) are built to teach.</p><p>The reframe: you're not training to be a data-entry clerk who might get automated out of a job in two years. You're training to be the person who reviews what the AI auto-categorized and catches what it got wrong — an <strong>AI-augmented entry accountant</strong>, comfortable with the software and confident handling the exceptions.</p>", "callout": {"type": "warning", "html": "Don't market yourself on how many invoices you processed. Lead with the judgment work: reconciliation, variance investigation, discrepancy resolution. That's the 73%, and it's the durable part of this job."}}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "Based on the 44 real postings in this dataset, what percentage required 0–1 years of experience?", "options": ["45%", "62%", "84%", "100%"], "correct_index": 2, "explanation": "84% of the 44 real postings required 0 or 0–1 years of experience — the entry-level door is genuinely open, which is the whole premise of this course."}, {"q": "What percentage of the real postings explicitly mentioned reconciliation?", "options": ["27%", "45%", "73%", "2%"], "correct_index": 2, "explanation": "73% of postings explicitly mentioned reconciliation — far more than mentioned CPA (2%) or the exact phrase 'month-end close' (27%). Reconciliation is the single most in-demand judgment skill in this dataset, which is why this course drills it hard starting in Module 4."}, {"q": "Why does this course focus on reconciliation and exception-handling rather than pure data entry, given the AI trend described in this module?", "options": ["Data entry is more common in postings, so it's a safer bet", "Reconciliation and judgment-heavy work are what 73% of real postings still ask for, and they're harder for AI tools to fully automate", "Reconciliation is easier to teach than data entry", "The course avoids data entry entirely because it's considered outdated"], "correct_index": 1, "explanation": "AI is compressing pure data-entry roles (a projected 35–50% reduction in basic bookkeeping roles by 2028), but 73% of real postings still explicitly ask for reconciliation — the exception-handling work AI still struggles with. That's the durable skill this course is betting on."}]}], "slug": "01-job-market-research"}, {"title": "QuickBooks Online Lab", "moduleTag": "Module 02 · Skarion Manufacturing LLC", "moduleTitle": "QuickBooks Online Lab", "dayMapping": "Day 1 of the 10-day path", "subhead": "QuickBooks Online is the #1 accounting software requested in real entry-level job postings. This module sets up Skarion Manufacturing LLC from scratch and walks through the workflows you'll use every single day on the job.", "hook": "45% of entry-level accounting postings explicitly require QuickBooks experience. This is the software you'll actually be judged on in your first interview.", "chunks": [{"type": "content", "kicker": "Before you start", "title": "This lesson pairs with a live QuickBooks Online trial", "bodyHtml": "<p>Everything in this module is designed to be followed inside a real, free QuickBooks Online trial (30 days, no credit card required for the trial). The company you'll build is <strong>Skarion Manufacturing LLC</strong> — US locale, USD, Manassas, Virginia.</p><p>The walkthrough script and every dollar figure below are real numbers pulled directly from the rest of the course (the January practice packet, the AP invoice batch, the bank statements) — not made up, and not from an unrelated demo company. Where you see a bracketed <code>[SCREENSHOT]</code> marker, that's where you'd capture your own screen while following along live.</p>", "callout": {"type": "warning", "html": "<strong>Heads up:</strong> an earlier draft of this walkthrough was built inside the wrong QuickBooks demo company (\"kaizen\", a different currency, unrelated numbers). It's been fully corrected here to use real Skarion data throughout."}}, {"type": "content", "kicker": "Step 1-3", "title": "Company setup, chart of accounts, opening balances", "bodyHtml": "<p><strong>1. Company setup:</strong> QBO free trial → United States/USD → Company name: Skarion Manufacturing LLC → Industry: Manufacturing → Fiscal year Jan–Dec → Accrual basis.</p><p><strong>2. Chart of accounts</strong> — the core accounts you'll use throughout the course:</p><table class='data'><tr><th>Type</th><th>Key accounts</th></tr><tr><td>Assets</td><td>1000 Operating Checking · 1100 Accounts Receivable · 1500 Fixed Assets · 1590 Accumulated Depreciation</td></tr><tr><td>Liabilities</td><td>2000 Accounts Payable · 2100 Sales Tax Payable · 2500 Loan Payable</td></tr><tr><td>Revenue/COGS</td><td>4000 Sales Revenue · 5000 Cost of Goods Sold</td></tr><tr><td>Expenses</td><td>6100 Rent · 6300 Wages · 6700 Depreciation · 6800 Interest</td></tr></table><p><strong>3. Opening balances (January 1, 2026):</strong> Operating Checking $132,500.00 · Accounts Receivable $118,400.00 · Accounts Payable $82,300.00 · Loan Payable $250,000.00.</p>"}, {"type": "flip_cards", "title": "QBO navigation — know where things live", "railLabel": "Flip cards", "cards": [{"front": "Where do you enter a vendor bill?", "back": "Expenses > Bills — this is the AP entry point."}, {"front": "Where do you create a customer invoice?", "back": "Sales > Invoices — this is the AR entry point."}, {"front": "Where do you reconcile a bank account?", "back": "Accounting > Reconcile (or the gear icon > Tools > Reconcile)."}, {"front": "Where do you run the P&L and Balance Sheet?", "back": "Reports > search \"Profit and Loss\" or \"Balance Sheet\" — both export to Excel from the report screen."}, {"front": "Where do you record a customer payment?", "back": "Sales > Receive Payment, then apply it against the open invoice(s)."}]}, {"type": "content", "kicker": "Step 4-6", "title": "Real transactions: 5 bills, 5 invoices, 5 payments", "bodyHtml": "<p><strong>5 vendor bills</strong> (from the Module 05 AP batch) — enter each under Expenses &gt; Bills, coded to the right expense account:</p><table class='data'><tr><th>Vendor</th><th>Invoice #</th><th>Amount</th></tr><tr><td>Dominion Aluminum &amp; Fasteners</td><td>DAF-2601-014</td><td>$3,896.33</td></tr><tr><td>Potomac Steel Supply</td><td>PSS-2601-001</td><td>$5,700.30</td></tr><tr><td>Commonwealth Powder Coating</td><td>CPC-2601-002</td><td>$1,385.00</td></tr><tr><td>MidAtlantic Tool Rental</td><td>MTR-2601-001</td><td>$1,411.25</td></tr><tr><td>Capital Safety Gear</td><td>CSG-2601-003</td><td>$875.98</td></tr></table><p><strong>5 customer invoices</strong> (from the Module 03 AR data) — enter under Sales &gt; Invoices with VA 5.3% sales tax applied only to taxable goods lines. Example: NOVA FiberBuild Contractors, invoice SMI-2601-001, $15,250.00 + $808.25 tax = <strong>$16,058.25</strong>, terms Net 30.</p><p><strong>5 customer payments</strong> — use Receive Payment against those invoices. Include at least one early-payment discount and one short-pay from the AR Payment Remittance Batch so you practice the full range of what actually happens in AR.</p>"}, {"type": "content", "kicker": "Step 7", "title": "Reconcile the bank account", "bodyHtml": "<p>Use the January 2026 bank statement to reconcile Operating Checking. Starting balance $132,500.00 should tie to what you entered in Step 3. Walk through matching every transaction and resolving January's three seeded problems — a duplicate deposit, an unrecorded bank fee, and an outstanding check — until the reconciliation difference reads <strong>$0.00</strong>.</p>", "callout": {"type": "tip", "html": "This is the exact same reconciliation logic you'll practice in depth in Module 04 — QBO's Reconcile screen just automates part of the matching you'd otherwise do by hand in Excel."}}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "Where in QuickBooks Online do you enter a bill from a vendor like Dominion Aluminum & Fasteners?", "options": ["Sales > Invoices", "Expenses > Bills", "Accounting > Reconcile", "Reports > Profit and Loss"], "correct_index": 1, "explanation": "Vendor bills (accounts payable) are entered under Expenses > Bills. Sales > Invoices is for customers (accounts receivable) — the opposite direction of money flow."}, {"q": "You're setting up Skarion Manufacturing LLC's opening balances. What should the Operating Checking opening balance be?", "options": ["$0.00 — QBO starts every account at zero", "$250,000.00 — that's the loan amount", "$132,500.00 — the real January 1, 2026 balance", "$118,400.00 — that's the AR balance"], "correct_index": 2, "explanation": "$132,500.00 is Skarion's real Operating Checking balance as of January 1, 2026. $250,000 is the loan payable and $118,400 is opening AR — different accounts entirely."}, {"q": "45% of real entry-level accounting job postings explicitly require experience with which software?", "options": ["SAP", "NetSuite", "QuickBooks", "Oracle"], "correct_index": 2, "explanation": "QuickBooks is the single most-requested accounting software in entry-level postings — which is exactly why this module exists before anything else in the course."}]}, {"type": "exercise", "title": "Build it yourself and capture the walkthrough", "instructionsHtml": "<p>Sign up for a free QuickBooks Online trial and follow the full corrected script below end-to-end: company setup, chart of accounts, opening balances, 5 bills, 5 invoices, 5 payments, bank reconciliation, and exporting the P&amp;L and Balance Sheet to Excel. Capture a screenshot at each of the 10 marked steps.</p><p>The script also has two required reflection sections built in — fill them out as you go, they become part of your portfolio.</p>", "files": [{"label": "QBO Walkthrough Script (corrected).docx", "href": "/download/02-quickbooks-online-lab/QuickBooks_Report_v2_CORRECTED_needs_screenshots.docx"}], "reflectionPrompt": "What was the single most confusing step, and what would you tell a friend to watch out for?"}], "slug": "02-quickbooks-online-lab"}, {"title": "Core Accounting Practice: The January Close", "moduleTag": "Module 03 · Skarion Manufacturing LLC", "moduleTitle": "Core Accounting Practice", "dayMapping": "Day 3", "subhead": "One company. One month. Every entry connects to the next.", "hook": "Skarion Manufacturing LLC just finished January. AP bills came in, AR invoices went out with Virginia sales tax, fifteen people got paid twice, ten machines quietly lost value, and the bank statement doesn't quite match QuickBooks. Your job this module: work the real numbers the way a staff accountant would.", "chunks": [{"type": "content", "kicker": "The setup", "title": "One continuous company, one continuous story", "bodyHtml": "<p>Skarion Manufacturing LLC is a small B2B manufacturer in Manassas, Virginia, building telecom, utility, data-center, and facility hardware. It runs on the accrual basis, calendar year, with a monthly close.</p><p>Every exercise in this module comes from the same January 2026 packet: the same vendor bills, the same customer invoices, the same fifteen employees, the same ten fixed assets, and the same bank statement. Nothing here is a standalone drill. The AP total feeds the cash balance. The AR invoices feed the sales tax payable. The payroll run feeds the cash balance again. By the end of the month, everything has to tie out &mdash; and when it doesn't (a duplicate deposit, a miscoded payment), that's not a typo in the exercise. That's the job.</p>", "callout": {"type": "story", "html": "<p>Opening balances on Jan 1: Operating Checking <strong>$132,500.00</strong>, Accounts Receivable <strong>$118,400.00</strong>, Accounts Payable <strong>$82,300.00</strong>, and a brand-new bank loan of <strong>$250,000.00</strong> from Blue Ridge Commercial Bank at 7.25% fixed. Everything that follows moves those four numbers.</p>"}}, {"type": "content", "kicker": "Foundations", "title": "The chart of accounts and the accounting equation", "bodyHtml": "<p>Skarion's books run on a numbered chart of accounts (COA), grouped by type. The accounting equation still governs everything: <strong>Assets = Liabilities + Equity</strong>. Every journal entry you build this module has to keep that equation balanced &mdash; total debits equal total credits, always.</p><p>Skarion's core accounts:</p><ul><li><strong>Assets:</strong> 1000 Operating Checking, 1100 Accounts Receivable, 1200 Inventory &ndash; Raw Materials, 1500 Fixed Assets, 1590 Accumulated Depreciation</li><li><strong>Liabilities:</strong> 2000 Accounts Payable, 2100 Sales Tax Payable, 2200 Payroll Liabilities, 2300 Accrued Expenses, 2500 Loan Payable</li><li><strong>Revenue / COGS:</strong> 4000 Sales Revenue, 4050 Sales Discounts, 4100 Sales Returns and Allowances, 5000 Cost of Goods Sold</li><li><strong>Expenses:</strong> 6100 Rent, 6200 Utilities, 6300 Wages, 6310 Employer Payroll Taxes, 6320 Employee Benefits, 6330 Payroll Service Fees, 6700 Depreciation, 6800 Interest</li></ul><p>Assets and expenses normally carry debit balances; liabilities, equity, and revenue normally carry credit balances. Increase an asset with a debit, increase a liability with a credit &mdash; that single rule drives every entry below.</p>", "callout": {"type": "tip", "html": "<p>When you're not sure which side an account goes on, ask: is this account an asset/expense (debit to increase) or a liability/revenue (credit to increase)? Get that right and the rest is arithmetic.</p>"}}, {"type": "flip_cards", "title": "Know the accounts before you post to them", "railLabel": "Skarion COA drill", "cards": [{"front": "1100 Accounts Receivable", "back": "Asset. Money customers owe Skarion for invoices not yet paid. Debit to record a new invoice; credit when cash comes in or a credit memo is issued."}, {"front": "2000 Accounts Payable", "back": "Liability. Money Skarion owes vendors for bills not yet paid. Credit to record a new bill; debit when Skarion pays it."}, {"front": "2100 Sales Tax Payable", "back": "Liability. Virginia's 5.3% sales tax collected on taxable invoices, held until remitted to the state. Not every invoice is taxable &mdash; some Skarion customers are tax-exempt."}, {"front": "1590 Accumulated Depreciation", "back": "Contra-asset. Tracks total depreciation taken on Fixed Assets over time. It carries a credit balance and nets against 1500 Fixed Assets on the balance sheet."}, {"front": "2200 Payroll Liabilities", "back": "Liability. Everything withheld from an employee's paycheck (federal, Virginia, Social Security, Medicare, 401k, health) plus employer taxes owed, until paid out."}, {"front": "2500 Loan Payable", "back": "Liability. The $250,000 Blue Ridge Commercial Bank loan balance. Only the principal portion of a payment reduces this account; interest hits 6800 Interest Expense."}, {"front": "6700 Depreciation Expense", "back": "Expense. The month's straight-line depreciation across all ten fixed assets, debited each month-end and offset by a credit to 1590 Accumulated Depreciation."}, {"front": "4050 Sales Discounts", "back": "Contra-revenue. Records early-payment discounts customers take under 2/10 Net 30 terms &mdash; 2% off the invoice subtotal, not the tax."}]}, {"type": "content", "kicker": "Accounts receivable", "title": "Invoicing with Virginia sales tax", "bodyHtml": "<p>Skarion charges 5.3% Virginia sales tax on <em>taxable</em> customer invoices only &mdash; some customers, like Hampton Roads Data Centers and Dulles Cloud Campus, are tax-exempt. Tax is calculated on the invoice subtotal and posted to 2100 Sales Tax Payable, not 4000 Sales Revenue.</p><p>Take invoice <strong>SMI-2601-007</strong>, billed to Coastal Electric &amp; Controls on Jan 17, terms 2/10 Net 30: subtotal $9,200.00, tax at 5.3% = $487.60, invoice total $9,687.60.</p><p>Coastal Electric paid within the 10-day discount window on Jan 27. The 2% discount applies to the subtotal only: $9,200.00 &times; 2% = $184.00 discount, so cash collected was $9,200.00 &minus; $184.00 + $487.60 tax = <strong>$9,503.60</strong>. That's the exact ACH deposit that shows up on Skarion's bank statement.</p>", "callout": {"type": "warning", "html": "<p>Early-payment discounts reduce the subtotal, never the sales tax. Skarion still owes Virginia the full $487.60 on this invoice, even though it collected less cash from the customer.</p>"}}, {"type": "content", "kicker": "Payroll", "title": "Fifteen employees, one semi-monthly run", "bodyHtml": "<p>Skarion runs semi-monthly payroll &mdash; 24 pay periods a year &mdash; for fifteen employees, from General Manager Jordan Miller down to four Manufacturing Technicians. Each pay period, Skarion withholds federal and Virginia income tax (employee-specific rates), 6.2% Social Security, 1.45% Medicare, and each employee's 401k and health elections. On top of gross pay, Skarion also owes employer payroll taxes and a flat $350/employee/month benefits contribution.</p><p>One semi-monthly run: gross pay <strong>$33,916.67</strong>, net pay <strong>$24,414.85</strong>. Across January's two runs: gross wages <strong>$67,833.33</strong>, employer payroll taxes <strong>$6,003.25</strong>, employer benefits expense <strong>$5,250.00</strong> (15 employees &times; $350). Total net cash paid to employees in January: <strong>$48,829.71</strong>.</p>", "callout": {"type": "tip", "html": "<p>Gross wages, employer payroll taxes, and employer benefits are all real expenses to Skarion &mdash; but only the net pay amount actually leaves the checking account on payday. Everything withheld sits in 2200 Payroll Liabilities until it's remitted.</p>"}}, {"type": "content", "kicker": "Fixed assets", "title": "Depreciation on ten machines, straight-line", "bodyHtml": "<p>Skarion depreciates all ten fixed assets straight-line with no salvage value. The rule: if an asset goes into service on or before the 15th of the month, it gets a full month of depreciation for that month.</p><p>Example: <strong>FA-010, Label Printer &amp; Packaging Line</strong>, purchased Jan 10, 2026 for $12,400.00 with a 5-year useful life. Since it entered service on the 10th (before the 15th), it earns a full month of January depreciation: $12,400.00 &divide; 5 years &divide; 12 months = <strong>$206.67</strong>.</p><p>Add up monthly depreciation across all ten assets &mdash; CNC Brake Press, Laser Cutter, Forklift, Delivery Van, Air Compressor, Office Furniture, Computers, QA Testing Station, Pallet Racking, and the Label Printer &mdash; and January's total depreciation expense is <strong>$5,208.10</strong>.</p>", "callout": {"type": "story", "html": "<p>Month-end journal entry: Debit 6700 Depreciation Expense $5,208.10; Credit 1590 Accumulated Depreciation $5,208.10. One entry, ten assets, no cash movement &mdash; depreciation is a non-cash expense.</p>"}}, {"type": "quiz", "title": "Check your numbers", "questions": [{"q": "Skarion's opening Accounts Payable balance on Jan 1 was $82,300.00. Total January vendor bills were $68,975.00 and January bills paid totaled $26,710.00. What was ending January AP (from January bills only, before adding the opening balance)?", "options": ["$42,265.00", "$55,590.00", "$68,975.00", "$26,710.00"], "correct_index": 0, "explanation": "$68,975.00 in new January bills minus $26,710.00 paid during January leaves $42,265.00 still owed from January activity alone."}, {"q": "Invoice SMI-2601-007 to Coastal Electric & Controls had a subtotal of $9,200.00 and was taxable at Virginia's 5.3% rate. What was the sales tax on this invoice?", "options": ["$460.00", "$487.60", "$500.00", "$184.00"], "correct_index": 1, "explanation": "$9,200.00 x 5.3% = $487.60 in Virginia sales tax, posted to 2100 Sales Tax Payable."}, {"q": "Skarion's Jan 27 QuickBooks ledger shows two separate $9,503.60 deposits from Coastal Electric & Controls for the same invoice, but the bank statement shows only one. What's the correct adjusting entry to fix the books?", "options": ["Debit 4000 Sales Revenue $9,503.60; Credit 1000 Operating Checking $9,503.60", "Debit 1100 Accounts Receivable $9,503.60; Credit 1000 Operating Checking $9,503.60", "Debit 1000 Operating Checking $9,503.60; Credit 1100 Accounts Receivable $9,503.60", "No entry needed; the bank will self-correct"], "correct_index": 1, "explanation": "The duplicate deposit incorrectly cleared the invoice twice, understating cash owed. Revenue was never overstated, so the fix reinstates the receivable: Debit 1100 Accounts Receivable $9,503.60, Credit 1000 Operating Checking $9,503.60."}, {"q": "Skarion's loan is $250,000.00 at 7.25% fixed annual interest, with no principal paid in January. What is January's interest accrual?", "options": ["$1,510.42", "$1,812.50", "$18,125.00", "$2,083.33"], "correct_index": 0, "explanation": "$250,000.00 x 7.25% / 12 months = $1,510.42, debited to 6800 Interest Expense and credited to Accrued Interest Payable."}]}, {"type": "journal_entry_builder", "title": "Fix the duplicate deposit", "scenarioHtml": "<p>On Jan 27, Coastal Electric &amp; Controls paid invoice SMI-2601-007 by ACH for $9,503.60 (the discounted, tax-included amount). Skarion's bookkeeper recorded the deposit correctly &mdash; then accidentally entered it a <em>second</em> time in QuickBooks the same day, labeled &ldquo;Duplicate deposit from Coastal Electric &amp; Controls &ndash; Entered by mistake.&rdquo; The bank statement confirms only one $9,503.60 deposit actually cleared.</p><p>The duplicate entry incorrectly cleared the invoice a second time in the books, even though the customer only paid once and revenue was never overstated. Build the month-end correcting entry to reinstate the receivable and remove the phantom cash.</p>", "startRows": 2, "accounts": ["1000 Operating Checking", "1100 Accounts Receivable", "1200 Inventory - Raw Materials", "2000 Accounts Payable", "2100 Sales Tax Payable", "2200 Payroll Liabilities", "2300 Accrued Expenses", "2500 Loan Payable", "4000 Sales Revenue", "5000 Cost of Goods Sold", "6700 Depreciation", "6800 Interest"], "solution": [{"account": "1100 Accounts Receivable", "side": "debit", "amount": 9503.6}, {"account": "1000 Operating Checking", "side": "credit", "amount": 9503.6}]}, {"type": "exercise", "title": "Work the full January close", "instructionsHtml": "<p>Now put it all together. Download the full January packet and work all twelve questions &mdash; AP aging, AR aging with sales tax, payroll for all fifteen employees, depreciation on all ten fixed assets, loan interest, a full bank reconciliation between QuickBooks and the bank statement, month-end adjusting entries, and gross profit at 52% COGS. Use only the data in the packet; don't assume anything that isn't stated.</p><p>The AR Invoice Control Log gives you the full customer-level detail behind the AR numbers, including every payment, short-pay, and discount, if you want to trace a balance back to its source.</p><p>Check your work against the solution key once you've finished &mdash; not before.</p>", "files": [{"label": "Skarion Practice Exercise Sheet (January 2026)", "href": "/download/03-core-accounting-practice/Skarion_Practice_Exercise_Sheet.docx"}, {"label": "Skarion Practice Solution Key", "href": "/download/03-core-accounting-practice/Skarion_Practice_Solution_Key.docx"}, {"label": "AR Invoice Control Log", "href": "/download/03-core-accounting-practice/AR_Invoice_Control_Log.xlsx"}], "reflectionPrompt": "Which part of the January close took you the longest, and why? Was it a calculation (like sales tax or depreciation) or a judgment call (like the AP hold or the duplicate deposit)?"}], "slug": "03-core-accounting-practice"}, {"title": "Bank Reconciliation Lab", "moduleTag": "Module 04 · Skarion Manufacturing LLC", "moduleTitle": "Bank Reconciliation Lab", "dayMapping": "Day 4 of the 10-day path", "subhead": "The bank says one number. Your books say another. Reconciliation is how you find out why — and it's the single most common technical interview question in entry-level accounting.", "hook": "\"Walk me through how you'd handle a bank reconciliation discrepancy.\" You will be asked this. After this module, you'll have a real answer with a real dollar amount attached to it.", "chunks": [{"type": "content", "kicker": "The concept", "title": "Why the bank balance and the book balance almost never match on day one", "bodyHtml": "<p>At any given moment, your books and the bank's records are usually a little out of sync — not because something is wrong, but because of timing:</p><ul><li><strong>Deposits in transit</strong> — you recorded a customer payment, but it hasn't hit the bank yet.</li><li><strong>Outstanding checks</strong> — you wrote a check and recorded it, but the vendor hasn't cashed it yet.</li><li><strong>Bank fees / interest</strong> — the bank deducts or adds something you haven't recorded yet.</li></ul><p>Reconciliation is the process of proving that, once you account for timing differences, the <strong>adjusted bank balance</strong> and the <strong>adjusted book balance</strong> are exactly equal. If they're not equal after adjusting for timing, something is actually wrong — a duplicate, a typo, a missing transaction — and you have to find it.</p>"}, {"type": "content", "kicker": "The method", "title": "The two-sided reconciliation", "bodyHtml": "<p>Every reconciliation works from both directions and they have to meet in the middle:</p><table class='data'><tr><th>From the bank side</th><th>From the book side</th></tr><tr><td>Ending balance per bank statement</td><td>Ending balance per your ledger</td></tr><tr><td>+ Deposits in transit</td><td>+ Bank credits not yet recorded (interest, etc.)</td></tr><tr><td>− Outstanding checks</td><td>− Bank debits not yet recorded (fees, etc.)</td></tr><tr><td>= Adjusted bank balance</td><td>= Adjusted book balance</td></tr></table><p>These two numbers should be identical. If they're not, the difference IS the error — and finding it is the actual job.</p>", "callout": {"type": "tip", "html": "<strong>Real example from January's close at Skarion:</strong> the bank statement showed $12,450 and QuickBooks showed $12,180 — a $270 gap. The cause: a Valley Freight payment was miscoded. Finding gaps like this, and explaining exactly how you traced them, is what interviewers are listening for."}}, {"type": "flip_cards", "title": "Common reconciliation problems — know them cold", "railLabel": "Flip cards", "cards": [{"front": "Duplicate deposit", "back": "A customer payment gets recorded in the books twice. January's real example: a $6,800 deposit (ref DEP-1005) was entered twice — corrected with Debit Accounts Receivable / Credit Cash to reinstate the receivable."}, {"front": "Outstanding check", "back": "A check was written and recorded in the books, but the vendor hasn't cashed it yet — it won't show on the bank statement until they do."}, {"front": "Wrong amount entered", "back": "The book entry doesn't match what actually cleared. Example: rent was recorded at $12,750 but the bank shows $12,800 actually cleared — a $50 correction is needed."}, {"front": "Unrecorded bank fee", "back": "The bank charges a monthly service fee or similar that never got entered into the books — shows as an unexplained gap until you add it."}, {"front": "Deposit in transit", "back": "You made a deposit right at month-end that hasn't posted to the bank statement yet — it'll show up next month."}]}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "Bank statement shows $12,450. QuickBooks shows $12,180. There's a $270 gap. What's the right first move?", "options": ["Change the QuickBooks balance to match the bank — problem solved", "Trace the gap to its source transaction before adjusting anything", "Ignore it — a $270 difference is too small to matter", "Call the bank and ask them to fix their records"], "correct_index": 1, "explanation": "Never force numbers to match. Always trace the specific transaction causing the gap first — in this case a miscoded Valley Freight payment — then make the correcting entry."}, {"q": "A $6,800 customer deposit was accidentally entered into the books twice. What's the correcting journal entry?", "options": ["Debit Cash / Credit Accounts Receivable", "Debit Sales Revenue / Credit Cash", "Debit Accounts Receivable / Credit Cash", "No entry needed — it will fix itself next month"], "correct_index": 2, "explanation": "The duplicate entry incorrectly cleared the customer's invoice twice — revenue was never overstated. The fix reinstates the receivable: Debit Accounts Receivable, Credit Cash."}, {"q": "You wrote check #1018 for $4,925 and recorded it in the books on January 28th. The vendor hasn't cashed it by January 31st. How does this affect the reconciliation?", "options": ["It's an outstanding check — subtract it from the bank side to get the adjusted bank balance", "It's a deposit in transit — add it to the bank side", "It's an error and must be reversed", "It has no effect on the reconciliation"], "correct_index": 0, "explanation": "It's in your books but hasn't cleared the bank yet — a classic outstanding check. Subtract it from the bank statement balance when calculating the adjusted bank balance."}]}, {"type": "journal_entry_builder", "title": "Correct the duplicate deposit", "scenarioHtml": "January's bank reconciliation surfaced a real problem: customer ACH deposit ref <strong>DEP-1005</strong> for <strong>$6,800.00</strong> was recorded in QuickBooks twice — once as the real payment, once as a duplicate entry. The duplicate incorrectly cleared the customer's invoice a second time. Post the correcting entry to reinstate the receivable.", "startRows": 2, "accounts": ["1100 Accounts Receivable", "1000 Operating Checking", "4000 Sales Revenue", "2000 Accounts Payable"], "solution": [{"account": "1100 Accounts Receivable", "side": "debit", "amount": 6800.0}, {"account": "1000 Operating Checking", "side": "credit", "amount": 6800.0}]}, {"type": "exercise", "title": "Reconcile all three months", "instructionsHtml": "<p>Download all three bank statement workbooks below. Each has an Instructions tab, the Bank Statement, the QuickBooks Register, and a Reconciliation Worksheet. For each month:</p><ol><li>Match every transaction between the bank statement and the register.</li><li>Identify the 2-3 seeded problems (duplicates, wrong amounts, outstanding checks, unrecorded fees).</li><li>Complete the Reconciliation Worksheet until the difference is exactly $0.00.</li></ol><p>Watch the labels carefully — the March worksheet has a row marked <code>(+/-)</code> because that month's duplicate is a duplicated <em>debit</em>, not a duplicated credit like January's.</p>", "files": [{"label": "January Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-01_January.xlsx"}, {"label": "February Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-02_February.xlsx"}, {"label": "March Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-03_March.xlsx"}], "reflectionPrompt": "Write your reconciliation memo for one month: what was the discrepancy, how did you find it, and how did you fix it?"}], "slug": "04-bank-reconciliation-lab"}, {"title": "Accounts Payable Simulation", "moduleTag": "Module 05 · Skarion Manufacturing LLC", "moduleTitle": "Accounts Payable Simulation", "dayMapping": "Day 2 of the 10-day path", "subhead": "You're the new AP clerk at a $2M/year Virginia manufacturer. Thirty real vendor invoices just landed on your desk. Some are clean. Some are wrong. Your job is to know the difference before anything gets paid.", "hook": "\"Walk me through how you catch a bad invoice before it goes out the door.\" — this is one of the most common questions asked in AP clerk interviews. By the end of this module you'll have a real answer, with real numbers.", "chunks": [{"type": "content", "kicker": "The process", "title": "The AP process: receive → verify → approve → enter → pay", "bodyHtml": "<p>Every invoice that arrives at Skarion Manufacturing goes through the same five steps before a payment ever leaves the bank account:</p><ol><li><strong>Receive</strong> — the invoice arrives (mail, email, vendor portal).</li><li><strong>Verify</strong> — match it against the Purchase Order (PO) and the Receiving Report. This is called the <strong>3-way match</strong>.</li><li><strong>Approve</strong> — if everything matches, it's approved for entry. If not, it gets held.</li><li><strong>Enter</strong> — the bill is entered into QuickBooks, coded to the right expense account.</li><li><strong>Pay</strong> — on the vendor's terms (Net 30, etc.), the payment goes out.</li></ol><p>The 3-way match is the control that catches almost everything that goes wrong in AP: wrong prices, wrong quantities, invoices with no matching PO at all, and duplicate invoices vendors accidentally (or not-so-accidentally) send twice.</p>", "callout": {"type": "tip", "html": "<strong>Interview tip:</strong> \"3-way match\" is one of the single most-asked technical phrases in AP/staff accountant interviews. If you can define it AND give a real example of catching a discrepancy with it, you're ahead of most candidates."}}, {"type": "flip_cards", "title": "Know your discrepancy types", "intro": "Flip each card to check yourself before you start processing invoices.", "railLabel": "Flip cards", "cards": [{"front": "Price discrepancy", "back": "The invoice charges a different unit price than the PO. Example: PO says $38.00/unit for aluminum, invoice bills $39.50/unit."}, {"front": "Quantity discrepancy", "back": "The invoice bills for more units than were actually received. Example: billed for 500 units, receiving report shows only 450 arrived."}, {"front": "Missing PO", "back": "A materials invoice over $500 with no PO number attached — held until someone confirms the purchase was authorized."}, {"front": "Duplicate invoice", "back": "Same invoice number, same PO, same amount as one already entered. Vendors resend these by accident (or send a 'statement copy') — never pay twice."}, {"front": "Unauthorized extra charge", "back": "A legitimate invoice with an added line — like a rush fee — that was never on the original PO. Needs approval before it's paid."}, {"front": "No PO required", "back": "Recurring service invoices (rent, utilities, software subscriptions) don't need a PO — they're approved once and paid on a set schedule."}]}, {"type": "content", "kicker": "Real data", "title": "The batch on your desk: 30 invoices, 22 vendors", "bodyHtml": "<p>This is real production data from the Skarion Manufacturing simulation — not made-up numbers. Every dollar amount, PO number, and discrepancy below is something you'll actually process in the exercise.</p><table class='data'><tr><th>Vendor</th><th>Invoice</th><th>Issue</th></tr><tr><td>Dominion Aluminum &amp; Fasteners</td><td>DAF-2601-014</td><td>Price discrepancy: PO $38.00/unit, billed $39.50/unit</td></tr><tr><td>Blue Ridge Industrial Plastics</td><td>BRIP-2601-006</td><td>Quantity discrepancy: billed 500, received 450</td></tr><tr><td>NOVA Packaging &amp; Crating</td><td>NPC-2601-011</td><td>Missing PO — invoice held for approval</td></tr><tr><td>Potomac Steel Supply</td><td>PSS-2601-001 (again as #021)</td><td>Duplicate invoice — vendor sent a statement copy</td></tr><tr><td>Commonwealth Powder Coating</td><td>CPC-2601-003</td><td>Unauthorized rush fee added, not on the PO</td></tr></table><p>All 30 invoices' math has already been verified to the penny — your job in the exercise isn't to find math errors, it's to catch the <em>process</em> errors above.</p>", "callout": {"type": "story", "html": "One extra realistic trap in this batch: there are two different companies with \"NOVA\" in the name — NOVA Packaging &amp; Crating and NOVA Industrial Waste. They are not the same vendor. Real AP clerks get tripped up by this constantly — always check the full vendor name and ID, not just the first word."}}, {"type": "content", "kicker": "Tax rule", "title": "Virginia sales tax: goods vs. services", "bodyHtml": "<p>Virginia charges 5.3% sales tax on <strong>tangible goods</strong> — but not on most services. This matters constantly in AP: an invoice can have both a materials line (taxed) and a labor/service line (not taxed) on the <em>same</em> invoice.</p><p>Example from Potomac Steel Supply's invoice: a \"cutting surcharge\" service line and a raw steel materials line appear together — only the steel is taxed at 5.3%. Get this wrong and your AP totals won't reconcile to the vendor's actual invoice.</p>"}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "A vendor invoice for $2,400 in raw materials arrives. The PO on file says $2,200. What's this called, and what do you do first?", "options": ["A duplicate invoice — reject it outright", "A price or quantity discrepancy — verify against the PO and receiving report before approving", "A missing PO — hold indefinitely with no further action", "Nothing to check — just pay the invoice as billed"], "correct_index": 1, "explanation": "This is a discrepancy (price or quantity — you'd check the receiving report to know which). The correct move is always to verify against the PO/receiving report before approval, not to reject or auto-pay."}, {"q": "Two invoices arrive with the same invoice number, same PO, and same dollar amount, a few weeks apart. What should you do?", "options": ["Pay both — the vendor must need the cash", "Flag it as a possible duplicate and confirm before paying a second time", "Automatically increase the PO amount to match", "Ignore it — invoice numbers don't matter"], "correct_index": 1, "explanation": "Matching invoice number + PO + amount is the classic signature of a duplicate invoice (often an innocent vendor 'statement copy'). Flag and confirm before paying twice."}, {"q": "An invoice has a $1,200 materials line and a $300 installation-labor line. Virginia sales tax is 5.3%. Which line(s) get taxed?", "options": ["Both lines, full invoice amount", "Neither line — services never get invoiced with tax", "Only the $1,200 materials line", "Only the $300 labor line"], "correct_index": 2, "explanation": "Virginia taxes tangible goods, not services. The $1,200 materials line is taxed at 5.3% ($63.60); the $300 labor line is not."}]}, {"type": "journal_entry_builder", "title": "Post the price-discrepancy resolution", "scenarioHtml": "Dominion Aluminum &amp; Fasteners invoice <strong>DAF-2601-014</strong> was approved with the vendor's corrected price after negotiation. You're recording the approved $3,896.33 materials bill (no sales complications — this is a straightforward accrual of an approved AP bill). Post the journal entry to record the bill as a liability.", "startRows": 2, "accounts": ["5100 Raw Materials Expense", "2000 Accounts Payable", "1000 Operating Checking", "6320 Employee Benefits Expense", "4000 Sales Revenue"], "solution": [{"account": "5100 Raw Materials Expense", "side": "debit", "amount": 3896.33}, {"account": "2000 Accounts Payable", "side": "credit", "amount": 3896.33}]}, {"type": "exercise", "title": "Process the full 30-invoice batch", "instructionsHtml": "<p>Now do the real work. Open the invoice control log and the combined invoice PDF below. For each of the 30 invoices:</p><ol><li>3-way match it against the PO/receiving data on the <strong>Student PO-Receiving Data</strong> tab.</li><li>Decide: approve, hold, or flag as duplicate.</li><li>Check your decisions against the <strong>Instructor Key</strong> tab once you've been through all 30.</li></ol>", "files": [{"label": "AP Invoice Control Log.xlsx", "href": "/download/05-accounts-payable-simulation/AP_Invoice_Control_Log.xlsx"}, {"label": "Combined 30 Vendor Invoices.pdf", "href": "/download/05-accounts-payable-simulation/Combined_30_Vendor_Invoices.pdf"}], "reflectionPrompt": "Pick ONE invoice from this batch you'd use as your interview story. What was wrong with it, and what did you do?"}], "slug": "05-accounts-payable-simulation"}, {"title": "Interview Preparation", "moduleTag": "Module 06 · Skarion Manufacturing LLC", "moduleTitle": "Interview Preparation", "dayMapping": "Day 6 of the 10-day path", "subhead": "You've closed the books, reconciled the bank, and processed a batch of invoices at Skarion Manufacturing LLC. Now you have to talk about it out loud, in a room, under pressure — and make it sound like real experience.", "hook": "\"Tell me about a time you found an error in the books.\" Every candidate in this interview has an answer. The only question is whether it's specific enough to believe.", "chunks": [{"type": "content", "kicker": "The framework", "title": "Context → Action → Result: the only structure you need", "bodyHtml": "<p>The Skarion Interview Cheat Sheet gives you one formula and tells you to use it for almost every question:</p><table class='data'><tr><th>Step</th><th>What it means</th></tr><tr><td><strong>1. Context</strong></td><td>Company/file, month, transaction, or report</td></tr><tr><td><strong>2. Action</strong></td><td>What you checked, posted, reconciled, or escalated</td></tr><tr><td><strong>3. Result</strong></td><td>Correction made, report finished, lesson learned</td></tr></table><p>Here's the cheat sheet's own instruction on wording: use honest phrasing like <em>\"in my Skarion Manufacturing accounting simulation / portfolio project\"</em> when describing practice-based experience. You're not pretending you worked a real job — you're describing real work you actually did, on a real (simulated) company's real numbers.</p><p>And the final reminder from the sheet is blunt: <strong>\"Strong interview answers are specific. Use numbers, dates, reports, tools, and the correction you made. Vague answers sound like motivational posters, and nobody should hire a poster.\"</strong></p>", "callout": {"type": "tip", "html": "<strong>Why specificity wins:</strong> Anyone can say \"I'm detail-oriented and I catch errors.\" Almost nobody outside this simulation can say \"I traced a $9,503.60 duplicate Coastal Electric &amp; Controls deposit that had been entered twice in QuickBooks, and corrected it by debiting AR and crediting Cash — not touching Sales Revenue, since the sale was never overstated.\" The second answer is unfakeable. That's the whole point."}}, {"type": "flip_cards", "title": "10 real Skarion answers — memorize the structure, not the words", "intro": "These are pulled directly from the Interview Cheat Sheet and Question Bank. Flip each card, then say the answer out loud in your own words — but keep the real numbers.", "railLabel": "Flip cards", "cards": [{"front": "Walk me through a month-end close you have done.", "back": "Followed a close checklist: finished AP/AR entry, reconciled the operating bank account, reviewed AR/AP aging, posted payroll, depreciation, prepaid, and interest accruals, then reviewed the trial balance and ran the P&L, balance sheet, and close summary. The bank rec converged on an adjusted balance of $217,334.09 — but only after tracing a $9,503.60 duplicate Coastal Electric & Controls deposit entered twice in QuickBooks. Fixed it with debit AR / credit Cash for $9,503.60."}, {"front": "What is a 3-way match?", "back": "Compares the purchase order, receiving report, and vendor invoice. On invoice DAF-2601-014 from Dominion Aluminum & Fasteners, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so the invoice was held instead of paid."}, {"front": "What accounts do you reconcile during month-end?", "back": "Cash/bank, credit cards, AR and AP subledgers to the GL, inventory, fixed assets and accumulated depreciation, payroll liabilities, sales tax payable, loans, prepaids, and accruals. In January's close that meant tying the bank to $217,334.09, AR to $176,918.00, AP to $42,265.00, accumulated depreciation to a $5,208.10 monthly add, and accrued loan interest to $1,510.42."}, {"front": "How do you record depreciation?", "back": "Straight-line: asset cost minus salvage value, divided by useful life. Skarion's 10 fixed assets — from the $82,000.00 CNC Brake Press to the $12,400.00 label printer — depreciate for a combined $5,208.10/month. Monthly entry: debit 6700 Depreciation Expense, credit 1590 Accumulated Depreciation."}, {"front": "How do you calculate days sales outstanding (DSO)?", "back": "Average AR divided by credit sales, times days in the period. Using January's numbers — roughly $176,918.00 ending AR against $165,264.00 net sales — a rough one-month DSO lands around 32 days, which flags that the $60,300.00 of aged balances in the 31–60 day bucket needs collection attention."}, {"front": "Tell me about a time you found an error in the books.", "back": "During a bank reconciliation, QuickBooks showed more cash than the bank statement. Reviewed deposits and found one customer ACH receipt entered twice. Confirmed the bank only received it once, reversed the duplicate, updated the reconciliation notes. Lesson: check transaction IDs and deposit dates, not just customer names."}, {"front": "What internal controls have you worked with?", "back": "3-way match, invoice approval before payment, duplicate invoice review, bank reconciliation, separation of invoice entry and payment approval, supporting documentation, and review of unusual transactions during close. The 3-way match caught the $126.36 DAF-2601-014 price discrepancy and a missing PO on NOVA Packaging invoice NPC-2601-011 — both held instead of paid."}, {"front": "What is variance analysis?", "back": "Compares actual results to budget, forecast, or prior period. On invoice DAF-2601-014, the unit price billed was $39.50 versus the $38.00 PO price — a $126.36 price variance — exactly the kind of thing you'd flag and explain rather than pay through."}, {"front": "How do you stay organized during month-end?", "back": "A close checklist with owner, due date, status, and notes, plus support files for reconciliations, accruals, depreciation, payroll, and bank activity. In January, that meant tracking the $217,334.09 bank rec, the $5,208.10 depreciation entry across 10 fixed assets, and the $375.00 water/sewer accrual — always knowing what was posted versus still pending support."}, {"front": "How do you accrue interest on a loan?", "back": "Calculate from the loan balance, rate, and time period. Skarion's $250,000.00 term loan at 7.25% annual interest: $250,000.00 × 7.25% / 12 = $1,510.42 for January. Month-end entry: debit 6800 Interest Expense, credit 2300 Accrued Interest Payable for $1,510.42."}]}, {"type": "content", "kicker": "Question types", "title": "Four categories, four different things interviewers listen for", "bodyHtml": "<p>The Question Bank breaks 126 questions into four sections. Each one is scored on something different — know the difference before you walk in.</p><table class='data'><tr><th>Category</th><th>What it covers</th><th>What interviewers listen for</th></tr><tr><td><strong>Technical (56 Qs)</strong></td><td>GAAP, GL, AP/AR, reconciliations, close, payroll, fixed assets, journal entries</td><td>Correct accounting treatment, no debit/credit or cash/accrual confusion, and a real Skarion number attached to the answer.</td></tr><tr><td><strong>Behavioral (30 Qs)</strong></td><td>STAR-style judgment, communication, ownership, ethics, organization</td><td>A specific situation (not a hypothetical), the steps taken, the outcome, and the lesson learned.</td></tr><tr><td><strong>Software (20 Qs)</strong></td><td>Excel (pivot tables, XLOOKUP, SUMIFS, conditional formatting), QuickBooks Online workflows</td><td>Practical accounting use of the tool — not \"I know Excel,\" but \"I used SUMIFS to total unpaid invoices by customer.\"</td></tr><tr><td><strong>Scenario (20 Qs)</strong></td><td>Workplace judgment calls — mismatched invoices, short payments, missing documents, ethical pressure</td><td>Whether you hold, correct, document, or escalate — and whether you know the difference between those four responses.</td></tr></table><p>The Question Bank's own scoring rubric names five things every strong answer needs: <strong>Accuracy, Specificity, Workflow, Judgment,</strong> and <strong>Communication</strong> — and it warns that weak answers \"sound memorized and generic\" while strong ones \"use a clear Skarion simulation example with numbers or documents.\"</p>", "callout": {"type": "warning", "html": "The rubric's coach note on Judgment: a weak answer \"posts adjustments without support or says they would guess.\" A strong answer knows when to hold, correct, document, or escalate — and never forces a number to make a reconciliation balance."}}, {"type": "content", "kicker": "Before and after", "title": "Red flags vs. green flags: the same question, two ways", "bodyHtml": "<p>The cheat sheet includes a \"say this / not this\" table. Here it is expanded with the real Skarion-grounded version pulled from the question bank, side by side with the generic version most candidates give.</p><table class='data'><tr><th>Topic</th><th>Red flag (generic)</th><th>Green flag (Skarion-specific)</th></tr><tr><td>Bank reconciliation</td><td>\"I adjust the difference.\"</td><td>\"The book balance started at $226,594.19; after removing a $9,503.60 duplicate deposit, adding back a $270.00 Valley Freight correction, removing a $45.00 bank fee, and adding $18.50 in interest, the adjusted balance was $217,334.09. I don't force the difference — I document the cause.\"</td></tr><tr><td>AP invoices</td><td>\"I enter whatever the vendor sends.\"</td><td>\"On invoice DAF-2601-014, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so I held it instead of paying it.\"</td></tr><tr><td>Internal controls</td><td>\"Controls are someone else's job.\"</td><td>\"The 3-way match caught the $126.36 DAF-2601-014 price discrepancy and a missing PO on NOVA Packaging invoice NPC-2601-011 — both were held instead of paid.\"</td></tr></table>", "callout": {"type": "story", "html": "Notice the pattern: the green-flag answers never say \"I'm accurate\" or \"I'm detail-oriented.\" They just describe exactly what happened, with a dollar figure and a document number, and let the interviewer draw that conclusion themselves."}}, {"type": "quiz", "title": "Spot the specific answer", "questions": [{"q": "Question: \"How do you handle a bank reconciliation discrepancy?\" Which answer is the strong one?", "options": ["\"I just find the difference and adjust the books to match the bank.\"", "\"I compare the bank statement to the GL by date, amount, and type, look for outstanding checks, deposits in transit, duplicates, and fees, then correct the entry if needed, attach support, and document the adjustment. I don't force the reconciliation.\"", "\"I ask my manager to fix it since reconciliations are complicated.\"", "\"I wait until next month and see if it corrects itself.\""], "correct_index": 1, "explanation": "This is the cheat sheet's actual answer to Question 2. It names the specific things checked (outstanding checks, deposits in transit, duplicates, fees) and explicitly says it never plugs or forces the number."}, {"q": "Question: \"What is a 3-way match?\" Which answer would score higher on the rubric's 'Specificity' criterion?", "options": ["\"It's when you match three documents together before paying an invoice.\"", "\"On invoice DAF-2601-014 from Dominion Aluminum & Fasteners, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so I held the invoice instead of paying it.\"", "\"It means being careful with vendor invoices.\"", "\"I've heard of it but haven't used it myself.\""], "correct_index": 1, "explanation": "This is the real answer from the Question Bank. It names the PO, the receiving report, and the invoice, then attaches a real transaction (DAF-2601-014) with the exact variance amount."}, {"q": "Question: \"Tell me about a time you found an error in the books.\" Which is the weak version?", "options": ["\"I found a customer deposit entered twice in QuickBooks. The bank reconciliation didn't balance, so I compared the bank statement to the cash receipts register by date and amount, found the duplicate, reversed it, and noted the correction.\"", "\"I'm very thorough, so I usually catch errors before they become a problem.\"", "\"During a bank reconciliation exercise, QuickBooks showed more cash than the bank statement. I found a duplicate ACH receipt, confirmed the bank only received it once, and reversed it.\"", "\"I traced a $9,503.60 duplicate Coastal Electric & Controls deposit entered twice in QuickBooks and corrected it with debit AR / credit Cash, without touching Sales Revenue.\""], "correct_index": 1, "explanation": "Option B is the motivational-poster answer the cheat sheet warns against — no numbers, no transaction, no method. The other three options are all real, specific Skarion answers from the source documents."}, {"q": "Question: \"What accounts do you reconcile during month-end?\" Which answer demonstrates the 'Workflow' criterion best?", "options": ["\"All the balance sheet accounts, basically.\"", "\"Cash, AR/AP subledgers to the GL, inventory, fixed assets, payroll liabilities, sales tax payable, loans, prepaids, and accruals — in January that meant tying the bank to $217,334.09, AR to $176,918.00, AP to $42,265.00, accumulated depreciation to the $5,208.10 monthly add, and accrued interest to $1,510.42.\"", "\"Whatever my manager tells me to check.\"", "\"I run the reports and see if anything looks off.\""], "correct_index": 1, "explanation": "This lists the full set of balance-sheet accounts AND ties each one to a real January figure — exactly what the rubric's Workflow and Specificity criteria are scoring for."}]}, {"type": "exercise", "title": "Run your own mock interview", "instructionsHtml": "<p>Download both source files below. Read through the 20 must-know questions in the Cheat Sheet and skim the 126-question bank for a few more from each category (technical, behavioral, software, scenario).</p><ol><li>Pick <strong>3 of the 20 must-know questions</strong> from the Cheat Sheet.</li><li>Answer each one <strong>in your own words</strong> — do not copy the sample answer verbatim.</li><li>Use the Context → Action → Result structure, and pull <strong>real numbers</strong> from the Skarion Manufacturing simulation files you've already worked with (the $217,334.09 bank balance, the $126.36 DAF-2601-014 variance, the $5,208.10 depreciation, or any figure from your own exercise work in earlier modules).</li><li>If you have a study partner, have them ask you the questions cold and time your answers — the rubric recommends 60–90 seconds per answer.</li></ol>", "files": [{"label": "Interview Cheat Sheet — 20 Questions.docx", "href": "/download/06-interview-preparation/Interview_Cheat_Sheet_20_Questions.docx"}, {"label": "Interview Question Bank — 126 Questions.docx", "href": "/download/06-interview-preparation/Interview_Question_Bank_126Q.docx"}], "reflectionPrompt": "Write out your 3 chosen questions and your Context → Action → Result answers, in your own words, using real simulation numbers. Which one felt hardest to make specific, and why?"}], "slug": "06-interview-preparation"}, {"title": "The Excel Toolkit", "moduleTag": "Module 07 · Skarion Manufacturing LLC", "moduleTitle": "The Excel Toolkit", "dayMapping": "Day 7 of the 10-day path", "subhead": "QuickBooks does the posting. Excel does the thinking. Every reconciliation, aging report, and dashboard you've built so far ran on five formulas repeated with discipline.", "hook": "\"What's your Excel level?\" is asked in nearly every accounting interview, and it isn't small talk — it's a filter. This module opens the hood on the templates you've already been using and shows you exactly why they work.", "chunks": [{"type": "content", "kicker": "Why it matters", "title": "QuickBooks runs the books. Excel runs the job search.", "bodyHtml": "<p>It would be easy to assume that once a company is on QuickBooks, Excel becomes optional. The market research behind this course says otherwise: <strong>roughly 90% of entry-level accounting and bookkeeping job postings analyzed for this course explicitly name Excel</strong> as a required or strongly preferred skill — more often than any specific accounting software, including QuickBooks itself.</p><p>The reason is structural, not nostalgic. QuickBooks is excellent at recording transactions and holding the single source of truth. It is clumsy at the analysis layer — aging buckets, multi-way variance tables, reconciliation workpapers, dashboards you can hand to a controller mid-meeting. That analysis layer is built in Excel, exported from QuickBooks or built alongside it, in nearly every small-to-midsize company's monthly close.</p><p>Every template in Modules 03 through 05 — the bank reconciliation, the AR and AP aging, the expense dashboard, the close checklist — is exactly that analysis layer. This module doesn't teach new tasks. It teaches you to read the formulas already doing the work, so you can explain them fluently in an interview and rebuild them from scratch on day one of a real job.</p>", "callout": {"type": "tip", "html": "<strong>Interview framing:</strong> when asked about your Excel level, don't say \"intermediate.\" Say what you can actually do: \"I've built SUMIFS-based aging reports, COUNTIFS-based reconciliation matching, and nested-IF bucket logic for a manufacturing company's monthly close.\" Specificity beats a self-rating every time."}}, {"type": "flip_cards", "title": "The 8 functions that run this entire course", "railLabel": "Flip cards", "cards": [{"front": "SUMIFS()", "back": "Adds up a range of numbers, but only the rows that match one or more conditions — e.g. every open invoice for one customer that also falls in the \"31-60\" bucket. It's the workhorse behind the aging reports and the expense dashboard's category-by-month tables."}, {"front": "COUNTIFS()", "back": "Counts rows that match one or more conditions, instead of summing them. The bank reconciliation template uses it to count how many times a transaction's match-key appears on the other sheet — zero means unmatched, one means matched, more than one flags a possible duplicate."}, {"front": "Nested IF()", "back": "Chains multiple true/false tests so a value falls into exactly one category. The AR and AP aging reports nest four IFs deep to sort each invoice into Current, 1-30, 31-60, 61-90, or 90+ days past due, based on a single days-past-due number."}, {"front": "VLOOKUP() / XLOOKUP()", "back": "Pulls a value from one table into another by matching on a shared key (like a customer name or invoice number). VLOOKUP is the classic, widely-supported version; XLOOKUP is the newer, more flexible successor increasingly requested in 2026 job postings."}, {"front": "TEXT() match-keys", "back": "Converts a date and amount into a single comparable text string, like \"20260102|4200.00\". Two systems that store dates or numbers slightly differently can't be matched directly — but their TEXT() versions can. This is the trick behind the bank reconciliation's auto-flagging."}, {"front": "MAX(0, ...)", "back": "Floors a calculation at zero so it never goes negative. Used to make sure an open invoice balance (Original Amount − Payments Received) never shows as a negative number if a customer overpays."}, {"front": "Conditional formatting", "back": "Automatically colors or highlights cells based on their value — red for \"Unmatched,\" yellow for \"Possible Duplicate,\" green for \"Matched.\" It turns a wall of numbers into something you can scan in three seconds, which is exactly what a controller needs during a close."}, {"front": "SUM() with ranges", "back": "The simplest function on this list, but the one that ties every reconciliation together — adding a full column or row of activity, like all of a month's bank transactions, to roll forward a beginning balance into an ending balance."}]}, {"type": "content", "kicker": "How it actually works", "title": "The bank reconciliation's auto-flagging trick, unpacked", "bodyHtml": "<p>Open <code>Template_01_Bank_Reconciliation_Worksheet.xlsx</code> and look at column G on both the <code>Bank_Import</code> and <code>GL_Import</code> sheets. Every row builds a <strong>match key</strong> with this formula:</p><p><code>=TEXT(A5,\"yyyymmdd\")&\"|\"&TEXT(ROUND(ABS(F5),2),\"0.00\")</code></p><p>In plain English: take the transaction date, format it as a plain 8-digit string like <code>20260102</code>, glue on a pipe character, then glue on the transaction's absolute dollar amount rounded to two decimals, like <code>4200.00</code>. The result is a single text string — <code>20260102|4200.00</code> — that represents \"this date, this amount,\" with no ambiguity about date formats, positive/negative signs, or floating-point rounding.</p><p>Once every row on both sheets has a match key, column H counts how many times that exact key shows up on the <em>other</em> sheet: <code>=COUNTIFS(GL_Import!$G$5:$G$45,G5)</code>. Column I then turns that count into a plain-English status: <code>=IF(H5=0,\"Unmatched\",IF(H5&gt;1,\"Possible Duplicate\",\"Matched\"))</code>. Zero hits means nothing on the other side matches — an outstanding check or a deposit in transit. More than one hit means the same date-and-amount combination appears more than once, which is exactly how the template catches the accidental duplicate GL entry <code>DEP-1001-DUP</code> in the sample data.</p><p>This is why the <code>Reconciliation</code> sheet needed a new line: <strong>\"Less: Duplicate Book Entries.\"</strong> The COUNTIFS logic correctly flagged the $4,200 duplicate receipt as \"Possible Duplicate,\" but flagging isn't correcting — a human still has to confirm it's a real duplicate (not a coincidence) and back it out of the adjusted book balance. Once that $4,200 duplicate is subtracted on row 16, the reconciliation difference on row 19 correctly lands at $0.00. The formulas find the problem; the accountant decides what to do about it.</p>", "callout": {"type": "story", "html": "<strong>Why not just match on amount alone?</strong> Because plenty of unrelated transactions share a dollar amount by coincidence — two different $2,190 payments to two different vendors, for instance. Combining date AND amount into one key makes false-positive matches far less likely, which is exactly the kind of design decision that separates a template someone can trust from one that just looks automated."}}, {"type": "content", "kicker": "How it actually works", "title": "The AR/AP aging bucket logic", "bodyHtml": "<p><code>Template_02_AR_Aging_Report.xlsx</code> and <code>Template_03_AP_Aging_Report.xlsx</code> share the same two-step logic. Step one, on the invoice detail sheet, calculates days past due: <code>=IF(H5=0,0,MAX(0,AR_Aging_Report!$B$4-E5))</code>. Read it right to left: take the report's \"As Of Date\" (cell B4) and subtract the invoice's due date (E5) — that's how many days overdue it is. Wrap it in <code>MAX(0, ...)</code> so an invoice that isn't due yet never shows a negative number of days past due. Wrap that in an outer <code>IF</code> so a fully-paid invoice (open balance H5 = 0) always shows 0 days, regardless of its due date.</p><p>Step two sorts that days-past-due number into a bucket with a nested IF chain: <code>=IF(H5=0,\"Paid\",IF(I5=0,\"Current\",IF(I5&lt;=30,\"1-30\",IF(I5&lt;=60,\"31-60\",IF(I5&lt;=90,\"61-90\",\"90+\")))))</code>. Each IF only fires if every test before it failed — so an invoice 45 days past due skips \"Paid,\" skips \"Current,\" skips \"1-30\" (45 is not ≤ 30), and lands on \"31-60\" (45 ≤ 60). Order matters here: the tests have to run from smallest to largest, or a 90-day-overdue invoice would incorrectly get caught by an earlier, looser test.</p><p>Once every invoice has a bucket label, the summary tables use SUMIFS twice: once to total each bucket across all customers (<code>=SUMIFS(Customer_Invoices!$H$5:$H$34,Customer_Invoices!$J$5:$J$34,A9)</code>), and once to build a customer-by-bucket grid that adds a second condition for the customer name. That's the same nested-IF-then-SUMIFS pattern doing double duty — sort first, then total by group.</p>"}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "In the bank reconciliation's match key formula, =TEXT(A5,\"yyyymmdd\")&\"|\"&TEXT(ROUND(ABS(F5),2),\"0.00\"), why combine date AND amount instead of just matching on amount alone?", "options": ["Matching on amount alone is not technically possible in Excel", "Combining both makes coincidental matches between unrelated transactions far less likely", "TEXT() only works when two arguments are joined with an ampersand", "Dates must always be converted to text before they can be used in any formula"], "correct_index": 1, "explanation": "Two unrelated transactions can easily share a dollar amount by coincidence. Requiring the same date AND the same amount to match dramatically reduces false-positive matches."}, {"q": "In GL_Import, COUNTIFS(Bank_Import!$G$5:$G$45,G5) returns 2 for a transaction. What does that mean, and what should happen next?", "options": ["The transaction cleared twice as fast as normal — no action needed", "The match key appears twice on the Bank_Import sheet, so the row is flagged \"Possible Duplicate\" for a human to investigate", "There is a formula error and the sheet needs to be rebuilt", "The transaction should automatically be deleted from GL_Import"], "correct_index": 1, "explanation": "A count greater than 1 means the same date-and-amount match key shows up more than once on the other sheet. The formula flags it as a possible duplicate; it does not decide or correct anything — that judgment call, and the resulting adjustment, is the accountant's job."}, {"q": "An invoice is 61 days past its due date. Walking through =IF(H5=0,\"Paid\",IF(I5=0,\"Current\",IF(I5<=30,\"1-30\",IF(I5<=60,\"31-60\",IF(I5<=90,\"61-90\",\"90+\"))))), which bucket does it land in, and why?", "options": ["\"31-60\", because 61 is close enough to round down", "\"90+\", because the formula always defaults to the largest bucket", "\"61-90\", because it fails every earlier test (not paid, not current, not ≤30, not ≤60) until it reaches a test it passes (≤90)", "\"Current\", because the invoice was originally due on time"], "correct_index": 2, "explanation": "Nested IFs evaluate in order and stop at the first TRUE test. 61 fails the ≤30 and ≤60 checks but passes ≤90, so it lands in \"61-90\". The bucket order has to run smallest-to-largest for this logic to work correctly."}]}, {"type": "exercise", "title": "Run a full month's close on Skarion's own numbers", "instructionsHtml": "<p>You've already worked with pieces of Skarion Manufacturing LLC's data in earlier modules. Now put the full toolkit to work in one pass:</p><ol><li>Open the <strong>Bank Reconciliation Worksheet</strong> and confirm the adjusted bank and book balances tie out to $0.00 once the duplicate book entry is backed out on the \"Less: Duplicate Book Entries\" line.</li><li>Open the <strong>AR Aging</strong> and <strong>AP Aging</strong> reports and identify which customers and vendors have anything sitting in the 61-90 or 90+ buckets — these are the ones you'd flag to a controller first.</li><li>Open the <strong>Expense Analysis Dashboard</strong> and review the KPIs, the category-by-month and vendor-by-total SUMIFS tables, and all three embedded charts, including the newly added vendor chart.</li><li>Open the <strong>Month-End Close Checklist</strong> and walk all 30 tasks across the 15 functional areas, confirming the formula-driven status summary reflects a complete close.</li><li>Write a one-paragraph summary, as if handing it to a controller, of Skarion's month-end financial position: cash reconciliation status, AR/AP risk, and the top expense drivers.</li></ol>", "files": [{"label": "Bank Reconciliation Worksheet", "href": "/download/07-excel-toolkit/Template_01_Bank_Reconciliation_Worksheet.xlsx"}, {"label": "AR Aging Report", "href": "/download/07-excel-toolkit/Template_02_AR_Aging_Report.xlsx"}, {"label": "AP Aging Report", "href": "/download/07-excel-toolkit/Template_03_AP_Aging_Report.xlsx"}, {"label": "Expense Analysis Dashboard", "href": "/download/07-excel-toolkit/Template_04_Expense_Analysis_Dashboard.xlsx"}, {"label": "Month-End Close Checklist", "href": "/download/07-excel-toolkit/Template_05_Month_End_Close_Checklist.xlsx"}], "reflectionPrompt": "Which single formula pattern from this module — the TEXT() match-key, the nested-IF aging bucket, or the SUMIFS summary table — do you feel most confident explaining out loud in an interview, and which one needs more practice?"}, {"type": "content", "kicker": "Looking ahead", "title": "What these templates don't teach — and why that's your next move", "bodyHtml": "<p>Every table in this module's templates is built with SUMIFS, COUNTIFS, and nested IFs — functions that produce a \"pivot-style\" summary by writing out the logic explicitly, row by row and condition by condition. That's deliberate: it's the version of Excel every hiring manager can open and understand immediately, on any version of Excel, with zero setup.</p><p>But it's not the only way professionals summarize data. Native Excel <strong>PivotTables</strong> — and functions like <strong>XLOOKUP</strong> — do a lot of the same work with less manual formula-writing, and job postings are increasingly naming them by 2026, especially at larger companies with heavier reporting volume. XLOOKUP in particular is quickly replacing VLOOKUP as the expected lookup function in job descriptions, since it can search in either direction and handles missing matches more gracefully.</p>", "callout": {"type": "tip", "html": "<strong>Extension skill, not required for this course:</strong> once you're comfortable with the SUMIFS-based tables in these templates, it's worth practicing PivotTables and XLOOKUP on your own using this same Skarion data. They're not covered in these templates on purpose — but naming them specifically in an interview (\"I also build PivotTables and use XLOOKUP for lookups\") signals you're current with where Excel is headed, not just where it's been."}}], "slug": "07-excel-toolkit"}, {"title": "Payroll Fundamentals: Gross to Net", "moduleTag": "Module 08 · Skarion Manufacturing LLC", "moduleTitle": "Payroll Fundamentals", "dayMapping": "Day 5", "subhead": "Withholding, taxes, and the cost of employees.", "hook": "Skarion has 15 employees. When you run payroll, the amount of cash that leaves the bank is never the same as the wages you owe them. The difference is taxes, withholdings, and benefits. In this module, you will learn the mechanics of US Payroll and how to book the entries accurately.", "chunks": [{"type": "content", "kicker": "The basics", "title": "Gross Pay vs. Net Pay", "bodyHtml": "<p>When an employee earns $5,000 in a month, that is their <strong>Gross Pay</strong>. But they don't take home $5,000. Skarion is required by law to withhold taxes and deductions before writing the paycheck.</p><p>What gets withheld:</p><ul><li><strong>Federal Income Tax:</strong> Based on the employee's W-4.</li><li><strong>State Income Tax (Virginia):</strong> Based on state tax brackets.</li><li><strong>FICA (Social Security &amp; Medicare):</strong> 6.2% for Social Security and 1.45% for Medicare.</li><li><strong>Voluntary Deductions:</strong> 401(k) contributions, health insurance premiums.</li></ul><p>The amount left over after all these deductions is the <strong>Net Pay</strong>. This is the actual cash the employee receives.</p>", "callout": {"type": "tip", "html": "<p>Skarion doesn't get to keep the withheld money. It sits as a liability (2200 Payroll Liabilities) until Skarion remits it to the IRS and the state government.</p>"}}, {"type": "content", "kicker": "The employer side", "title": "Employer Payroll Taxes", "bodyHtml": "<p>Gross wages are not the only expense for the company. Skarion also has to pay <strong>Employer Payroll Taxes</strong> on top of the gross wages. These are entirely separate from what is withheld from the employee.</p><p>Employer Taxes Include:</p><ul><li><strong>FICA Match:</strong> Skarion must match the employee's 6.2% Social Security and 1.45% Medicare.</li><li><strong>FUTA (Federal Unemployment):</strong> Paid only by the employer.</li><li><strong>SUTA (State Unemployment):</strong> Paid only by the employer.</li></ul><p>These employer taxes are recorded as an expense (6310 Employer Payroll Taxes) and increase the total cost of having employees.</p>"}, {"type": "flip_cards", "title": "Payroll terminology", "railLabel": "Payroll Drill", "cards": [{"front": "Gross Wages", "back": "Total earnings of the employee before any taxes or deductions are removed. Recorded as an expense (6300 Wages)."}, {"front": "Net Pay", "back": "The actual cash paid to the employee. Calculated as Gross Wages minus all withholdings."}, {"front": "FICA", "back": "Federal Insurance Contributions Act. Includes Social Security (6.2%) and Medicare (1.45%). Both the employee and the employer pay this."}, {"front": "FUTA / SUTA", "back": "Federal and State Unemployment Tax. This is an employer-only expense."}, {"front": "Form W-4", "back": "Filled out by the employee to let the employer know how much Federal Income Tax to withhold from their paycheck."}, {"front": "Payroll Liabilities", "back": "The balance sheet account (2200) where all withheld taxes and employer taxes sit until they are paid to the government."}]}, {"type": "content", "kicker": "Skarion in action", "title": "Booking the Payroll Run", "bodyHtml": "<p>Let's look at Skarion's first semi-monthly payroll run in January.</p><p>The total gross wages for all 15 employees is <strong>$33,916.67</strong>. The total net pay (cash to employees) is <strong>$24,414.85</strong>. The difference of $9,501.82 consists of federal tax, state tax, FICA, and benefits withholdings.</p><p>When we book this entry, we debit Wage Expense for the full gross amount, credit Cash for the net pay, and credit Payroll Liabilities for the withholdings.</p>", "callout": {"type": "warning", "html": "<p>Never debit Wage Expense for just the Net Pay! Wage Expense must always reflect the full Gross Wages. The difference is recorded as a liability.</p>"}}, {"type": "quiz", "title": "Test your payroll knowledge", "questions": [{"q": "Which of the following taxes is paid by BOTH the employee (via withholding) and the employer (via matching)?", "options": ["FUTA (Unemployment Tax)", "Federal Income Tax", "FICA (Social Security and Medicare)", "State Income Tax"], "correct_index": 2, "explanation": "Both the employer and the employee pay 6.2% for Social Security and 1.45% for Medicare (FICA)."}, {"q": "An employee has gross wages of $4,000. Total withholdings are $1,000. What is the correct journal entry to record this?", "options": ["Debit Wages Expense $3,000, Credit Cash $3,000", "Debit Wages Expense $4,000, Credit Cash $3,000, Credit Payroll Liabilities $1,000", "Debit Wages Expense $4,000, Credit Cash $4,000", "Debit Cash $3,000, Debit Payroll Liabilities $1,000, Credit Wages Expense $4,000"], "correct_index": 1, "explanation": "Wages Expense is always debited for the full gross amount ($4,000). Cash is credited for the net pay ($3,000). The withholdings are credited to Payroll Liabilities ($1,000)."}]}, {"type": "journal_entry_builder", "title": "Record the employer taxes", "scenarioHtml": "<p>After booking the gross wages and net pay for the January 15th payroll run, you must also record Skarion's portion of the employer payroll taxes. The total employer FICA match, FUTA, and SUTA for this run equals <strong>$3,001.63</strong>.</p><p>Record the journal entry for these employer taxes. Remember, this is an expense to the company, and the money hasn't been sent to the government yet.</p>", "startRows": 2, "accounts": ["1000 Operating Checking", "2200 Payroll Liabilities", "6300 Wages", "6310 Employer Payroll Taxes"], "solution": [{"account": "6310 Employer Payroll Taxes", "side": "debit", "amount": 3001.63}, {"account": "2200 Payroll Liabilities", "side": "credit", "amount": 3001.63}]}, {"type": "exercise", "title": "Review the US Payroll Basics", "instructionsHtml": "<p>Download and review the US Payroll Basics for Accountants reference sheet. This document explains the current tax rates and how to handle the W-4 and W-2 forms.</p><ul><li>Understand the difference between W-2 employees and 1099 contractors.</li><li>Review the current FICA rates and limits.</li><li>Understand the timeline for remitting payroll taxes to the IRS.</li></ul>", "files": [{"label": "US Payroll Basics for Accountants", "href": "/download/08-payroll-fundamentals/US_Payroll_Basics_for_Accountants.docx"}], "reflectionPrompt": "If an employee asks why their paycheck is lower than their stated salary, how would you explain the difference using the terms Gross Pay and Net Pay?"}], "slug": "08-payroll-fundamentals"}, {"title": "Month-End Close", "moduleTag": "Module 09 · Skarion Manufacturing LLC", "moduleTitle": "Month-End Close", "dayMapping": "Day 8 of the 10-day path", "subhead": "Every account you've reconciled, every invoice you've entered, every payroll run you've booked — month-end close is where it all gets pulled together, checked, and signed off. This is the module where you stop doing individual accounting tasks and start running an actual close.", "hook": "\"Walk me through your month-end close process.\" Every accounting interview asks some version of this question. Most candidates can name a step or two. You're about to be able to walk through all 15 — with a real close you actually ran.", "chunks": [{"type": "content", "kicker": "The concept", "title": "Why closing the books takes 3-5 days, not 3-5 minutes", "bodyHtml": "<p>QuickBooks can print a profit and loss statement in two seconds. So why do real companies take <strong>3 to 5 business days</strong> after month-end to actually close the books? Because printing a report and <em>trusting</em> a report are two different things.</p><p>Month-end close is the process of reviewing, reconciling, adjusting, and finalizing the books for a completed month, so that when the CEO or a lender looks at the numbers, those numbers are actually true:</p><ul><li><strong>Review</strong> — check that sales, bills, payments, payroll, and bank activity are all fully entered.</li><li><strong>Reconcile</strong> — compare the books to outside proof: bank statements, AR/AP aging, payroll reports, loan statements, fixed asset schedules.</li><li><strong>Adjust</strong> — post timing entries: accruals, prepaids, depreciation, payroll liabilities, interest.</li><li><strong>Finalize</strong> — prepare reports, save workpapers, get manager approval, and lock the period so prior numbers can't silently change.</li></ul><p>Skip any one of those four steps and the P&amp;L you hand the CEO is a guess wearing a suit. Skarion Manufacturing targets a 5-business-day close, because accuracy is worth more than speed — a fast close that's wrong just means restating everything next month.</p>", "callout": {"type": "tip", "html": "Interviewers ask about your close process because it reveals whether you understand accounting as a <em>system of proof</em>, not just data entry. \"I close the books in a day\" is not usually the answer they're hoping for."}}, {"type": "content", "kicker": "The framework", "title": "The 15 standard close steps", "bodyHtml": "<p>Skarion's close follows the same 15 steps used across small and mid-size companies. Learn this list — it's the backbone of every close interview question you'll get.</p><table class='data'><tr><th>#</th><th>Step</th><th>What it means</th></tr><tr><td>1</td><td>Confirm cutoff</td><td>Transactions land in the correct month — January expenses stay in January even if paid in February.</td></tr><tr><td>2</td><td>Collect source documents</td><td>Bank statements, credit card statements, invoices, payroll reports, loan statements, inventory records.</td></tr><tr><td>3</td><td>Record sales and AR</td><td>All customer invoices, sales receipts, credit memos, and payments — review unapplied cash.</td></tr><tr><td>4</td><td>Record vendor bills and AP</td><td>All vendor bills, expense reports, recurring expenses, and vendor credits.</td></tr><tr><td>5</td><td>Record cash activity</td><td>Deposits, checks, ACH, wires, bank fees, interest income, transfers, loan payments.</td></tr><tr><td>6</td><td>Reconcile bank accounts</td><td>Match bank statement activity to the GL — find outstanding checks, deposits in transit, duplicates.</td></tr><tr><td>7</td><td>Reconcile credit cards</td><td>Match card charges and payments to the GL, confirm receipts are attached.</td></tr><tr><td>8</td><td>Reconcile AR aging to GL</td><td>The AR aging total must equal the AR balance on the balance sheet.</td></tr><tr><td>9</td><td>Reconcile AP aging to GL</td><td>The AP aging total must equal the AP balance on the balance sheet.</td></tr><tr><td>10</td><td>Review inventory and COGS</td><td>Check purchases, usage, ending inventory, and cost of goods sold against the physical count.</td></tr><tr><td>11</td><td>Record payroll and liabilities</td><td>Gross wages, withholdings, employer taxes, benefit deductions, net pay.</td></tr><tr><td>12</td><td>Update fixed assets and depreciation</td><td>New assets, disposals, monthly depreciation, reconcile the fixed asset schedule to the GL.</td></tr><tr><td>13</td><td>Record accruals and prepaids</td><td>Expenses incurred but not billed yet, and amortized prepaid items.</td></tr><tr><td>14</td><td>Review financials and variances</td><td>Trial balance, P&amp;L, balance sheet, cash flow — explain unusual changes.</td></tr><tr><td>15</td><td>Finalize, approve, and lock</td><td>Save workpapers, prepare the management report, get approval, lock the period.</td></tr></table><p>Mapped to a calendar: Day 1 is transaction entry, Day 2 is reconciliation, Day 3 is adjusting entries, Day 4 is review, Day 5 is finalize and lock.</p>"}, {"type": "flip_cards", "title": "Close concepts — know them cold", "railLabel": "Flip cards", "cards": [{"front": "Accrual", "back": "Recording an expense or revenue in the period it was incurred or earned, even though cash hasn't moved yet. Example: a utility bill for services used in January but not received until February gets accrued in January."}, {"front": "Prepaid amortization", "back": "Spreading the cost of something paid in advance (annual insurance, annual software) across the months it covers, instead of expensing it all at once."}, {"front": "Unearned revenue", "back": "Cash received before the work is done or the product is delivered — it sits as a liability until it's actually earned, then it moves to revenue."}, {"front": "Soft close vs. hard close", "back": "A soft close is fast and uses estimates for small items — good for internal monthly reporting. A hard close fully reconciles every major account, posts every adjustment, and locks the period — required for quarter-end, year-end, audits, and loan reporting."}, {"front": "Trial balance", "back": "A listing of every GL account and its balance, used to confirm total debits equal total credits before financial statements are produced."}, {"front": "Adjusting entries", "back": "Journal entries posted at period-end to correct timing — depreciation, accruals, prepaids, payroll liabilities, interest — so the books reflect economic reality, not just cash movement."}, {"front": "Locking the period", "back": "Once a close is approved, the accounting system prevents further changes to that month's transactions without manager override — protects prior-period numbers from silent edits."}]}, {"type": "content", "kicker": "The real close", "title": "How January actually closed at Skarion", "bodyHtml": "<p>Here's what really happened during Skarion's January close, using the actual bank reconciliation.</p><p>The book balance per QuickBooks was <strong>$226,594.19</strong>. But that number was wrong — and Day 2 of the close (reconcile cash) is exactly where the problem surfaced. Working the bank rec turned up four separate issues:</p><table class='data'><tr><th>Adjustment</th><th>Amount</th></tr><tr><td>Book balance per QuickBooks</td><td>$226,594.19</td></tr><tr><td>Less: duplicate Coastal Electric deposit</td><td>&minus;$9,503.60</td></tr><tr><td>Add: Valley Freight payment correction ($2,410 entered, $2,140 cleared)</td><td>+$270.00</td></tr><tr><td>Less: bank service fee missing from QuickBooks</td><td>&minus;$45.00</td></tr><tr><td>Add: bank interest missing from QuickBooks</td><td>+$18.50</td></tr><tr><td><strong>Adjusted book balance</strong></td><td><strong>$217,334.09</strong></td></tr></table><p>The bank side, worked independently from the statement, landed on the exact same number: $211,161.25 statement balance, plus a $6,612.84 deposit in transit (Manassas Telecom), minus a $440.00 outstanding ADP payment, equals <strong>$217,334.09</strong>. Both sides met in the middle — that's how you know the reconciliation is right.</p><p>The biggest item was the duplicate deposit: a Coastal Electric payment had been entered into QuickBooks twice, which incorrectly cleared that customer's invoice a second time. Revenue was never overstated — the receivable was just erased by mistake. The fix reinstated it: <strong>Debit 1100 Accounts Receivable $9,503.60 / Credit 1000 Operating Checking $9,503.60.</strong></p>", "callout": {"type": "story", "html": "Notice what this proves: the close isn't paperwork for its own sake. Without Day 2's bank reconciliation, Skarion's books would have overstated cash by $9,503.60 — an error large enough to matter to a lender or the CEO — and nobody would have caught it until the money didn't show up somewhere later."}}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "Skarion's book balance per QuickBooks was $226,594.19, but the adjusted book balance came out to $217,334.09. What was the single largest adjustment causing that gap?", "options": ["The missing bank interest of $18.50", "The duplicate Coastal Electric deposit of $9,503.60", "The missing bank service fee of $45.00", "The Valley Freight correction of $270.00"], "correct_index": 1, "explanation": "The duplicate deposit was by far the largest item, at $9,503.60 — it dwarfed the fee, interest, and freight corrections combined."}, {"q": "The bank statement showed $211,161.25. After adding the deposit in transit and subtracting the outstanding ACH payment, what did the adjusted bank balance equal?", "options": ["$211,161.25", "$226,594.19", "$217,334.09", "$217,774.09"], "correct_index": 2, "explanation": "$211,161.25 + $6,612.84 (deposit in transit) − $440.00 (outstanding ADP payment) = $217,334.09 — matching the adjusted book balance exactly."}, {"q": "Which day of Skarion's 5-day close calendar is when the duplicate deposit would normally be caught?", "options": ["Day 1 — transaction entry", "Day 2 — reconcile cash and subledgers", "Day 4 — review reports and variances", "Day 5 — finalize and lock"], "correct_index": 1, "explanation": "Bank reconciliation happens on Day 2. That's exactly when comparing the GL to the bank statement surfaces timing differences and errors like duplicate deposits."}, {"q": "Why doesn't the duplicate Coastal Electric deposit mean revenue was overstated?", "options": ["Because duplicate deposits never affect revenue, only cash", "Because the duplicate entry cleared the same invoice twice, which erased the receivable rather than creating new revenue", "Because Coastal Electric's invoice was never actually recorded", "Because sales tax absorbed the difference"], "correct_index": 1, "explanation": "The original invoice already recorded the revenue correctly. The duplicate deposit just applied a second cash receipt against the same invoice, wiping out the receivable balance incorrectly — the fix reinstates AR, it doesn't touch revenue."}]}, {"type": "journal_entry_builder", "title": "Post January's depreciation entry", "scenarioHtml": "<p>Step 12 of the close is updating fixed assets and depreciation. Skarion's fixed asset schedule covers 10 assets — CNC brake press, laser cutter, forklift, delivery van, air compressor system, office furniture, computers, QA testing station, warehouse pallet racking, and a label printer/packaging line. Combined, January's straight-line monthly depreciation across all 10 assets totals <strong>$5,208.10</strong>. Post the adjusting entry.</p>", "startRows": 2, "accounts": ["6700 Depreciation Expense", "1590 Accumulated Depreciation", "1000 Operating Checking", "6800 Interest Expense", "2300 Accrued Interest Payable"], "solution": [{"account": "6700 Depreciation Expense", "side": "debit", "amount": 5208.1}, {"account": "1590 Accumulated Depreciation", "side": "credit", "amount": 5208.1}]}, {"type": "exercise", "title": "Run Skarion's month-end close checklist", "instructionsHtml": "<p>Download the Month-End Close Playbook below. Using the 18-row sample checklist (C-01 through C-18) as your template, complete a close checklist for Skarion's January close:</p><ol><li>For each of the 18 tasks, mark a status (Not Started, In Progress, Waiting, Complete, or Reviewed) as if you were the staff accountant running this close.</li><li>For the bank reconciliation task (C-06), note the real result: adjusted book and bank balances both equal $217,334.09, driven mainly by the $9,503.60 duplicate Coastal Electric deposit.</li><li>For the fixed assets task (C-12), note the depreciation entry: $5,208.10 across 10 assets.</li><li>Identify which tasks would move faster under a soft close versus which absolutely require a hard close.</li></ol><p>Then write a one-page <strong>January Financial Summary memo</strong> for the CEO — the same deliverable Skarion's staff accountant would submit on Day 5. Cover: net sales, gross profit and margin, ending AR and AP, the bank reconciliation result, and any issues you'd flag for follow-up.</p>", "files": [{"label": "Month-End Close Playbook.docx", "href": "/download/09-month-end-close/Month_End_Close_Playbook.docx"}], "reflectionPrompt": "Write your January Financial Summary memo for the CEO: what were the headline numbers, what went wrong during the close, and what would you fix before February?"}], "slug": "09-month-end-close"}];</script>
+<script>/* Minimal SCORM 1.2 wrapper. Finds the LMS API in a parent/opener window (standard SCORM
+   discovery algorithm); no-ops safely when run standalone outside an LMS (e.g. local preview). */
+(function (global) {
+  "use strict";
+
+  function findAPI(win) {
+    var attempts = 0;
+    while (win && !win.API && win.parent && win.parent !== win && attempts < 10) {
+      win = win.parent;
+      attempts++;
+    }
+    return win && win.API ? win.API : null;
+  }
+
+  function locateAPI() {
+    var api = findAPI(window);
+    if (!api && window.opener) api = findAPI(window.opener);
+    return api;
+  }
+
+  var SCORM = {
+    api: null,
+    initialized: false,
+    standalone: true,
+
+    init: function () {
+      this.api = locateAPI();
+      if (this.api) {
+        var ok = this.api.LMSInitialize("");
+        this.initialized = ok === "true" || ok === true;
+        this.standalone = !this.initialized;
+      } else {
+        this.standalone = true;
+      }
+      return this.initialized;
+    },
+
+    setValue: function (key, value) {
+      if (this.initialized && this.api) this.api.LMSSetValue(key, String(value));
+    },
+
+    getValue: function (key) {
+      if (this.initialized && this.api) return this.api.LMSGetValue(key);
+      return "";
+    },
+
+    commit: function () {
+      if (this.initialized && this.api) this.api.LMSCommit("");
+    },
+
+    setProgress: function (fraction) {
+      // SCORM 1.2 has no native progress-measure field; store it as a suspend_data breadcrumb.
+      this.setValue("cmi.core.lesson_location", String(Math.round(fraction * 100)));
+      this.commit();
+    },
+
+    recordScore: function (raw, max) {
+      max = max || 100;
+      this.setValue("cmi.core.score.raw", raw);
+      this.setValue("cmi.core.score.min", 0);
+      this.setValue("cmi.core.score.max", max);
+      this.commit();
+    },
+
+    complete: function (passed) {
+      this.setValue("cmi.core.lesson_status", passed === false ? "failed" : "completed");
+      this.commit();
+    },
+
+    finish: function () {
+      if (this.initialized && this.api) {
+        this.commit();
+        this.api.LMSFinish("");
+      }
+    },
+  };
+
+  global.SkarionSCORM = SCORM;
+})(window);
+</script>
+<script>/* Skarion Course Engine — master lesson player.
+   Expects a global COURSE_CATALOG object (injected by the build script). */
+(function () {
+  "use strict";
+
+  var state = { mod: 0, current: 0, quizScores: {}, jeSolved: {} };
+  var chunks = []; // {id, el, dotEl, kind, requiresAction}
+  var CATALOG = window.COURSE_CATALOG || [];
+  var LESSON = null;
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+  function init() {
+    window.SkarionSCORM.init();
+    buildSidebar();
+    loadModule(0);
+    window.addEventListener("keydown", function (e) {
+      if (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" || e.target.tagName === "INPUT") return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+  }
+
+  function buildSidebar() {
+    var nav = $("#sidebar-nav");
+    nav.innerHTML = "";
+    CATALOG.forEach(function(mod, modIdx) {
+      var modEl = document.createElement("div");
+      modEl.className = "sb-mod";
+      modEl.dataset.idx = modIdx;
+      
+      var title = document.createElement("div");
+      title.className = "sb-mod-title";
+      title.innerHTML = "<span>" + esc(mod.title) + "</span>";
+      title.addEventListener("click", function() { loadModule(modIdx); });
+      modEl.appendChild(title);
+      
+      var chunkList = document.createElement("ul");
+      chunkList.className = "sb-chunks";
+      
+      var introLi = document.createElement("li");
+      introLi.className = "sb-chunk";
+      introLi.textContent = "Start";
+      introLi.addEventListener("click", function() { if (state.mod !== modIdx) loadModule(modIdx); goTo(0); });
+      chunkList.appendChild(introLi);
+      
+      mod.chunks.forEach(function(c, cIdx) {
+        var li = document.createElement("li");
+        li.className = "sb-chunk";
+        li.textContent = shortLabel(c.title, cIdx + 1);
+        li.addEventListener("click", function() { if (state.mod !== modIdx) loadModule(modIdx); goTo(cIdx + 1); });
+        chunkList.appendChild(li);
+      });
+      
+      modEl.appendChild(chunkList);
+      nav.appendChild(modEl);
+    });
+  }
+
+  function updateSidebarUI() {
+    $all(".sb-mod").forEach(function(el, i) {
+      el.classList.toggle("active", i === state.mod);
+      var cEls = $all(".sb-chunk", el);
+      cEls.forEach(function(cEl, ci) {
+        cEl.classList.toggle("active", i === state.mod && ci === state.current);
+      });
+    });
+  }
+
+  function loadModule(modIdx) {
+    if (modIdx < 0 || modIdx >= CATALOG.length) return;
+    state.mod = modIdx;
+    state.current = 0;
+    LESSON = CATALOG[modIdx];
+    
+    // reset module-level tracking
+    chunks = [];
+    $("#stage-inner").innerHTML = "";
+    $("#chunk-rail").innerHTML = "";
+    
+    $("#module-tag").textContent = LESSON.moduleTag || "Module " + (modIdx + 1);
+    $("#module-title").textContent = LESSON.title;
+
+    var rail = $("#chunk-rail");
+    var stage = $("#stage-inner");
+
+    chunks.push(makeScreen("intro", "Start", renderIntro(), false));
+    LESSON.chunks.forEach(function (c, i) {
+      var requiresAction = c.type === "quiz" || c.type === "journal_entry_builder";
+      chunks.push(makeScreen("c" + i, c.railLabel || shortLabel(c.title, i + 1), renderChunk(c, i), requiresAction));
+    });
+    chunks.push(makeScreen("done", "Done", renderComplete(), false));
+
+    chunks.forEach(function (ch) {
+      stage.appendChild(ch.el);
+      rail.appendChild(ch.dotEl);
+    });
+
+    goTo(0);
+  }
+
+  function shortLabel(title, n) {
+    if (!title) return "Step " + n;
+    return title.length > 18 ? title.slice(0, 16) + "…" : title;
+  }
+
+  function makeScreen(id, railLabel, innerHtml, requiresAction) {
+    var el = document.createElement("div");
+    el.className = "screen";
+    el.dataset.id = id;
+    el.innerHTML = innerHtml;
+
+    var dot = document.createElement("button");
+    dot.className = "chunk-dot";
+    dot.textContent = railLabel;
+    dot.addEventListener("click", function () { goTo(chunks.findIndex(function (c) { return c.id === id; })); });
+
+    return { id: id, el: el, dotEl: dot, requiresAction: requiresAction, satisfied: !requiresAction };
+  }
+
+  function renderIntro() {
+    var L = LESSON;
+    return (
+      '<div class="hero-eyebrow">' + esc(L.moduleTag || "") + " · " + esc(L.dayMapping || "") + '</div>' +
+      '<h1 class="hero-title">' + esc(L.title) + "</h1>" +
+      '<p class="hero-sub">' + esc(L.subhead) + "</p>" +
+      (L.hook ? '<div class="hero-hook">' + esc(L.hook) + "</div>" : "")
+    );
+  }
+
+  function renderComplete() {
+    return (
+      '<div class="center-screen">' +
+      '<div class="complete-badge">✓</div>' +
+      '<h1 class="hero-title" style="text-align:center;">Module complete</h1>' +
+      '<p class="hero-sub" style="text-align:center;">' + esc(LESSON.title) + " is done. You can move to the next module.</p>" +
+      '<button class="nav-btn primary" style="margin-top:20px;" onclick="SkarionPlayer.nextModule()">Go to next module →</button>' +
+      "</div>"
+    );
+  }
+
+  function renderChunk(c, idx) {
+    switch (c.type) {
+      case "content": return renderContent(c);
+      case "flip_cards": return renderFlipCards(c, idx);
+      case "quiz": return renderQuiz(c, idx);
+      case "journal_entry_builder": return renderJE(c, idx);
+      case "exercise": return renderExercise(c);
+      default: return "<p>Unknown chunk type.</p>";
+    }
+  }
+
+  function renderContent(c) {
+    var html = '<div class="chunk-kicker">' + esc(c.kicker || "Learn") + "</div>";
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="prose">' + c.bodyHtml + "</div>";
+    if (c.callout) {
+      var icons = { tip: "💡", warning: "⚠️", story: "📎", danger: "🚫" };
+      html += '<div class="callout ' + c.callout.type + '"><span class="icon">' + (icons[c.callout.type] || "•") + '</span><div>' + c.callout.html + "</div></div>";
+    }
+    return html;
+  }
+
+  function renderFlipCards(c, idx) {
+    var html = '<div class="chunk-kicker">Quick check</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    if (c.intro) html += '<p class="prose">' + esc(c.intro) + "</p>";
+    html += '<div class="flip-grid">';
+    c.cards.forEach(function (card, i) {
+      html += '<div class="flip-card" onclick="this.classList.toggle(\'flipped\')">' +
+        '<div class="flip-inner">' +
+        '<div class="flip-face flip-front">' + esc(card.front) + "</div>" +
+        '<div class="flip-face flip-back">' + esc(card.back) + "</div>" +
+        "</div></div>";
+    });
+    html += "</div>";
+    return html;
+  }
+
+  function renderQuiz(c, idx) {
+    var html = '<div class="chunk-kicker">Knowledge check</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    c.questions.forEach(function (q, qi) {
+      html += '<div class="quiz-q" data-qi="' + qi + '">';
+      html += '<div class="quiz-q-text">' + (qi + 1) + ". " + esc(q.q) + "</div>";
+      html += '<div class="quiz-opts">';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-opt" onclick="SkarionPlayer.answerQuiz(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
+      });
+      html += "</div>";
+      html += '<div class="quiz-explain" id="explain-' + idx + "-" + qi + '">' + esc(q.explanation || "") + "</div>";
+      html += "</div>";
+    });
+    html += '<div class="quiz-score-banner" id="score-' + idx + '"></div>';
+    return html;
+  }
+
+  function renderJE(c, idx) {
+    var html = '<div class="chunk-kicker">Practice: journal entry</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="je-scenario">' + c.scenarioHtml + "</div>";
+    html += '<table class="je-table" id="je-table-' + idx + '"><thead><tr><th style="width:45%">Account</th><th style="width:25%">Debit</th><th style="width:25%">Credit</th><th></th></tr></thead><tbody>';
+    var startRows = c.startRows || 2;
+    for (var r = 0; r < startRows; r++) html += jeRowHtml(c, idx);
+    html += "</tbody></table>";
+    html += '<button type="button" class="je-add-row" onclick="SkarionPlayer.addJERow(' + idx + ')">+ Add line</button><br>';
+    html += '<button type="button" class="je-check-btn" onclick="SkarionPlayer.checkJE(' + idx + ',' + JSON.stringify(c.solution).replace(/"/g, "&quot;") + ')">Check my entry</button>';
+    html += '<div class="je-feedback" id="je-feedback-' + idx + '"></div>';
+    return html;
+  }
+
+  function jeRowHtml(c, idx) {
+    var opts = c.accounts.map(function (a) { return "<option>" + esc(a) + "</option>"; }).join("");
+    return '<tr class="je-row"><td><select><option value="">— choose account —</option>' + opts + "</select></td>" +
+      '<td><input type="number" step="0.01" placeholder="0.00"></td>' +
+      '<td><input type="number" step="0.01" placeholder="0.00"></td>' +
+      '<td></td></tr>';
+  }
+
+  function renderExercise(c) {
+    var html = '<div class="chunk-kicker">Hands-on exercise</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="exercise-card">';
+    html += '<div class="prose">' + c.instructionsHtml + "</div>";
+    if (c.files && c.files.length) {
+      html += '<div class="exercise-files">';
+      c.files.forEach(function (f) {
+        html += '<a class="file-chip" href="' + esc(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
+      });
+      html += "</div>";
+    }
+    if (c.reflectionPrompt) {
+      html += '<div class="reflection-box"><label class="chunk-kicker" style="margin-top:14px;">' + esc(c.reflectionPrompt) + '</label><textarea placeholder="Type your notes here (saved locally in this browser only)"></textarea></div>';
+    }
+    html += "</div>";
+    return html;
+  }
+
+  function esc(s) {
+    if (s == null) return "";
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // ---------- Interaction handlers ----------
+  window.SkarionPlayer = {
+    answerQuiz: function (chunkIdx, qi, oi) {
+      var qDef = LESSON.chunks[chunkIdx].questions[qi];
+      var qEl = $('.quiz-q[data-qi="' + qi + '"]', chunks[chunkIdx + 1].el);
+      var buttons = $all(".quiz-opt", qEl);
+      buttons.forEach(function (b, i) {
+        b.disabled = true;
+        if (i === qDef.correct_index) b.classList.add("correct");
+        else if (i === oi) b.classList.add("incorrect");
+      });
+      $("#explain-" + chunkIdx + "-" + qi).classList.add("show");
+
+      state.quizScores[chunkIdx] = state.quizScores[chunkIdx] || {};
+      state.quizScores[chunkIdx][qi] = oi === qDef.correct_index;
+
+      var total = LESSON.chunks[chunkIdx].questions.length;
+      var answered = Object.keys(state.quizScores[chunkIdx]).length;
+      if (answered === total) {
+        var correct = Object.values(state.quizScores[chunkIdx]).filter(Boolean).length;
+        var banner = $("#score-" + chunkIdx);
+        banner.textContent = "Score: " + correct + " / " + total + (correct === total ? " — nice work." : " — review the explanations above.");
+        banner.classList.add("show");
+        chunks[chunkIdx + 1].satisfied = true;
+        updateNav();
+      }
+    },
+
+    addJERow: function (chunkIdx) {
+      var c = LESSON.chunks[chunkIdx];
+      var tbody = $("#je-table-" + chunkIdx + " tbody");
+      var tmp = document.createElement("tbody");
+      tmp.innerHTML = jeRowHtml(c, chunkIdx);
+      tbody.appendChild(tmp.firstElementChild);
+    },
+
+    checkJE: function (chunkIdx, solution) {
+      var rows = $all("#je-table-" + chunkIdx + " tbody tr");
+      var entries = [];
+      rows.forEach(function (r) {
+        var sel = r.querySelector("select").value;
+        var debit = parseFloat(r.querySelector("td:nth-child(2) input").value) || 0;
+        var credit = parseFloat(r.querySelector("td:nth-child(3) input").value) || 0;
+        if (sel && (debit || credit)) entries.push({ account: sel, debit: debit, credit: credit });
+      });
+
+      var totalDebit = entries.reduce(function (s, e) { return s + e.debit; }, 0);
+      var totalCredit = entries.reduce(function (s, e) { return s + e.credit; }, 0);
+      var balanced = Math.abs(totalDebit - totalCredit) < 0.01 && totalDebit > 0;
+
+      function matches(sol) {
+        return sol.every(function (line) {
+          return entries.some(function (e) {
+            return e.account === line.account &&
+              ((line.side === "debit" && Math.abs(e.debit - line.amount) < 0.01 && e.credit === 0) ||
+               (line.side === "credit" && Math.abs(e.credit - line.amount) < 0.01 && e.debit === 0));
+          });
+        }) && entries.length === sol.length;
+      }
+
+      var correct = balanced && matches(solution);
+      var fb = $("#je-feedback-" + chunkIdx);
+      fb.className = "je-feedback show " + (correct ? "correct" : "incorrect");
+      if (correct) {
+        fb.innerHTML = "✅ <strong>Correct.</strong> Debits and credits balance ($" + totalDebit.toFixed(2) + ") and the accounts match the expected entry.";
+      } else if (!balanced) {
+        fb.innerHTML = "⚠️ Debits ($" + totalDebit.toFixed(2) + ") and credits ($" + totalCredit.toFixed(2) + ") don't balance yet. Every journal entry needs total debits = total credits.";
+      } else {
+        fb.innerHTML = "❌ Debits and credits balance, but the accounts or amounts don't match the expected entry. Re-read the scenario and try again.";
+      }
+      if (correct) {
+        state.jeSolved[chunkIdx] = true;
+        chunks[chunkIdx + 1].satisfied = true;
+        updateNav();
+      }
+    },
+
+    nextModule: function() {
+      if (state.mod < CATALOG.length - 1) {
+        loadModule(state.mod + 1);
+      }
+    }
+  };
+
+  // ---------- Navigation ----------
+  function goTo(i) {
+    if (i < 0 || i >= chunks.length) return;
+    state.current = i;
+    chunks.forEach(function (c, idx) { c.el.classList.toggle("active", idx === i); });
+    updateRail();
+    updateProgress();
+    updateNav();
+    updateSidebarUI();
+    $("#stage").scrollTop = 0;
+    
+    // Overall progress approximation across modules
+    var globalPct = ((state.mod + (i / chunks.length)) / CATALOG.length);
+    window.SkarionSCORM.setProgress(globalPct);
+    if (state.mod === CATALOG.length - 1 && i === chunks.length - 1) {
+      window.SkarionSCORM.complete(true);
+    }
+  }
+
+  function updateRail() {
+    chunks.forEach(function (c, idx) {
+      c.dotEl.classList.toggle("active", idx === state.current);
+      c.dotEl.classList.toggle("done", idx < state.current);
+    });
+  }
+
+  function updateProgress() {
+    var pct = Math.round((state.current / (chunks.length - 1)) * 100);
+    $("#progress-fill").style.width = pct + "%";
+    $("#progress-label").textContent = pct + "%";
+  }
+
+  function updateNav() {
+    var atEnd = state.current === chunks.length - 1;
+    var atStart = state.current === 0;
+    var cur = chunks[state.current];
+    $("#nav-prev").disabled = atStart;
+    $("#nav-next").disabled = atEnd || !cur.satisfied;
+    if (atEnd) {
+      $("#nav-next").textContent = (state.mod === CATALOG.length - 1) ? "Finished Course" : "Done with module";
+      $("#nav-next").disabled = (state.mod === CATALOG.length - 1);
+    } else {
+      $("#nav-next").textContent = (cur.satisfied === false ? "Complete this step to continue" : (state.current === chunks.length - 2 ? "Finish module →" : "Continue →"));
+    }
+  }
+
+  function next() { if (!$("#nav-next").disabled) { if (state.current === chunks.length - 1) { window.SkarionPlayer.nextModule(); } else { goTo(state.current + 1); } } }
+  function prev() { if (!$("#nav-prev").disabled) goTo(state.current - 1); }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    init();
+    $("#nav-next").addEventListener("click", next);
+    $("#nav-prev").addEventListener("click", prev);
+  });
+})();
+</script>
+</body>
+</html>

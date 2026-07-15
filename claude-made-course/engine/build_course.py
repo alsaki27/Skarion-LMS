@@ -1,15 +1,13 @@
-"""Build the Skarion Accounting Track interactive course.
+"""Build the Skarion Accounting Track master interactive course.
 
-For every modules/<slug>/content.json:
-  1. Render a self-contained HTML lesson player -> modules/<slug>/index.html
-  2. Package a SCORM 1.2 zip (imsmanifest.xml + the same self-contained HTML) -> scorm-packages/<slug>.zip
-
-Run:  python build_course.py [slug ...]     (omit slugs to build everything)
+Compiles all modules into a single Master Course SCORM 1.2 zip
+with a global left-nav catalog.
 """
 import json
 import os
 import sys
 import zipfile
+import shutil
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ENGINE = os.path.dirname(os.path.abspath(__file__))
@@ -22,7 +20,7 @@ SCORM_JS = open(os.path.join(ENGINE, "scorm-api.js"), encoding="utf-8").read()
 PLAYER_JS = open(os.path.join(ENGINE, "player.js"), encoding="utf-8").read()
 
 MANIFEST_TMPL = """<?xml version="1.0" standalone="no" ?>
-<manifest identifier="SKARION_{IDENT}" version="1"
+<manifest identifier="SKARION_MASTER" version="1"
   xmlns="http://www.imsproject.org/xsd/imscp_rootv1p1p2"
   xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -35,9 +33,9 @@ MANIFEST_TMPL = """<?xml version="1.0" standalone="no" ?>
   </metadata>
   <organizations default="SKARION_ORG">
     <organization identifier="SKARION_ORG">
-      <title>{TITLE}</title>
+      <title>Skarion Accounting Track</title>
       <item identifier="ITEM_1" identifierref="RES_1">
-        <title>{TITLE}</title>
+        <title>Skarion Accounting Track</title>
       </item>
     </organization>
   </organizations>
@@ -49,37 +47,33 @@ MANIFEST_TMPL = """<?xml version="1.0" standalone="no" ?>
 </manifest>
 """
 
+def main():
+    slugs = sorted(d for d in os.listdir(MODULES_DIR) if os.path.isdir(os.path.join(MODULES_DIR, d)))
+    
+    catalog = []
+    for slug in slugs:
+        cpath = os.path.join(MODULES_DIR, slug, "content.json")
+        if os.path.exists(cpath):
+            content = json.load(open(cpath, encoding="utf-8"))
+            content["slug"] = slug
+            catalog.append(content)
 
-def render_html(content):
-    lesson_json = json.dumps(content, ensure_ascii=False)
+    print(f"Building Master Course with {len(catalog)} modules...")
+
+    catalog_json = json.dumps(catalog, ensure_ascii=False)
     html = TEMPLATE
-    html = html.replace("{{TITLE}}", content["title"])
     html = html.replace("{{THEME_CSS}}", THEME_CSS)
-    html = html.replace("{{LESSON_JSON}}", lesson_json)
+    html = html.replace("{{CATALOG_JSON}}", catalog_json)
     html = html.replace("{{SCORM_JS}}", SCORM_JS)
     html = html.replace("{{PLAYER_JS}}", PLAYER_JS)
-    return html
-
-
-def build_module(slug):
-    mdir = os.path.join(MODULES_DIR, slug)
-    content_path = os.path.join(mdir, "content.json")
-    if not os.path.exists(content_path):
-        print(f"  SKIP {slug}: no content.json yet")
-        return False
-    content = json.load(open(content_path, encoding="utf-8"))
-    html = render_html(content)
-
-    out_html = os.path.join(mdir, "index.html")
-    with open(out_html, "w", encoding="utf-8") as f:
-        f.write(html)
 
     os.makedirs(SCORM_DIR, exist_ok=True)
-    zip_path = os.path.join(SCORM_DIR, f"{slug}.zip")
-    manifest = MANIFEST_TMPL.format(IDENT=slug.replace("-", "_").upper(), TITLE=content["title"])
+    zip_path = os.path.join(SCORM_DIR, "Skarion-Accounting-Track-Master.zip")
+    
     with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("imsmanifest.xml", manifest)
+        z.writestr("imsmanifest.xml", MANIFEST_TMPL)
         z.writestr("index.html", html)
+        
         skarionbooks_dir = os.path.join(ROOT, "skarionbooks")
         if os.path.exists(skarionbooks_dir):
             for root, _, files in os.walk(skarionbooks_dir):
@@ -88,23 +82,19 @@ def build_module(slug):
                     arcname = os.path.relpath(file_path, ROOT).replace("\\", "/")
                     z.write(file_path, arcname)
 
-    n_chunks = len(content.get("chunks", []))
-    print(f"  OK   {slug}: {n_chunks} chunks -> index.html + scorm-packages/{slug}.zip")
-    return True
+    # Also save to master-course/index.html for local testing
+    master_dir = os.path.join(ROOT, "master-course")
+    os.makedirs(master_dir, exist_ok=True)
+    with open(os.path.join(master_dir, "index.html"), "w", encoding="utf-8") as f:
+        f.write(html)
+        
+    master_sb = os.path.join(master_dir, "skarionbooks")
+    if os.path.exists(skarionbooks_dir):
+        if os.path.exists(master_sb):
+            shutil.rmtree(master_sb)
+        shutil.copytree(skarionbooks_dir, master_sb)
 
-
-def main():
-    args = sys.argv[1:]
-    slugs = args if args else sorted(
-        d for d in os.listdir(MODULES_DIR) if os.path.isdir(os.path.join(MODULES_DIR, d))
-    )
-    print(f"Building {len(slugs)} module(s)...")
-    built = 0
-    for slug in slugs:
-        if build_module(slug):
-            built += 1
-    print(f"\n{built}/{len(slugs)} modules built.")
-
+    print(f"Master course built -> scorm-packages/Skarion-Accounting-Track-Master.zip")
 
 if __name__ == "__main__":
     main()

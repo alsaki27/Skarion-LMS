@@ -1,18 +1,20 @@
-/* Skarion Course Engine — lesson player.
-   Expects a global LESSON object (injected by the build script) describing intro + chunks. */
+/* Skarion Course Engine — master lesson player.
+   Expects a global COURSE_CATALOG object (injected by the build script). */
 (function () {
   "use strict";
 
-  var state = { current: 0, quizScores: {}, jeSolved: {} };
+  var state = { mod: 0, current: 0, quizScores: {}, jeSolved: {} };
   var chunks = []; // {id, el, dotEl, kind, requiresAction}
+  var CATALOG = window.COURSE_CATALOG || [];
+  var LESSON = null;
 
   function $(sel, root) { return (root || document).querySelector(sel); }
   function $all(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
 
   function init() {
     window.SkarionSCORM.init();
-    buildDom();
-    goTo(0);
+    buildSidebar();
+    loadModule(0);
     window.addEventListener("keydown", function (e) {
       if (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" || e.target.tagName === "INPUT") return;
       if (e.key === "ArrowRight") next();
@@ -20,21 +22,74 @@
     });
   }
 
-  function buildDom() {
-    $("#module-tag").textContent = LESSON.moduleTag;
-    $("#module-title").textContent = LESSON.moduleTitle;
+  function buildSidebar() {
+    var nav = $("#sidebar-nav");
+    nav.innerHTML = "";
+    CATALOG.forEach(function(mod, modIdx) {
+      var modEl = document.createElement("div");
+      modEl.className = "sb-mod";
+      modEl.dataset.idx = modIdx;
+      
+      var title = document.createElement("div");
+      title.className = "sb-mod-title";
+      title.innerHTML = "<span>" + esc(mod.title) + "</span>";
+      title.addEventListener("click", function() { loadModule(modIdx); });
+      modEl.appendChild(title);
+      
+      var chunkList = document.createElement("ul");
+      chunkList.className = "sb-chunks";
+      
+      var introLi = document.createElement("li");
+      introLi.className = "sb-chunk";
+      introLi.textContent = "Start";
+      introLi.addEventListener("click", function() { if (state.mod !== modIdx) loadModule(modIdx); goTo(0); });
+      chunkList.appendChild(introLi);
+      
+      mod.chunks.forEach(function(c, cIdx) {
+        var li = document.createElement("li");
+        li.className = "sb-chunk";
+        li.textContent = shortLabel(c.title, cIdx + 1);
+        li.addEventListener("click", function() { if (state.mod !== modIdx) loadModule(modIdx); goTo(cIdx + 1); });
+        chunkList.appendChild(li);
+      });
+      
+      modEl.appendChild(chunkList);
+      nav.appendChild(modEl);
+    });
+  }
+
+  function updateSidebarUI() {
+    $all(".sb-mod").forEach(function(el, i) {
+      el.classList.toggle("active", i === state.mod);
+      var cEls = $all(".sb-chunk", el);
+      cEls.forEach(function(cEl, ci) {
+        cEl.classList.toggle("active", i === state.mod && ci === state.current);
+      });
+    });
+  }
+
+  function loadModule(modIdx) {
+    if (modIdx < 0 || modIdx >= CATALOG.length) return;
+    state.mod = modIdx;
+    state.current = 0;
+    LESSON = CATALOG[modIdx];
+    
+    // reset module-level tracking
+    chunks = [];
+    $("#stage-inner").innerHTML = "";
+    $("#chunk-rail").innerHTML = "";
+    
+    $("#module-tag").textContent = LESSON.moduleTag || "Module " + (modIdx + 1);
+    $("#module-title").textContent = LESSON.title;
 
     var rail = $("#chunk-rail");
     var stage = $("#stage-inner");
 
-    // Screen 0: intro/hero
     chunks.push(makeScreen("intro", "Start", renderIntro(), false));
-    // Screens for each content chunk
     LESSON.chunks.forEach(function (c, i) {
       var requiresAction = c.type === "quiz" || c.type === "journal_entry_builder";
       chunks.push(makeScreen("c" + i, c.railLabel || shortLabel(c.title, i + 1), renderChunk(c, i), requiresAction));
     });
-    // Final screen
     chunks.push(makeScreen("done", "Done", renderComplete(), false));
 
     chunks.forEach(function (ch) {
@@ -42,8 +97,7 @@
       rail.appendChild(ch.dotEl);
     });
 
-    updateRail();
-    updateProgress();
+    goTo(0);
   }
 
   function shortLabel(title, n) {
@@ -68,7 +122,7 @@
   function renderIntro() {
     var L = LESSON;
     return (
-      '<div class="hero-eyebrow">' + esc(L.moduleTag) + " · " + esc(L.dayMapping || "") + '</div>' +
+      '<div class="hero-eyebrow">' + esc(L.moduleTag || "") + " · " + esc(L.dayMapping || "") + '</div>' +
       '<h1 class="hero-title">' + esc(L.title) + "</h1>" +
       '<p class="hero-sub">' + esc(L.subhead) + "</p>" +
       (L.hook ? '<div class="hero-hook">' + esc(L.hook) + "</div>" : "")
@@ -80,8 +134,9 @@
       '<div class="center-screen">' +
       '<div class="complete-badge">✓</div>' +
       '<h1 class="hero-title" style="text-align:center;">Module complete</h1>' +
-      '<p class="hero-sub" style="text-align:center;">' + esc(LESSON.title) + " is done. Progress has been recorded." +
-      "</p></div>"
+      '<p class="hero-sub" style="text-align:center;">' + esc(LESSON.title) + " is done. You can move to the next module.</p>" +
+      '<button class="nav-btn primary" style="margin-top:20px;" onclick="SkarionPlayer.nextModule()">Go to next module →</button>' +
+      "</div>"
     );
   }
 
@@ -207,7 +262,6 @@
         banner.textContent = "Score: " + correct + " / " + total + (correct === total ? " — nice work." : " — review the explanations above.");
         banner.classList.add("show");
         chunks[chunkIdx + 1].satisfied = true;
-        window.SkarionSCORM.recordScore(Math.round((correct / total) * 100));
         updateNav();
       }
     },
@@ -260,6 +314,12 @@
         updateNav();
       }
     },
+
+    nextModule: function() {
+      if (state.mod < CATALOG.length - 1) {
+        loadModule(state.mod + 1);
+      }
+    }
   };
 
   // ---------- Navigation ----------
@@ -270,9 +330,13 @@
     updateRail();
     updateProgress();
     updateNav();
+    updateSidebarUI();
     $("#stage").scrollTop = 0;
-    window.SkarionSCORM.setProgress(i / (chunks.length - 1));
-    if (i === chunks.length - 1) {
+    
+    // Overall progress approximation across modules
+    var globalPct = ((state.mod + (i / chunks.length)) / CATALOG.length);
+    window.SkarionSCORM.setProgress(globalPct);
+    if (state.mod === CATALOG.length - 1 && i === chunks.length - 1) {
       window.SkarionSCORM.complete(true);
     }
   }
@@ -296,10 +360,15 @@
     var cur = chunks[state.current];
     $("#nav-prev").disabled = atStart;
     $("#nav-next").disabled = atEnd || !cur.satisfied;
-    $("#nav-next").textContent = atEnd ? "Done" : (cur.satisfied === false ? "Complete this step to continue" : (state.current === chunks.length - 2 ? "Finish module →" : "Continue →"));
+    if (atEnd) {
+      $("#nav-next").textContent = (state.mod === CATALOG.length - 1) ? "Finished Course" : "Done with module";
+      $("#nav-next").disabled = (state.mod === CATALOG.length - 1);
+    } else {
+      $("#nav-next").textContent = (cur.satisfied === false ? "Complete this step to continue" : (state.current === chunks.length - 2 ? "Finish module →" : "Continue →"));
+    }
   }
 
-  function next() { if (!$("#nav-next").disabled) goTo(state.current + 1); }
+  function next() { if (!$("#nav-next").disabled) { if (state.current === chunks.length - 1) { window.SkarionPlayer.nextModule(); } else { goTo(state.current + 1); } } }
   function prev() { if (!$("#nav-prev").disabled) goTo(state.current - 1); }
 
   document.addEventListener("DOMContentLoaded", function () {
