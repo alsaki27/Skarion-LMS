@@ -1,43 +1,153 @@
 {
-  "title": "AP & Payroll for OSP Engineering",
+  "title": "Accounts Payable & Payroll",
   "moduleTag": "Module 03",
   "dayMapping": "Day 3",
-  "subhead": "Managing offshore draftsmen invoices and US-based engineering payroll.",
+  "subhead": "The two largest cash outflows in any services firm — vendor invoices and payroll — and the controls that stop them from bleeding money through errors and fraud.",
+  "hook": "\"How do you process a vendor invoice?\" Most candidates describe data entry. The right answer describes the three-way match, the hold-for-discrepancy process, and exactly which accounts move and when. This is the module that separates those two answers.",
   "chunks": [
     {
       "type": "content",
-      "title": "The Global Engineering Workforce",
-      "bodyHtml": "<p>Skarion Engineering operates a hybrid model. We have US-based Project Managers (W2 Employees) and highly skilled offshore CAD/GIS draftsmen (1099 Contractors/Vendors).</p><p>This means our cash outfalls fall into two massive buckets: <strong>Accounts Payable</strong> (paying the offshore design firms via wire transfer) and <strong>Payroll</strong> (paying our US engineers via direct deposit).</p>"
+      "kicker": "The cycle",
+      "title": "AP workflow and the 3-way match",
+      "bodyHtml": "<p>Accounts Payable is not typing numbers into a system. It is a <strong>governed cycle</strong> designed to ensure the company only pays for goods and services it actually authorized, received, and was correctly charged for. The cycle is:</p><ol><li><strong>PO issuance</strong> — a purchase order is created and approved <em>before</em> the vendor is engaged.</li><li><strong>Vendor invoice received</strong> — the bill arrives, and is routed to AP.</li><li><strong>3-way match</strong> — AP compares the <em>Purchase Order</em>, the <em>Receiving Report</em> (or delivery confirmation), and the <em>Vendor Invoice</em>. All three must agree on quantity, unit price, and total.</li><li><strong>Approval</strong> — the responsible PM or budget owner signs off.</li><li><strong>Payment</strong> — released on the scheduled payment run according to terms.</li></ol><p><strong>What happens when they don't match:</strong> the invoice is <em>held</em>. You do not pay it. You contact the vendor, document the discrepancy, and request a corrected invoice or credit memo. Paying an invoice that fails the match is the single most common way firms lose money through carelessness, not fraud.</p>",
+      "callout": {
+        "type": "danger",
+        "html": "<strong>Real scenario.</strong> Global CAD Solutions invoice <em>GCS-2026-087</em> billed <strong>$42.00</strong> per drafted mile, but the master services agreement (MSA) states <strong>$38.50</strong> per mile. On 50 miles that is a <strong>$178.75</strong> variance. Do you pay it? <strong>No.</strong> Hold it, raise a dispute, and request a credit memo for the difference. Document everything."
+      }
     },
     {
       "type": "hotspot",
-      "title": "Analyze an Offshore Vendor Invoice",
-      "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80",
+      "kicker": "Visual analysis",
+      "title": "Analyze an offshore drafting invoice — what to check before paying",
+      "image": "/assets/gcs-invoice-hotspot.png",
       "hotspots": [
-        {"x": 75, "y": 15, "label": "Invoice Number", "info": "Crucial! Always enter the exact invoice number to avoid duplicate wires."},
-        {"x": 20, "y": 40, "label": "Project Code", "info": "We must tag this expense to the specific fiber build (e.g., Project Alpha 500-mile build) to track project profitability."},
-        {"x": 80, "y": 85, "label": "Total USD Amount", "info": "Make sure the conversion rate is correct if billed in foreign currency. This hits AP."}
+        {"x": 50, "y": 14, "label": "Invoice number", "info": "Enter exactly as printed. Duplicates are rejected by the system to prevent double-payment — a wrong digit here can void the match."},
+        {"x": 50, "y": 30, "label": "Project code", "info": "Must be tagged to the specific fiber build (e.g. Tennessee Corridor). This tag drives profitability and the COGS allocation per project."},
+        {"x": 50, "y": 50, "label": "Unit price per mile", "info": "Compare against the MSA rate. GCS MSA is $38.50/mile — anything higher is a hold-for-discrepancy, never auto-pay."},
+        {"x": 50, "y": 72, "label": "Payment terms", "info": "Net-30, Net-45 — this drives which payment run it lands on and how it ages on the AP report."},
+        {"x": 50, "y": 88, "label": "Total + remittance", "info": "Recompute quantity × unit price. Confirm it ties to the PO and receiving report before release."}
       ]
     },
     {
       "type": "content",
-      "title": "Payroll Liabilities",
-      "bodyHtml": "<p>For our US-based engineers, the gross wage isn't what they receive. You must withhold taxes and record employer taxes.</p><p>For a $10,000 gross payroll run for the US team, the entry looks like this:</p><ul><li>Debit Engineering Wages Expense: $10,000</li><li>Credit Payroll Liabilities (Taxes withheld): $2,000</li><li>Credit Cash (Net Pay): $8,000</li></ul>"
+      "kicker": "The method",
+      "title": "When the liability is recorded — and the payment run",
+      "bodyHtml": "<p>Under accrual accounting, the AP liability is recorded <strong>when the invoice is received and the obligation exists</strong>, <em>not</em> when you cut the check. This matters because it changes which period's expenses and liabilities the bill lands in.</p><p><strong>Recording the liability:</strong> Debit the expense (or asset) account, Credit Accounts Payable. The vendor is now owed, and the cost is in the correct period.</p><p><strong>The payment run:</strong> a batch of approved invoices selected for payment by due date and cash availability. Payment <em>clears</em> the AP balance — it is a separate, later event. Recording the liability and paying the bill are two distinct journal entries.</p><p><strong>AP aging report</strong> buckets what you owe by how long it has been sitting:</p><table class='data'><tr><th>Bucket</th><th>What it tells you</th></tr><tr><td>0–30 days</td><td>On terms — normal. The bulk of a healthy AP sits here.</td></tr><tr><td>31–60 days</td><td>Approaching terms limit — review vendor-by-vendor.</td></tr><tr><td>61–90 days</td><td>Late. Vendor relationships and early-pay discounts are at risk.</td></tr><tr><td>90+ days</td><td>Delinquent. Possible late fees, supplier credit holds, and a cash-flow red flag the controller will ask about.</td></tr></table>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Early payment discounts — 2/10 Net 30.</strong> \"2/10 Net 30\" means a 2% discount if paid within 10 days, otherwise full amount due in 30. On a $10,000 invoice that is a $200 saving for paying 20 days early — an implied ~36% annual return. Capturing it deliberately is a real cash management decision a controller will ask you to justify."
+      }
     },
     {
       "type": "journal_entry_builder",
-      "title": "Record an Offshore Drafting Bill",
-      "scenarioHtml": "<p>We received a $4,500 invoice from Global CAD Solutions for drafting 100 miles of LLD. We will pay it in 30 days. Record the receipt of the bill.</p>",
+      "kicker": "Skarion JE builder — receive invoice",
+      "title": "Record a vendor invoice on receipt (no cash yet)",
+      "railLabel": "JE: receive AP",
+      "scenarioHtml": "<p>Global CAD Solutions sends invoice <strong>GCS-2026-091</strong> for <strong>$9,625</strong> of offshore LLD drafting on the Tennessee Corridor build. Terms are Net-30. No cash has moved — record the liability <em>now</em> in the correct period.</p>",
       "startRows": 2,
       "accounts": [
         "1000 - Operating Checking",
+        "1100 - Accounts Receivable",
         "2000 - Accounts Payable",
-        "5100 - Cost of Goods Sold - Subcontractors",
-        "6500 - Software & Subscriptions Expense"
+        "5100 - COGS — Subcontractor Drafting",
+        "4000 - Engineering Design Revenue"
       ],
       "solution": [
-        { "account": "5100 - Cost of Goods Sold - Subcontractors", "side": "debit", "amount": 4500 },
-        { "account": "2000 - Accounts Payable", "side": "credit", "amount": 4500 }
+        { "account": "5100 - COGS — Subcontractor Drafting", "side": "debit", "amount": 9625.00 },
+        { "account": "2000 - Accounts Payable", "side": "credit", "amount": 9625.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion JE builder — payment run",
+      "title": "Process the payment, including the wire fee",
+      "railLabel": "JE: pay AP",
+      "scenarioHtml": "<p>28 days later you wire payment of <strong>$9,625</strong> to Global CAD for invoice GCS-2026-091. The bank charges a <strong>$25</strong> outgoing wire fee in addition. Record the payment clearing the AP and the fee hitting expense.</p>",
+      "startRows": 3,
+      "accounts": [
+        "1000 - Operating Checking",
+        "2000 - Accounts Payable",
+        "6900 - Bank Fees Expense",
+        "5100 - COGS — Subcontractor Drafting",
+        "6500 - Software & Subscriptions",
+        "6400 - Travel & Field Expense"
+      ],
+      "solution": [
+        { "account": "2000 - Accounts Payable", "side": "debit", "amount": 9625.00 },
+        { "account": "6900 - Bank Fees Expense", "side": "debit", "amount": 25.00 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 9650.00 }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The legal line",
+      "title": "W2 employees vs. 1099 contractors — and why accounting cares",
+      "bodyHtml": "<p>The US tax system draws a hard line between two ways a person can do work for your company:</p><table class='data'><tr><th>W2 Employee</th><th>1099 Contractor</th></tr><tr><td>On US payroll; Skarion withholds income tax, Social Security, and Medicare.</td><td>Self-employed; Skarion pays a flat invoice and the contractor handles their own taxes.</td></tr><tr><td>Creates <strong>payroll tax liabilities</strong> — employer FICA, FUTA, SUTA.</td><td>Routed straight through <strong>Accounts Payable</strong> as a vendor invoice.</td></tr><tr><td>Skarion's 10 US Engineering Project Managers.</td><td>Offshore drafting firms like Global CAD Solutions.</td></tr></table><p><strong>Why accounting cares:</strong> a W2 run touches Cash, a Salary Expense account, and multiple payroll tax liability accounts in one compound entry. A 1099 contractor is a single AP entry. Getting that backwards creates IRS exposure for the company. This is the kind of distinction an interviewer probes to see whether you've actually run payroll.</p><p><strong>Skarion's payroll economics:</strong></p><ul><li>US Team (W2): 10 Project Managers, avg $95,000/year ≈ <strong>$79,167/month</strong> gross.</li><li>Employer taxes: FICA 7.65% ≈ $6,056/month, FUTA/SUTA ≈ $200/month.</li><li>Offshore contractors (1099/AP): ≈ <strong>$42,000–$60,000/month</strong> in drafting invoices.</li></ul>"
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion JE builder — full payroll",
+      "title": "Record the full US payroll run",
+      "railLabel": "JE: payroll entry",
+      "scenarioHtml": "<p>Record January's US payroll. <strong>Gross wages: $79,167.</strong> Employee withholdings: federal income tax $15,000, Social Security $4,908, Medicare $1,148 — total <strong>$21,056 withheld</strong>. Employer taxes add <strong>$6,256</strong> (the company's own expense). Net pay of <strong>$58,111</strong> is wired to employees. Record the gross wage expense, the employer tax expense, the cash out, and the liabilities owed to the government.</p>",
+      "startRows": 4,
+      "accounts": [
+        "1000 - Operating Checking",
+        "6000 - Salaries — US Engineering PMs",
+        "6100 - Payroll Tax Expense",
+        "2200 - Payroll Tax Liabilities",
+        "2100 - Accrued Wages",
+        "1100 - Accounts Receivable"
+      ],
+      "solution": [
+        { "account": "6000 - Salaries — US Engineering PMs", "side": "debit", "amount": 79167.00 },
+        { "account": "6100 - Payroll Tax Expense", "side": "debit", "amount": 6256.00 },
+        { "account": "2200 - Payroll Tax Liabilities", "side": "credit", "amount": 27312.00 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 58111.00 }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Accrual mechanics",
+      "title": "Accruals, prepaids, and reversals",
+      "bodyHtml": "<p>Three of the most common interview questions live here, and they are all consequences of the accrual principle:</p><p><strong>Accruals.</strong> Record an expense before the invoice arrives. Skarion's offshore team completes $12,400 of drafting in January; the invoice does not land until February 5th. The work happened in January, so the expense belongs in January. The January 31st entry: <em>Debit COGS — Subcontractor Drafting $12,400 / Credit Accrued Liabilities $12,400.</em></p><p><strong>Reversals.</strong> On February 1st you <em>reverse</em> the accrual (Debit Accrued Liabilities / Credit COGS), so that when the real invoice is entered on February 5th the net effect is exactly one expense, in one period — not double-counted.</p><p><strong>Prepaids.</strong> Cash paid now, expensed later through an amortization schedule. The $36,000 Vetro license paid July 1st is a <strong>$3,000/month</strong> expense. Each month: <em>Debit Software Expense $3,000 / Credit Prepaid Software $3,000.</em> This is the single most common adjusting entry you will post at month-end.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Quick check",
+      "title": "AP and payroll vocabulary — know these cold",
+      "railLabel": "Flip cards",
+      "cards": [
+        {"front": "Accrual", "back": "Recording an expense in the period it was incurred, before the invoice arrives. Skarion accrues $12,400 of January offshore work invoiced in February so January's books are complete."},
+        {"front": "Reversal", "back": "Undoing an accrual entry on the first day of the next period, so the real invoice doesn't double-count the expense. Debit Accrued Liabilities / Credit COGS on Feb 1 cancels the Jan 31 accrual."},
+        {"front": "Prepaid", "back": "Cash paid now for a benefit that spans future periods — recorded as an asset and amortized to expense over time. The $36,000 Vetro license is prepaid, amortized $3,000/month."},
+        {"front": "Amortization", "back": "The systematic allocation of a prepaid asset to expense across benefited periods. Straight-line amortization of the 12-month Vetro license = $3,000/month for 12 months."},
+        {"front": "Accrued Wages", "back": "Wages earned by employees but not yet paid at period-end. A month-end accrual captures the days worked before payday so the salary expense lands in the correct month."}
+      ]
+    },
+    {
+      "type": "quiz",
+      "intro": "Three accrual and prepaid questions that show up almost verbatim in entry-level interviews.",
+      "title": "Accruals, prepaids & AP quiz",
+      "questions": [
+        {
+          "q": "Skarion's offshore team completes $12,400 of drafting in January. The invoice arrives February 3rd. What is the January 31st entry?",
+          "options": ["Wait — only record it when the invoice arrives in February", "Debit COGS — Subcontractor Drafting $12,400 / Credit Accrued Liabilities $12,400", "Debit Accounts Payable $12,400 / Credit Cash $12,400", "Debit Prepaid Software $12,400 / Credit Cash $12,400"],
+          "correct_index": 1,
+          "explanation": "The expense belongs in January because that is when the work was performed. Accrue it: debit the expense, credit an accrued liability. The entry reverses on Feb 1 so the real Feb 3 invoice doesn't double-count it."
+        },
+        {
+          "q": "Skarion paid $36,000 for a 12-month Vetro license on July 1st, recorded as a prepaid. What is the balance of Prepaid Software Licenses on October 31st?",
+          "options": ["$36,000", "$3,000", "$15,000", "$21,000"],
+          "correct_index": 3,
+          "explanation": "From July 1 to Oct 31 is 5 months of amortization at $3,000/month = $15,000 expensed. Remaining prepaid = $36,000 − $15,000 = $21,000 (7 months of benefit left)."
+        },
+        {
+          "q": "What is the employer's portion of FICA tax as a percentage of gross wages?",
+          "options": ["7.65% (6.2% Social Security + 1.45% Medicare)", "15.3% — double the employee side", "0% — FICA is only an employee tax", "1.45% — only Medicare"],
+          "correct_index": 0,
+          "explanation": "Employer FICA is 7.65% — matching the employee's 7.65%. Both pay 6.2% Social Security (up to the wage cap) plus 1.45% Medicare (no cap). Skarion's ~$79,167 monthly gross ≈ $6,056/month employer FICA."
+        }
       ]
     }
   ]

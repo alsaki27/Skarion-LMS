@@ -1,0 +1,207 @@
+{
+  "title": "Accounts Receivable & Billing",
+  "moduleTag": "Module 04",
+  "dayMapping": "Day 4",
+  "subhead": "Revenue recognition under ASC 606, the invoicing workflow, the AR aging report, and the allowance method that keeps bad debt honest rather than ignored.",
+  "hook": "\"When do you record revenue on a $2.4 million contract?\" The wrong answer is \"when we get paid\" or \"when the contract is signed.\" The right answer walks through the five-step ASC 606 model and names exactly when each deliverable is satisfied. After this module, that is your answer.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "The standard",
+      "title": "Revenue recognition and ASC 606 — the 5-step model",
+      "bodyHtml": "<p><strong>ASC 606</strong> is the GAAP standard for revenue recognition, and it is built on one principle: <em>recognize revenue when (or as) the entity satisfies a performance obligation</em> — not when cash arrives, and not when the contract is signed. The model has five steps:</p><ol><li><strong>Identify the contract</strong> with the customer.</li><li><strong>Identify the distinct performance obligations</strong> — e.g. HLD delivery, LLD delivery, splice/permit package are <em>three</em> separate obligations.</li><li><strong>Determine the transaction price.</strong></li><li><strong>Allocate the transaction price</strong> to each performance obligation.</li><li><strong>Recognize revenue</strong> when (or as) each obligation is satisfied.</li></ol><p><strong>Why it matters at Skarion:</strong> the firm signs a <strong>$2.4M contract</strong> for a 3,000-mile fiber design. The $2.4M is <em>not</em> revenue when the contract is signed, and it is not revenue when the cash arrives. It becomes revenue only as each deliverable is completed and accepted. Getting this wrong overstates revenue and triggers audit restatements.</p><p>Two accounts keep this honest on the balance sheet:</p><ul><li><strong>Deferred Revenue (a liability)</strong> — client pays <em>before</em> work is done. The cash is in, but it is not yet earned.</li><li><strong>Unbilled AR / WIP (an asset)</strong> — work is done or in progress but the billing milestone has not triggered yet. Value has been created; the invoice just has not been cut.</li></ul>"
+    },
+    {
+      "type": "timeline",
+      "title": "When the $2.4M becomes revenue — milestone timeline",
+      "steps": [
+        {"title": "Contract signed", "desc": "Skarion signs a $2.4M design contract for 3,000 miles. No revenue yet — only a performance obligation is created."},
+        {"title": "HLD delivered (40%)", "desc": "High-Level Design package accepted by the client. Recognize $960,000 of revenue. Debit AR / Credit Engineering Design Revenue."},
+        {"title": "LLD delivered (40%)", "desc": "Low-Level Design completion approved. Recognize a further $960,000 of revenue at the LLD milestone."},
+        {"title": "Splice/Permit package (20%)", "desc": "Final permitting and splice documentation delivered. Recognize the remaining $480,000. Contract fully earned."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The workflow",
+      "title": "Creating the AR invoice and recording it",
+      "bodyHtml": "<p>An AR invoice is not generated casually. The workflow is: <em>project milestone triggers the invoice</em> → <em>Project Manager approves</em> → <em>accounting creates the invoice in the billing system</em> → <em>journal entry debits Accounts Receivable and credits Engineering Design Revenue</em>. The invoice then sits open in the AR subledger until cash is applied in Module 05.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Internal control signal:</strong> invoice numbers are <em>sequential</em>. A gap in the sequence is a red flag an auditor will chase — it suggests a voided, deleted, or skipped invoice. Always be able to explain every invoice number gap with a documented void or credit memo."
+      }
+    },
+    {
+      "type": "hotspot",
+      "kicker": "Visual analysis",
+      "title": "Analyze a Skarion AR invoice — what every field controls",
+      "image": "/assets/skarion-ar-invoice-hotspot.png",
+      "hotspots": [
+        {"x": 50, "y": 12, "label": "Invoice number", "info": "Sequential. Gaps are an internal control red flag — every gap needs a documented void or credit memo."},
+        {"x": 50, "y": 28, "label": "Contract reference number", "info": "Ties the invoice to the master services agreement and the original ASC 606 contract — audit trail."},
+        {"x": 50, "y": 48, "label": "Line items by deliverable", "info": "HLD for Section A, B, C broken out — never a single lump sum. This supports the performance-obligation allocation under ASC 606."},
+        {"x": 50, "y": 68, "label": "Payment terms", "info": "Net-45 is typical for telecom clients. Drives DSO and when the AR ages into the next bucket."},
+        {"x": 50, "y": 86, "label": "Remittance instructions", "info": "Wire instructions and ACH routing — verify these against a call-back confirmation to stop vendor impersonation fraud."}
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion JE builder — HLD milestone",
+      "title": "Invoice an HLD milestone and book the revenue",
+      "railLabel": "JE: HLD invoice",
+      "scenarioHtml": "<p>Skarion completes the High-Level Design for the Tennessee Corridor. Per the contract's ASC 606 allocation, this milestone is 40% of the $1.2M contract, so Skarion invoices the client <strong>$480,000</strong>. No cash yet — record the receivable and the earned revenue.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 - Operating Checking",
+        "1100 - Accounts Receivable",
+        "2500 - Deferred Revenue",
+        "1200 - Unbilled AR (WIP)",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "1100 - Accounts Receivable", "side": "debit", "amount": 480000.00 },
+        { "account": "4000 - Engineering Design Revenue", "side": "credit", "amount": 480000.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion JE builder — deferred revenue",
+      "title": "Client prepays — record the deferred revenue liability",
+      "railLabel": "JE: deferred rev",
+      "scenarioHtml": "<p>A client prepays <strong>$120,000</strong> before any work has begun. Cash is in the bank, but the performance obligation has not been satisfied — so it is a <em>liability</em>, not revenue. Record the cash receipt and the deferred revenue liability.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 - Operating Checking",
+        "1100 - Accounts Receivable",
+        "2500 - Deferred Revenue",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "1000 - Operating Checking", "side": "debit", "amount": 120000.00 },
+        { "account": "2500 - Deferred Revenue", "side": "credit", "amount": 120000.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion JE builder — recognize deferred",
+      "title": "Deliver the work — release the deferred revenue",
+      "railLabel": "JE: recognize rev",
+      "scenarioHtml": "<p>The work the client prepaid for is now delivered and accepted. The performance obligation is satisfied — release the <strong>$120,000</strong> from Deferred Revenue onto the income statement as earned Engineering Design Revenue.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 - Operating Checking",
+        "2500 - Deferred Revenue",
+        "1100 - Accounts Receivable",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "2500 - Deferred Revenue", "side": "debit", "amount": 120000.00 },
+        { "account": "4000 - Engineering Design Revenue", "side": "credit", "amount": 120000.00 }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The management tool",
+      "title": "AR aging, collections, and bad debt",
+      "bodyHtml": "<p>The <strong>AR Aging Report</strong> is the single most important AR management tool. It buckets every customer's outstanding invoices by how long they have been unpaid. As buckets grow to 90+ days, the firm escalates: dunning letters, account-manager outreach, and eventually collections or write-off.</p><p><strong>Skarion's AR aging snapshot:</strong></p><table class='data'><tr><th>Customer</th><th>0–30 days</th><th>31–60 days</th><th>61–90 days</th><th>90+ days</th><th>Total</th></tr><tr><td>Atlantic Fiber Co.</td><td>$480,000</td><td>—</td><td>—</td><td>—</td><td>$480,000</td></tr><tr><td>Southeast Broadband</td><td>$215,000</td><td>$190,000</td><td>—</td><td>—</td><td>$405,000</td></tr><tr><td>TeleCom Builders</td><td>—</td><td>—</td><td>$78,500</td><td>$34,200</td><td>$112,700</td></tr><tr><td><strong>Total</strong></td><td><strong>$695,000</strong></td><td><strong>$190,000</strong></td><td><strong>$78,500</strong></td><td><strong>$34,200</strong></td><td><strong>$997,700</strong></td></tr></table><p>TeleCom Builders is the problem customer here: $112,700 sitting entirely in the older buckets, $34,200 of it past 90 days. That calls for a dunning letter and an account-manager call this week.</p><p><strong>Allowance for Doubtful Accounts.</strong> GAAP requires you to <em>estimate</em> uncollectible AR as you earn revenue — not wait until a specific invoice goes bad. This is the <em>allowance method</em>, and it matches the bad debt expense to the period that produced the revenue (the matching principle).</p><ul><li><strong>Establish the allowance:</strong> Debit Bad Debt Expense / Credit Allowance for Doubtful Accounts (a contra-asset that reduces net AR).</li><li><strong>Write off a specific invoice:</strong> Debit Allowance for Doubtful Accounts / Credit Accounts Receivable. <em>Expense is NOT affected</em> at write-off — the expense was already recorded when the allowance was established.</li></ul><p><strong>DSO (Days Sales Outstanding):</strong> Average AR ÷ Credit Revenue × Days. Skarion: $997,700 ÷ $4.8M × 365 ≈ <strong>75.8 days</strong> — meaning it takes roughly 76 days to collect a dollar of billed revenue. The lower, the better; controllers watch DSO month-over-month as a leading cash-flow indicator.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Quick check",
+      "title": "AR vocabulary — five terms interviewers actually test",
+      "railLabel": "Flip cards",
+      "cards": [
+        {"front": "DSO", "back": "Days Sales Outstanding = Average AR ÷ Credit Revenue × Days. Skarion: $997,700 ÷ $4.8M × 365 ≈ 75.8 days. Measures how fast billed revenue converts to cash."},
+        {"front": "Allowance Method", "back": "Estimate uncollectible AR as a percentage of revenue and record Bad Debt Expense in the period the sale is made. The allowance is a contra-asset reducing net AR. Required by GAAP — matching principle."},
+        {"front": "Direct Write-Off", "back": "Record bad debt only when a specific invoice is identified as uncollectible. Not GAAP-compliant for accrual filers because it violates the matching principle — expense lands in the wrong period. Used by small cash-basis firms only."},
+        {"front": "Dunning", "back": "The escalating outreach process for overdue AR — reminder, then formal dunning letter, then account-manager call, then collections or write-off. Skarion's TeleCom Builders $112,700 balance triggers a dunning letter this week."},
+        {"front": "Factoring", "back": "Selling AR to a third party (a factor) for immediate cash, at a discount. Removes the receivable from the books (if sold without recourse) but is expensive — typically 1–3% of invoice value as the factor's fee."}
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Bad debt — establish allowance",
+      "title": "Record the allowance for doubtful accounts",
+      "railLabel": "JE: allowance",
+      "scenarioHtml": "<p>Based on Skarion's <strong>$997,700</strong> AR balance and historical loss rates, management estimates <strong>1.5%</strong> will be uncollectible. Establish the allowance by recording Bad Debt Expense and the contra-asset Allowance for Doubtful Accounts (1.5% of $997,700 = $14,965.50).</p>",
+      "startRows": 2,
+      "accounts": [
+        "1100 - Accounts Receivable",
+        "1200 - Allowance for Doubtful Accounts",
+        "6720 - Bad Debt Expense",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "6720 - Bad Debt Expense", "side": "debit", "amount": 14965.50 },
+        { "account": "1200 - Allowance for Doubtful Accounts", "side": "credit", "amount": 14965.50 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Bad debt — write off",
+      "title": "Write off TeleCom Builders after Chapter 11",
+      "railLabel": "JE: write-off",
+      "scenarioHtml": "<p>TeleCom Builders files Chapter 11 bankruptcy. Their entire <strong>$112,700</strong> balance is deemed uncollectible. Write it off against the existing allowance. Note: Bad Debt Expense is <em>not</em> touched at write-off — the expense was already recorded when the allowance was established.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1100 - Accounts Receivable",
+        "1200 - Allowance for Doubtful Accounts",
+        "6720 - Bad Debt Expense",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "1200 - Allowance for Doubtful Accounts", "side": "debit", "amount": 112700.00 },
+        { "account": "1100 - Accounts Receivable", "side": "credit", "amount": 112700.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Bad debt — surprise recovery",
+      "title": "TeleCom Builders pays after write-off — reverse and record cash",
+      "railLabel": "JE: recovery",
+      "scenarioHtml": "<p>Six months later, out of the bankruptcy estate, TeleCom Builders unexpectedly pays <strong>$40,000</strong>. Under the allowance method you first <em>reverse the write-off</em> (reinstate the receivable), then record the cash receipt. Post both: Dr AR $40,000 / Cr Allowance $40,000, then Dr Cash $40,000 / Cr AR $40,000. Enter it as the combined net effect.</p>",
+      "startRows": 3,
+      "accounts": [
+        "1000 - Operating Checking",
+        "1100 - Accounts Receivable",
+        "1200 - Allowance for Doubtful Accounts",
+        "6720 - Bad Debt Expense"
+      ],
+      "solution": [
+        { "account": "1000 - Operating Checking", "side": "debit", "amount": 40000.00 },
+        { "account": "1200 - Allowance for Doubtful Accounts", "side": "credit", "amount": 40000.00 }
+      ]
+    },
+    {
+      "type": "quiz",
+      "intro": "Four AR and revenue-recognition questions that show up in entry-level and senior interviews alike.",
+      "title": "Revenue recognition & AR quiz",
+      "questions": [
+        {
+          "q": "Under ASC 606, when does Skarion recognize revenue on a contract milestone?",
+          "options": ["When the client signs the contract", "When the client wires the payment", "When the specific performance obligation (e.g. HLD delivery) is satisfied", "When the project is 100% complete"],
+          "correct_index": 2,
+          "explanation": "ASC 606 recognizes revenue when (or as) each distinct performance obligation is satisfied — here, when the HLD is delivered and accepted. Not at contract signing, not at cash receipt."
+        },
+        {
+          "q": "A client pays $200,000 in advance for work that has not yet started. What account is credited?",
+          "options": ["Engineering Design Revenue", "Accounts Receivable", "Deferred Revenue", "Unbilled AR (WIP)"],
+          "correct_index": 2,
+          "explanation": "Cash received before the obligation is satisfied is a liability — Deferred Revenue — not earned revenue. It only becomes revenue when the work is delivered."
+        },
+        {
+          "q": "What is the journal entry to establish an allowance for doubtful accounts?",
+          "options": ["Debit AR / Credit Allowance", "Debit Bad Debt Expense / Credit Allowance for Doubtful Accounts", "Debit Allowance / Credit Cash", "Debit Bad Debt Expense / Credit AR"],
+          "correct_index": 1,
+          "explanation": "Match the bad-debt estimate to the period of the sale: Debit Bad Debt Expense, Credit Allowance for Doubtful Accounts (a contra-asset). AR itself is untouched at this stage."
+        },
+        {
+          "q": "Skarion has $997,700 average AR and $4.8M in annual credit revenue. What is the DSO?",
+          "options": ["45.6 days", "60.1 days", "75.8 days", "112.7 days"],
+          "correct_index": 2,
+          "explanation": "DSO = Average AR ÷ Credit Revenue × 365 = $997,700 ÷ $4,800,000 × 365 ≈ 75.8 days. It takes Skarion roughly 76 days to collect a dollar of billed revenue."
+        }
+      ]
+    }
+  ]
+}

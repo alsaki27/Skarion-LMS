@@ -1,45 +1,153 @@
 {
-  "title": "Core Accounting Theory for Engineering",
+  "title": "The Accounting Cycle & Journal Entries",
   "moduleTag": "Module 02",
   "dayMapping": "Day 2",
-  "subhead": "Applying Debits, Credits, and Capex to a Services Firm.",
+  "subhead": "The equation that governs every entry ever made, the chart of accounts that organizes them, and the cycle that turns raw transactions into auditable financial statements.",
+  "hook": "\"Post this journal entry.\" A real controller does not hand you a pre-filled form. They hand you a vendor invoice and expect you to know which accounts move, in which direction, and why. This module is the entire reason that expectation exists.",
   "chunks": [
     {
       "type": "content",
-      "title": "The Accounting Equation",
-      "bodyHtml": "<p>Everything is built on one simple equation: <strong>Assets = Liabilities + Equity</strong>.</p><p>For Skarion Engineering, our biggest Assets aren't factories. They are Cash, Accounts Receivable (money owed to us for fiber designs), and capitalized software.</p>"
+      "kicker": "The constraint",
+      "title": "The accounting equation and the T-account",
+      "bodyHtml": "<p><strong>Assets = Liabilities + Equity</strong> is not a formula to memorize for a test. It is a constraint that governs every single entry ever posted in every company on earth. The day you make a journal entry that violates it, your books are wrong — and a trial balance will tell you only minutes later.</p><p>Every account lives in a <strong>ledger</strong>, and the visual representation of a single account's activity is a <strong>T-account</strong>: debits on the left, credits on the right. Which side increases the balance depends on the account's type:</p><table class='data'><tr><th>Account type</th><th>Normal balance</th><th>Increase with</th></tr><tr><td>Assets</td><td>Debit</td><td>Debit (left)</td></tr><tr><td>Expenses</td><td>Debit</td><td>Debit (left)</td></tr><tr><td>Liabilities</td><td>Credit</td><td>Credit (right)</td></tr><tr><td>Equity</td><td>Credit</td><td>Credit (right)</td></tr><tr><td>Revenue</td><td>Credit</td><td>Credit (right)</td></tr></table><p><strong>Skarion's five largest asset accounts</strong> on the balance sheet are: <em>1000 Operating Checking</em>, <em>1100 Accounts Receivable</em>, <em>1400 Prepaid Software Licenses</em> (ArcGIS Pro, Vetro FiberMap), <em>1500 GIS Servers &amp; Workstations</em>, and the <em>Security Deposit on office space</em> held by the landlord. Every one of those accounts increases with a debit.</p>",
+      "callout": {
+        "type": "warning",
+        "html": "<strong>Stop thinking \"debit = good.\"</strong> Debits are <em>directional</em>, not evaluative. A debit to Cash is good. A debit to Accounts Receivable means a customer owes you more (also fine). A debit to Salary Expense means you owe your staff more money (less fine). The side tells you the direction of movement, not whether the business is winning."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The map",
+      "title": "Chart of Accounts deep dive",
+      "bodyHtml": "<p>A <strong>Chart of Accounts (COA)</strong> is the numbered list of every account the company uses. The numbering is convention, not fashion: 1000s are Assets, 2000s are Liabilities, 3000s are Equity, 4000s are Revenue, and 5000–6999 are Expenses (including COGS). Every company's COA is slightly different — learn yours on day one, then never invent accounts on your own.</p><p><strong>Skarion Engineering's actual COA (the one you will use all course):</strong></p><table class='data'><tr><th>Code</th><th>Account</th><th>Type</th></tr><tr><td>1000</td><td>Operating Checking</td><td>Asset</td></tr><tr><td>1100</td><td>Accounts Receivable</td><td>Asset</td></tr><tr><td>1200</td><td>Unbilled AR (WIP)</td><td>Asset</td></tr><tr><td>1400</td><td>Prepaid Software Licenses</td><td>Asset</td></tr><tr><td>1500</td><td>GIS Servers &amp; Workstations</td><td>Asset</td></tr><tr><td>1590</td><td>Accumulated Depreciation</td><td>contra-Asset</td></tr><tr><td>2000</td><td>Accounts Payable</td><td>Liability</td></tr><tr><td>2100</td><td>Accrued Wages</td><td>Liability</td></tr><tr><td>2200</td><td>Payroll Tax Liabilities</td><td>Liability</td></tr><tr><td>2300</td><td>Accrued Interest</td><td>Liability</td></tr><tr><td>2500</td><td>Deferred Revenue</td><td>Liability</td></tr><tr><td>3000</td><td>Owner's Equity</td><td>Equity</td></tr><tr><td>3100</td><td>Retained Earnings</td><td>Equity</td></tr><tr><td>4000</td><td>Engineering Design Revenue</td><td>Revenue</td></tr><tr><td>4100</td><td>Permitting Services Revenue</td><td>Revenue</td></tr><tr><td>5100</td><td>COGS — Subcontractor Drafting</td><td>Expense</td></tr><tr><td>5200</td><td>COGS — Software Allocated to Projects</td><td>Expense</td></tr><tr><td>6000</td><td>Salaries — US Engineering PMs</td><td>Expense</td></tr><tr><td>6100</td><td>Payroll Tax Expense</td><td>Expense</td></tr><tr><td>6400</td><td>Travel &amp; Field Expense</td><td>Expense</td></tr><tr><td>6500</td><td>Software &amp; Subscriptions</td><td>Expense</td></tr><tr><td>6700</td><td>Depreciation Expense</td><td>Expense</td></tr><tr><td>6800</td><td>Interest Expense</td><td>Expense</td></tr></table><p>Memorize the structure: that block of five-digit numbers in the database is not chaos, it is a balance sheet and an income statement waiting to be rolled up.</p>"
     },
     {
       "type": "drag_and_drop",
-      "title": "Categorize the Accounts",
-      "instruction": "Drag each account to its correct classification for an OSP Engineering Firm.",
+      "kicker": "Classification lab",
+      "title": "Classify the transaction into the correct account",
+      "instruction": "Drag each Skarion Engineering transaction into the account bucket it should be posted to. Getting this right is the single skill that separates a real staff accountant from someone who memorized the textbook.",
       "items": [
-        {"draggable": "Vetro FiberMap Licenses", "target": "Expense"},
-        {"draggable": "Unpaid Offshore Draftsmen", "target": "Liability"},
-        {"draggable": "Billed Route Designs", "target": "Revenue"},
-        {"draggable": "High-End CAD Workstations", "target": "Asset"},
-        {"draggable": "Unbilled HLD Packages", "target": "Asset"}
+        {"draggable": "Wire from Atlantic Fiber pays an open invoice", "target": "1100 Accounts Receivable"},
+        {"draggable": "Prepaid Vetro license amortized for the month", "target": "1400 Prepaid Software Licenses"},
+        {"draggable": "Global CAD Solutions invoice for offshore drafting", "target": "2000 Accounts Payable"},
+        {"draggable": "Client prepays a contract before work starts", "target": "2500 Deferred Revenue"},
+        {"draggable": "HLD milestone delivered to Tennessee Corridor", "target": "4000 Engineering Design Revenue"},
+        {"draggable": "Offshore drafting billed on a project", "target": "5100 COGS — Subcontractor Drafting"},
+        {"draggable": "Monthly straight-line depreciation of workstations", "target": "6700 Depreciation Expense"},
+        {"draggable": "Employer FICA on the US payroll run", "target": "6100 Payroll Tax Expense"},
+        {"draggable": "Interest on the term loan for January", "target": "6800 Interest Expense"},
+        {"draggable": "10 US Project Managers' gross wages", "target": "6000 Salaries — US Engineering PMs"}
       ]
     },
     {
       "type": "content",
-      "title": "Capitalizing vs. Expensing",
-      "bodyHtml": "<p>If we buy a $50 box of pens, we <em>expense</em> it immediately. But if we buy a $15,000 server to host our GIS databases, we <strong>capitalize</strong> it. This means we record it as an Asset on the Balance Sheet and slowly expense it over its useful life (Depreciation).</p><p>Why? Because that server will help us generate revenue for 5 years, so we spread the cost over 5 years.</p>"
+      "kicker": "The atomic unit",
+      "title": "Journal entries — the full workflow",
+      "bodyHtml": "<p>A <strong>journal entry</strong> is the atomic unit of accounting. Everything else — the trial balance, the financial statements, the audit — is built on top of them. Every journal entry must contain:</p><ul><li><strong>Date</strong> — the period the entry belongs to (cutoff matters).</li><li><strong>Debit account(s)</strong> and amounts.</li><li><strong>Credit account(s)</strong> and amounts.</li><li><strong>Memo</strong> — what the entry is for, in plain language.</li><li><strong>Supporting document reference</strong> — invoice number, PO number, wire confirmation, timesheet batch. <em>Nobody posts an entry without documentation.</em></li></ul><p>The golden rule, with no exceptions: <strong>debits = credits on every entry, always.</strong> A <em>compound entry</em> uses multiple debits or multiple credits in a single entry (payroll is the classic example — one cash credit, several liability credits, an expense debit, and a tax expense debit). Compound entries are normal and encouraged; just keep the two sides equal.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>What a memo actually sounds like:</strong> <em>\"Record Jan offshore drafting per GCS-2026-091, 28-day terms, Tennessee Corridor build.\"</em> That memo tells any auditor exactly what happened, why, and where the source document lives. A memo that says \"AP\" is a firing offense at most firms."
+      }
     },
     {
       "type": "journal_entry_builder",
-      "title": "Record a Software Purchase",
-      "scenarioHtml": "<p>Skarion Engineering just purchased an $8,000 annual enterprise license for QGIS and Vetro using our operating checking account. Since it benefits the whole year, we capitalize it as a Prepaid Asset.</p>",
+      "kicker": "Skarion journal entry builder",
+      "title": "Record an offshore drafting invoice",
+      "railLabel": "JE: offshore invoice",
+      "scenarioHtml": "<p>Global CAD Solutions invoices Skarion Engineering for <strong>$7,200</strong> of LLD (low-level design) drafting on 160 miles of fiber route. No cash has moved yet — the bill has 30-day terms. Record the liability on receipt of the invoice.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 - Operating Checking",
+        "1100 - Accounts Receivable",
+        "2000 - Accounts Payable",
+        "5100 - COGS — Subcontractor Drafting",
+        "4000 - Engineering Design Revenue"
+      ],
+      "solution": [
+        { "account": "5100 - COGS — Subcontractor Drafting", "side": "debit", "amount": 7200.00 },
+        { "account": "2000 - Accounts Payable", "side": "credit", "amount": 7200.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion journal entry builder",
+      "title": "Capitalize an annual software license",
+      "railLabel": "JE: software prepaid",
+      "scenarioHtml": "<p>Skarion pays <strong>$36,000</strong> up front for a 12-month Vetro FiberMap enterprise license, wired from the operating checking account. Because the benefit covers the whole year, you capitalize it as a Prepaid Asset — <em>not</em> expense it all at once.</p>",
       "startRows": 2,
       "accounts": [
         "1000 - Operating Checking",
         "1400 - Prepaid Software Licenses",
-        "6500 - Software & Subscriptions Expense",
-        "2000 - Accounts Payable"
+        "6500 - Software & Subscriptions",
+        "5200 - COGS — Software Allocated to Projects"
       ],
       "solution": [
-        { "account": "1400 - Prepaid Software Licenses", "side": "debit", "amount": 8000 },
-        { "account": "1000 - Operating Checking", "side": "credit", "amount": 8000 }
+        { "account": "1400 - Prepaid Software Licenses", "side": "debit", "amount": 36000.00 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 36000.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Skarion journal entry builder",
+      "title": "Record an engineer payroll run",
+      "railLabel": "JE: payroll",
+      "scenarioHtml": "<p>The US engineering payroll run totals <strong>$45,000</strong> in gross wages. Of that, <strong>$9,500</strong> is withheld for employee taxes and remitted to the government later. The remaining <strong>$35,500</strong> net pay is wired out of Operating Checking to the employees. This is a <em>compound entry</em> — three lines, two credits, one debit, balanced.</p>",
+      "startRows": 3,
+      "accounts": [
+        "1000 - Operating Checking",
+        "6000 - Salaries — US Engineering PMs",
+        "2100 - Accrued Wages",
+        "2200 - Payroll Tax Liabilities"
+      ],
+      "solution": [
+        { "account": "6000 - Salaries — US Engineering PMs", "side": "debit", "amount": 45000.00 },
+        { "account": "2200 - Payroll Tax Liabilities", "side": "credit", "amount": 9500.00 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 35500.00 }
+      ]
+    },
+    {
+      "type": "timeline",
+      "title": "The accounting cycle, end to end",
+      "steps": [
+        {"title": "1. Source document", "desc": "Invoice, timesheet, wire confirmation, PO. Every entry starts with proof — never an assumption."},
+        {"title": "2. Journal entry", "desc": "Analyze the document, identify the accounts, and record the debit(s) and credit(s) in the journal. Debits must equal credits."},
+        {"title": "3. Post to the GL", "desc": "The journal entry flows into each account in the general ledger. This is what builds the running balance of every account over time."},
+        {"title": "4. Trial balance", "desc": "List every account and its balance. Total debits should equal total credits — if not, you made a posting error and you stop here until you find it."},
+        {"title": "5. Adjusting entries", "desc": "Accruals, prepaids, depreciation, WIP revenue. These entries make the books match economic reality before the statements are produced."},
+        {"title": "6. Adjusted trial balance", "desc": "Re-run the trial balance after adjustments. Still must balance — and now it reflects accrual-basis reality."},
+        {"title": "7. Financial statements", "desc": "The adjusted trial balance rolls up into the Income Statement, Balance Sheet, and Cash Flow Statement. This is the deliverable management reads."},
+        {"title": "8. Close temporary accounts", "desc": "Revenue and expense accounts are closed to Retained Earnings so the new period starts clean. Asset, Liability, and Equity accounts carry forward."}
+      ]
+    },
+    {
+      "type": "quiz",
+      "intro": "Four questions on the cycle you just walked. These come up in interviews — verbatim.",
+      "title": "Accounting cycle & trial balance quiz",
+      "questions": [
+        {
+          "q": "Skarion posts a $7,200 offshore drafting bill (no cash has moved). Which account is debited?",
+          "options": ["2000 Accounts Payable", "1000 Operating Checking", "5100 COGS — Subcontractor Drafting", "1100 Accounts Receivable"],
+          "correct_index": 2,
+          "explanation": "The cost of subcontractor drafting is an expense (COGS) that increases with a debit. The liability to the vendor (AP) is credited. Cash is untouched until you pay the bill."
+        },
+        {
+          "q": "Skarion records a $36,000 prepaid Vetro license by debiting Prepaid Software and crediting Cash. Which account does NOT change in that entry?",
+          "options": ["1400 Prepaid Software Licenses", "1000 Operating Checking", "6500 Software & Subscriptions", "Both Cash and Prepaid change"],
+          "correct_index": 2,
+          "explanation": "Only Prepaid Software (debit) and Cash (credit) move. Software Expense does not change at purchase — the $3,000/month expense comes later through amortization adjusting entries."
+        },
+        {
+          "q": "You run the trial balance and total debits equal total credits. What does that actually prove?",
+          "options": ["Every entry was correct and posted to the right account", "The financial statements are ready to publish", "Every entry had equal debits and credits — nothing more", "There are no timing differences left to adjust"],
+          "correct_index": 2,
+          "explanation": "A balanced trial balance proves only that debits equal credits mechanically. It says nothing about whether the right accounts were used or whether accruals are correct. It is a necessary check, not proof of accuracy."
+        },
+        {
+          "q": "At year-end, which accounts are closed to Retained Earnings?",
+          "options": ["Permanent accounts (Assets, Liabilities, Equity)", "Temporary accounts (Revenue and Expenses)", "All accounts are closed at year-end", "Only the Cash account is closed"],
+          "correct_index": 1,
+          "explanation": "Temporary accounts — Revenue and Expense — are closed to Retained Earnings so the next period starts at zero. Permanent accounts (Asset, Liability, Equity) carry their balances forward to the next period."
+        }
       ]
     }
   ]
