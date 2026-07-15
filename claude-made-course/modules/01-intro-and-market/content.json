@@ -1,41 +1,43 @@
 {
-  "title": "Introduction & Job Market Research",
+  "title": "Introduction to OSP Engineering Finance",
   "moduleTag": "Module 01",
   "dayMapping": "Day 1",
-  "subhead": "Welcome to the Skarion Accounting Track. Let's explore what the job market actually demands.",
+  "subhead": "Welcome to Skarion Engineering. We design the physical infrastructure that connects America.",
   "chunks": [
     {
       "type": "content",
       "title": "The Skarion Approach",
-      "bodyHtml": "<p>Most accounting courses teach you how to pass the CPA exam. We teach you how to do the actual job of a Staff Accountant.</p><p>You will step into the role of a newly hired accountant at <strong>Skarion Manufacturing LLC</strong>. By the end of this track, you will have reconciled actual bank statements, processed messy payroll, and completed a full month-end close.</p>"
+      "bodyHtml": "<p>You have just been hired as a Staff Accountant at <strong>Skarion Engineering</strong>, an Outside Plant (OSP) and GIS engineering firm designing fiber networks across the US.</p><p>We don't manufacture widgets. We sell <em>expertise</em> and <em>time</em>. Accounting for a project-based services firm is entirely different from what you learn in a textbook.</p>"
     },
     {
       "type": "timeline",
-      "title": "The Modern Accountant's Workflow",
+      "title": "The Lifecycle of an OSP Project",
       "steps": [
-        {"title": "Daily", "desc": "Process vendor bills, record customer payments, and categorize bank feed transactions."},
-        {"title": "Weekly", "desc": "Run payroll, issue customer invoices, and review Accounts Receivable aging."},
-        {"title": "Month-End", "desc": "Reconcile bank accounts, post accrual journal entries, and generate financial statements."}
+        {"title": "1. Intake", "desc": "We receive ROW shapefiles from the client and scope the job."},
+        {"title": "2. HLD & LLD", "desc": "Engineers use AutoCAD and Vetro to draft the High-Level and Low-Level Designs. (This is our WIP)."},
+        {"title": "3. Permitting", "desc": "We submit permit packages to the DOT and municipalities."},
+        {"title": "4. Delivery & Billing", "desc": "We deliver the final construction-ready splice packages and recognize revenue."}
       ]
     },
     {
       "type": "content",
       "title": "What Employers Actually Want",
-      "bodyHtml": "<p>We analyzed over 40 real-world job postings for Entry-Level and Staff Accountants. The results might surprise you.</p><ul><li><strong>Excel</strong> is listed more often than QuickBooks.</li><li><strong>Month-end close</strong> experience is the #1 differentiator.</li><li>Employers expect you to understand <strong>Accrual Accounting</strong>, not just basic bookkeeping.</li></ul>",
+      "bodyHtml": "<p>When hiring an accountant for an engineering firm, hiring managers look for specific skills:</p><ul><li><strong>Project-Based Accounting:</strong> Can you allocate software costs (like ArcGIS) to specific client projects?</li><li><strong>WIP Tracking:</strong> Can you calculate the value of a fiber design that is only 50% complete at month-end?</li><li><strong>Advanced Excel:</strong> Can you VLOOKUP thousands of labor hours from our offshore drafting team?</li></ul>",
       "callout": {
         "type": "tip",
-        "html": "Don't just list 'Excel' on your resume. List 'VLOOKUP, PivotTables, and Bank Reconciliation in Excel'."
+        "html": "Understanding <em>Revenue Recognition</em> (when a project is actually 'done' and billable) is the hardest part of this job."
       }
     },
     {
       "type": "quiz",
+      "intro": "Let's see if you understand our business model.",
       "title": "Market Reality Check",
       "questions": [
         {
-          "q": "Based on market research, which software skill is most frequently explicitly required for Staff Accountants?",
-          "options": ["QuickBooks Online", "Microsoft Excel", "SAP", "Oracle NetSuite"],
-          "correct_index": 1,
-          "explanation": "Excel is the undisputed king. Every company uses it, even if they have an ERP like SAP or NetSuite."
+          "q": "What is the primary 'product' that Skarion Engineering sells?",
+          "options": ["Physical fiber optic cables", "Telecommunications hardware", "Engineering design packages and permits", "Manufacturing equipment"],
+          "correct_index": 2,
+          "explanation": "We are a services firm. We don't lay the cable; we deliver the blueprints (HLD, LLD, permits) so the construction crews can build it."
         }
       ]
     }

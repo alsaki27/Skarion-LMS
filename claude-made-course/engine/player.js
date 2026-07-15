@@ -259,19 +259,20 @@
   }
 
   function renderQuiz(c, idx) {
-    var html = '<div class="chunk-kicker">Knowledge check</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    var html = '<div class="chunk-kicker">Gamified Challenge 🏆</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    if(c.intro) html += '<p class="prose" style="margin-bottom:24px;">' + esc(c.intro) + '</p>';
     c.questions.forEach(function (q, qi) {
-      html += '<div class="quiz-q" data-qi="' + qi + '">';
-      html += '<div class="quiz-q-text">' + (qi + 1) + ". " + esc(q.q) + "</div>";
-      html += '<div class="quiz-opts">';
+      html += '<div class="quiz-q gamified" data-qi="' + qi + '">';
+      html += '<div class="quiz-q-text"><strong>Q' + (qi + 1) + ':</strong> ' + esc(q.q) + "</div>";
+      html += '<div class="quiz-opts cards">';
       q.options.forEach(function (opt, oi) {
-        html += '<button type="button" class="quiz-opt" onclick="SkarionPlayer.answerQuiz(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
+        html += '<button type="button" class="quiz-opt-card" onclick="SkarionPlayer.answerQuiz(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
       });
       html += "</div>";
-      html += '<div class="quiz-explain" id="explain-' + idx + "-" + qi + '">' + esc(q.explanation || "") + "</div>";
+      html += '<div class="quiz-explain playful" id="explain-' + idx + "-" + qi + '"></div>';
       html += "</div>";
     });
-    html += '<div class="quiz-score-banner" id="score-' + idx + '"></div>';
+    html += '<div class="quiz-score-banner gamified-banner" id="score-' + idx + '"></div>';
     return html;
   }
 
@@ -324,23 +325,41 @@
     answerQuiz: function (chunkIdx, qi, oi) {
       var qDef = LESSON.chunks[chunkIdx].questions[qi];
       var qEl = $('.quiz-q[data-qi="' + qi + '"]', chunks[chunkIdx + 1].el);
-      var buttons = $all(".quiz-opt", qEl);
+      var buttons = $all(".quiz-opt-card", qEl);
+      var isCorrect = (oi === qDef.correct_index);
+      
       buttons.forEach(function (b, i) {
         b.disabled = true;
         if (i === qDef.correct_index) b.classList.add("correct");
         else if (i === oi) b.classList.add("incorrect");
       });
-      $("#explain-" + chunkIdx + "-" + qi).classList.add("show");
+      
+      var explainBox = $("#explain-" + chunkIdx + "-" + qi);
+      if (isCorrect) {
+        qEl.classList.add("animate-burst");
+        explainBox.innerHTML = "🎉 <strong>Nailed it!</strong> " + esc(qDef.explanation || "");
+        explainBox.classList.add("success-text");
+      } else {
+        qEl.classList.add("animate-shake");
+        explainBox.innerHTML = "💥 <strong>Not quite!</strong> " + esc(qDef.explanation || "");
+        explainBox.classList.add("error-text");
+      }
+      explainBox.classList.add("show");
 
       state.quizScores[chunkIdx] = state.quizScores[chunkIdx] || {};
-      state.quizScores[chunkIdx][qi] = oi === qDef.correct_index;
+      state.quizScores[chunkIdx][qi] = isCorrect;
 
       var total = LESSON.chunks[chunkIdx].questions.length;
       var answered = Object.keys(state.quizScores[chunkIdx]).length;
       if (answered === total) {
         var correct = Object.values(state.quizScores[chunkIdx]).filter(Boolean).length;
         var banner = $("#score-" + chunkIdx);
-        banner.textContent = "Score: " + correct + " / " + total + (correct === total ? " — nice work." : " — review the explanations above.");
+        if (correct === total) {
+          banner.innerHTML = "🏆 <strong>Flawless Victory!</strong> " + correct + "/" + total + " points.";
+          banner.classList.add("perfect");
+        } else {
+          banner.innerHTML = "⭐ <strong>Good effort!</strong> You scored " + correct + "/" + total + ". Check the explanations above to master this.";
+        }
         banner.classList.add("show");
         chunks[chunkIdx + 1].satisfied = true;
         updateNav();

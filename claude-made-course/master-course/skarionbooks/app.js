@@ -10,9 +10,9 @@ const INITIAL_ACCOUNTS = [
   { id: '2300', name: 'Accrued Expenses', type: 'Liability', normal: 'credit', balance: 0 },
   { id: '2500', name: 'Loan Payable', type: 'Liability', normal: 'credit', balance: 250000 },
   { id: '3000', name: 'Owner Equity', type: 'Equity', normal: 'credit', balance: -81400 }, // Plug to balance Jan 1
-  { id: '4000', name: 'Sales Revenue', type: 'Revenue', normal: 'credit', balance: 0 },
+  { id: '4000', name: 'Engineering Design Revenue', type: 'Revenue', normal: 'credit', balance: 0 },
   { id: '4050', name: 'Sales Discounts', type: 'Revenue', normal: 'debit', balance: 0 },
-  { id: '5000', name: 'Cost of Goods Sold', type: 'Expense', normal: 'debit', balance: 0 },
+  { id: '5000', name: 'COGS - Subcontractors', type: 'Expense', normal: 'debit', balance: 0 },
   { id: '6100', name: 'Rent Expense', type: 'Expense', normal: 'debit', balance: 0 },
   { id: '6200', name: 'Utilities Expense', type: 'Expense', normal: 'debit', balance: 0 },
   { id: '6300', name: 'Wages Expense', type: 'Expense', normal: 'debit', balance: 0 },

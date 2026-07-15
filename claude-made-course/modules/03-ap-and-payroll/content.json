@@ -1,43 +1,43 @@
 {
-  "title": "Accounts Payable & Payroll",
+  "title": "AP & Payroll for OSP Engineering",
   "moduleTag": "Module 03",
   "dayMapping": "Day 3",
-  "subhead": "Managing cash out: Recording vendor bills and understanding payroll liabilities.",
+  "subhead": "Managing offshore draftsmen invoices and US-based engineering payroll.",
   "chunks": [
     {
       "type": "content",
-      "title": "The Accounts Payable Cycle",
-      "bodyHtml": "<p>When Skarion receives a bill from a vendor, we don't always pay it immediately. Instead, we enter it into our system as an <strong>Accounts Payable (AP)</strong>.</p><p>This is a 2-step process under accrual accounting:</p><ol><li><strong>Record the Bill:</strong> Debit Expense, Credit AP</li><li><strong>Pay the Bill:</strong> Debit AP, Credit Cash</li></ol>"
+      "title": "The Global Engineering Workforce",
+      "bodyHtml": "<p>Skarion Engineering operates a hybrid model. We have US-based Project Managers (W2 Employees) and highly skilled offshore CAD/GIS draftsmen (1099 Contractors/Vendors).</p><p>This means our cash outfalls fall into two massive buckets: <strong>Accounts Payable</strong> (paying the offshore design firms via wire transfer) and <strong>Payroll</strong> (paying our US engineers via direct deposit).</p>"
     },
     {
       "type": "hotspot",
-      "title": "Anatomy of a Vendor Invoice",
+      "title": "Analyze an Offshore Vendor Invoice",
       "image": "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80",
       "hotspots": [
-        {"x": 75, "y": 15, "label": "Invoice Number", "info": "Crucial! Always enter the exact invoice number to avoid duplicate payments."},
-        {"x": 20, "y": 30, "label": "Vendor Name", "info": "Verify this matches our approved vendor list."},
-        {"x": 80, "y": 85, "label": "Total Amount Due", "info": "This is the amount we will credit to Accounts Payable."}
+        {"x": 75, "y": 15, "label": "Invoice Number", "info": "Crucial! Always enter the exact invoice number to avoid duplicate wires."},
+        {"x": 20, "y": 40, "label": "Project Code", "info": "We must tag this expense to the specific fiber build (e.g., Project Alpha 500-mile build) to track project profitability."},
+        {"x": 80, "y": 85, "label": "Total USD Amount", "info": "Make sure the conversion rate is correct if billed in foreign currency. This hits AP."}
       ]
     },
     {
       "type": "content",
-      "title": "Payroll: It's More Than Just Wages",
-      "bodyHtml": "<p>When processing payroll, the gross wage isn't what the employee receives. You must withhold taxes and record employer taxes.</p><p>For a $5,000 gross payroll, the entry looks like this:</p><ul><li>Debit Wages Expense: $5,000</li><li>Credit Payroll Liabilities (Taxes withheld): $1,000</li><li>Credit Cash (Net Pay): $4,000</li></ul>"
+      "title": "Payroll Liabilities",
+      "bodyHtml": "<p>For our US-based engineers, the gross wage isn't what they receive. You must withhold taxes and record employer taxes.</p><p>For a $10,000 gross payroll run for the US team, the entry looks like this:</p><ul><li>Debit Engineering Wages Expense: $10,000</li><li>Credit Payroll Liabilities (Taxes withheld): $2,000</li><li>Credit Cash (Net Pay): $8,000</li></ul>"
     },
     {
       "type": "journal_entry_builder",
-      "title": "Record a Vendor Bill",
-      "scenarioHtml": "<p>Skarion received a $500 bill from OfficePro Supplies. We will pay it in 30 days. Record the receipt of the bill.</p>",
+      "title": "Record an Offshore Drafting Bill",
+      "scenarioHtml": "<p>We received a $4,500 invoice from Global CAD Solutions for drafting 100 miles of LLD. We will pay it in 30 days. Record the receipt of the bill.</p>",
       "startRows": 2,
       "accounts": [
         "1000 - Operating Checking",
         "2000 - Accounts Payable",
-        "6100 - Rent Expense",
-        "6200 - Office Supplies Expense"
+        "5100 - Cost of Goods Sold - Subcontractors",
+        "6500 - Software & Subscriptions Expense"
       ],
       "solution": [
-        { "account": "6200 - Office Supplies Expense", "side": "debit", "amount": 500 },
-        { "account": "2000 - Accounts Payable", "side": "credit", "amount": 500 }
+        { "account": "5100 - Cost of Goods Sold - Subcontractors", "side": "debit", "amount": 4500 },
+        { "account": "2000 - Accounts Payable", "side": "credit", "amount": 4500 }
       ]
     }
   ]

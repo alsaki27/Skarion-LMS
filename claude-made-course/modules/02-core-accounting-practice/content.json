@@ -1,45 +1,45 @@
 {
-  "title": "Core Accounting Theory",
+  "title": "Core Accounting Theory for Engineering",
   "moduleTag": "Module 02",
   "dayMapping": "Day 2",
-  "subhead": "Master the language of business: Accounts, Debits, and Credits.",
+  "subhead": "Applying Debits, Credits, and Capex to a Services Firm.",
   "chunks": [
     {
       "type": "content",
       "title": "The Accounting Equation",
-      "bodyHtml": "<p>Everything in accounting is built on one simple equation: <strong>Assets = Liabilities + Equity</strong>.</p><p>If Skarion Manufacturing buys a $10,000 piece of equipment (Asset) using a bank loan (Liability), the equation remains balanced: $10,000 = $10,000 + $0.</p>"
+      "bodyHtml": "<p>Everything is built on one simple equation: <strong>Assets = Liabilities + Equity</strong>.</p><p>For Skarion Engineering, our biggest Assets aren't factories. They are Cash, Accounts Receivable (money owed to us for fiber designs), and capitalized software.</p>"
     },
     {
       "type": "drag_and_drop",
       "title": "Categorize the Accounts",
-      "instruction": "Drag each account to its correct classification on the Balance Sheet or Income Statement.",
+      "instruction": "Drag each account to its correct classification for an OSP Engineering Firm.",
       "items": [
-        {"draggable": "Operating Checking", "target": "Asset"},
-        {"draggable": "Accounts Payable", "target": "Liability"},
-        {"draggable": "Sales Revenue", "target": "Revenue"},
-        {"draggable": "Rent Expense", "target": "Expense"},
-        {"draggable": "Accounts Receivable", "target": "Asset"}
+        {"draggable": "Vetro FiberMap Licenses", "target": "Expense"},
+        {"draggable": "Unpaid Offshore Draftsmen", "target": "Liability"},
+        {"draggable": "Billed Route Designs", "target": "Revenue"},
+        {"draggable": "High-End CAD Workstations", "target": "Asset"},
+        {"draggable": "Unbilled HLD Packages", "target": "Asset"}
       ]
     },
     {
       "type": "content",
-      "title": "Debits and Credits (DEAD CLIC)",
-      "bodyHtml": "<p>Forget what you know about your personal bank account. In accounting, Debit just means <em>Left</em>, and Credit means <em>Right</em>.</p><p>Use the <strong>DEAD CLIC</strong> acronym to remember what increases an account:</p><ul><li><strong>D</strong>ebit increases <strong>E</strong>xpenses, <strong>A</strong>ssets, and <strong>D</strong>raws (Dividends).</li><li><strong>C</strong>redit increases <strong>L</strong>iabilities, <strong>I</strong>ncome (Revenue), and <strong>C</strong>apital (Equity).</li></ul>"
+      "title": "Capitalizing vs. Expensing",
+      "bodyHtml": "<p>If we buy a $50 box of pens, we <em>expense</em> it immediately. But if we buy a $15,000 server to host our GIS databases, we <strong>capitalize</strong> it. This means we record it as an Asset on the Balance Sheet and slowly expense it over its useful life (Depreciation).</p><p>Why? Because that server will help us generate revenue for 5 years, so we spread the cost over 5 years.</p>"
     },
     {
       "type": "journal_entry_builder",
-      "title": "Your First Journal Entry",
-      "scenarioHtml": "<p>Skarion Manufacturing just paid $2,000 cash for this month's rent. Record the journal entry.</p>",
+      "title": "Record a Software Purchase",
+      "scenarioHtml": "<p>Skarion Engineering just purchased an $8,000 annual enterprise license for QGIS and Vetro using our operating checking account. Since it benefits the whole year, we capitalize it as a Prepaid Asset.</p>",
       "startRows": 2,
       "accounts": [
         "1000 - Operating Checking",
-        "2000 - Accounts Payable",
-        "4000 - Sales Revenue",
-        "6100 - Rent Expense"
+        "1400 - Prepaid Software Licenses",
+        "6500 - Software & Subscriptions Expense",
+        "2000 - Accounts Payable"
       ],
       "solution": [
-        { "account": "6100 - Rent Expense", "side": "debit", "amount": 2000 },
-        { "account": "1000 - Operating Checking", "side": "credit", "amount": 2000 }
+        { "account": "1400 - Prepaid Software Licenses", "side": "debit", "amount": 8000 },
+        { "account": "1000 - Operating Checking", "side": "credit", "amount": 8000 }
       ]
     }
   ]

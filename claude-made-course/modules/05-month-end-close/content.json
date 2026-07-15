@@ -1,34 +1,35 @@
 {
-  "title": "Month-End Close",
+  "title": "Month-End Close & WIP",
   "moduleTag": "Module 05",
   "dayMapping": "Day 5",
-  "subhead": "The most important week of an accountant's month.",
+  "subhead": "The most important concept in engineering finance: Work-In-Progress (WIP).",
   "chunks": [
     {
       "type": "content",
       "title": "Why We Close the Books",
-      "bodyHtml": "<p>At the end of every month, the accounting team 'closes' the books. This means finalizing all transactions so leadership can look at accurate financial statements.</p><p>If you don't accrue an unpaid electric bill, your Profit & Loss will look artificially good, leading to bad business decisions.</p>"
+      "bodyHtml": "<p>At the end of every month, we finalize all transactions so Skarion leadership knows our exact profit margin per fiber mile.</p><p>For an engineering firm, the hardest part of month-end isn't paying bills—it's calculating exactly how much revenue we 'earned' even if we haven't billed the client yet.</p>"
     },
     {
       "type": "timeline",
-      "title": "The 5-Day Close Process",
+      "title": "The Engineering Month-End Process",
       "steps": [
-        {"title": "Day 1: Cutoff & AP", "desc": "Stop entering new invoices. Ensure all bills from last month are entered."},
-        {"title": "Day 2: Bank Recon", "desc": "Reconcile all bank and credit card accounts to the penny."},
-        {"title": "Day 3: Accruals", "desc": "Post journal entries for expenses incurred but not yet billed (e.g., accrued payroll)."},
-        {"title": "Day 4: Depreciation", "desc": "Record the monthly wear-and-tear on fixed assets."},
-        {"title": "Day 5: Financials", "desc": "Generate the Profit & Loss and Balance Sheet for management review."}
+        {"title": "Day 1: Timesheets", "desc": "Lock all US engineer timesheets and offshore contractor invoices."},
+        {"title": "Day 2: Accrue Subcontractors", "desc": "Post journal entries for offshore design work that is finished but unbilled."},
+        {"title": "Day 3: Calculate WIP", "desc": "Work-In-Progress: Calculate the value of partially completed fiber designs."},
+        {"title": "Day 4: Revenue Recognition", "desc": "Recognize revenue based on the percentage-of-completion method."},
+        {"title": "Day 5: Project Financials", "desc": "Generate Profit & Loss statements for each specific fiber buildout."}
       ]
     },
     {
       "type": "quiz",
+      "intro": "WIP and Accruals are tricky. Let's see how you do.",
       "title": "Month-End Knowledge Check",
       "questions": [
         {
-          "q": "What is the primary purpose of an accrual journal entry?",
-          "options": ["To hide cash from the IRS", "To record an expense that occurred, even if the bill hasn't arrived", "To reconcile the bank statement", "To pay vendors faster"],
+          "q": "Skarion is halfway done with a 100-mile fiber design for a client. We have spent $10,000 on labor, but we can't bill the client until the 100 miles are fully delivered. How do we account for the $10,000 at month-end?",
+          "options": ["Record it as a total loss", "Record it as an Asset (Work-In-Progress)", "Bill the client anyway", "Wait until next year to record it"],
           "correct_index": 1,
-          "explanation": "Accruals ensure expenses are matched to the period they occurred in, regardless of cash flow."
+          "explanation": "Because the work will eventually turn into revenue, we 'park' those costs on the Balance Sheet as a WIP Asset until the project is delivered and billed."
         }
       ]
     }
