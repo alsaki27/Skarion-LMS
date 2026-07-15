@@ -1,35 +1,167 @@
 {
-  "title": "Month-End Close & WIP",
-  "moduleTag": "Module 05",
-  "dayMapping": "Day 5",
-  "subhead": "The most important concept in engineering finance: Work-In-Progress (WIP).",
+  "title": "Month-End Close & Financial Statements",
+  "moduleTag": "Module 06",
+  "dayMapping": "Day 6",
+  "subhead": "The five-day close calendar that turns a month of transactions into auditable financial statements, the adjusting entries that make accruals honest, and the three statements that roll up the result.",
+  "hook": "\"Walk me through a month-end close.\" The interview answer is the five-day timeline, the four types of adjusting entries, and the $242,000 January net income that comes out the other side. This module is that entire walkthrough.",
   "chunks": [
     {
       "type": "content",
-      "title": "Why We Close the Books",
-      "bodyHtml": "<p>At the end of every month, we finalize all transactions so Skarion leadership knows our exact profit margin per fiber mile.</p><p>For an engineering firm, the hardest part of month-end isn't paying bills—it's calculating exactly how much revenue we 'earned' even if we haven't billed the client yet.</p>"
+      "kicker": "Why it exists",
+      "title": "The month-end close process",
+      "bodyHtml": "<p>Month-end close exists because financial statements are produced <em>once per period</em>, and they must be accurate, complete, and timely. Incomplete or wrong statements lead to bad decisions, missed covenants, and audit findings. The close is governed by a <strong>close checklist</strong> in which every task has an owner, a due date, a status, and supporting documentation.</p><p>The discipline that makes a close work: lock the prior period once it is closed so late entries can't silently change history, and tie every subledger (AR, AP, payroll) back to the GL control account before you declare the period done.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Hard close vs. soft close.</strong> A <em>hard close</em> locks the period permanently — no further entries except through a formal adjustment in the next period. A <em>soft close</em> leaves the period open for corrections up to the audit, usually for recurring accrual estimates. Public companies essentially always hard-close; private mid-size firms like Skarion typically soft-close then hard-close at year-end."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The calendar",
+      "title": "Skarion's 5-day close timeline",
+      "bodyHtml": "<p>This is the actual five-day calendar Skarion runs to close January. Memorize the rhythm — it is what most mid-size services firms look like:</p><table class='data'><tr><th>Day</th><th>Date</th><th>Focus</th></tr><tr><td>Day 1</td><td>Feb 1</td><td>Lock timesheets, lock AP, generate AP aging, post all outstanding invoices.</td></tr><tr><td>Day 2</td><td>Feb 2</td><td>Post payroll entry and employer taxes, book all offshore contractor accruals, amortize prepaids.</td></tr><tr><td>Day 3</td><td>Feb 3</td><td>Calculate WIP, post depreciation, post loan interest accrual, run trial balance.</td></tr><tr><td>Day 4</td><td>Feb 4</td><td>Bank reconciliation, tie AR subledger to GL, tie AP subledger to GL.</td></tr><tr><td>Day 5</td><td>Feb 5</td><td>Review P&amp;L vs. prior month and budget, produce financial statement package, controller sign-off.</td></tr></table><p>Notice the order: cut off the inputs (timesheets, AP, invoices) first, post the accruals and adjustments second, prove the balances tie third, then produce and review statements. You cannot build statements on a trial balance that hasn't been tied.</p>"
     },
     {
       "type": "timeline",
-      "title": "The Engineering Month-End Process",
+      "title": "The 5-day close, step by step",
       "steps": [
-        {"title": "Day 1: Timesheets", "desc": "Lock all US engineer timesheets and offshore contractor invoices."},
-        {"title": "Day 2: Accrue Subcontractors", "desc": "Post journal entries for offshore design work that is finished but unbilled."},
-        {"title": "Day 3: Calculate WIP", "desc": "Work-In-Progress: Calculate the value of partially completed fiber designs."},
-        {"title": "Day 4: Revenue Recognition", "desc": "Recognize revenue based on the percentage-of-completion method."},
-        {"title": "Day 5: Project Financials", "desc": "Generate Profit & Loss statements for each specific fiber buildout."}
+        {"title": "Day 1 — Lock & post", "desc": "Lock timesheets and AP. Generate the AP aging. Post every outstanding invoice so the period's revenue and liabilities are complete."},
+        {"title": "Day 2 — People cost", "desc": "Post the payroll entry and employer taxes. Accrue offshore contractor work done but not yet invoiced. Amortize prepaids for the month."},
+        {"title": "Day 3 — Adjustments", "desc": "Calculate WIP revenue. Post depreciation. Accrue loan interest. Run the unadjusted trial balance."},
+        {"title": "Day 4 — Tie & reconcile", "desc": "Bank reconciliation. Tie AR subledger total to GL account 1100. Tie AP subledger total to GL account 2000."},
+        {"title": "Day 5 — Report & sign-off", "desc": "Review P&L vs prior month and budget. Produce the financial statement package. Controller signs off and the period is closed."}
       ]
     },
     {
+      "type": "content",
+      "kicker": "The heart of close",
+      "title": "Adjusting entries — and the four types",
+      "bodyHtml": "<p>Adjusting entries exist because the accrual principle requires recording things that have happened but generated no paperwork yet. They are why the close takes five days instead of one. There are exactly four types:</p><table class='data'><tr><th>Type</th><th>Skarion example</th></tr><tr><td><strong>Accrued Revenues</strong></td><td>Engineers spent 400 hours on an HLD that is 60% complete and not yet billable — book Unbilled AR (WIP) and revenue.</td></tr><tr><td><strong>Accrued Expenses</strong></td><td>Offshore drafting done Jan 31, invoice not arriving until Feb 4 — accrue COGS now.</td></tr><tr><td><strong>Deferred Revenues</strong></td><td>Client prepaid $120,000; deliver the work and release it from Deferred Revenue to earned revenue.</td></tr><tr><td><strong>Deferred Expenses</strong></td><td>$36,000 prepaid Vetro license amortized $3,000/month to Software Expense.</td></tr></table>"
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Adjusting entry 1 — accrued expense",
+      "title": "Accrue offshore drafting done but not yet invoiced",
+      "railLabel": "JE: accrue GCS",
+      "scenarioHtml": "<p>Global CAD Solutions finished <strong>$14,800</strong> of drafting on January 31st. The invoice arrives February 4th. Under accrual accounting the expense belongs in January. Accrue it now (reverse it on Feb 1 before the real invoice is entered).</p>",
+      "startRows": 2,
+      "accounts": [
+        "2000 - Accounts Payable",
+        "2400 - Accrued Liabilities",
+        "5100 - COGS — Subcontractor Drafting",
+        "1000 - Operating Checking"
+      ],
+      "solution": [
+        { "account": "5100 - COGS — Subcontractor Drafting", "side": "debit", "amount": 14800.00 },
+        { "account": "2400 - Accrued Liabilities", "side": "credit", "amount": 14800.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Adjusting entry 2 — prepaid amortization",
+      "title": "Amortize the Vetro license for January",
+      "railLabel": "JE: amortize",
+      "scenarioHtml": "<p>The <strong>$36,000</strong> Vetro FiberMap license was paid July 1st and recorded as Prepaid Software. 12-month straight-line amortization = <strong>$3,000/month</strong>. Record January's amortization: move $3,000 from the Prepaid asset into Software Expense.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1400 - Prepaid Software Licenses",
+        "6500 - Software & Subscriptions",
+        "5200 - COGS — Software Allocated to Projects",
+        "1000 - Operating Checking"
+      ],
+      "solution": [
+        { "account": "6500 - Software & Subscriptions", "side": "debit", "amount": 3000.00 },
+        { "account": "1400 - Prepaid Software Licenses", "side": "credit", "amount": 3000.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Adjusting entry 3 — depreciation",
+      "title": "Post monthly straight-line depreciation",
+      "railLabel": "JE: depreciation",
+      "scenarioHtml": "<p>Skarion capitalizes 5 GIS workstations at <strong>$12,000 each</strong> ($60,000 total), 5-year useful life, $0 salvage. Straight-line depreciation = <strong>$1,000/month total</strong> ($200/month each). Record January's depreciation.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1500 - GIS Servers & Workstations",
+        "1590 - Accumulated Depreciation",
+        "6700 - Depreciation Expense",
+        "1400 - Prepaid Software Licenses"
+      ],
+      "solution": [
+        { "account": "6700 - Depreciation Expense", "side": "debit", "amount": 1000.00 },
+        { "account": "1590 - Accumulated Depreciation", "side": "credit", "amount": 1000.00 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Adjusting entry 4 — loan interest",
+      "title": "Accrue January loan interest",
+      "railLabel": "JE: interest",
+      "scenarioHtml": "<p>Skarion carries a <strong>$500,000</strong> term loan at <strong>6.5%</strong> annual interest. January's accrued interest = $500,000 × 6.5% ÷ 12 = <strong>$2,708.33</strong>. Accrue the interest (it has been incurred even though the cash payment is later).</p>",
+      "startRows": 2,
+      "accounts": [
+        "6800 - Interest Expense",
+        "2300 - Accrued Interest",
+        "1000 - Operating Checking",
+        "2000 - Accounts Payable"
+      ],
+      "solution": [
+        { "account": "6800 - Interest Expense", "side": "debit", "amount": 2708.33 },
+        { "account": "2300 - Accrued Interest", "side": "credit", "amount": 2708.33 }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "kicker": "Adjusting entry 5 — WIP revenue",
+      "title": "Recognize unbilled WIP revenue",
+      "railLabel": "JE: WIP",
+      "scenarioHtml": "<p>Engineers spent <strong>400 hours</strong> on an HLD in January at a blended rate of <strong>$85/hr</strong> = $34,000 of work. The HLD is <strong>60% complete</strong> and not yet billable. Under the percentage-of-completion method, recognize the earned-but-unbilled portion: Dr Unbilled AR (WIP) $34,000 / Cr Engineering Design Revenue $34,000.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1200 - Unbilled AR (WIP)",
+        "1100 - Accounts Receivable",
+        "4000 - Engineering Design Revenue",
+        "2500 - Deferred Revenue"
+      ],
+      "solution": [
+        { "account": "1200 - Unbilled AR (WIP)", "side": "debit", "amount": 34000.00 },
+        { "account": "4000 - Engineering Design Revenue", "side": "credit", "amount": 34000.00 }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The deliverable",
+      "title": "The three core financial statements",
+      "bodyHtml": "<p>Once adjustments are posted and the adjusted trial balance balances, it rolls up into the three statements management actually reads:</p><p><strong>1. Income Statement</strong> — Revenue − COGS − Operating Expenses = Net Income. Skarion January: <strong>$480,000 revenue − $140,000 COGS − $98,000 OpEx = $242,000 Net Income.</strong> This is performance over a period.</p><p><strong>2. Balance Sheet</strong> — Assets = Liabilities + Equity. A snapshot of financial position at a point in time (e.g. January 31). Every adjusting entry from the close flows here: prepaid amortization, depreciation, accruals, WIP.</p><p><strong>3. Cash Flow Statement</strong> — three sections: <em>Operating</em> (cash from running the business), <em>Investing</em> (capex, asset purchases), and <em>Financing</em> (loans, equity, distributions). Critically: <strong>a profitable business can run out of cash</strong> if AR isn't collected. The cash flow statement is where that gap becomes visible.</p><p><strong>Key ratios at month-end:</strong></p><table class='data'><tr><th>Ratio</th><th>Formula</th><th>Skarion Jan</th></tr><tr><td>Gross margin %</td><td>(Revenue − COGS) ÷ Revenue</td><td>($480K − $140K) ÷ $480K = <strong>70.8%</strong></td></tr><tr><td>Operating margin %</td><td>(Revenue − COGS − OpEx) ÷ Revenue</td><td>$242K ÷ $480K = <strong>50.4%</strong></td></tr><tr><td>Current ratio</td><td>Current Assets ÷ Current Liabilities</td><td>cash &amp; AR heavy — liquidity check</td></tr><tr><td>DSO</td><td>Average AR ÷ Credit Revenue × 365</td><td>$997,700 ÷ $4.8M × 365 = <strong>75.8 days</strong></td></tr></table>"
+    },
+    {
       "type": "quiz",
-      "intro": "WIP and Accruals are tricky. Let's see how you do.",
-      "title": "Month-End Knowledge Check",
+      "intro": "Four close and financial-statement questions, the exact ones that come up in entry-level interviews.",
+      "title": "Month-end close & financial statements quiz",
       "questions": [
         {
-          "q": "Skarion is halfway done with a 100-mile fiber design for a client. We have spent $10,000 on labor, but we can't bill the client until the 100 miles are fully delivered. How do we account for the $10,000 at month-end?",
-          "options": ["Record it as a total loss", "Record it as an Asset (Work-In-Progress)", "Bill the client anyway", "Wait until next year to record it"],
+          "q": "What is the purpose of a closing entry at year-end?",
+          "options": ["To zero out permanent (Asset/Liability/Equity) accounts", "To close temporary (Revenue/Expense) accounts to Retained Earnings so the new year starts clean", "To delete all transactions from the period", "To prepare tax returns only"],
           "correct_index": 1,
-          "explanation": "Because the work will eventually turn into revenue, we 'park' those costs on the Balance Sheet as a WIP Asset until the project is delivered and billed."
+          "explanation": "Closing entries reset temporary accounts (Revenue and Expense) to zero by transferring their balances to Retained Earnings. Permanent accounts carry forward; the next period starts with empty revenue/expense accounts."
+        },
+        {
+          "q": "Skarion's January revenue is $480,000. COGS is $140,000. What is the gross profit margin?",
+          "options": ["29.2%", "50.4%", "70.8%", "242,000"],
+          "correct_index": 2,
+          "explanation": "Gross profit = $480,000 − $140,000 = $340,000. Margin = $340,000 ÷ $480,000 = 70.8%. (50.4% would be operating margin after also subtracting $98,000 OpEx.)"
+        },
+        {
+          "q": "Which financial statement shows whether the company can pay its bills next month (liquidity)?",
+          "options": ["Income Statement", "Balance Sheet", "Cash Flow Statement", "Trial Balance"],
+          "correct_index": 1,
+          "explanation": "Liquidity is a snapshot question — answered by the Balance Sheet, specifically the Current Assets vs Current Liabilities comparison (the Current Ratio). The income statement is performance over time; the cash flow statement is cash movement."
+        },
+        {
+          "q": "Skarion is profitable but running low on cash. Which statement reveals why?",
+          "options": ["Income Statement", "Balance Sheet", "Cash Flow Statement", "Statement of Retained Earnings"],
+          "correct_index": 2,
+          "explanation": "The Cash Flow Statement reconciles profit to cash. If cash is falling despite profit, the answer is almost always in Operations — usually uncollected AR (or growing inventory/prepaids). The Cash Flow Statement makes the gap visible."
         }
       ]
     }

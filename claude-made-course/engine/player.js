@@ -87,7 +87,7 @@
 
     chunks.push(makeScreen("intro", "Start", renderIntro(), false));
     LESSON.chunks.forEach(function (c, i) {
-      var requiresAction = c.type === "quiz" || c.type === "journal_entry_builder";
+      var requiresAction = requiresInteraction(c);
       chunks.push(makeScreen("c" + i, c.railLabel || shortLabel(c.title, i + 1), renderChunk(c, i), requiresAction));
     });
     chunks.push(makeScreen("done", "Done", renderComplete(), false));
@@ -140,11 +140,20 @@
     );
   }
 
+  function requiresInteraction(c) {
+    return c.type === "quiz" || c.type === "review_quiz" || c.type === "journal_entry_builder" ||
+           c.type === "timed_drill" || c.type === "scenario_lab";
+  }
+
   function renderChunk(c, idx) {
     switch (c.type) {
       case "content": return renderContent(c);
       case "flip_cards": return renderFlipCards(c, idx);
       case "quiz": return renderQuiz(c, idx);
+      case "review_quiz": return renderReviewQuiz(c, idx);
+      case "timed_drill": return renderTimedDrill(c, idx);
+      case "scenario_lab": return renderScenarioLab(c, idx);
+      case "video": return renderVideo(c, idx);
       case "journal_entry_builder": return renderJE(c, idx);
       case "exercise": return renderExercise(c);
       case "timeline": return renderTimeline(c);
@@ -152,6 +161,106 @@
       case "hotspot": return renderHotspot(c, idx);
       default: return "<p>Unknown chunk type: " + esc(c.type) + "</p>";
     }
+  }
+
+  function renderVideo(c, idx) {
+    var html = '<div class="chunk-kicker">Watch first ▶</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose">' + esc(c.intro || "") + "</p>";
+    html += '<div class="video-frame" id="video-frame-' + idx + '">';
+    if (c.videoSrc) {
+      html += '<video id="vid-' + idx + '" controls preload="metadata" playsinline style="width:100%;max-width:760px;border-radius:10px;display:block;"' +
+              (c.posterSrc ? ' poster="' + esc(c.posterSrc) + '"' : "") + ">" +
+              '<source src="' + esc(c.videoSrc) + '">' +
+              "</video>";
+    } else if (c.embedSrc) {
+      html += '<iframe src="' + esc(c.embedSrc) + '" style="width:100%;max-width:760px;aspect-ratio:16/9;border:0;border-radius:10px;" allowfullscreen></iframe>';
+    }
+    html += "</div>";
+    // Transcript fallback (shown when no real video exists)
+    if (c.transcript && (!c.videoSrc && !c.embedSrc)) {
+      html += '<div class="video-transcript"><div class="chunk-kicker">Transcript (video not recorded yet)</div><div class="prose">' + c.transcript + "</div></div>";
+      html += '<button type="button" class="nav-btn primary" style="margin-top:18px;" onclick="SkarionPlayer.markVideoDone(' + idx + ')">I\'ve read this ▶</button>';
+    }
+    html += '<div id="video-fb-' + idx + '"></div>';
+    return html;
+  }
+
+  function renderReviewQuiz(c, idx) {
+    var html = '<div class="chunk-kicker" style="color:var(--accent-secondary,#2563eb);">Spaced repetition recall</div>';
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose" style="margin-bottom:24px;">' + esc(c.intro || "Before we continue, let's make sure the last module is locked in.") + "</p>";
+    c.questions.forEach(function (q, qi) {
+      html += '<div class="quiz-q review quiz-q" data-qi="' + qi + '">';
+      html += '<div class="quiz-q-text"><strong>Q' + (qi + 1) + ':</strong> ' + esc(q.q) + "</div>";
+      if (q.type === "open") {
+        html += '<textarea class="review-open" data-qi="' + qi + '" placeholder="Type your answer (just for your own recall)"></textarea>';
+      } else {
+        html += '<div class="quiz-opts cards">';
+        q.options.forEach(function (opt, oi) {
+          html += '<button type="button" class="quiz-opt-card" onclick="SkarionPlayer.answerReview(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
+        });
+        html += "</div>";
+      }
+      html += '<div class="quiz-explain playful" id="explain-r-' + idx + "-" + qi + '"></div>';
+      html += "</div>";
+    });
+    html += '<div class="quiz-score-banner gamified-banner" id="score-r-' + idx + '"></div>';
+    return html;
+  }
+
+  function renderTimedDrill(c, idx) {
+    var html = '<div class="chunk-kicker" style="color:var(--accent-secondary,#2563eb);">Timed speed drill</div>';
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose" style="margin-bottom:18px;">' + esc(c.intro || "60 seconds per entry. Answer fast — recall under pressure is the goal.") + "</p>";
+    html += '<div class="drill-status" id="drill-status-' + idx + '"></div>';
+    c.questions.forEach(function (q, qi) {
+      html += '<div class="quiz-q timed" data-qi="' + qi + '" id="drill-q-' + idx + '-' + qi + '" style="display:none;">';
+      html += '<div class="drill-timer" id="drill-timer-' + idx + '-' + qi + '">60</div>';
+      html += '<div class="quiz-q-text"><strong>Entry ' + (qi + 1) + ' of ' + c.questions.length + ':</strong> ' + esc(q.q) + "</div>";
+      html += '<div class="quiz-opts cards">';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-opt-card" onclick="SkarionPlayer.answerDrill(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
+      });
+      html += "</div>";
+      html += '<div class="quiz-explain playful" id="drill-explain-' + idx + "-" + qi + '"></div>';
+      html += "</div>";
+    });
+    html += '<div class="quiz-score-banner gamified-banner" id="drill-score-' + idx + '"></div>';
+    html += '<button type="button" class="nav-btn primary" id="drill-start-' + idx + '" onclick="SkarionPlayer.startDrill(' + idx + ')" style="margin-top:18px;">Start drill →</button>';
+    return html;
+  }
+
+  function renderScenarioLab(c, idx) {
+    var html = '<div class="chunk-kicker" style="color:var(--success-color,#059669);">Advanced scenario lab</div>';
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose"><strong>Estimated time:</strong> ' + esc(c.time || "45–60 min") + "</p>";
+    html += '<p class="prose">' + esc(c.intro || "") + "</p>";
+    html += '<div class="scenario-tabs">';
+    html += '<button class="scenario-tab active" onclick="SkarionPlayer.scenarioTab(' + idx + ',\'work\')">Your work</button>';
+    html += '<button class="scenario-tab" id="st-sol-' + idx + '" onclick="SkarionPlayer.scenarioTab(' + idx + ',\'sol\')">Model solution</button>';
+    html += "</div>";
+    html += '<div class="scenario-panel" id="sp-work-' + idx + '">';
+    if (c.setup) html += '<div class="prose"><div class="chunk-kicker">Setup</div>' + c.setup + "</div>";
+    if (c.tasks) {
+      html += '<div class="prose"><div class="chunk-kicker">Your tasks</div><ol>';
+      c.tasks.forEach(function (t) { html += "<li>" + t + "</li>"; });
+      html += "</ol></div>";
+    }
+    if (c.files && c.files.length) {
+      html += '<div class="exercise-files">';
+      c.files.forEach(function (f) {
+        html += '<a class="file-chip" href="' + esc(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
+      });
+      html += "</div>";
+    }
+    html += '<div class="reflection-box"><label class="chunk-kicker">' + esc(c.submissionPrompt || "Submit your work and reconciliation memo here (saved locally in this browser only)") + '</label><textarea id="sc-sub-' + idx + '" placeholder="Paste your journal entries, memos, and conclusions here..."></textarea></div>';
+    html += '<button type="button" class="nav-btn primary" style="margin-top:14px;" onclick="SkarionPlayer.submitScenario(' + idx + ')">Submit scenario work</button>';
+    html += '<div class="je-feedback" id="sc-fb-' + idx + '"></div>';
+    html += "</div>";
+    html += '<div class="scenario-panel" id="sp-sol-' + idx + '" style="display:none;">';
+    html += '<div class="prose">' + (c.solution || "<em>Model solution available after you submit your own work.</em>") + "</div>";
+    html += "</div>";
+    return html;
   }
 
   function renderTimeline(c) {

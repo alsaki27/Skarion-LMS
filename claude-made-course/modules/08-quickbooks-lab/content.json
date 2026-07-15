@@ -1,87 +1,52 @@
 {
-  "title": "QuickBooks Online Lab",
-  "moduleTag": "Module 02 · Skarion Manufacturing LLC",
-  "moduleTitle": "QuickBooks Online Lab",
-  "dayMapping": "Day 1 of the 10-day path",
-  "subhead": "QuickBooks Online is the #1 accounting software requested in real entry-level job postings. This module sets up Skarion Manufacturing LLC from scratch and walks through the workflows you'll use every single day on the job.",
-  "hook": "45% of entry-level accounting postings explicitly require QuickBooks experience. This is the software you'll actually be judged on in your first interview.",
+  "title": "SkarionBooks Lab — QuickBooks Simulator",
+  "moduleTag": "Module 08",
+  "dayMapping": "Day 8",
+  "subhead": "SkarionBooks is our custom QuickBooks simulator — a full SPA with a chart of accounts, journal entry posting, AR invoicing, cash receipts, bank reconciliation, and financial reports. No paid QBO trial required.",
+  "hook": "\"Do you actually know your way around a GL system, or only the textbook?\" SkarionBooks lets you prove it: open the simulator, post the entries you learned in Modules 02–06, and produce real reports off real Skarion Engineering numbers.",
   "chunks": [
     {
       "type": "content",
       "kicker": "Before you start",
-      "title": "This lesson pairs with a live QuickBooks Online trial",
-      "bodyHtml": "<p>Everything in this module is designed to be followed inside a real, free QuickBooks Online trial (30 days, no credit card required for the trial). The company you'll build is <strong>Skarion Manufacturing LLC</strong> — US locale, USD, Manassas, Virginia.</p><p>The walkthrough script and every dollar figure below are real numbers pulled directly from the rest of the course (the January practice packet, the AP invoice batch, the bank statements) — not made up, and not from an unrelated demo company. Where you see a bracketed <code>[SCREENSHOT]</code> marker, that's where you'd capture your own screen while following along live.</p>",
-      "callout": {
-        "type": "warning",
-        "html": "<strong>Heads up:</strong> an earlier draft of this walkthrough was built inside the wrong QuickBooks demo company (\"kaizen\", a different currency, unrelated numbers). It's been fully corrected here to use real Skarion data throughout."
-      }
-    },
-    {
-      "type": "content",
-      "kicker": "Step 1-3",
-      "title": "Company setup, chart of accounts, opening balances",
-      "bodyHtml": "<p><strong>1. Company setup:</strong> QBO free trial → United States/USD → Company name: Skarion Manufacturing LLC → Industry: Manufacturing → Fiscal year Jan–Dec → Accrual basis.</p><p><strong>2. Chart of accounts</strong> — the core accounts you'll use throughout the course:</p><table class='data'><tr><th>Type</th><th>Key accounts</th></tr><tr><td>Assets</td><td>1000 Operating Checking · 1100 Accounts Receivable · 1500 Fixed Assets · 1590 Accumulated Depreciation</td></tr><tr><td>Liabilities</td><td>2000 Accounts Payable · 2100 Sales Tax Payable · 2500 Loan Payable</td></tr><tr><td>Revenue/COGS</td><td>4000 Sales Revenue · 5000 Cost of Goods Sold</td></tr><tr><td>Expenses</td><td>6100 Rent · 6300 Wages · 6700 Depreciation · 6800 Interest</td></tr></table><p><strong>3. Opening balances (January 1, 2026):</strong> Operating Checking $132,500.00 · Accounts Receivable $118,400.00 · Accounts Payable $82,300.00 · Loan Payable $250,000.00.</p>"
-    },
-    {
-      "type": "flip_cards",
-      "title": "QBO navigation — know where things live",
-      "railLabel": "Flip cards",
-      "cards": [
-        { "front": "Where do you enter a vendor bill?", "back": "Expenses > Bills — this is the AP entry point." },
-        { "front": "Where do you create a customer invoice?", "back": "Sales > Invoices — this is the AR entry point." },
-        { "front": "Where do you reconcile a bank account?", "back": "Accounting > Reconcile (or the gear icon > Tools > Reconcile)." },
-        { "front": "Where do you run the P&L and Balance Sheet?", "back": "Reports > search \"Profit and Loss\" or \"Balance Sheet\" — both export to Excel from the report screen." },
-        { "front": "Where do you record a customer payment?", "back": "Sales > Receive Payment, then apply it against the open invoice(s)." }
-      ]
-    },
-    {
-      "type": "content",
-      "kicker": "Step 4-6",
-      "title": "Real transactions: 5 bills, 5 invoices, 5 payments",
-      "bodyHtml": "<p><strong>5 vendor bills</strong> (from the Module 05 AP batch) — enter each under Expenses &gt; Bills, coded to the right expense account:</p><table class='data'><tr><th>Vendor</th><th>Invoice #</th><th>Amount</th></tr><tr><td>Dominion Aluminum &amp; Fasteners</td><td>DAF-2601-014</td><td>$3,896.33</td></tr><tr><td>Potomac Steel Supply</td><td>PSS-2601-001</td><td>$5,700.30</td></tr><tr><td>Commonwealth Powder Coating</td><td>CPC-2601-002</td><td>$1,385.00</td></tr><tr><td>MidAtlantic Tool Rental</td><td>MTR-2601-001</td><td>$1,411.25</td></tr><tr><td>Capital Safety Gear</td><td>CSG-2601-003</td><td>$875.98</td></tr></table><p><strong>5 customer invoices</strong> (from the Module 03 AR data) — enter under Sales &gt; Invoices with VA 5.3% sales tax applied only to taxable goods lines. Example: NOVA FiberBuild Contractors, invoice SMI-2601-001, $15,250.00 + $808.25 tax = <strong>$16,058.25</strong>, terms Net 30.</p><p><strong>5 customer payments</strong> — use Receive Payment against those invoices. Include at least one early-payment discount and one short-pay from the AR Payment Remittance Batch so you practice the full range of what actually happens in AR.</p>"
-    },
-    {
-      "type": "content",
-      "kicker": "Step 7",
-      "title": "Reconcile the bank account",
-      "bodyHtml": "<p>Use the January 2026 bank statement to reconcile Operating Checking. Starting balance $132,500.00 should tie to what you entered in Step 3. Walk through matching every transaction and resolving January's three seeded problems — a duplicate deposit, an unrecorded bank fee, and an outstanding check — until the reconciliation difference reads <strong>$0.00</strong>.</p>",
+      "title": "What SkarionBooks is — and what it isn't",
+      "bodyHtml": "<p>SkarionBooks is a self-contained ledger simulator built for this course. It comes <strong>pre-loaded with Skarion Engineering's</strong> full chart of accounts and opening balances, so you can post journal entries, create AR invoices, apply cash receipts, run a bank reconciliation, and generate a P&amp;L and Balance Sheet — without needing a $600/year QuickBooks Online subscription.</p><p><strong>Pre-loaded trial balance (opening):</strong> 47 accounts, ~$1.2M in opening Accounts Receivable, $340,000 in Operating Checking, $280,000 in Accounts Payable, a $500,000 term loan at 6.5%, and ~$2.1M in equity. Total debits equal total credits by construction — your job is to keep them that way as you post.</p><p>You do not configure the COA from scratch here; you did that work in Module 02. Here you <em>use</em> it: process invoices, post entries, reconcile, and report.</p>",
       "callout": {
         "type": "tip",
-        "html": "This is the exact same reconciliation logic you'll practice in depth in Module 04 — QBO's Reconcile screen just automates part of the matching you'd otherwise do by hand in Excel."
+        "html": "Open <strong>SkarionBooks</strong> using the link in the lab below (it runs as a single-page app inside the course package). Keep it open in a second tab while you work through each task — post each entry in SkarionBooks, then come back here to check off the next step."
       }
     },
     {
-      "type": "quiz",
-      "title": "Check your understanding",
-      "questions": [
-        {
-          "q": "Where in QuickBooks Online do you enter a bill from a vendor like Dominion Aluminum & Fasteners?",
-          "options": ["Sales > Invoices", "Expenses > Bills", "Accounting > Reconcile", "Reports > Profit and Loss"],
-          "correct_index": 1,
-          "explanation": "Vendor bills (accounts payable) are entered under Expenses > Bills. Sales > Invoices is for customers (accounts receivable) — the opposite direction of money flow."
-        },
-        {
-          "q": "You're setting up Skarion Manufacturing LLC's opening balances. What should the Operating Checking opening balance be?",
-          "options": ["$0.00 — QBO starts every account at zero", "$250,000.00 — that's the loan amount", "$132,500.00 — the real January 1, 2026 balance", "$118,400.00 — that's the AR balance"],
-          "correct_index": 2,
-          "explanation": "$132,500.00 is Skarion's real Operating Checking balance as of January 1, 2026. $250,000 is the loan payable and $118,400 is opening AR — different accounts entirely."
-        },
-        {
-          "q": "45% of real entry-level accounting job postings explicitly require experience with which software?",
-          "options": ["SAP", "NetSuite", "QuickBooks", "Oracle"],
-          "correct_index": 2,
-          "explanation": "QuickBooks is the single most-requested accounting software in entry-level postings — which is exactly why this module exists before anything else in the course."
-        }
-      ]
+      "type": "content",
+      "kicker": "Chunk 26 — setup lab",
+      "title": "Chart of accounts review & first transactions",
+      "bodyHtml": "<p><strong>Lab task 1 — Review the COA.</strong> Open SkarionBooks and confirm every account is in the correct category: 1000s Assets, 2000s Liabilities, 3000s Equity, 4000s Revenue, 5000s COGS, 6000s Expenses. Flag and note any account that looks mis-categorized (there shouldn't be any — but verifying is the job).</p><p><strong>Lab task 2 — Opening trial balance check.</strong> Total debits must equal total credits. Run the trial balance report and confirm it balances to the cent before you post a single new entry. This is the mechanical floor every close starts from.</p><p><strong>Lab task 3 — Process three recent vendor invoices:</strong></p><table class='data'><tr><th>Vendor</th><th>Invoice</th><th>Amount</th><th>Coding</th></tr><tr><td>Global CAD Solutions</td><td>GCS-2026-091</td><td>$9,625.00</td><td>Dr 5100 COGS — Subcontractor Drafting / Cr 2000 AP</td></tr><tr><td>ArcGIS Pro (annual renewal)</td><td>ESRI-2026-RN</td><td>$36,000.00</td><td>Dr 1400 Prepaid Software / Cr 1000 Operating Checking</td></tr><tr><td>Office landlord (monthly rent)</td><td>LEASE-2026-01</td><td>$12,800.00</td><td>Dr 6500 Software &amp; Subscriptions → reclassify to Rent* / Cr 1000 Operating Checking</td></tr></table><p><em>*If a dedicated Rent account exists in SkarionBooks, post monthly rent there; otherwise use the operating expense account indicated and note the classification. The point is to tie the coded account to the economic reality of the spend.</em></p><p><strong>Lab task 4 — January payroll run.</strong> Post the full US payroll entry from Module 03: <strong>Dr 6000 Salaries — US Engineering PMs $79,167, Dr 6100 Payroll Tax Expense $6,256, Cr 2200 Payroll Tax Liabilities $27,312, Cr 1000 Operating Checking $58,111.</strong> Confirm debits equal credits ($85,423) and the trial balance still balances after posting.</p>"
     },
     {
       "type": "exercise",
-      "title": "Build it yourself and capture the walkthrough",
-      "instructionsHtml": "<p>Sign up for a free QuickBooks Online trial and follow the full corrected script below end-to-end: company setup, chart of accounts, opening balances, 5 bills, 5 invoices, 5 payments, bank reconciliation, and exporting the P&amp;L and Balance Sheet to Excel. Capture a screenshot at each of the 10 marked steps.</p><p>The script also has two required reflection sections built in — fill them out as you go, they become part of your portfolio.</p>",
+      "kicker": "Chunk 26 — lab",
+      "title": "Open SkarionBooks and complete the setup lab",
+      "instructionsHtml": "<p>Open SkarionBooks and complete all four setup-lab tasks above: COA review, opening trial-balance check, processing the three vendor invoices, and posting the January payroll run. After each entry, run the trial balance and confirm it still balances. Capture a screenshot of your completed trial balance.</p>",
       "files": [
-        { "label": "QBO Walkthrough Script (corrected).docx", "href": "/download/02-quickbooks-online-lab/QuickBooks_Report_v2_CORRECTED_needs_screenshots.docx" }
+        { "label": "Open SkarionBooks simulator", "href": "../skarionbooks/index.html" }
       ],
-      "reflectionPrompt": "What was the single most confusing step, and what would you tell a friend to watch out for?"
+      "reflectionPrompt": "After posting all four tasks, what was your total Operating Checking balance, and did the trial balance still balance to the cent? Note any accounts you questioned during the COA review."
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 27 — AR & bank rec lab",
+      "title": "AR invoice, cash receipt, and bank reconciliation",
+      "bodyHtml": "<p>Now run the full revenue and cash cycle in SkarionBooks:</p><ol><li><strong>Create the AR invoice</strong> for the Tennessee Corridor HLD milestone: invoice Atlantic Fiber Co. for <strong>$480,000</strong> (40% of the $1.2M contract). Coding: <strong>Dr 1100 Accounts Receivable $480,000 / Cr 4000 Engineering Design Revenue $480,000.</strong></li><li><strong>Record the incoming wire</strong> from Atlantic Fiber Co. — $480,000 gross, less the $25 incoming wire fee, netting <strong>$479,975</strong> to Operating Checking. Coding: Dr 1000 $479,975, Dr 6900 Bank Fees Expense $25, Cr 1100 AR $480,000.</li><li><strong>Apply the payment</strong> to the open invoice in the AR subledger and confirm the invoice is cleared and no longer aging.</li><li><strong>Post the bank fee correcting entry</strong> and confirm the fee is isolated in 6900.</li><li><strong>Run the bank reconciliation</strong> for January — match every transaction to the provided bank statement until the adjusted balances both equal <strong>$336,250.00</strong>, including the DEP-0091 duplicate deposit correction (Dr 1100 AR $10,547.10 / Cr 1000 Cash $10,547.10).</li><li><strong>Generate January P&amp;L and Balance Sheet</strong> — screenshot both. The P&amp;L should show $480,000 revenue, ~$140,000 COGS, and converge on ~$242,000 net income (per Module 06).</li></ol>"
+    },
+    {
+      "type": "exercise",
+      "kicker": "Chunk 27 — lab",
+      "title": "Complete the AR, cash, and bank rec lab in SkarionBooks",
+      "instructionsHtml": "<p>Work through all six tasks in the chunk above. The key proof points: the Atlantic Fiber invoice clears to zero after the wire is applied, the bank reconciliation converges on $336,250.00, and the January P&amp;L lands near $242,000 net income. Capture screenshots of (1) the cleared AR subledger, (2) the completed bank reconciliation, and (3) the P&amp;L.</p>",
+      "files": [
+        { "label": "Open SkarionBooks simulator", "href": "../skarionbooks/index.html" },
+        { "label": "January Bank Statement.xlsx", "href": "/download/05-bank-reconciliation-lab/Bank_Statement_2026-01_January.xlsx" }
+      ],
+      "reflectionPrompt": "Did your bank reconciliation converge to exactly $336,250.00? If not, what was the remaining unexplained item, and how did you finally trace it? Paste your final P&L net income figure."
     }
   ]
 }

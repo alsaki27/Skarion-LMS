@@ -1,33 +1,87 @@
 {
   "title": "Advanced Excel Toolkit",
-  "moduleTag": "Module 06",
-  "dayMapping": "Day 6",
-  "subhead": "Master the tools real accountants use to tame messy data.",
+  "moduleTag": "Module 07",
+  "dayMapping": "Day 7",
+  "subhead": "The Excel skills that separate accountants who survive month-end from accountants who drown in it — data cleaning, lookups, conditional summing, PivotTables, and Power Query.",
+  "hook": "\"What's the first thing you do with a 5,000-row payroll export?\" The wrong answer is \"start vouching.\" The right answer is \"clean it.\" Raw exports from payroll, bank feeds, and offshore timesheet apps are always messy, and cleaning is an accounting skill, not an IT one.",
   "chunks": [
     {
       "type": "content",
-      "title": "Welcome to the Data Dungeon",
-      "bodyHtml": "<p>In the real world, you get a 5,000-row CSV export from your offshore drafting team's timesheet software.</p><p>As a Staff Accountant, your job is to turn raw, messy labor hours into clean Journal Entries to track project profitability. To do this, you need three tools: <strong>Data Cleaning</strong>, <strong>VLOOKUP/XLOOKUP</strong>, and <strong>PivotTables</strong>.</p>"
+      "kicker": "Chunk 24 — data cleaning & lookups",
+      "title": "Data cleaning, VLOOKUP/XLOOKUP, and SUMIFS",
+      "bodyHtml": "<p>Clean data is the accountant's first problem. Raw exports arrive with combined date-description fields, inconsistent vendor names, trailing spaces, and stray characters. Before any analysis you standardize the data.</p><p><strong>The skill set, with Skarion data:</strong></p><table class='data'><tr><th>Tool</th><th>What it does</th><th>Skarion use</th></tr><tr><td><strong>Text-to-Columns</strong></td><td>Splits a combined field (e.g. \"2026-01-14 Atlantic Fiber wire\") on a delimiter into separate columns.</td><td>Cleaning bank-export CSVs where date and description share one cell.</td></tr><tr><td><strong>TRIM / PROPER / CLEAN</strong></td><td>Removes extra spaces, fixes capitalization, strips non-printable characters.</td><td>Standardizing \"GLOBAL CAD SOLUTIONS LTD.\" vs \"Global Cad Solutions\" so SUMIFS actually matches.</td></tr><tr><td><strong>VLOOKUP / XLOOKUP</strong></td><td>Pull a matching value from a master table.</td><td>Matching 3,000 rows of offshore labor hours to project codes in a master table.</td></tr><tr><td><strong>SUMIFS</strong></td><td>Sum a range across multiple conditions (project + date + vendor).</td><td>Totaling COGS for the Tennessee Corridor for January across all vendors.</td></tr><tr><td><strong>IF / IFS</strong></td><td>Flag rows that meet a rule.</td><td>Flagging offshore invoices where the unit price exceeds the MSA rate of $38.50/mile.</td></tr><tr><td><strong>Conditional Formatting</strong></td><td>Color cells that meet a rule, automatically.</td><td>Highlighting 90+ day AR balances ($34,200 of TeleCom Builders) in red.</td></tr></table>"
     },
     {
       "type": "exercise",
-      "title": "Lab: The Messy Timesheet Export",
-      "instructionsHtml": "<p><strong>Your Task:</strong></p><ol><li>Download the raw drafting labor data below.</li><li>Use Text-to-Columns to split the messy Date column.</li><li>Use VLOOKUP to assign a Project Code to each drafting task.</li><li>Create a PivotTable summarizing total CAD hours by Project Code.</li></ol>",
+      "kicker": "Lab 1",
+      "title": "The messy offshore timesheet export",
+      "instructionsHtml": "<p>Download the raw export below — a <strong>1,200-row CSV</strong> of individual CAD and GIS drafting tasks from 3 offshore firms across 8 projects, including the Tennessee Corridor build.</p><ol><li><strong>Text-to-Columns</strong> to split the combined date/description field.</li><li><strong>TRIM/PROPER/CLEAN</strong> to standardize vendor names so they match the master project table.</li><li><strong>XLOOKUP or VLOOKUP</strong> to attach the correct Project Code to every row from the project mapping table.</li><li><strong>SUMIFS</strong> to compute total drafting labor cost per project.</li><li>Deliverable: report the <strong>total Tennessee Corridor drafting cost</strong> for the month.</li></ol>",
       "files": [
         { "label": "Raw_Drafting_Labor.csv", "href": "Raw_Expense_Export.csv" },
-        { "label": "Project_Mapping_Table.xlsx", "href": "GL_Mapping_Table.csv" }
+        { "label": "Project_Mapping_Table.csv", "href": "GL_Mapping_Table.csv" }
       ],
-      "reflectionPrompt": "What was the total CAD hours billed to the Texas Long-Haul Project?"
+      "reflectionPrompt": "What was the total drafting cost for the Tennessee Corridor project? Which vendor had the largest share, and did any invoices exceed the $38.50/mile MSA rate?"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 25 — PivotTables & Power Query",
+      "title": "PivotTables, Power Query, and Excel interview questions",
+      "bodyHtml": "<p><strong>PivotTables</strong> are the fastest way to summarize 10,000 rows. Drag-and-drop grouping, summing, and filtering by date/project/vendor — no formulas required. For month-end, a PivotTable turns a raw transaction export into an AP aging view in minutes.</p><p><strong>Power Query (Get &amp; Transform)</strong> automates the monthly cleanup so you are not manually running Text-to-Columns every close. You build the transformation once; each month you refresh and the cleaned dataset lands in your model. This is how real close cycles stop being manual.</p><p><strong>Lab 2 — AP Aging PivotTable:</strong> a raw AP transaction export with <strong>800 rows, 6 vendors, 4 months of invoices</strong>. Build a PivotTable showing outstanding AP by vendor Aging bucket (0–30, 31–60, 61–90, 90+), then identify which vendor carries the most overdue balance and assess the risk.</p>"
+    },
+    {
+      "type": "exercise",
+      "kicker": "Lab 2",
+      "title": "AP Aging PivotTable lab",
+      "instructionsHtml": "<p>Download the raw AP transaction export below and build an AP aging PivotTable.</p><ol><li>Load the export into a PivotTable with <strong>Vendor</strong> on rows and an <strong>aging bucket</strong> (0–30, 31–60, 61–90, 90+) on columns, summing the outstanding invoice balance.</li><li>Add <strong>conditional formatting</strong> so the 90+ day buckets highlight in red.</li><li>Identify the vendor with the largest 90+ day balance and write a one-line risk assessment for the controller.</li></ol>",
+      "files": [
+        { "label": "Template 03 — AP Aging.xlsx", "href": "/download/07-excel-toolkit/Template_03_AP_Aging.xlsx" }
+      ],
+      "reflectionPrompt": "Which vendor carried the most overdue (90+ day) balance, and what is the dollar amount and the collection risk you'd flag to the controller?"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Quick check",
+      "title": "8 Excel interview questions — and real answers",
+      "railLabel": "Flip cards",
+      "cards": [
+        {"front": "VLOOKUP vs. XLOOKUP?", "back": "XLOOKUP defaults to an exact match (no trailing FALSE), can look left of the lookup column, and can return arrays. VLOOKUP is older, can only look right, and silently returns approximate matches if you forget the FALSE."},
+        {"front": "How do you handle #N/A in VLOOKUP?", "back": "Wrap with IFERROR or IFNA: =IFERROR(VLOOKUP(...), 0) or =IFNA(VLOOKUP(...), \"no match\"). Decide whether a missing match should be zero (sum-safe) or flagged."},
+        {"front": "When use SUMIFS over a PivotTable?", "back": "When the result needs to feed another formula live, or land in a fixed template cell a controller reads. PivotTables are great for exploration; SUMIFS is great for repeatable, formula-driven reports."},
+        {"front": "How do you lock a cell reference?", "back": "$A$1 locks both column and row (absolute); A1 locks neither (relative); $A1 locks column only, A$1 locks row only (mixed). Toggle with F4."},
+        {"front": "What is a named range and when is it useful?", "back": "A readable alias for a cell or range, e.g. MSA_Rate for a single cell. Useful in formulas that many people read =IF(UnitPrice>MSA_Rate,\"HOLD\"). Self-documenting and survives row insertions if defined dynamically."},
+        {"front": "How do you compare two lists to find missing values?", "back": "XLOOKUP for each item in list A against list B — #N/A means missing. Or COUNTIF(range, value) = 0. Filter the #N/As to see exactly what's in one list but not the other."},
+        {"front": "What does Power Query do that manual cleaning doesn't?", "back": "It records the transformation steps and replays them on refresh — so a monthly Text-to-Columns + TRIM + lookup pipeline runs every month with one click, not a manual rebuild. It is the difference between cleaning data and automating the cleaning."},
+        {"front": "How do you prevent someone editing your formula columns?", "back": "Lock the cells (Format Cells > Protection > Locked), then protect the sheet (Review > Protect Sheet). Locking alone does nothing until sheet protection is turned on."}
+      ]
     },
     {
       "type": "quiz",
-      "title": "Excel Knowledge Check",
+      "intro": "A quick check on the Excel skills you'll be tested on in interviews and on day one.",
+      "title": "Excel knowledge check",
       "questions": [
         {
           "q": "Why is XLOOKUP generally preferred over VLOOKUP in modern accounting?",
-          "options": ["It looks cooler", "It defaults to an exact match and can look left", "It uses less memory", "It automatically creates PivotTables"],
+          "options": ["It looks cooler", "It defaults to an exact match and can return values to the left of the lookup column", "It uses less memory than VLOOKUP", "It automatically builds PivotTables"],
           "correct_index": 1,
-          "explanation": "XLOOKUP defaults to exact match (no more adding 'FALSE' at the end) and can return arrays to the left of the lookup value."
+          "explanation": "XLOOKUP defaults to exact match (no trailing FALSE argument) and can return arrays to the left of the lookup value. VLOOKUP can only look right and silently returns approximate matches if you omit FALSE."
+        },
+        {
+          "q": "You need the total COGS for the Tennessee Corridor project across all vendors for January. Which function do you reach for?",
+          "options": ["VLOOKUP", "SUMIFS", "TRIM", "PROPER"],
+          "correct_index": 1,
+          "explanation": "SUMIFS sums a range across multiple conditions — here project = Tennessee Corridor AND month = January AND category = COGS. That multi-condition summing is exactly what SUMIFS is for."
+        },
+        {
+          "q": "Which cell reference locks the column but lets the row change as you fill down?",
+          "options": ["$A$1", "A1", "$A1", "A$1"],
+          "correct_index": 2,
+          "explanation": "$A1 locks the column (the $ before A) but lets the row adjust as the formula is filled down. Toggle reference types with F4."
+        },
+        {
+          "q": "What is the single biggest advantage of Power Query over manual data cleaning?",
+          "options": ["It runs faster on large files", "It records transformation steps and replays them on refresh, so monthly cleanup is one click", "It writes the journal entries for you", "It replaces the need for PivotTables"],
+          "correct_index": 1,
+          "explanation": "Power Query captures your cleanup steps and replays them every month on refresh — turning a manual Text-to-Columns + TRIM + lookup routine into a repeatable, automated pipeline. That automation is the whole point."
         }
       ]
     }
