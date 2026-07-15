@@ -1,0 +1,120 @@
+{
+  "title": "Month-End Close",
+  "moduleTag": "Module 09 · Skarion Manufacturing LLC",
+  "moduleTitle": "Month-End Close",
+  "dayMapping": "Day 8 of the 10-day path",
+  "subhead": "Every account you've reconciled, every invoice you've entered, every payroll run you've booked — month-end close is where it all gets pulled together, checked, and signed off. This is the module where you stop doing individual accounting tasks and start running an actual close.",
+  "hook": "\"Walk me through your month-end close process.\" Every accounting interview asks some version of this question. Most candidates can name a step or two. You're about to be able to walk through all 15 — with a real close you actually ran.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "The concept",
+      "title": "Why closing the books takes 3-5 days, not 3-5 minutes",
+      "bodyHtml": "<p>QuickBooks can print a profit and loss statement in two seconds. So why do real companies take <strong>3 to 5 business days</strong> after month-end to actually close the books? Because printing a report and <em>trusting</em> a report are two different things.</p><p>Month-end close is the process of reviewing, reconciling, adjusting, and finalizing the books for a completed month, so that when the CEO or a lender looks at the numbers, those numbers are actually true:</p><ul><li><strong>Review</strong> — check that sales, bills, payments, payroll, and bank activity are all fully entered.</li><li><strong>Reconcile</strong> — compare the books to outside proof: bank statements, AR/AP aging, payroll reports, loan statements, fixed asset schedules.</li><li><strong>Adjust</strong> — post timing entries: accruals, prepaids, depreciation, payroll liabilities, interest.</li><li><strong>Finalize</strong> — prepare reports, save workpapers, get manager approval, and lock the period so prior numbers can't silently change.</li></ul><p>Skip any one of those four steps and the P&amp;L you hand the CEO is a guess wearing a suit. Skarion Manufacturing targets a 5-business-day close, because accuracy is worth more than speed — a fast close that's wrong just means restating everything next month.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "Interviewers ask about your close process because it reveals whether you understand accounting as a <em>system of proof</em>, not just data entry. \"I close the books in a day\" is not usually the answer they're hoping for."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The framework",
+      "title": "The 15 standard close steps",
+      "bodyHtml": "<p>Skarion's close follows the same 15 steps used across small and mid-size companies. Learn this list — it's the backbone of every close interview question you'll get.</p><table class='data'><tr><th>#</th><th>Step</th><th>What it means</th></tr><tr><td>1</td><td>Confirm cutoff</td><td>Transactions land in the correct month — January expenses stay in January even if paid in February.</td></tr><tr><td>2</td><td>Collect source documents</td><td>Bank statements, credit card statements, invoices, payroll reports, loan statements, inventory records.</td></tr><tr><td>3</td><td>Record sales and AR</td><td>All customer invoices, sales receipts, credit memos, and payments — review unapplied cash.</td></tr><tr><td>4</td><td>Record vendor bills and AP</td><td>All vendor bills, expense reports, recurring expenses, and vendor credits.</td></tr><tr><td>5</td><td>Record cash activity</td><td>Deposits, checks, ACH, wires, bank fees, interest income, transfers, loan payments.</td></tr><tr><td>6</td><td>Reconcile bank accounts</td><td>Match bank statement activity to the GL — find outstanding checks, deposits in transit, duplicates.</td></tr><tr><td>7</td><td>Reconcile credit cards</td><td>Match card charges and payments to the GL, confirm receipts are attached.</td></tr><tr><td>8</td><td>Reconcile AR aging to GL</td><td>The AR aging total must equal the AR balance on the balance sheet.</td></tr><tr><td>9</td><td>Reconcile AP aging to GL</td><td>The AP aging total must equal the AP balance on the balance sheet.</td></tr><tr><td>10</td><td>Review inventory and COGS</td><td>Check purchases, usage, ending inventory, and cost of goods sold against the physical count.</td></tr><tr><td>11</td><td>Record payroll and liabilities</td><td>Gross wages, withholdings, employer taxes, benefit deductions, net pay.</td></tr><tr><td>12</td><td>Update fixed assets and depreciation</td><td>New assets, disposals, monthly depreciation, reconcile the fixed asset schedule to the GL.</td></tr><tr><td>13</td><td>Record accruals and prepaids</td><td>Expenses incurred but not billed yet, and amortized prepaid items.</td></tr><tr><td>14</td><td>Review financials and variances</td><td>Trial balance, P&amp;L, balance sheet, cash flow — explain unusual changes.</td></tr><tr><td>15</td><td>Finalize, approve, and lock</td><td>Save workpapers, prepare the management report, get approval, lock the period.</td></tr></table><p>Mapped to a calendar: Day 1 is transaction entry, Day 2 is reconciliation, Day 3 is adjusting entries, Day 4 is review, Day 5 is finalize and lock.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "title": "Close concepts — know them cold",
+      "railLabel": "Flip cards",
+      "cards": [
+        { "front": "Accrual", "back": "Recording an expense or revenue in the period it was incurred or earned, even though cash hasn't moved yet. Example: a utility bill for services used in January but not received until February gets accrued in January." },
+        { "front": "Prepaid amortization", "back": "Spreading the cost of something paid in advance (annual insurance, annual software) across the months it covers, instead of expensing it all at once." },
+        { "front": "Unearned revenue", "back": "Cash received before the work is done or the product is delivered — it sits as a liability until it's actually earned, then it moves to revenue." },
+        { "front": "Soft close vs. hard close", "back": "A soft close is fast and uses estimates for small items — good for internal monthly reporting. A hard close fully reconciles every major account, posts every adjustment, and locks the period — required for quarter-end, year-end, audits, and loan reporting." },
+        { "front": "Trial balance", "back": "A listing of every GL account and its balance, used to confirm total debits equal total credits before financial statements are produced." },
+        { "front": "Adjusting entries", "back": "Journal entries posted at period-end to correct timing — depreciation, accruals, prepaids, payroll liabilities, interest — so the books reflect economic reality, not just cash movement." },
+        { "front": "Locking the period", "back": "Once a close is approved, the accounting system prevents further changes to that month's transactions without manager override — protects prior-period numbers from silent edits." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The real close",
+      "title": "How January actually closed at Skarion",
+      "bodyHtml": "<p>Here's what really happened during Skarion's January close, using the actual bank reconciliation.</p><p>The book balance per QuickBooks was <strong>$226,594.19</strong>. But that number was wrong — and Day 2 of the close (reconcile cash) is exactly where the problem surfaced. Working the bank rec turned up four separate issues:</p><table class='data'><tr><th>Adjustment</th><th>Amount</th></tr><tr><td>Book balance per QuickBooks</td><td>$226,594.19</td></tr><tr><td>Less: duplicate Coastal Electric deposit</td><td>&minus;$9,503.60</td></tr><tr><td>Add: Valley Freight payment correction ($2,410 entered, $2,140 cleared)</td><td>+$270.00</td></tr><tr><td>Less: bank service fee missing from QuickBooks</td><td>&minus;$45.00</td></tr><tr><td>Add: bank interest missing from QuickBooks</td><td>+$18.50</td></tr><tr><td><strong>Adjusted book balance</strong></td><td><strong>$217,334.09</strong></td></tr></table><p>The bank side, worked independently from the statement, landed on the exact same number: $211,161.25 statement balance, plus a $6,612.84 deposit in transit (Manassas Telecom), minus a $440.00 outstanding ADP payment, equals <strong>$217,334.09</strong>. Both sides met in the middle — that's how you know the reconciliation is right.</p><p>The biggest item was the duplicate deposit: a Coastal Electric payment had been entered into QuickBooks twice, which incorrectly cleared that customer's invoice a second time. Revenue was never overstated — the receivable was just erased by mistake. The fix reinstated it: <strong>Debit 1100 Accounts Receivable $9,503.60 / Credit 1000 Operating Checking $9,503.60.</strong></p>",
+      "callout": {
+        "type": "story",
+        "html": "Notice what this proves: the close isn't paperwork for its own sake. Without Day 2's bank reconciliation, Skarion's books would have overstated cash by $9,503.60 — an error large enough to matter to a lender or the CEO — and nobody would have caught it until the money didn't show up somewhere later."
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Check your understanding",
+      "questions": [
+        {
+          "q": "Skarion's book balance per QuickBooks was $226,594.19, but the adjusted book balance came out to $217,334.09. What was the single largest adjustment causing that gap?",
+          "options": [
+            "The missing bank interest of $18.50",
+            "The duplicate Coastal Electric deposit of $9,503.60",
+            "The missing bank service fee of $45.00",
+            "The Valley Freight correction of $270.00"
+          ],
+          "correct_index": 1,
+          "explanation": "The duplicate deposit was by far the largest item, at $9,503.60 — it dwarfed the fee, interest, and freight corrections combined."
+        },
+        {
+          "q": "The bank statement showed $211,161.25. After adding the deposit in transit and subtracting the outstanding ACH payment, what did the adjusted bank balance equal?",
+          "options": [
+            "$211,161.25",
+            "$226,594.19",
+            "$217,334.09",
+            "$217,774.09"
+          ],
+          "correct_index": 2,
+          "explanation": "$211,161.25 + $6,612.84 (deposit in transit) − $440.00 (outstanding ADP payment) = $217,334.09 — matching the adjusted book balance exactly."
+        },
+        {
+          "q": "Which day of Skarion's 5-day close calendar is when the duplicate deposit would normally be caught?",
+          "options": [
+            "Day 1 — transaction entry",
+            "Day 2 — reconcile cash and subledgers",
+            "Day 4 — review reports and variances",
+            "Day 5 — finalize and lock"
+          ],
+          "correct_index": 1,
+          "explanation": "Bank reconciliation happens on Day 2. That's exactly when comparing the GL to the bank statement surfaces timing differences and errors like duplicate deposits."
+        },
+        {
+          "q": "Why doesn't the duplicate Coastal Electric deposit mean revenue was overstated?",
+          "options": [
+            "Because duplicate deposits never affect revenue, only cash",
+            "Because the duplicate entry cleared the same invoice twice, which erased the receivable rather than creating new revenue",
+            "Because Coastal Electric's invoice was never actually recorded",
+            "Because sales tax absorbed the difference"
+          ],
+          "correct_index": 1,
+          "explanation": "The original invoice already recorded the revenue correctly. The duplicate deposit just applied a second cash receipt against the same invoice, wiping out the receivable balance incorrectly — the fix reinstates AR, it doesn't touch revenue."
+        }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "title": "Post January's depreciation entry",
+      "scenarioHtml": "<p>Step 12 of the close is updating fixed assets and depreciation. Skarion's fixed asset schedule covers 10 assets — CNC brake press, laser cutter, forklift, delivery van, air compressor system, office furniture, computers, QA testing station, warehouse pallet racking, and a label printer/packaging line. Combined, January's straight-line monthly depreciation across all 10 assets totals <strong>$5,208.10</strong>. Post the adjusting entry.</p>",
+      "startRows": 2,
+      "accounts": ["6700 Depreciation Expense", "1590 Accumulated Depreciation", "1000 Operating Checking", "6800 Interest Expense", "2300 Accrued Interest Payable"],
+      "solution": [
+        { "account": "6700 Depreciation Expense", "side": "debit", "amount": 5208.10 },
+        { "account": "1590 Accumulated Depreciation", "side": "credit", "amount": 5208.10 }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Run Skarion's month-end close checklist",
+      "instructionsHtml": "<p>Download the Month-End Close Playbook below. Using the 18-row sample checklist (C-01 through C-18) as your template, complete a close checklist for Skarion's January close:</p><ol><li>For each of the 18 tasks, mark a status (Not Started, In Progress, Waiting, Complete, or Reviewed) as if you were the staff accountant running this close.</li><li>For the bank reconciliation task (C-06), note the real result: adjusted book and bank balances both equal $217,334.09, driven mainly by the $9,503.60 duplicate Coastal Electric deposit.</li><li>For the fixed assets task (C-12), note the depreciation entry: $5,208.10 across 10 assets.</li><li>Identify which tasks would move faster under a soft close versus which absolutely require a hard close.</li></ol><p>Then write a one-page <strong>January Financial Summary memo</strong> for the CEO — the same deliverable Skarion's staff accountant would submit on Day 5. Cover: net sales, gross profit and margin, ending AR and AP, the bank reconciliation result, and any issues you'd flag for follow-up.</p>",
+      "files": [
+        { "label": "Month-End Close Playbook.docx", "href": "/download/09-month-end-close/Month_End_Close_Playbook.docx" }
+      ],
+      "reflectionPrompt": "Write your January Financial Summary memo for the CEO: what were the headline numbers, what went wrong during the close, and what would you fix before February?"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{
+  "title": "QuickBooks Online Lab",
+  "moduleTag": "Module 02 · Skarion Manufacturing LLC",
+  "moduleTitle": "QuickBooks Online Lab",
+  "dayMapping": "Day 1 of the 10-day path",
+  "subhead": "QuickBooks Online is the #1 accounting software requested in real entry-level job postings. This module sets up Skarion Manufacturing LLC from scratch and walks through the workflows you'll use every single day on the job.",
+  "hook": "45% of entry-level accounting postings explicitly require QuickBooks experience. This is the software you'll actually be judged on in your first interview.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "Before you start",
+      "title": "This lesson pairs with a live QuickBooks Online trial",
+      "bodyHtml": "<p>Everything in this module is designed to be followed inside a real, free QuickBooks Online trial (30 days, no credit card required for the trial). The company you'll build is <strong>Skarion Manufacturing LLC</strong> — US locale, USD, Manassas, Virginia.</p><p>The walkthrough script and every dollar figure below are real numbers pulled directly from the rest of the course (the January practice packet, the AP invoice batch, the bank statements) — not made up, and not from an unrelated demo company. Where you see a bracketed <code>[SCREENSHOT]</code> marker, that's where you'd capture your own screen while following along live.</p>",
+      "callout": {
+        "type": "warning",
+        "html": "<strong>Heads up:</strong> an earlier draft of this walkthrough was built inside the wrong QuickBooks demo company (\"kaizen\", a different currency, unrelated numbers). It's been fully corrected here to use real Skarion data throughout."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "Step 1-3",
+      "title": "Company setup, chart of accounts, opening balances",
+      "bodyHtml": "<p><strong>1. Company setup:</strong> QBO free trial → United States/USD → Company name: Skarion Manufacturing LLC → Industry: Manufacturing → Fiscal year Jan–Dec → Accrual basis.</p><p><strong>2. Chart of accounts</strong> — the core accounts you'll use throughout the course:</p><table class='data'><tr><th>Type</th><th>Key accounts</th></tr><tr><td>Assets</td><td>1000 Operating Checking · 1100 Accounts Receivable · 1500 Fixed Assets · 1590 Accumulated Depreciation</td></tr><tr><td>Liabilities</td><td>2000 Accounts Payable · 2100 Sales Tax Payable · 2500 Loan Payable</td></tr><tr><td>Revenue/COGS</td><td>4000 Sales Revenue · 5000 Cost of Goods Sold</td></tr><tr><td>Expenses</td><td>6100 Rent · 6300 Wages · 6700 Depreciation · 6800 Interest</td></tr></table><p><strong>3. Opening balances (January 1, 2026):</strong> Operating Checking $132,500.00 · Accounts Receivable $118,400.00 · Accounts Payable $82,300.00 · Loan Payable $250,000.00.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "title": "QBO navigation — know where things live",
+      "railLabel": "Flip cards",
+      "cards": [
+        { "front": "Where do you enter a vendor bill?", "back": "Expenses > Bills — this is the AP entry point." },
+        { "front": "Where do you create a customer invoice?", "back": "Sales > Invoices — this is the AR entry point." },
+        { "front": "Where do you reconcile a bank account?", "back": "Accounting > Reconcile (or the gear icon > Tools > Reconcile)." },
+        { "front": "Where do you run the P&L and Balance Sheet?", "back": "Reports > search \"Profit and Loss\" or \"Balance Sheet\" — both export to Excel from the report screen." },
+        { "front": "Where do you record a customer payment?", "back": "Sales > Receive Payment, then apply it against the open invoice(s)." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Step 4-6",
+      "title": "Real transactions: 5 bills, 5 invoices, 5 payments",
+      "bodyHtml": "<p><strong>5 vendor bills</strong> (from the Module 05 AP batch) — enter each under Expenses &gt; Bills, coded to the right expense account:</p><table class='data'><tr><th>Vendor</th><th>Invoice #</th><th>Amount</th></tr><tr><td>Dominion Aluminum &amp; Fasteners</td><td>DAF-2601-014</td><td>$3,896.33</td></tr><tr><td>Potomac Steel Supply</td><td>PSS-2601-001</td><td>$5,700.30</td></tr><tr><td>Commonwealth Powder Coating</td><td>CPC-2601-002</td><td>$1,385.00</td></tr><tr><td>MidAtlantic Tool Rental</td><td>MTR-2601-001</td><td>$1,411.25</td></tr><tr><td>Capital Safety Gear</td><td>CSG-2601-003</td><td>$875.98</td></tr></table><p><strong>5 customer invoices</strong> (from the Module 03 AR data) — enter under Sales &gt; Invoices with VA 5.3% sales tax applied only to taxable goods lines. Example: NOVA FiberBuild Contractors, invoice SMI-2601-001, $15,250.00 + $808.25 tax = <strong>$16,058.25</strong>, terms Net 30.</p><p><strong>5 customer payments</strong> — use Receive Payment against those invoices. Include at least one early-payment discount and one short-pay from the AR Payment Remittance Batch so you practice the full range of what actually happens in AR.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "Step 7",
+      "title": "Reconcile the bank account",
+      "bodyHtml": "<p>Use the January 2026 bank statement to reconcile Operating Checking. Starting balance $132,500.00 should tie to what you entered in Step 3. Walk through matching every transaction and resolving January's three seeded problems — a duplicate deposit, an unrecorded bank fee, and an outstanding check — until the reconciliation difference reads <strong>$0.00</strong>.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "This is the exact same reconciliation logic you'll practice in depth in Module 04 — QBO's Reconcile screen just automates part of the matching you'd otherwise do by hand in Excel."
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Check your understanding",
+      "questions": [
+        {
+          "q": "Where in QuickBooks Online do you enter a bill from a vendor like Dominion Aluminum & Fasteners?",
+          "options": ["Sales > Invoices", "Expenses > Bills", "Accounting > Reconcile", "Reports > Profit and Loss"],
+          "correct_index": 1,
+          "explanation": "Vendor bills (accounts payable) are entered under Expenses > Bills. Sales > Invoices is for customers (accounts receivable) — the opposite direction of money flow."
+        },
+        {
+          "q": "You're setting up Skarion Manufacturing LLC's opening balances. What should the Operating Checking opening balance be?",
+          "options": ["$0.00 — QBO starts every account at zero", "$250,000.00 — that's the loan amount", "$132,500.00 — the real January 1, 2026 balance", "$118,400.00 — that's the AR balance"],
+          "correct_index": 2,
+          "explanation": "$132,500.00 is Skarion's real Operating Checking balance as of January 1, 2026. $250,000 is the loan payable and $118,400 is opening AR — different accounts entirely."
+        },
+        {
+          "q": "45% of real entry-level accounting job postings explicitly require experience with which software?",
+          "options": ["SAP", "NetSuite", "QuickBooks", "Oracle"],
+          "correct_index": 2,
+          "explanation": "QuickBooks is the single most-requested accounting software in entry-level postings — which is exactly why this module exists before anything else in the course."
+        }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Build it yourself and capture the walkthrough",
+      "instructionsHtml": "<p>Sign up for a free QuickBooks Online trial and follow the full corrected script below end-to-end: company setup, chart of accounts, opening balances, 5 bills, 5 invoices, 5 payments, bank reconciliation, and exporting the P&amp;L and Balance Sheet to Excel. Capture a screenshot at each of the 10 marked steps.</p><p>The script also has two required reflection sections built in — fill them out as you go, they become part of your portfolio.</p>",
+      "files": [
+        { "label": "QBO Walkthrough Script (corrected).docx", "href": "/download/02-quickbooks-online-lab/QuickBooks_Report_v2_CORRECTED_needs_screenshots.docx" }
+      ],
+      "reflectionPrompt": "What was the single most confusing step, and what would you tell a friend to watch out for?"
+    }
+  ]
+}

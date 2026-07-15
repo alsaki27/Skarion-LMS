@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Job Market Research — Calibrating the Course — Skarion Accounting Track</title>
+<style>/* Skarion Course Engine — shared design system
+   Modern, chunked micro-learning UI. Self-contained (no external fonts/CDNs) for SCORM portability. */
+
+:root {
+  --bg: #0b0d12;
+  --bg-elev-1: #12151c;
+  --bg-elev-2: #191d26;
+  --bg-elev-3: #212633;
+  --border: #262c3a;
+  --border-soft: #1a1f2b;
+  --text: #eef1f6;
+  --text-dim: #9aa4b8;
+  --text-faint: #6b7488;
+  --accent: #5b8cff;
+  --accent-2: #7c5cff;
+  --accent-grad: linear-gradient(135deg, #5b8cff 0%, #7c5cff 100%);
+  --good: #2fbf82;
+  --good-bg: #10241c;
+  --warn: #e8a84c;
+  --warn-bg: #2a230f;
+  --bad: #ef5b6f;
+  --bad-bg: #2a1418;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px -8px rgba(0,0,0,.5);
+  --shadow-2: 0 2px 8px rgba(0,0,0,.5), 0 16px 40px -12px rgba(91,140,255,.15);
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --serif-display: Georgia, "Times New Roman", serif;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5f6f9;
+    --bg-elev-1: #ffffff;
+    --bg-elev-2: #ffffff;
+    --bg-elev-3: #eef0f5;
+    --border: #e2e5ed;
+    --border-soft: #edeff4;
+    --text: #171a21;
+    --text-dim: #565f74;
+    --text-faint: #8891a3;
+    --good-bg: #e7f8f0;
+    --warn-bg: #fdf3e3;
+    --bad-bg: #fdeaec;
+    --shadow-1: 0 1px 2px rgba(20,20,40,.06), 0 8px 24px -12px rgba(20,20,40,.12);
+    --shadow-2: 0 2px 10px rgba(20,20,40,.08), 0 20px 40px -20px rgba(91,140,255,.25);
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* ---------- Top bar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 22px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--bg-elev-1);
+  flex-shrink: 0;
+}
+.topbar .module-tag {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+.topbar .module-title {
+  font-weight: 650;
+  font-size: .95rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.progress-track {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-elev-3);
+  border-radius: 99px;
+  overflow: hidden;
+  min-width: 60px;
+}
+.progress-fill {
+  height: 100%;
+  background: var(--accent-grad);
+  border-radius: 99px;
+  transition: width .4s cubic-bezier(.4,0,.2,1);
+  width: 0%;
+}
+.progress-label { font-size: .78rem; color: var(--text-dim); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- Chunk rail (dots) ---------- */
+.chunk-rail {
+  display: flex;
+  gap: 6px;
+  padding: 10px 22px;
+  overflow-x: auto;
+  flex-shrink: 0;
+  background: var(--bg-elev-1);
+  border-bottom: 1px solid var(--border-soft);
+}
+.chunk-dot {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 99px;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--text-faint);
+  background: var(--bg-elev-3);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all .15s ease;
+  white-space: nowrap;
+}
+.chunk-dot:hover { color: var(--text); }
+.chunk-dot.active { background: var(--accent-grad); color: #fff; }
+.chunk-dot.done { color: var(--good); border-color: var(--good); }
+.chunk-dot.done.active { color: #fff; border-color: transparent; }
+
+/* ---------- Stage ---------- */
+.stage {
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 22px 120px;
+  display: flex;
+  justify-content: center;
+}
+.stage-inner { width: 100%; max-width: 760px; }
+
+.screen { display: none; animation: rise .35s cubic-bezier(.16,1,.3,1); }
+.screen.active { display: block; }
+@keyframes rise { from { opacity:0; transform: translateY(14px);} to {opacity:1; transform:none;} }
+
+/* ---------- Intro / hero screen ---------- */
+.hero-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+.hero-title { font-size: 2.1rem; font-weight: 750; line-height: 1.15; margin: 0 0 14px; letter-spacing: -.01em; }
+.hero-sub { font-size: 1.08rem; color: var(--text-dim); line-height: 1.6; margin: 0 0 22px; }
+.hero-hook {
+  padding: 18px 22px;
+  border-radius: var(--radius-md);
+  background: var(--bg-elev-2);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  font-size: .96rem;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+/* ---------- Content chunk ---------- */
+.chunk-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 6px; letter-spacing: -.01em; }
+.chunk-kicker { font-size: .8rem; font-weight: 700; color: var(--text-faint); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+.prose { font-size: 1rem; line-height: 1.75; color: var(--text); }
+.prose p { margin: 0 0 14px; }
+.prose strong { color: var(--text); }
+.prose ul, .prose ol { padding-left: 22px; margin: 0 0 14px; }
+.prose li { margin-bottom: 6px; }
+.prose code { background: var(--bg-elev-3); padding: 1px 6px; border-radius: 5px; font-size: .9em; }
+
+.callout {
+  margin: 18px 0;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  font-size: .92rem;
+  line-height: 1.6;
+  display: flex;
+  gap: 12px;
+}
+.callout .icon { flex-shrink: 0; font-size: 1.2rem; line-height: 1.4; }
+.callout.tip { background: var(--good-bg); color: var(--text); border: 1px solid rgba(47,191,130,.25); }
+.callout.warning { background: var(--warn-bg); color: var(--text); border: 1px solid rgba(232,168,76,.3); }
+.callout.story { background: var(--bg-elev-2); border: 1px solid var(--border); border-left: 3px solid var(--accent-2); }
+.callout.danger { background: var(--bad-bg); color: var(--text); border: 1px solid rgba(239,91,111,.3); }
+
+table.data { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: .88rem; }
+table.data th, table.data td { padding: 8px 12px; border: 1px solid var(--border); text-align: left; }
+table.data th { background: var(--bg-elev-2); font-weight: 650; }
+table.data tr:nth-child(even) td { background: var(--bg-elev-1); }
+
+/* ---------- Flip cards ---------- */
+.flip-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-top: 16px; }
+.flip-card { perspective: 1000px; height: 150px; cursor: pointer; }
+.flip-inner { position: relative; width: 100%; height: 100%; transition: transform .5s cubic-bezier(.4,0,.2,1); transform-style: preserve-3d; }
+.flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { position: absolute; inset: 0; backface-visibility: hidden; border-radius: var(--radius-md); padding: 16px; display: flex; align-items: center; justify-content: center; text-align: center; font-size: .92rem; border: 1px solid var(--border); box-shadow: var(--shadow-1); }
+.flip-front { background: var(--bg-elev-2); font-weight: 650; }
+.flip-front::after { content: "tap to flip"; position:absolute; bottom:8px; font-size:.65rem; color:var(--text-faint); font-weight:400; }
+.flip-back { background: var(--accent-grad); color: #fff; transform: rotateY(180deg); line-height: 1.4; }
+
+/* ---------- Quiz ---------- */
+.quiz-q { margin-bottom: 26px; }
+.quiz-q-text { font-weight: 650; font-size: 1.02rem; margin-bottom: 12px; }
+.quiz-opts { display: flex; flex-direction: column; gap: 8px; }
+.quiz-opt {
+  text-align: left;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elev-2);
+  color: var(--text);
+  font-size: .92rem;
+  cursor: pointer;
+  transition: all .15s ease;
+}
+.quiz-opt:hover:not(:disabled) { border-color: var(--accent); }
+.quiz-opt.correct { background: var(--good-bg); border-color: var(--good); }
+.quiz-opt.incorrect { background: var(--bad-bg); border-color: var(--bad); }
+.quiz-opt:disabled { cursor: default; opacity: .85; }
+.quiz-explain { margin-top: 10px; padding: 12px 14px; border-radius: var(--radius-sm); background: var(--bg-elev-2); font-size: .88rem; color: var(--text-dim); display: none; }
+.quiz-explain.show { display: block; }
+.quiz-score-banner { padding: 16px 18px; border-radius: var(--radius-md); background: var(--bg-elev-2); border: 1px solid var(--border); text-align: center; font-weight: 650; margin-top: 10px; display:none; }
+.quiz-score-banner.show { display: block; }
+
+/* ---------- Journal entry builder ---------- */
+.je-scenario { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px 18px; margin-bottom: 18px; font-size: .94rem; line-height: 1.6; }
+.je-table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+.je-table th { text-align: left; font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--text-faint); padding: 4px 8px; }
+.je-row td { padding: 5px 8px; }
+.je-row select, .je-row input {
+  width: 100%; padding: 8px 10px; border-radius: var(--radius-sm); border: 1px solid var(--border);
+  background: var(--bg-elev-1); color: var(--text); font-family: var(--font); font-size: .88rem;
+}
+.je-row select:focus, .je-row input:focus { outline: none; border-color: var(--accent); }
+.je-add-row { background: transparent; border: 1px dashed var(--border); color: var(--text-dim); padding: 8px 14px; border-radius: var(--radius-sm); cursor: pointer; font-size: .85rem; margin-bottom: 14px; }
+.je-add-row:hover { border-color: var(--accent); color: var(--text); }
+.je-check-btn { background: var(--accent-grad); color: #fff; border: none; padding: 10px 20px; border-radius: var(--radius-sm); font-weight: 650; cursor: pointer; font-size: .9rem; }
+.je-feedback { margin-top: 14px; padding: 14px 16px; border-radius: var(--radius-md); font-size: .9rem; display: none; }
+.je-feedback.show { display: block; }
+.je-feedback.correct { background: var(--good-bg); border: 1px solid rgba(47,191,130,.3); }
+.je-feedback.incorrect { background: var(--bad-bg); border: 1px solid rgba(239,91,111,.3); }
+
+/* ---------- Exercise ---------- */
+.exercise-card { background: var(--bg-elev-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 22px; margin-top: 14px; }
+.exercise-files { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0; }
+.file-chip { display: flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 99px; background: var(--bg-elev-3); border: 1px solid var(--border); font-size: .85rem; text-decoration: none; color: var(--text); transition: all .15s; }
+.file-chip:hover { border-color: var(--accent); }
+.reflection-box textarea {
+  width: 100%; min-height: 90px; margin-top: 10px; padding: 12px 14px; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-elev-1); color: var(--text); font-family: var(--font); font-size: .9rem; resize: vertical;
+}
+
+/* ---------- Nav bar ---------- */
+.navbar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: center;
+  padding: 16px 22px calc(16px + env(safe-area-inset-bottom));
+  background: linear-gradient(0deg, var(--bg) 55%, transparent);
+  pointer-events: none;
+}
+.navbar-inner { pointer-events: auto; display: flex; gap: 10px; width: 100%; max-width: 760px; }
+.nav-btn {
+  flex: 1; padding: 13px 20px; border-radius: var(--radius-md); border: 1px solid var(--border);
+  font-weight: 650; font-size: .92rem; cursor: pointer; transition: all .15s ease;
+  background: var(--bg-elev-2); color: var(--text);
+}
+.nav-btn.primary { background: var(--accent-grad); color: #fff; border: none; box-shadow: var(--shadow-2); }
+.nav-btn.primary:hover { filter: brightness(1.08); }
+.nav-btn:disabled { opacity: .35; cursor: not-allowed; }
+.nav-btn.secondary { flex: 0 0 auto; padding: 13px 18px; }
+
+/* ---------- Completion screen ---------- */
+.complete-badge { width: 74px; height: 74px; border-radius: 50%; background: var(--accent-grad); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px; box-shadow: var(--shadow-2); }
+.center-screen { text-align: center; padding-top: 40px; }
+
+@media (max-width: 640px) {
+  .stage { padding: 24px 16px 120px; }
+  .hero-title { font-size: 1.6rem; }
+  .topbar { padding: 12px 16px; }
+  .topbar .module-title { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="topbar">
+    <span class="module-tag" id="module-tag"></span>
+    <span class="module-title" id="module-title"></span>
+    <button onclick="window.open('skarionbooks/index.html', '_blank')" style="margin-left:auto; margin-right:20px; padding:6px 12px; background:#1E2761; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">Launch SkarionBooks 🚀</button>
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <span class="progress-label" id="progress-label">0%</span>
+  </div>
+  <div class="chunk-rail" id="chunk-rail"></div>
+  <div class="stage" id="stage"><div class="stage-inner" id="stage-inner"></div></div>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <button class="nav-btn secondary" id="nav-prev">← Back</button>
+      <button class="nav-btn primary" id="nav-next">Continue →</button>
+    </div>
+  </div>
+</div>
+<script>window.LESSON = {"title": "Job Market Research — Calibrating the Course", "moduleTag": "Module 01 · Skarion Manufacturing LLC", "moduleTitle": "Job Market Research — Calibrating the Course", "dayMapping": "Calibration input — read before Day 1", "subhead": "Before you learn a single debit or credit, look at what 44 real entry-level accounting postings collected in July 2026 actually asked for — because that's what this whole course was built to match.", "hook": "\"We don't teach accounting theory. We teach what's in the job postings.\" Here's the receipt: 44 real postings, pulled live from Robert Half and other sources in July 2026, tell you exactly what to expect.", "chunks": [{"type": "content", "kicker": "Why this module exists", "title": "This course is calibrated against real job postings, not assumptions", "bodyHtml": "<p>Most \"learn accounting\" content is built from textbooks — general ledger theory, debits and credits, the accounting cycle. That's necessary, but it isn't sufficient. It doesn't tell you what a hiring manager at Robert Half is actually screening for this month.</p><p>So before building the rest of this track, we collected <strong>44 real entry-level accounting job postings</strong> in July 2026 — job title, salary range, years of experience required, required software, required skills, whether reconciliation or month-end close was mentioned — and ran the numbers.</p><p>The goal isn't trivia. It's making sure every simulation in this course (bank reconciliation, AP processing, month-end close) maps to something a real employer is actually asking for right now, not a skill that sounded important in a textbook.</p>", "callout": {"type": "tip", "html": "<strong>Read this as your \"why\" for every module that follows.</strong> When Module 4 has you reconcile a bank statement, or Module 5 has you process AP, that's not arbitrary — it's because those exact tasks showed up again and again in the postings behind this module."}}, {"type": "content", "kicker": "The data", "title": "What 44 real postings actually said", "bodyHtml": "<p>Here are the computed numbers from the postings dataset, pulled straight from the auto-calculating Summary sheet:</p><table class='data'><tr><th>Metric</th><th>Value</th></tr><tr><td>Postings collected</td><td>44</td></tr><tr><td>Average salary — minimum</td><td>$48,134</td></tr><tr><td>Average salary — maximum</td><td>$56,122</td></tr><tr><td>% requiring 0 or 0–1 years of experience</td><td>84%</td></tr><tr><td>% mentioning CPA requirement</td><td>2%</td></tr><tr><td>% explicitly mentioning month-end close</td><td>27%</td></tr><tr><td>% explicitly mentioning reconciliation</td><td>73%</td></tr></table><p>Two numbers matter most for how you should think about this course: <strong>84% of these postings want someone with 0–1 years of experience</strong> — meaning the door is genuinely open to you — and <strong>73% explicitly mention reconciliation</strong>, which is exactly the judgment-heavy skill this course drills hardest.</p>", "callout": {"type": "story", "html": "Almost no one is asking for a CPA (2%) at this level. What they're asking for is someone who can find and explain a $270 gap between the bank and the books — that's reconciliation, and it's in nearly three out of every four postings."}}, {"type": "flip_cards", "title": "What employers actually named — real frequency counts", "railLabel": "Skills data", "intro": "Out of 44 postings, here's how often each software tool or skill was explicitly named. Flip each card to see the count.", "cards": [{"front": "Excel", "back": "Named in 20 of 44 postings (45%) — the single most-requested tool by a wide margin. If you only master one tool cold, make it this one."}, {"front": "Journal entries", "back": "Named in 8 of 44 postings — the core mechanical skill behind every correction this course teaches."}, {"front": "QuickBooks", "back": "Named in 6 of 44 postings — the most-requested accounting software specifically (ahead of SAP, NetSuite, Oracle, and Sage combined per-postings)."}, {"front": "Data entry", "back": "Named in 6 of 44 postings — still present, but this is exactly the task category AI is compressing fastest (see the next chunk)."}, {"front": "Month-end close", "back": "Named in 5 of 44 postings by that exact phrase — undercounts the real figure, since the broader 'month-end close mentioned' field above hits 27% once related phrasing is included."}, {"front": "Bank reconciliation", "back": "Named in 5 of 44 postings by that exact phrase — same undercount pattern; the broader reconciliation field hits 73%."}, {"front": "SAP", "back": "Named in 4 of 44 postings — the top enterprise ERP system in this dataset, ahead of NetSuite and Oracle."}, {"front": "Variance analysis", "back": "Named in 3 of 44 postings — a judgment-heavy skill, not a data-entry one."}, {"front": "NetSuite", "back": "Named in 2 of 44 postings — common in tech/SaaS employers specifically."}, {"front": "Sage", "back": "Named in 2 of 44 postings — another mid-market accounting system worth recognizing by name, even without deep expertise."}]}, {"type": "content", "kicker": "The market context", "title": "Why this course bets on judgment, not data entry", "bodyHtml": "<p>July 2026 has a real headwind for entry-level accounting: AI is eating exactly the tasks that used to be the entry point. A Fortune report (May 2026), citing a BambooHR survey, found companies now hiring senior accountants over entry-level ones at roughly a <strong>3:1 ratio</strong>. Industry projections point to a <strong>35–50% reduction in basic bookkeeping roles by 2028</strong>, as tools like QuickBooks Online increasingly auto-categorize bank feeds and reduce the need for manual transaction entry.</p><p>That sounds like bad news for a course built around entry-level accounting jobs. But look back at the data in this module: <strong>73% of these 44 real postings still explicitly mention reconciliation</strong> — the exception-handling, judgment-heavy work of figuring out <em>why</em> two numbers don't match, not just keying data in. That's the work AI still struggles with, and it's exactly what this course's simulations (bank reconciliation, AP exception handling, month-end close) are built to teach.</p><p>The reframe: you're not training to be a data-entry clerk who might get automated out of a job in two years. You're training to be the person who reviews what the AI auto-categorized and catches what it got wrong — an <strong>AI-augmented entry accountant</strong>, comfortable with the software and confident handling the exceptions.</p>", "callout": {"type": "warning", "html": "Don't market yourself on how many invoices you processed. Lead with the judgment work: reconciliation, variance investigation, discrepancy resolution. That's the 73%, and it's the durable part of this job."}}, {"type": "quiz", "title": "Check your understanding", "questions": [{"q": "Based on the 44 real postings in this dataset, what percentage required 0–1 years of experience?", "options": ["45%", "62%", "84%", "100%"], "correct_index": 2, "explanation": "84% of the 44 real postings required 0 or 0–1 years of experience — the entry-level door is genuinely open, which is the whole premise of this course."}, {"q": "What percentage of the real postings explicitly mentioned reconciliation?", "options": ["27%", "45%", "73%", "2%"], "correct_index": 2, "explanation": "73% of postings explicitly mentioned reconciliation — far more than mentioned CPA (2%) or the exact phrase 'month-end close' (27%). Reconciliation is the single most in-demand judgment skill in this dataset, which is why this course drills it hard starting in Module 4."}, {"q": "Why does this course focus on reconciliation and exception-handling rather than pure data entry, given the AI trend described in this module?", "options": ["Data entry is more common in postings, so it's a safer bet", "Reconciliation and judgment-heavy work are what 73% of real postings still ask for, and they're harder for AI tools to fully automate", "Reconciliation is easier to teach than data entry", "The course avoids data entry entirely because it's considered outdated"], "correct_index": 1, "explanation": "AI is compressing pure data-entry roles (a projected 35–50% reduction in basic bookkeeping roles by 2028), but 73% of real postings still explicitly ask for reconciliation — the exception-handling work AI still struggles with. That's the durable skill this course is betting on."}]}]};</script>
+<script>/* Minimal SCORM 1.2 wrapper. Finds the LMS API in a parent/opener window (standard SCORM
+   discovery algorithm); no-ops safely when run standalone outside an LMS (e.g. local preview). */
+(function (global) {
+  "use strict";
+
+  function findAPI(win) {
+    var attempts = 0;
+    while (win && !win.API && win.parent && win.parent !== win && attempts < 10) {
+      win = win.parent;
+      attempts++;
+    }
+    return win && win.API ? win.API : null;
+  }
+
+  function locateAPI() {
+    var api = findAPI(window);
+    if (!api && window.opener) api = findAPI(window.opener);
+    return api;
+  }
+
+  var SCORM = {
+    api: null,
+    initialized: false,
+    standalone: true,
+
+    init: function () {
+      this.api = locateAPI();
+      if (this.api) {
+        var ok = this.api.LMSInitialize("");
+        this.initialized = ok === "true" || ok === true;
+        this.standalone = !this.initialized;
+      } else {
+        this.standalone = true;
+      }
+      return this.initialized;
+    },
+
+    setValue: function (key, value) {
+      if (this.initialized && this.api) this.api.LMSSetValue(key, String(value));
+    },
+
+    getValue: function (key) {
+      if (this.initialized && this.api) return this.api.LMSGetValue(key);
+      return "";
+    },
+
+    commit: function () {
+      if (this.initialized && this.api) this.api.LMSCommit("");
+    },
+
+    setProgress: function (fraction) {
+      // SCORM 1.2 has no native progress-measure field; store it as a suspend_data breadcrumb.
+      this.setValue("cmi.core.lesson_location", String(Math.round(fraction * 100)));
+      this.commit();
+    },
+
+    recordScore: function (raw, max) {
+      max = max || 100;
+      this.setValue("cmi.core.score.raw", raw);
+      this.setValue("cmi.core.score.min", 0);
+      this.setValue("cmi.core.score.max", max);
+      this.commit();
+    },
+
+    complete: function (passed) {
+      this.setValue("cmi.core.lesson_status", passed === false ? "failed" : "completed");
+      this.commit();
+    },
+
+    finish: function () {
+      if (this.initialized && this.api) {
+        this.commit();
+        this.api.LMSFinish("");
+      }
+    },
+  };
+
+  global.SkarionSCORM = SCORM;
+})(window);
+</script>
+<script>/* Skarion Course Engine — lesson player.
+   Expects a global LESSON object (injected by the build script) describing intro + chunks. */
+(function () {
+  "use strict";
+
+  var state = { current: 0, quizScores: {}, jeSolved: {} };
+  var chunks = []; // {id, el, dotEl, kind, requiresAction}
+
+  function $(sel, root) { return (root || document).querySelector(sel); }
+  function $all(sel, root) { return Array.from((root || document).querySelectorAll(sel)); }
+
+  function init() {
+    window.SkarionSCORM.init();
+    buildDom();
+    goTo(0);
+    window.addEventListener("keydown", function (e) {
+      if (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" || e.target.tagName === "INPUT") return;
+      if (e.key === "ArrowRight") next();
+      if (e.key === "ArrowLeft") prev();
+    });
+  }
+
+  function buildDom() {
+    $("#module-tag").textContent = LESSON.moduleTag;
+    $("#module-title").textContent = LESSON.moduleTitle;
+
+    var rail = $("#chunk-rail");
+    var stage = $("#stage-inner");
+
+    // Screen 0: intro/hero
+    chunks.push(makeScreen("intro", "Start", renderIntro(), false));
+    // Screens for each content chunk
+    LESSON.chunks.forEach(function (c, i) {
+      var requiresAction = c.type === "quiz" || c.type === "journal_entry_builder";
+      chunks.push(makeScreen("c" + i, c.railLabel || shortLabel(c.title, i + 1), renderChunk(c, i), requiresAction));
+    });
+    // Final screen
+    chunks.push(makeScreen("done", "Done", renderComplete(), false));
+
+    chunks.forEach(function (ch) {
+      stage.appendChild(ch.el);
+      rail.appendChild(ch.dotEl);
+    });
+
+    updateRail();
+    updateProgress();
+  }
+
+  function shortLabel(title, n) {
+    if (!title) return "Step " + n;
+    return title.length > 18 ? title.slice(0, 16) + "…" : title;
+  }
+
+  function makeScreen(id, railLabel, innerHtml, requiresAction) {
+    var el = document.createElement("div");
+    el.className = "screen";
+    el.dataset.id = id;
+    el.innerHTML = innerHtml;
+
+    var dot = document.createElement("button");
+    dot.className = "chunk-dot";
+    dot.textContent = railLabel;
+    dot.addEventListener("click", function () { goTo(chunks.findIndex(function (c) { return c.id === id; })); });
+
+    return { id: id, el: el, dotEl: dot, requiresAction: requiresAction, satisfied: !requiresAction };
+  }
+
+  function renderIntro() {
+    var L = LESSON;
+    return (
+      '<div class="hero-eyebrow">' + esc(L.moduleTag) + " · " + esc(L.dayMapping || "") + '</div>' +
+      '<h1 class="hero-title">' + esc(L.title) + "</h1>" +
+      '<p class="hero-sub">' + esc(L.subhead) + "</p>" +
+      (L.hook ? '<div class="hero-hook">' + esc(L.hook) + "</div>" : "")
+    );
+  }
+
+  function renderComplete() {
+    return (
+      '<div class="center-screen">' +
+      '<div class="complete-badge">✓</div>' +
+      '<h1 class="hero-title" style="text-align:center;">Module complete</h1>' +
+      '<p class="hero-sub" style="text-align:center;">' + esc(LESSON.title) + " is done. Progress has been recorded." +
+      "</p></div>"
+    );
+  }
+
+  function renderChunk(c, idx) {
+    switch (c.type) {
+      case "content": return renderContent(c);
+      case "flip_cards": return renderFlipCards(c, idx);
+      case "quiz": return renderQuiz(c, idx);
+      case "journal_entry_builder": return renderJE(c, idx);
+      case "exercise": return renderExercise(c);
+      default: return "<p>Unknown chunk type.</p>";
+    }
+  }
+
+  function renderContent(c) {
+    var html = '<div class="chunk-kicker">' + esc(c.kicker || "Learn") + "</div>";
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="prose">' + c.bodyHtml + "</div>";
+    if (c.callout) {
+      var icons = { tip: "💡", warning: "⚠️", story: "📎", danger: "🚫" };
+      html += '<div class="callout ' + c.callout.type + '"><span class="icon">' + (icons[c.callout.type] || "•") + '</span><div>' + c.callout.html + "</div></div>";
+    }
+    return html;
+  }
+
+  function renderFlipCards(c, idx) {
+    var html = '<div class="chunk-kicker">Quick check</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    if (c.intro) html += '<p class="prose">' + esc(c.intro) + "</p>";
+    html += '<div class="flip-grid">';
+    c.cards.forEach(function (card, i) {
+      html += '<div class="flip-card" onclick="this.classList.toggle(\'flipped\')">' +
+        '<div class="flip-inner">' +
+        '<div class="flip-face flip-front">' + esc(card.front) + "</div>" +
+        '<div class="flip-face flip-back">' + esc(card.back) + "</div>" +
+        "</div></div>";
+    });
+    html += "</div>";
+    return html;
+  }
+
+  function renderQuiz(c, idx) {
+    var html = '<div class="chunk-kicker">Knowledge check</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    c.questions.forEach(function (q, qi) {
+      html += '<div class="quiz-q" data-qi="' + qi + '">';
+      html += '<div class="quiz-q-text">' + (qi + 1) + ". " + esc(q.q) + "</div>";
+      html += '<div class="quiz-opts">';
+      q.options.forEach(function (opt, oi) {
+        html += '<button type="button" class="quiz-opt" onclick="SkarionPlayer.answerQuiz(' + idx + "," + qi + "," + oi + ')">' + esc(opt) + "</button>";
+      });
+      html += "</div>";
+      html += '<div class="quiz-explain" id="explain-' + idx + "-" + qi + '">' + esc(q.explanation || "") + "</div>";
+      html += "</div>";
+    });
+    html += '<div class="quiz-score-banner" id="score-' + idx + '"></div>';
+    return html;
+  }
+
+  function renderJE(c, idx) {
+    var html = '<div class="chunk-kicker">Practice: journal entry</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="je-scenario">' + c.scenarioHtml + "</div>";
+    html += '<table class="je-table" id="je-table-' + idx + '"><thead><tr><th style="width:45%">Account</th><th style="width:25%">Debit</th><th style="width:25%">Credit</th><th></th></tr></thead><tbody>';
+    var startRows = c.startRows || 2;
+    for (var r = 0; r < startRows; r++) html += jeRowHtml(c, idx);
+    html += "</tbody></table>";
+    html += '<button type="button" class="je-add-row" onclick="SkarionPlayer.addJERow(' + idx + ')">+ Add line</button><br>';
+    html += '<button type="button" class="je-check-btn" onclick="SkarionPlayer.checkJE(' + idx + ',' + JSON.stringify(c.solution).replace(/"/g, "&quot;") + ')">Check my entry</button>';
+    html += '<div class="je-feedback" id="je-feedback-' + idx + '"></div>';
+    return html;
+  }
+
+  function jeRowHtml(c, idx) {
+    var opts = c.accounts.map(function (a) { return "<option>" + esc(a) + "</option>"; }).join("");
+    return '<tr class="je-row"><td><select><option value="">— choose account —</option>' + opts + "</select></td>" +
+      '<td><input type="number" step="0.01" placeholder="0.00"></td>' +
+      '<td><input type="number" step="0.01" placeholder="0.00"></td>' +
+      '<td></td></tr>';
+  }
+
+  function renderExercise(c) {
+    var html = '<div class="chunk-kicker">Hands-on exercise</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="exercise-card">';
+    html += '<div class="prose">' + c.instructionsHtml + "</div>";
+    if (c.files && c.files.length) {
+      html += '<div class="exercise-files">';
+      c.files.forEach(function (f) {
+        html += '<a class="file-chip" href="' + esc(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
+      });
+      html += "</div>";
+    }
+    if (c.reflectionPrompt) {
+      html += '<div class="reflection-box"><label class="chunk-kicker" style="margin-top:14px;">' + esc(c.reflectionPrompt) + '</label><textarea placeholder="Type your notes here (saved locally in this browser only)"></textarea></div>';
+    }
+    html += "</div>";
+    return html;
+  }
+
+  function esc(s) {
+    if (s == null) return "";
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  // ---------- Interaction handlers ----------
+  window.SkarionPlayer = {
+    answerQuiz: function (chunkIdx, qi, oi) {
+      var qDef = LESSON.chunks[chunkIdx].questions[qi];
+      var qEl = $('.quiz-q[data-qi="' + qi + '"]', chunks[chunkIdx + 1].el);
+      var buttons = $all(".quiz-opt", qEl);
+      buttons.forEach(function (b, i) {
+        b.disabled = true;
+        if (i === qDef.correct_index) b.classList.add("correct");
+        else if (i === oi) b.classList.add("incorrect");
+      });
+      $("#explain-" + chunkIdx + "-" + qi).classList.add("show");
+
+      state.quizScores[chunkIdx] = state.quizScores[chunkIdx] || {};
+      state.quizScores[chunkIdx][qi] = oi === qDef.correct_index;
+
+      var total = LESSON.chunks[chunkIdx].questions.length;
+      var answered = Object.keys(state.quizScores[chunkIdx]).length;
+      if (answered === total) {
+        var correct = Object.values(state.quizScores[chunkIdx]).filter(Boolean).length;
+        var banner = $("#score-" + chunkIdx);
+        banner.textContent = "Score: " + correct + " / " + total + (correct === total ? " — nice work." : " — review the explanations above.");
+        banner.classList.add("show");
+        chunks[chunkIdx + 1].satisfied = true;
+        window.SkarionSCORM.recordScore(Math.round((correct / total) * 100));
+        updateNav();
+      }
+    },
+
+    addJERow: function (chunkIdx) {
+      var c = LESSON.chunks[chunkIdx];
+      var tbody = $("#je-table-" + chunkIdx + " tbody");
+      var tmp = document.createElement("tbody");
+      tmp.innerHTML = jeRowHtml(c, chunkIdx);
+      tbody.appendChild(tmp.firstElementChild);
+    },
+
+    checkJE: function (chunkIdx, solution) {
+      var rows = $all("#je-table-" + chunkIdx + " tbody tr");
+      var entries = [];
+      rows.forEach(function (r) {
+        var sel = r.querySelector("select").value;
+        var debit = parseFloat(r.querySelector("td:nth-child(2) input").value) || 0;
+        var credit = parseFloat(r.querySelector("td:nth-child(3) input").value) || 0;
+        if (sel && (debit || credit)) entries.push({ account: sel, debit: debit, credit: credit });
+      });
+
+      var totalDebit = entries.reduce(function (s, e) { return s + e.debit; }, 0);
+      var totalCredit = entries.reduce(function (s, e) { return s + e.credit; }, 0);
+      var balanced = Math.abs(totalDebit - totalCredit) < 0.01 && totalDebit > 0;
+
+      function matches(sol) {
+        return sol.every(function (line) {
+          return entries.some(function (e) {
+            return e.account === line.account &&
+              ((line.side === "debit" && Math.abs(e.debit - line.amount) < 0.01 && e.credit === 0) ||
+               (line.side === "credit" && Math.abs(e.credit - line.amount) < 0.01 && e.debit === 0));
+          });
+        }) && entries.length === sol.length;
+      }
+
+      var correct = balanced && matches(solution);
+      var fb = $("#je-feedback-" + chunkIdx);
+      fb.className = "je-feedback show " + (correct ? "correct" : "incorrect");
+      if (correct) {
+        fb.innerHTML = "✅ <strong>Correct.</strong> Debits and credits balance ($" + totalDebit.toFixed(2) + ") and the accounts match the expected entry.";
+      } else if (!balanced) {
+        fb.innerHTML = "⚠️ Debits ($" + totalDebit.toFixed(2) + ") and credits ($" + totalCredit.toFixed(2) + ") don't balance yet. Every journal entry needs total debits = total credits.";
+      } else {
+        fb.innerHTML = "❌ Debits and credits balance, but the accounts or amounts don't match the expected entry. Re-read the scenario and try again.";
+      }
+      if (correct) {
+        state.jeSolved[chunkIdx] = true;
+        chunks[chunkIdx + 1].satisfied = true;
+        updateNav();
+      }
+    },
+  };
+
+  // ---------- Navigation ----------
+  function goTo(i) {
+    if (i < 0 || i >= chunks.length) return;
+    state.current = i;
+    chunks.forEach(function (c, idx) { c.el.classList.toggle("active", idx === i); });
+    updateRail();
+    updateProgress();
+    updateNav();
+    $("#stage").scrollTop = 0;
+    window.SkarionSCORM.setProgress(i / (chunks.length - 1));
+    if (i === chunks.length - 1) {
+      window.SkarionSCORM.complete(true);
+    }
+  }
+
+  function updateRail() {
+    chunks.forEach(function (c, idx) {
+      c.dotEl.classList.toggle("active", idx === state.current);
+      c.dotEl.classList.toggle("done", idx < state.current);
+    });
+  }
+
+  function updateProgress() {
+    var pct = Math.round((state.current / (chunks.length - 1)) * 100);
+    $("#progress-fill").style.width = pct + "%";
+    $("#progress-label").textContent = pct + "%";
+  }
+
+  function updateNav() {
+    var atEnd = state.current === chunks.length - 1;
+    var atStart = state.current === 0;
+    var cur = chunks[state.current];
+    $("#nav-prev").disabled = atStart;
+    $("#nav-next").disabled = atEnd || !cur.satisfied;
+    $("#nav-next").textContent = atEnd ? "Done" : (cur.satisfied === false ? "Complete this step to continue" : (state.current === chunks.length - 2 ? "Finish module →" : "Continue →"));
+  }
+
+  function next() { if (!$("#nav-next").disabled) goTo(state.current + 1); }
+  function prev() { if (!$("#nav-prev").disabled) goTo(state.current - 1); }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    init();
+    $("#nav-next").addEventListener("click", next);
+    $("#nav-prev").addEventListener("click", prev);
+  });
+})();
+</script>
+</body>
+</html>

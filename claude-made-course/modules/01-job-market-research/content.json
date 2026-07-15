@@ -1,0 +1,87 @@
+{
+  "title": "Job Market Research — Calibrating the Course",
+  "moduleTag": "Module 01 · Skarion Manufacturing LLC",
+  "moduleTitle": "Job Market Research — Calibrating the Course",
+  "dayMapping": "Calibration input — read before Day 1",
+  "subhead": "Before you learn a single debit or credit, look at what 44 real entry-level accounting postings collected in July 2026 actually asked for — because that's what this whole course was built to match.",
+  "hook": "\"We don't teach accounting theory. We teach what's in the job postings.\" Here's the receipt: 44 real postings, pulled live from Robert Half and other sources in July 2026, tell you exactly what to expect.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "Why this module exists",
+      "title": "This course is calibrated against real job postings, not assumptions",
+      "bodyHtml": "<p>Most \"learn accounting\" content is built from textbooks — general ledger theory, debits and credits, the accounting cycle. That's necessary, but it isn't sufficient. It doesn't tell you what a hiring manager at Robert Half is actually screening for this month.</p><p>So before building the rest of this track, we collected <strong>44 real entry-level accounting job postings</strong> in July 2026 — job title, salary range, years of experience required, required software, required skills, whether reconciliation or month-end close was mentioned — and ran the numbers.</p><p>The goal isn't trivia. It's making sure every simulation in this course (bank reconciliation, AP processing, month-end close) maps to something a real employer is actually asking for right now, not a skill that sounded important in a textbook.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Read this as your \"why\" for every module that follows.</strong> When Module 4 has you reconcile a bank statement, or Module 5 has you process AP, that's not arbitrary — it's because those exact tasks showed up again and again in the postings behind this module."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The data",
+      "title": "What 44 real postings actually said",
+      "bodyHtml": "<p>Here are the computed numbers from the postings dataset, pulled straight from the auto-calculating Summary sheet:</p><table class='data'><tr><th>Metric</th><th>Value</th></tr><tr><td>Postings collected</td><td>44</td></tr><tr><td>Average salary — minimum</td><td>$48,134</td></tr><tr><td>Average salary — maximum</td><td>$56,122</td></tr><tr><td>% requiring 0 or 0–1 years of experience</td><td>84%</td></tr><tr><td>% mentioning CPA requirement</td><td>2%</td></tr><tr><td>% explicitly mentioning month-end close</td><td>27%</td></tr><tr><td>% explicitly mentioning reconciliation</td><td>73%</td></tr></table><p>Two numbers matter most for how you should think about this course: <strong>84% of these postings want someone with 0–1 years of experience</strong> — meaning the door is genuinely open to you — and <strong>73% explicitly mention reconciliation</strong>, which is exactly the judgment-heavy skill this course drills hardest.</p>",
+      "callout": {
+        "type": "story",
+        "html": "Almost no one is asking for a CPA (2%) at this level. What they're asking for is someone who can find and explain a $270 gap between the bank and the books — that's reconciliation, and it's in nearly three out of every four postings."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "title": "What employers actually named — real frequency counts",
+      "railLabel": "Skills data",
+      "intro": "Out of 44 postings, here's how often each software tool or skill was explicitly named. Flip each card to see the count.",
+      "cards": [
+        { "front": "Excel", "back": "Named in 20 of 44 postings (45%) — the single most-requested tool by a wide margin. If you only master one tool cold, make it this one." },
+        { "front": "Journal entries", "back": "Named in 8 of 44 postings — the core mechanical skill behind every correction this course teaches." },
+        { "front": "QuickBooks", "back": "Named in 6 of 44 postings — the most-requested accounting software specifically (ahead of SAP, NetSuite, Oracle, and Sage combined per-postings)." },
+        { "front": "Data entry", "back": "Named in 6 of 44 postings — still present, but this is exactly the task category AI is compressing fastest (see the next chunk)." },
+        { "front": "Month-end close", "back": "Named in 5 of 44 postings by that exact phrase — undercounts the real figure, since the broader 'month-end close mentioned' field above hits 27% once related phrasing is included." },
+        { "front": "Bank reconciliation", "back": "Named in 5 of 44 postings by that exact phrase — same undercount pattern; the broader reconciliation field hits 73%." },
+        { "front": "SAP", "back": "Named in 4 of 44 postings — the top enterprise ERP system in this dataset, ahead of NetSuite and Oracle." },
+        { "front": "Variance analysis", "back": "Named in 3 of 44 postings — a judgment-heavy skill, not a data-entry one." },
+        { "front": "NetSuite", "back": "Named in 2 of 44 postings — common in tech/SaaS employers specifically." },
+        { "front": "Sage", "back": "Named in 2 of 44 postings — another mid-market accounting system worth recognizing by name, even without deep expertise." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "The market context",
+      "title": "Why this course bets on judgment, not data entry",
+      "bodyHtml": "<p>July 2026 has a real headwind for entry-level accounting: AI is eating exactly the tasks that used to be the entry point. A Fortune report (May 2026), citing a BambooHR survey, found companies now hiring senior accountants over entry-level ones at roughly a <strong>3:1 ratio</strong>. Industry projections point to a <strong>35–50% reduction in basic bookkeeping roles by 2028</strong>, as tools like QuickBooks Online increasingly auto-categorize bank feeds and reduce the need for manual transaction entry.</p><p>That sounds like bad news for a course built around entry-level accounting jobs. But look back at the data in this module: <strong>73% of these 44 real postings still explicitly mention reconciliation</strong> — the exception-handling, judgment-heavy work of figuring out <em>why</em> two numbers don't match, not just keying data in. That's the work AI still struggles with, and it's exactly what this course's simulations (bank reconciliation, AP exception handling, month-end close) are built to teach.</p><p>The reframe: you're not training to be a data-entry clerk who might get automated out of a job in two years. You're training to be the person who reviews what the AI auto-categorized and catches what it got wrong — an <strong>AI-augmented entry accountant</strong>, comfortable with the software and confident handling the exceptions.</p>",
+      "callout": {
+        "type": "warning",
+        "html": "Don't market yourself on how many invoices you processed. Lead with the judgment work: reconciliation, variance investigation, discrepancy resolution. That's the 73%, and it's the durable part of this job."
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Check your understanding",
+      "questions": [
+        {
+          "q": "Based on the 44 real postings in this dataset, what percentage required 0–1 years of experience?",
+          "options": ["45%", "62%", "84%", "100%"],
+          "correct_index": 2,
+          "explanation": "84% of the 44 real postings required 0 or 0–1 years of experience — the entry-level door is genuinely open, which is the whole premise of this course."
+        },
+        {
+          "q": "What percentage of the real postings explicitly mentioned reconciliation?",
+          "options": ["27%", "45%", "73%", "2%"],
+          "correct_index": 2,
+          "explanation": "73% of postings explicitly mentioned reconciliation — far more than mentioned CPA (2%) or the exact phrase 'month-end close' (27%). Reconciliation is the single most in-demand judgment skill in this dataset, which is why this course drills it hard starting in Module 4."
+        },
+        {
+          "q": "Why does this course focus on reconciliation and exception-handling rather than pure data entry, given the AI trend described in this module?",
+          "options": [
+            "Data entry is more common in postings, so it's a safer bet",
+            "Reconciliation and judgment-heavy work are what 73% of real postings still ask for, and they're harder for AI tools to fully automate",
+            "Reconciliation is easier to teach than data entry",
+            "The course avoids data entry entirely because it's considered outdated"
+          ],
+          "correct_index": 1,
+          "explanation": "AI is compressing pure data-entry roles (a projected 35–50% reduction in basic bookkeeping roles by 2028), but 73% of real postings still explicitly ask for reconciliation — the exception-handling work AI still struggles with. That's the durable skill this course is betting on."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "title": "Interview Preparation",
+  "moduleTag": "Module 06 · Skarion Manufacturing LLC",
+  "moduleTitle": "Interview Preparation",
+  "dayMapping": "Day 6 of the 10-day path",
+  "subhead": "You've closed the books, reconciled the bank, and processed a batch of invoices at Skarion Manufacturing LLC. Now you have to talk about it out loud, in a room, under pressure — and make it sound like real experience.",
+  "hook": "\"Tell me about a time you found an error in the books.\" Every candidate in this interview has an answer. The only question is whether it's specific enough to believe.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "The framework",
+      "title": "Context → Action → Result: the only structure you need",
+      "bodyHtml": "<p>The Skarion Interview Cheat Sheet gives you one formula and tells you to use it for almost every question:</p><table class='data'><tr><th>Step</th><th>What it means</th></tr><tr><td><strong>1. Context</strong></td><td>Company/file, month, transaction, or report</td></tr><tr><td><strong>2. Action</strong></td><td>What you checked, posted, reconciled, or escalated</td></tr><tr><td><strong>3. Result</strong></td><td>Correction made, report finished, lesson learned</td></tr></table><p>Here's the cheat sheet's own instruction on wording: use honest phrasing like <em>\"in my Skarion Manufacturing accounting simulation / portfolio project\"</em> when describing practice-based experience. You're not pretending you worked a real job — you're describing real work you actually did, on a real (simulated) company's real numbers.</p><p>And the final reminder from the sheet is blunt: <strong>\"Strong interview answers are specific. Use numbers, dates, reports, tools, and the correction you made. Vague answers sound like motivational posters, and nobody should hire a poster.\"</strong></p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Why specificity wins:</strong> Anyone can say \"I'm detail-oriented and I catch errors.\" Almost nobody outside this simulation can say \"I traced a $9,503.60 duplicate Coastal Electric &amp; Controls deposit that had been entered twice in QuickBooks, and corrected it by debiting AR and crediting Cash — not touching Sales Revenue, since the sale was never overstated.\" The second answer is unfakeable. That's the whole point."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "title": "10 real Skarion answers — memorize the structure, not the words",
+      "intro": "These are pulled directly from the Interview Cheat Sheet and Question Bank. Flip each card, then say the answer out loud in your own words — but keep the real numbers.",
+      "railLabel": "Flip cards",
+      "cards": [
+        { "front": "Walk me through a month-end close you have done.", "back": "Followed a close checklist: finished AP/AR entry, reconciled the operating bank account, reviewed AR/AP aging, posted payroll, depreciation, prepaid, and interest accruals, then reviewed the trial balance and ran the P&L, balance sheet, and close summary. The bank rec converged on an adjusted balance of $217,334.09 — but only after tracing a $9,503.60 duplicate Coastal Electric & Controls deposit entered twice in QuickBooks. Fixed it with debit AR / credit Cash for $9,503.60." },
+        { "front": "What is a 3-way match?", "back": "Compares the purchase order, receiving report, and vendor invoice. On invoice DAF-2601-014 from Dominion Aluminum & Fasteners, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so the invoice was held instead of paid." },
+        { "front": "What accounts do you reconcile during month-end?", "back": "Cash/bank, credit cards, AR and AP subledgers to the GL, inventory, fixed assets and accumulated depreciation, payroll liabilities, sales tax payable, loans, prepaids, and accruals. In January's close that meant tying the bank to $217,334.09, AR to $176,918.00, AP to $42,265.00, accumulated depreciation to a $5,208.10 monthly add, and accrued loan interest to $1,510.42." },
+        { "front": "How do you record depreciation?", "back": "Straight-line: asset cost minus salvage value, divided by useful life. Skarion's 10 fixed assets — from the $82,000.00 CNC Brake Press to the $12,400.00 label printer — depreciate for a combined $5,208.10/month. Monthly entry: debit 6700 Depreciation Expense, credit 1590 Accumulated Depreciation." },
+        { "front": "How do you calculate days sales outstanding (DSO)?", "back": "Average AR divided by credit sales, times days in the period. Using January's numbers — roughly $176,918.00 ending AR against $165,264.00 net sales — a rough one-month DSO lands around 32 days, which flags that the $60,300.00 of aged balances in the 31–60 day bucket needs collection attention." },
+        { "front": "Tell me about a time you found an error in the books.", "back": "During a bank reconciliation, QuickBooks showed more cash than the bank statement. Reviewed deposits and found one customer ACH receipt entered twice. Confirmed the bank only received it once, reversed the duplicate, updated the reconciliation notes. Lesson: check transaction IDs and deposit dates, not just customer names." },
+        { "front": "What internal controls have you worked with?", "back": "3-way match, invoice approval before payment, duplicate invoice review, bank reconciliation, separation of invoice entry and payment approval, supporting documentation, and review of unusual transactions during close. The 3-way match caught the $126.36 DAF-2601-014 price discrepancy and a missing PO on NOVA Packaging invoice NPC-2601-011 — both held instead of paid." },
+        { "front": "What is variance analysis?", "back": "Compares actual results to budget, forecast, or prior period. On invoice DAF-2601-014, the unit price billed was $39.50 versus the $38.00 PO price — a $126.36 price variance — exactly the kind of thing you'd flag and explain rather than pay through." },
+        { "front": "How do you stay organized during month-end?", "back": "A close checklist with owner, due date, status, and notes, plus support files for reconciliations, accruals, depreciation, payroll, and bank activity. In January, that meant tracking the $217,334.09 bank rec, the $5,208.10 depreciation entry across 10 fixed assets, and the $375.00 water/sewer accrual — always knowing what was posted versus still pending support." },
+        { "front": "How do you accrue interest on a loan?", "back": "Calculate from the loan balance, rate, and time period. Skarion's $250,000.00 term loan at 7.25% annual interest: $250,000.00 × 7.25% / 12 = $1,510.42 for January. Month-end entry: debit 6800 Interest Expense, credit 2300 Accrued Interest Payable for $1,510.42." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Question types",
+      "title": "Four categories, four different things interviewers listen for",
+      "bodyHtml": "<p>The Question Bank breaks 126 questions into four sections. Each one is scored on something different — know the difference before you walk in.</p><table class='data'><tr><th>Category</th><th>What it covers</th><th>What interviewers listen for</th></tr><tr><td><strong>Technical (56 Qs)</strong></td><td>GAAP, GL, AP/AR, reconciliations, close, payroll, fixed assets, journal entries</td><td>Correct accounting treatment, no debit/credit or cash/accrual confusion, and a real Skarion number attached to the answer.</td></tr><tr><td><strong>Behavioral (30 Qs)</strong></td><td>STAR-style judgment, communication, ownership, ethics, organization</td><td>A specific situation (not a hypothetical), the steps taken, the outcome, and the lesson learned.</td></tr><tr><td><strong>Software (20 Qs)</strong></td><td>Excel (pivot tables, XLOOKUP, SUMIFS, conditional formatting), QuickBooks Online workflows</td><td>Practical accounting use of the tool — not \"I know Excel,\" but \"I used SUMIFS to total unpaid invoices by customer.\"</td></tr><tr><td><strong>Scenario (20 Qs)</strong></td><td>Workplace judgment calls — mismatched invoices, short payments, missing documents, ethical pressure</td><td>Whether you hold, correct, document, or escalate — and whether you know the difference between those four responses.</td></tr></table><p>The Question Bank's own scoring rubric names five things every strong answer needs: <strong>Accuracy, Specificity, Workflow, Judgment,</strong> and <strong>Communication</strong> — and it warns that weak answers \"sound memorized and generic\" while strong ones \"use a clear Skarion simulation example with numbers or documents.\"</p>",
+      "callout": {
+        "type": "warning",
+        "html": "The rubric's coach note on Judgment: a weak answer \"posts adjustments without support or says they would guess.\" A strong answer knows when to hold, correct, document, or escalate — and never forces a number to make a reconciliation balance."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "Before and after",
+      "title": "Red flags vs. green flags: the same question, two ways",
+      "bodyHtml": "<p>The cheat sheet includes a \"say this / not this\" table. Here it is expanded with the real Skarion-grounded version pulled from the question bank, side by side with the generic version most candidates give.</p><table class='data'><tr><th>Topic</th><th>Red flag (generic)</th><th>Green flag (Skarion-specific)</th></tr><tr><td>Bank reconciliation</td><td>\"I adjust the difference.\"</td><td>\"The book balance started at $226,594.19; after removing a $9,503.60 duplicate deposit, adding back a $270.00 Valley Freight correction, removing a $45.00 bank fee, and adding $18.50 in interest, the adjusted balance was $217,334.09. I don't force the difference — I document the cause.\"</td></tr><tr><td>AP invoices</td><td>\"I enter whatever the vendor sends.\"</td><td>\"On invoice DAF-2601-014, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so I held it instead of paying it.\"</td></tr><tr><td>Internal controls</td><td>\"Controls are someone else's job.\"</td><td>\"The 3-way match caught the $126.36 DAF-2601-014 price discrepancy and a missing PO on NOVA Packaging invoice NPC-2601-011 — both were held instead of paid.\"</td></tr></table>",
+      "callout": {
+        "type": "story",
+        "html": "Notice the pattern: the green-flag answers never say \"I'm accurate\" or \"I'm detail-oriented.\" They just describe exactly what happened, with a dollar figure and a document number, and let the interviewer draw that conclusion themselves."
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Spot the specific answer",
+      "questions": [
+        {
+          "q": "Question: \"How do you handle a bank reconciliation discrepancy?\" Which answer is the strong one?",
+          "options": [
+            "\"I just find the difference and adjust the books to match the bank.\"",
+            "\"I compare the bank statement to the GL by date, amount, and type, look for outstanding checks, deposits in transit, duplicates, and fees, then correct the entry if needed, attach support, and document the adjustment. I don't force the reconciliation.\"",
+            "\"I ask my manager to fix it since reconciliations are complicated.\"",
+            "\"I wait until next month and see if it corrects itself.\""
+          ],
+          "correct_index": 1,
+          "explanation": "This is the cheat sheet's actual answer to Question 2. It names the specific things checked (outstanding checks, deposits in transit, duplicates, fees) and explicitly says it never plugs or forces the number."
+        },
+        {
+          "q": "Question: \"What is a 3-way match?\" Which answer would score higher on the rubric's 'Specificity' criterion?",
+          "options": [
+            "\"It's when you match three documents together before paying an invoice.\"",
+            "\"On invoice DAF-2601-014 from Dominion Aluminum & Fasteners, the PO price was $38.00/unit but the invoice billed $39.50/unit — a $126.36 variance — so I held the invoice instead of paying it.\"",
+            "\"It means being careful with vendor invoices.\"",
+            "\"I've heard of it but haven't used it myself.\""
+          ],
+          "correct_index": 1,
+          "explanation": "This is the real answer from the Question Bank. It names the PO, the receiving report, and the invoice, then attaches a real transaction (DAF-2601-014) with the exact variance amount."
+        },
+        {
+          "q": "Question: \"Tell me about a time you found an error in the books.\" Which is the weak version?",
+          "options": [
+            "\"I found a customer deposit entered twice in QuickBooks. The bank reconciliation didn't balance, so I compared the bank statement to the cash receipts register by date and amount, found the duplicate, reversed it, and noted the correction.\"",
+            "\"I'm very thorough, so I usually catch errors before they become a problem.\"",
+            "\"During a bank reconciliation exercise, QuickBooks showed more cash than the bank statement. I found a duplicate ACH receipt, confirmed the bank only received it once, and reversed it.\"",
+            "\"I traced a $9,503.60 duplicate Coastal Electric & Controls deposit entered twice in QuickBooks and corrected it with debit AR / credit Cash, without touching Sales Revenue.\""
+          ],
+          "correct_index": 1,
+          "explanation": "Option B is the motivational-poster answer the cheat sheet warns against — no numbers, no transaction, no method. The other three options are all real, specific Skarion answers from the source documents."
+        },
+        {
+          "q": "Question: \"What accounts do you reconcile during month-end?\" Which answer demonstrates the 'Workflow' criterion best?",
+          "options": [
+            "\"All the balance sheet accounts, basically.\"",
+            "\"Cash, AR/AP subledgers to the GL, inventory, fixed assets, payroll liabilities, sales tax payable, loans, prepaids, and accruals — in January that meant tying the bank to $217,334.09, AR to $176,918.00, AP to $42,265.00, accumulated depreciation to the $5,208.10 monthly add, and accrued interest to $1,510.42.\"",
+            "\"Whatever my manager tells me to check.\"",
+            "\"I run the reports and see if anything looks off.\""
+          ],
+          "correct_index": 1,
+          "explanation": "This lists the full set of balance-sheet accounts AND ties each one to a real January figure — exactly what the rubric's Workflow and Specificity criteria are scoring for."
+        }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Run your own mock interview",
+      "instructionsHtml": "<p>Download both source files below. Read through the 20 must-know questions in the Cheat Sheet and skim the 126-question bank for a few more from each category (technical, behavioral, software, scenario).</p><ol><li>Pick <strong>3 of the 20 must-know questions</strong> from the Cheat Sheet.</li><li>Answer each one <strong>in your own words</strong> — do not copy the sample answer verbatim.</li><li>Use the Context → Action → Result structure, and pull <strong>real numbers</strong> from the Skarion Manufacturing simulation files you've already worked with (the $217,334.09 bank balance, the $126.36 DAF-2601-014 variance, the $5,208.10 depreciation, or any figure from your own exercise work in earlier modules).</li><li>If you have a study partner, have them ask you the questions cold and time your answers — the rubric recommends 60–90 seconds per answer.</li></ol>",
+      "files": [
+        { "label": "Interview Cheat Sheet — 20 Questions.docx", "href": "/download/06-interview-preparation/Interview_Cheat_Sheet_20_Questions.docx" },
+        { "label": "Interview Question Bank — 126 Questions.docx", "href": "/download/06-interview-preparation/Interview_Question_Bank_126Q.docx" }
+      ],
+      "reflectionPrompt": "Write out your 3 chosen questions and your Context → Action → Result answers, in your own words, using real simulation numbers. Which one felt hardest to make specific, and why?"
+    }
+  ]
+}

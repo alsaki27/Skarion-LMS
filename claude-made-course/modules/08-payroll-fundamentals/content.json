@@ -1,0 +1,123 @@
+{
+  "title": "Payroll Fundamentals: Gross to Net",
+  "moduleTag": "Module 08 · Skarion Manufacturing LLC",
+  "moduleTitle": "Payroll Fundamentals",
+  "dayMapping": "Day 5",
+  "subhead": "Withholding, taxes, and the cost of employees.",
+  "hook": "Skarion has 15 employees. When you run payroll, the amount of cash that leaves the bank is never the same as the wages you owe them. The difference is taxes, withholdings, and benefits. In this module, you will learn the mechanics of US Payroll and how to book the entries accurately.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "The basics",
+      "title": "Gross Pay vs. Net Pay",
+      "bodyHtml": "<p>When an employee earns $5,000 in a month, that is their <strong>Gross Pay</strong>. But they don't take home $5,000. Skarion is required by law to withhold taxes and deductions before writing the paycheck.</p><p>What gets withheld:</p><ul><li><strong>Federal Income Tax:</strong> Based on the employee's W-4.</li><li><strong>State Income Tax (Virginia):</strong> Based on state tax brackets.</li><li><strong>FICA (Social Security &amp; Medicare):</strong> 6.2% for Social Security and 1.45% for Medicare.</li><li><strong>Voluntary Deductions:</strong> 401(k) contributions, health insurance premiums.</li></ul><p>The amount left over after all these deductions is the <strong>Net Pay</strong>. This is the actual cash the employee receives.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<p>Skarion doesn't get to keep the withheld money. It sits as a liability (2200 Payroll Liabilities) until Skarion remits it to the IRS and the state government.</p>"
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "The employer side",
+      "title": "Employer Payroll Taxes",
+      "bodyHtml": "<p>Gross wages are not the only expense for the company. Skarion also has to pay <strong>Employer Payroll Taxes</strong> on top of the gross wages. These are entirely separate from what is withheld from the employee.</p><p>Employer Taxes Include:</p><ul><li><strong>FICA Match:</strong> Skarion must match the employee's 6.2% Social Security and 1.45% Medicare.</li><li><strong>FUTA (Federal Unemployment):</strong> Paid only by the employer.</li><li><strong>SUTA (State Unemployment):</strong> Paid only by the employer.</li></ul><p>These employer taxes are recorded as an expense (6310 Employer Payroll Taxes) and increase the total cost of having employees.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "title": "Payroll terminology",
+      "railLabel": "Payroll Drill",
+      "cards": [
+        {
+          "front": "Gross Wages",
+          "back": "Total earnings of the employee before any taxes or deductions are removed. Recorded as an expense (6300 Wages)."
+        },
+        {
+          "front": "Net Pay",
+          "back": "The actual cash paid to the employee. Calculated as Gross Wages minus all withholdings."
+        },
+        {
+          "front": "FICA",
+          "back": "Federal Insurance Contributions Act. Includes Social Security (6.2%) and Medicare (1.45%). Both the employee and the employer pay this."
+        },
+        {
+          "front": "FUTA / SUTA",
+          "back": "Federal and State Unemployment Tax. This is an employer-only expense."
+        },
+        {
+          "front": "Form W-4",
+          "back": "Filled out by the employee to let the employer know how much Federal Income Tax to withhold from their paycheck."
+        },
+        {
+          "front": "Payroll Liabilities",
+          "back": "The balance sheet account (2200) where all withheld taxes and employer taxes sit until they are paid to the government."
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Skarion in action",
+      "title": "Booking the Payroll Run",
+      "bodyHtml": "<p>Let's look at Skarion's first semi-monthly payroll run in January.</p><p>The total gross wages for all 15 employees is <strong>$33,916.67</strong>. The total net pay (cash to employees) is <strong>$24,414.85</strong>. The difference of $9,501.82 consists of federal tax, state tax, FICA, and benefits withholdings.</p><p>When we book this entry, we debit Wage Expense for the full gross amount, credit Cash for the net pay, and credit Payroll Liabilities for the withholdings.</p>",
+      "callout": {
+        "type": "warning",
+        "html": "<p>Never debit Wage Expense for just the Net Pay! Wage Expense must always reflect the full Gross Wages. The difference is recorded as a liability.</p>"
+      }
+    },
+    {
+      "type": "quiz",
+      "title": "Test your payroll knowledge",
+      "questions": [
+        {
+          "q": "Which of the following taxes is paid by BOTH the employee (via withholding) and the employer (via matching)?",
+          "options": [
+            "FUTA (Unemployment Tax)",
+            "Federal Income Tax",
+            "FICA (Social Security and Medicare)",
+            "State Income Tax"
+          ],
+          "correct_index": 2,
+          "explanation": "Both the employer and the employee pay 6.2% for Social Security and 1.45% for Medicare (FICA)."
+        },
+        {
+          "q": "An employee has gross wages of $4,000. Total withholdings are $1,000. What is the correct journal entry to record this?",
+          "options": [
+            "Debit Wages Expense $3,000, Credit Cash $3,000",
+            "Debit Wages Expense $4,000, Credit Cash $3,000, Credit Payroll Liabilities $1,000",
+            "Debit Wages Expense $4,000, Credit Cash $4,000",
+            "Debit Cash $3,000, Debit Payroll Liabilities $1,000, Credit Wages Expense $4,000"
+          ],
+          "correct_index": 1,
+          "explanation": "Wages Expense is always debited for the full gross amount ($4,000). Cash is credited for the net pay ($3,000). The withholdings are credited to Payroll Liabilities ($1,000)."
+        }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "title": "Record the employer taxes",
+      "scenarioHtml": "<p>After booking the gross wages and net pay for the January 15th payroll run, you must also record Skarion's portion of the employer payroll taxes. The total employer FICA match, FUTA, and SUTA for this run equals <strong>$3,001.63</strong>.</p><p>Record the journal entry for these employer taxes. Remember, this is an expense to the company, and the money hasn't been sent to the government yet.</p>",
+      "startRows": 2,
+      "accounts": [
+        "1000 Operating Checking",
+        "2200 Payroll Liabilities",
+        "6300 Wages",
+        "6310 Employer Payroll Taxes"
+      ],
+      "solution": [
+        { "account": "6310 Employer Payroll Taxes", "side": "debit", "amount": 3001.63 },
+        { "account": "2200 Payroll Liabilities", "side": "credit", "amount": 3001.63 }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Review the US Payroll Basics",
+      "instructionsHtml": "<p>Download and review the US Payroll Basics for Accountants reference sheet. This document explains the current tax rates and how to handle the W-4 and W-2 forms.</p><ul><li>Understand the difference between W-2 employees and 1099 contractors.</li><li>Review the current FICA rates and limits.</li><li>Understand the timeline for remitting payroll taxes to the IRS.</li></ul>",
+      "files": [
+        {
+          "label": "US Payroll Basics for Accountants",
+          "href": "/download/08-payroll-fundamentals/US_Payroll_Basics_for_Accountants.docx"
+        }
+      ],
+      "reflectionPrompt": "If an employee asks why their paycheck is lower than their stated salary, how would you explain the difference using the terms Gross Pay and Net Pay?"
+    }
+  ]
+}

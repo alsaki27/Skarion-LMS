@@ -1,0 +1,99 @@
+{
+  "title": "Bank Reconciliation Lab",
+  "moduleTag": "Module 04 · Skarion Manufacturing LLC",
+  "moduleTitle": "Bank Reconciliation Lab",
+  "dayMapping": "Day 4 of the 10-day path",
+  "subhead": "The bank says one number. Your books say another. Reconciliation is how you find out why — and it's the single most common technical interview question in entry-level accounting.",
+  "hook": "\"Walk me through how you'd handle a bank reconciliation discrepancy.\" You will be asked this. After this module, you'll have a real answer with a real dollar amount attached to it.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "The concept",
+      "title": "Why the bank balance and the book balance almost never match on day one",
+      "bodyHtml": "<p>At any given moment, your books and the bank's records are usually a little out of sync — not because something is wrong, but because of timing:</p><ul><li><strong>Deposits in transit</strong> — you recorded a customer payment, but it hasn't hit the bank yet.</li><li><strong>Outstanding checks</strong> — you wrote a check and recorded it, but the vendor hasn't cashed it yet.</li><li><strong>Bank fees / interest</strong> — the bank deducts or adds something you haven't recorded yet.</li></ul><p>Reconciliation is the process of proving that, once you account for timing differences, the <strong>adjusted bank balance</strong> and the <strong>adjusted book balance</strong> are exactly equal. If they're not equal after adjusting for timing, something is actually wrong — a duplicate, a typo, a missing transaction — and you have to find it.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "The method",
+      "title": "The two-sided reconciliation",
+      "bodyHtml": "<p>Every reconciliation works from both directions and they have to meet in the middle:</p><table class='data'><tr><th>From the bank side</th><th>From the book side</th></tr><tr><td>Ending balance per bank statement</td><td>Ending balance per your ledger</td></tr><tr><td>+ Deposits in transit</td><td>+ Bank credits not yet recorded (interest, etc.)</td></tr><tr><td>− Outstanding checks</td><td>− Bank debits not yet recorded (fees, etc.)</td></tr><tr><td>= Adjusted bank balance</td><td>= Adjusted book balance</td></tr></table><p>These two numbers should be identical. If they're not, the difference IS the error — and finding it is the actual job.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Real example from January's close at Skarion:</strong> the bank statement showed $12,450 and QuickBooks showed $12,180 — a $270 gap. The cause: a Valley Freight payment was miscoded. Finding gaps like this, and explaining exactly how you traced them, is what interviewers are listening for."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "title": "Common reconciliation problems — know them cold",
+      "railLabel": "Flip cards",
+      "cards": [
+        { "front": "Duplicate deposit", "back": "A customer payment gets recorded in the books twice. January's real example: a $6,800 deposit (ref DEP-1005) was entered twice — corrected with Debit Accounts Receivable / Credit Cash to reinstate the receivable." },
+        { "front": "Outstanding check", "back": "A check was written and recorded in the books, but the vendor hasn't cashed it yet — it won't show on the bank statement until they do." },
+        { "front": "Wrong amount entered", "back": "The book entry doesn't match what actually cleared. Example: rent was recorded at $12,750 but the bank shows $12,800 actually cleared — a $50 correction is needed." },
+        { "front": "Unrecorded bank fee", "back": "The bank charges a monthly service fee or similar that never got entered into the books — shows as an unexplained gap until you add it." },
+        { "front": "Deposit in transit", "back": "You made a deposit right at month-end that hasn't posted to the bank statement yet — it'll show up next month." }
+      ]
+    },
+    {
+      "type": "quiz",
+      "title": "Check your understanding",
+      "questions": [
+        {
+          "q": "Bank statement shows $12,450. QuickBooks shows $12,180. There's a $270 gap. What's the right first move?",
+          "options": [
+            "Change the QuickBooks balance to match the bank — problem solved",
+            "Trace the gap to its source transaction before adjusting anything",
+            "Ignore it — a $270 difference is too small to matter",
+            "Call the bank and ask them to fix their records"
+          ],
+          "correct_index": 1,
+          "explanation": "Never force numbers to match. Always trace the specific transaction causing the gap first — in this case a miscoded Valley Freight payment — then make the correcting entry."
+        },
+        {
+          "q": "A $6,800 customer deposit was accidentally entered into the books twice. What's the correcting journal entry?",
+          "options": [
+            "Debit Cash / Credit Accounts Receivable",
+            "Debit Sales Revenue / Credit Cash",
+            "Debit Accounts Receivable / Credit Cash",
+            "No entry needed — it will fix itself next month"
+          ],
+          "correct_index": 2,
+          "explanation": "The duplicate entry incorrectly cleared the customer's invoice twice — revenue was never overstated. The fix reinstates the receivable: Debit Accounts Receivable, Credit Cash."
+        },
+        {
+          "q": "You wrote check #1018 for $4,925 and recorded it in the books on January 28th. The vendor hasn't cashed it by January 31st. How does this affect the reconciliation?",
+          "options": [
+            "It's an outstanding check — subtract it from the bank side to get the adjusted bank balance",
+            "It's a deposit in transit — add it to the bank side",
+            "It's an error and must be reversed",
+            "It has no effect on the reconciliation"
+          ],
+          "correct_index": 0,
+          "explanation": "It's in your books but hasn't cleared the bank yet — a classic outstanding check. Subtract it from the bank statement balance when calculating the adjusted bank balance."
+        }
+      ]
+    },
+    {
+      "type": "journal_entry_builder",
+      "title": "Correct the duplicate deposit",
+      "scenarioHtml": "January's bank reconciliation surfaced a real problem: customer ACH deposit ref <strong>DEP-1005</strong> for <strong>$6,800.00</strong> was recorded in QuickBooks twice — once as the real payment, once as a duplicate entry. The duplicate incorrectly cleared the customer's invoice a second time. Post the correcting entry to reinstate the receivable.",
+      "startRows": 2,
+      "accounts": ["1100 Accounts Receivable", "1000 Operating Checking", "4000 Sales Revenue", "2000 Accounts Payable"],
+      "solution": [
+        { "account": "1100 Accounts Receivable", "side": "debit", "amount": 6800.00 },
+        { "account": "1000 Operating Checking", "side": "credit", "amount": 6800.00 }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Reconcile all three months",
+      "instructionsHtml": "<p>Download all three bank statement workbooks below. Each has an Instructions tab, the Bank Statement, the QuickBooks Register, and a Reconciliation Worksheet. For each month:</p><ol><li>Match every transaction between the bank statement and the register.</li><li>Identify the 2-3 seeded problems (duplicates, wrong amounts, outstanding checks, unrecorded fees).</li><li>Complete the Reconciliation Worksheet until the difference is exactly $0.00.</li></ol><p>Watch the labels carefully — the March worksheet has a row marked <code>(+/-)</code> because that month's duplicate is a duplicated <em>debit</em>, not a duplicated credit like January's.</p>",
+      "files": [
+        { "label": "January Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-01_January.xlsx" },
+        { "label": "February Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-02_February.xlsx" },
+        { "label": "March Bank Statement.xlsx", "href": "/download/04-bank-reconciliation-lab/Bank_Statement_2026-03_March.xlsx" }
+      ],
+      "reflectionPrompt": "Write your reconciliation memo for one month: what was the discrepancy, how did you find it, and how did you fix it?"
+    }
+  ]
+}

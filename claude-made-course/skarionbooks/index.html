@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SkarionBooks</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">SB</div>
+        <div class="brand-name">SkarionBooks</div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#" data-view="dashboard" class="active">Dashboard</a></li>
+        <li><a href="#" data-view="journal">Journal Entries</a></li>
+        <li><a href="#" data-view="reports">Reports</a></li>
+        <li><a href="#" data-view="coa">Chart of Accounts</a></li>
+      </ul>
+      <div class="sidebar-footer">
+        <button id="reset-data" class="btn-text">Reset Company Data</button>
+      </div>
+    </nav>
+    <main class="main-content">
+      <header class="topbar">
+        <h1 id="view-title">Dashboard</h1>
+        <div class="topbar-actions">
+          <button class="btn primary" id="btn-new-je">+ New Journal Entry</button>
+        </div>
+      </header>
+      <div class="content-area" id="content-area">
+        <!-- Views injected here by app.js -->
+      </div>
+    </main>
+  </div>
+
+  <!-- Modal for New Journal Entry -->
+  <div class="modal-overlay" id="je-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>New Journal Entry</h2>
+        <button class="btn-close" id="btn-close-je">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <label>Date</label>
+          <input type="date" id="je-date" value="2026-01-31">
+        </div>
+        <div class="form-row">
+          <label>Memo</label>
+          <input type="text" id="je-memo" placeholder="Description of transaction...">
+        </div>
+        <table class="je-table">
+          <thead>
+            <tr>
+              <th style="width: 50%;">Account</th>
+              <th>Debits</th>
+              <th>Credits</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="je-lines">
+            <!-- Lines added via JS -->
+          </tbody>
+        </table>
+        <div class="je-summary">
+          <div class="je-total">Total Debits: <span id="je-total-dr">$0.00</span></div>
+          <div class="je-total">Total Credits: <span id="je-total-cr">$0.00</span></div>
+        </div>
+        <button class="btn secondary" id="btn-add-line">+ Add Line</button>
+      </div>
+      <div class="modal-footer">
+        <div id="je-error" class="error-msg"></div>
+        <button class="btn secondary" id="btn-cancel-je">Cancel</button>
+        <button class="btn primary" id="btn-save-je">Save and Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

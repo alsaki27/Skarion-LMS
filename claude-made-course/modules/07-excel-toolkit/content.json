@@ -1,0 +1,113 @@
+{
+  "title": "The Excel Toolkit",
+  "moduleTag": "Module 07 · Skarion Manufacturing LLC",
+  "moduleTitle": "The Excel Toolkit",
+  "dayMapping": "Day 7 of the 10-day path",
+  "subhead": "QuickBooks does the posting. Excel does the thinking. Every reconciliation, aging report, and dashboard you've built so far ran on five formulas repeated with discipline.",
+  "hook": "\"What's your Excel level?\" is asked in nearly every accounting interview, and it isn't small talk — it's a filter. This module opens the hood on the templates you've already been using and shows you exactly why they work.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "Why it matters",
+      "title": "QuickBooks runs the books. Excel runs the job search.",
+      "bodyHtml": "<p>It would be easy to assume that once a company is on QuickBooks, Excel becomes optional. The market research behind this course says otherwise: <strong>roughly 90% of entry-level accounting and bookkeeping job postings analyzed for this course explicitly name Excel</strong> as a required or strongly preferred skill — more often than any specific accounting software, including QuickBooks itself.</p><p>The reason is structural, not nostalgic. QuickBooks is excellent at recording transactions and holding the single source of truth. It is clumsy at the analysis layer — aging buckets, multi-way variance tables, reconciliation workpapers, dashboards you can hand to a controller mid-meeting. That analysis layer is built in Excel, exported from QuickBooks or built alongside it, in nearly every small-to-midsize company's monthly close.</p><p>Every template in Modules 03 through 05 — the bank reconciliation, the AR and AP aging, the expense dashboard, the close checklist — is exactly that analysis layer. This module doesn't teach new tasks. It teaches you to read the formulas already doing the work, so you can explain them fluently in an interview and rebuild them from scratch on day one of a real job.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Interview framing:</strong> when asked about your Excel level, don't say \"intermediate.\" Say what you can actually do: \"I've built SUMIFS-based aging reports, COUNTIFS-based reconciliation matching, and nested-IF bucket logic for a manufacturing company's monthly close.\" Specificity beats a self-rating every time."
+      }
+    },
+    {
+      "type": "flip_cards",
+      "title": "The 8 functions that run this entire course",
+      "railLabel": "Flip cards",
+      "cards": [
+        { "front": "SUMIFS()", "back": "Adds up a range of numbers, but only the rows that match one or more conditions — e.g. every open invoice for one customer that also falls in the \"31-60\" bucket. It's the workhorse behind the aging reports and the expense dashboard's category-by-month tables." },
+        { "front": "COUNTIFS()", "back": "Counts rows that match one or more conditions, instead of summing them. The bank reconciliation template uses it to count how many times a transaction's match-key appears on the other sheet — zero means unmatched, one means matched, more than one flags a possible duplicate." },
+        { "front": "Nested IF()", "back": "Chains multiple true/false tests so a value falls into exactly one category. The AR and AP aging reports nest four IFs deep to sort each invoice into Current, 1-30, 31-60, 61-90, or 90+ days past due, based on a single days-past-due number." },
+        { "front": "VLOOKUP() / XLOOKUP()", "back": "Pulls a value from one table into another by matching on a shared key (like a customer name or invoice number). VLOOKUP is the classic, widely-supported version; XLOOKUP is the newer, more flexible successor increasingly requested in 2026 job postings." },
+        { "front": "TEXT() match-keys", "back": "Converts a date and amount into a single comparable text string, like \"20260102|4200.00\". Two systems that store dates or numbers slightly differently can't be matched directly — but their TEXT() versions can. This is the trick behind the bank reconciliation's auto-flagging." },
+        { "front": "MAX(0, ...)", "back": "Floors a calculation at zero so it never goes negative. Used to make sure an open invoice balance (Original Amount − Payments Received) never shows as a negative number if a customer overpays." },
+        { "front": "Conditional formatting", "back": "Automatically colors or highlights cells based on their value — red for \"Unmatched,\" yellow for \"Possible Duplicate,\" green for \"Matched.\" It turns a wall of numbers into something you can scan in three seconds, which is exactly what a controller needs during a close." },
+        { "front": "SUM() with ranges", "back": "The simplest function on this list, but the one that ties every reconciliation together — adding a full column or row of activity, like all of a month's bank transactions, to roll forward a beginning balance into an ending balance." }
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "How it actually works",
+      "title": "The bank reconciliation's auto-flagging trick, unpacked",
+      "bodyHtml": "<p>Open <code>Template_01_Bank_Reconciliation_Worksheet.xlsx</code> and look at column G on both the <code>Bank_Import</code> and <code>GL_Import</code> sheets. Every row builds a <strong>match key</strong> with this formula:</p><p><code>=TEXT(A5,\"yyyymmdd\")&\"|\"&TEXT(ROUND(ABS(F5),2),\"0.00\")</code></p><p>In plain English: take the transaction date, format it as a plain 8-digit string like <code>20260102</code>, glue on a pipe character, then glue on the transaction's absolute dollar amount rounded to two decimals, like <code>4200.00</code>. The result is a single text string — <code>20260102|4200.00</code> — that represents \"this date, this amount,\" with no ambiguity about date formats, positive/negative signs, or floating-point rounding.</p><p>Once every row on both sheets has a match key, column H counts how many times that exact key shows up on the <em>other</em> sheet: <code>=COUNTIFS(GL_Import!$G$5:$G$45,G5)</code>. Column I then turns that count into a plain-English status: <code>=IF(H5=0,\"Unmatched\",IF(H5&gt;1,\"Possible Duplicate\",\"Matched\"))</code>. Zero hits means nothing on the other side matches — an outstanding check or a deposit in transit. More than one hit means the same date-and-amount combination appears more than once, which is exactly how the template catches the accidental duplicate GL entry <code>DEP-1001-DUP</code> in the sample data.</p><p>This is why the <code>Reconciliation</code> sheet needed a new line: <strong>\"Less: Duplicate Book Entries.\"</strong> The COUNTIFS logic correctly flagged the $4,200 duplicate receipt as \"Possible Duplicate,\" but flagging isn't correcting — a human still has to confirm it's a real duplicate (not a coincidence) and back it out of the adjusted book balance. Once that $4,200 duplicate is subtracted on row 16, the reconciliation difference on row 19 correctly lands at $0.00. The formulas find the problem; the accountant decides what to do about it.</p>",
+      "callout": {
+        "type": "story",
+        "html": "<strong>Why not just match on amount alone?</strong> Because plenty of unrelated transactions share a dollar amount by coincidence — two different $2,190 payments to two different vendors, for instance. Combining date AND amount into one key makes false-positive matches far less likely, which is exactly the kind of design decision that separates a template someone can trust from one that just looks automated."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "How it actually works",
+      "title": "The AR/AP aging bucket logic",
+      "bodyHtml": "<p><code>Template_02_AR_Aging_Report.xlsx</code> and <code>Template_03_AP_Aging_Report.xlsx</code> share the same two-step logic. Step one, on the invoice detail sheet, calculates days past due: <code>=IF(H5=0,0,MAX(0,AR_Aging_Report!$B$4-E5))</code>. Read it right to left: take the report's \"As Of Date\" (cell B4) and subtract the invoice's due date (E5) — that's how many days overdue it is. Wrap it in <code>MAX(0, ...)</code> so an invoice that isn't due yet never shows a negative number of days past due. Wrap that in an outer <code>IF</code> so a fully-paid invoice (open balance H5 = 0) always shows 0 days, regardless of its due date.</p><p>Step two sorts that days-past-due number into a bucket with a nested IF chain: <code>=IF(H5=0,\"Paid\",IF(I5=0,\"Current\",IF(I5&lt;=30,\"1-30\",IF(I5&lt;=60,\"31-60\",IF(I5&lt;=90,\"61-90\",\"90+\")))))</code>. Each IF only fires if every test before it failed — so an invoice 45 days past due skips \"Paid,\" skips \"Current,\" skips \"1-30\" (45 is not ≤ 30), and lands on \"31-60\" (45 ≤ 60). Order matters here: the tests have to run from smallest to largest, or a 90-day-overdue invoice would incorrectly get caught by an earlier, looser test.</p><p>Once every invoice has a bucket label, the summary tables use SUMIFS twice: once to total each bucket across all customers (<code>=SUMIFS(Customer_Invoices!$H$5:$H$34,Customer_Invoices!$J$5:$J$34,A9)</code>), and once to build a customer-by-bucket grid that adds a second condition for the customer name. That's the same nested-IF-then-SUMIFS pattern doing double duty — sort first, then total by group.</p>"
+    },
+    {
+      "type": "quiz",
+      "title": "Check your understanding",
+      "questions": [
+        {
+          "q": "In the bank reconciliation's match key formula, =TEXT(A5,\"yyyymmdd\")&\"|\"&TEXT(ROUND(ABS(F5),2),\"0.00\"), why combine date AND amount instead of just matching on amount alone?",
+          "options": [
+            "Matching on amount alone is not technically possible in Excel",
+            "Combining both makes coincidental matches between unrelated transactions far less likely",
+            "TEXT() only works when two arguments are joined with an ampersand",
+            "Dates must always be converted to text before they can be used in any formula"
+          ],
+          "correct_index": 1,
+          "explanation": "Two unrelated transactions can easily share a dollar amount by coincidence. Requiring the same date AND the same amount to match dramatically reduces false-positive matches."
+        },
+        {
+          "q": "In GL_Import, COUNTIFS(Bank_Import!$G$5:$G$45,G5) returns 2 for a transaction. What does that mean, and what should happen next?",
+          "options": [
+            "The transaction cleared twice as fast as normal — no action needed",
+            "The match key appears twice on the Bank_Import sheet, so the row is flagged \"Possible Duplicate\" for a human to investigate",
+            "There is a formula error and the sheet needs to be rebuilt",
+            "The transaction should automatically be deleted from GL_Import"
+          ],
+          "correct_index": 1,
+          "explanation": "A count greater than 1 means the same date-and-amount match key shows up more than once on the other sheet. The formula flags it as a possible duplicate; it does not decide or correct anything — that judgment call, and the resulting adjustment, is the accountant's job."
+        },
+        {
+          "q": "An invoice is 61 days past its due date. Walking through =IF(H5=0,\"Paid\",IF(I5=0,\"Current\",IF(I5<=30,\"1-30\",IF(I5<=60,\"31-60\",IF(I5<=90,\"61-90\",\"90+\"))))), which bucket does it land in, and why?",
+          "options": [
+            "\"31-60\", because 61 is close enough to round down",
+            "\"90+\", because the formula always defaults to the largest bucket",
+            "\"61-90\", because it fails every earlier test (not paid, not current, not ≤30, not ≤60) until it reaches a test it passes (≤90)",
+            "\"Current\", because the invoice was originally due on time"
+          ],
+          "correct_index": 2,
+          "explanation": "Nested IFs evaluate in order and stop at the first TRUE test. 61 fails the ≤30 and ≤60 checks but passes ≤90, so it lands in \"61-90\". The bucket order has to run smallest-to-largest for this logic to work correctly."
+        }
+      ]
+    },
+    {
+      "type": "exercise",
+      "title": "Run a full month's close on Skarion's own numbers",
+      "instructionsHtml": "<p>You've already worked with pieces of Skarion Manufacturing LLC's data in earlier modules. Now put the full toolkit to work in one pass:</p><ol><li>Open the <strong>Bank Reconciliation Worksheet</strong> and confirm the adjusted bank and book balances tie out to $0.00 once the duplicate book entry is backed out on the \"Less: Duplicate Book Entries\" line.</li><li>Open the <strong>AR Aging</strong> and <strong>AP Aging</strong> reports and identify which customers and vendors have anything sitting in the 61-90 or 90+ buckets — these are the ones you'd flag to a controller first.</li><li>Open the <strong>Expense Analysis Dashboard</strong> and review the KPIs, the category-by-month and vendor-by-total SUMIFS tables, and all three embedded charts, including the newly added vendor chart.</li><li>Open the <strong>Month-End Close Checklist</strong> and walk all 30 tasks across the 15 functional areas, confirming the formula-driven status summary reflects a complete close.</li><li>Write a one-paragraph summary, as if handing it to a controller, of Skarion's month-end financial position: cash reconciliation status, AR/AP risk, and the top expense drivers.</li></ol>",
+      "files": [
+        { "label": "Bank Reconciliation Worksheet", "href": "/download/07-excel-toolkit/Template_01_Bank_Reconciliation_Worksheet.xlsx" },
+        { "label": "AR Aging Report", "href": "/download/07-excel-toolkit/Template_02_AR_Aging_Report.xlsx" },
+        { "label": "AP Aging Report", "href": "/download/07-excel-toolkit/Template_03_AP_Aging_Report.xlsx" },
+        { "label": "Expense Analysis Dashboard", "href": "/download/07-excel-toolkit/Template_04_Expense_Analysis_Dashboard.xlsx" },
+        { "label": "Month-End Close Checklist", "href": "/download/07-excel-toolkit/Template_05_Month_End_Close_Checklist.xlsx" }
+      ],
+      "reflectionPrompt": "Which single formula pattern from this module — the TEXT() match-key, the nested-IF aging bucket, or the SUMIFS summary table — do you feel most confident explaining out loud in an interview, and which one needs more practice?"
+    },
+    {
+      "type": "content",
+      "kicker": "Looking ahead",
+      "title": "What these templates don't teach — and why that's your next move",
+      "bodyHtml": "<p>Every table in this module's templates is built with SUMIFS, COUNTIFS, and nested IFs — functions that produce a \"pivot-style\" summary by writing out the logic explicitly, row by row and condition by condition. That's deliberate: it's the version of Excel every hiring manager can open and understand immediately, on any version of Excel, with zero setup.</p><p>But it's not the only way professionals summarize data. Native Excel <strong>PivotTables</strong> — and functions like <strong>XLOOKUP</strong> — do a lot of the same work with less manual formula-writing, and job postings are increasingly naming them by 2026, especially at larger companies with heavier reporting volume. XLOOKUP in particular is quickly replacing VLOOKUP as the expected lookup function in job descriptions, since it can search in either direction and handles missing matches more gracefully.</p>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Extension skill, not required for this course:</strong> once you're comfortable with the SUMIFS-based tables in these templates, it's worth practicing PivotTables and XLOOKUP on your own using this same Skarion data. They're not covered in these templates on purpose — but naming them specifically in an interview (\"I also build PivotTables and use XLOOKUP for lookups\") signals you're current with where Excel is headed, not just where it's been."
+      }
+    }
+  ]
+}
