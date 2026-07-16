@@ -1,7 +1,18 @@
 # Skarion Accounting Track — Project Handover
-**Date:** July 15, 2026  
+**Date:** July 15, 2026 (see update below)
 **Status:** Active development — latest code pushed ✅  
 **Prepared for:** Next developer / Nuzhat / content team
+
+---
+
+## 📌 Update — July 16, 2026
+
+Two new planning documents were added at the repo root. Read them before starting new work — this handover's own "known issues" list below is now partially stale (several items it flags have already been fixed; treat this file as historical context, not current truth, and defer to the two docs below for what's actually next):
+
+1. **[`FIX_IT_PLAN.md`](claude-made-course/FIX_IT_PLAN.md)** (in `claude-made-course/`) — a 30-item, 6-tier professionalization plan for the *current static site*: the sidebar UX (reported broken — clicking a module navigates instead of expanding it, no completion state, no type icons, hardcoded colors off the design-token system), a CDN reliance risk (`jspreadsheet` loaded from `bossanova.uk` at runtime — breaks under most corporate LMS iframe CSPs), stale build artifacts, and SkarionBooks gaps. **GLM is executing Tier 1 (the sidebar) now** — see `claude-made-course/GLM_INSTRUCTIONS.md` for the exact brief handed to it.
+2. **[`PHASE_1B_ACCOUNTING_TRACK_PLATFORM_MIGRATION.md`](PHASE_1B_ACCOUNTING_TRACK_PLATFORM_MIGRATION.md)** (repo root, alongside the `PHASE_1`–`PHASE_4` files) — the bigger structural fix: this course is currently hardcoded (`content.json` hand-edited by whoever can write JSON → a Python build script → one static HTML file), with no real instructor/student/admin roles, no server-side submission storage, no file-upload UI. This 30-chunk plan migrates the existing 171-chunk, 15-module course onto the real platform already specced in `PHASE_1_MVP_FOUNDATION.md` (Neon + Supabase Auth + R2, 5-tier RBAC) — adding the 14 accounting-specific interactive block types (journal-entry builder, spreadsheet lab, drag-and-drop, etc.) that plan didn't originally cover, plus a no-code Course Builder UI so an instructor never has to touch JSON again. **Nothing gets rebuilt from scratch** — it's an import/migration of the existing content and files, not a rewrite.
+
+Suggested reading order for whoever picks this up next: `FIX_IT_PLAN.md` → `GLM_INSTRUCTIONS.md` → `PHASE_1B_ACCOUNTING_TRACK_PLATFORM_MIGRATION.md`.
 
 ---
 
