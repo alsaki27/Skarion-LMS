@@ -24,10 +24,10 @@
           "explanation": "Accumulated Depreciation is a contra-asset — credit-normal. It reduces the net book value of the related asset."
         },
         {
-          "q": "A $250,000 loan at 7.25% — what is the monthly interest accrual?",
-          "options": ["$1,510.42", "$2,708.33", "$1,000.00", "$18,125.00"],
-          "correct_index": 0,
-          "explanation": "$250,000 × 7.25% ÷ 12 = $1,510.42. (The earlier-variable loan figure; the current Phase 1 canonical term loan is $500K @ 6.5% = $2,708.33 — know both.)"
+          "q": "Skarion's term loan is $500,000 at 6.5% — what is the monthly interest accrual?",
+          "options": ["$1,510.42", "$2,708.33", "$1,000.00", "$32,500.00"],
+          "correct_index": 1,
+          "explanation": "$500,000 × 6.5% ÷ 12 = $2,708.33 (rounded). The entry each month: Dr 6800 Interest Expense $2,708.33 / Cr 2300 Accrued Interest $2,708.33. This matches the Phase 1 canonical loan consistently across the course."
         },
         {
           "q": "What three documents make up a 3-way match?",
@@ -212,8 +212,8 @@
       "title": "Mock interview exercise & course completion",
       "instructionsHtml": "<p>Download the 20-question Cheat Sheet and the 126-question Question Bank below.</p><ol><li>Select <strong>5 questions</strong> — at least one from each of the four categories (technical, behavioral, software, scenario).</li><li>Write full <strong>Context → Action → Result</strong> answers using real numbers from your Skarion Engineering work: the $336,250.00 bank rec, the $10,547.10 duplicate, the $1,000 monthly depreciation, the $2,708 interest accrual, the 75.8-day DSO, the $178.75 GCS-2026-087 variance, or the $480,000 HLD milestone.</li><li>If you have a study partner, practice cold — no notes, 60–90 seconds per answer.</li><li>If alone, record yourself, then watch it back and count how many times you say \"basically,\" \"kind of,\" or \"I think.\" Reduce them.</li></ol>",
       "files": [
-        { "label": "Interview Cheat Sheet — 20 Questions.docx", "href": "/download/06-interview-preparation/Interview_Cheat_Sheet_20_Questions.docx" },
-        { "label": "Interview Question Bank — 126 Questions.docx", "href": "/download/06-interview-preparation/Interview_Question_Bank_126Q.docx" }
+        { "label": "Interview Cheat Sheet — 20 Questions.docx", "href": "/download/09-interview-prep/Interview_Cheat_Sheet_20_Questions.docx" },
+        { "label": "Interview Question Bank — 126 Questions.docx", "href": "/download/09-interview-prep/Interview_Question_Bank_126Q.docx" }
       ],
       "reflectionPrompt": "Which module's content was hardest to explain out loud without your notes? That is the one to re-do. Write your 5 answers below, in your own words, with real simulation numbers."
     },

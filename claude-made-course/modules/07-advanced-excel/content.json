@@ -93,8 +93,8 @@
       "title": "The messy offshore timesheet export",
       "instructionsHtml": "<p>Download the raw export below — a <strong>1,200-row CSV</strong> of individual CAD and GIS drafting tasks from 3 offshore firms across 8 projects, including the Tennessee Corridor build.</p><ol><li><strong>Text-to-Columns</strong> to split the combined date/description field.</li><li><strong>TRIM/PROPER/CLEAN</strong> to standardize vendor names so they match the master project table.</li><li><strong>XLOOKUP or VLOOKUP</strong> to attach the correct Project Code to every row from the project mapping table.</li><li><strong>SUMIFS</strong> to compute total drafting labor cost per project.</li><li>Deliverable: report the <strong>total Tennessee Corridor drafting cost</strong> for the month.</li></ol>",
       "files": [
-        { "label": "Raw_Drafting_Labor.csv", "href": "Raw_Expense_Export.csv" },
-        { "label": "Project_Mapping_Table.csv", "href": "GL_Mapping_Table.csv" }
+        { "label": "Raw_Drafting_Labor.csv", "href": "/download/scenario-labs/Raw_Drafting_Labor.csv" },
+        { "label": "Project_Mapping_Table.csv", "href": "/download/scenario-labs/Project_Mapping_Table.csv" }
       ],
       "reflectionPrompt": "What was the total drafting cost for the Tennessee Corridor project? Which vendor had the largest share, and did any invoices exceed the $38.50/mile MSA rate?"
     },
@@ -201,7 +201,7 @@
       ],
       "files": [
         { "label": "Offshore_Labor_Raw_Q1_2026.csv", "href": "/download/scenario-labs/Offshore_Labor_Raw_Q1_2026.csv" },
-        { "label": "Project_Mapping_Table.csv", "href": "GL_Mapping_Table.csv" }
+        { "label": "Project_Mapping_Table.csv", "href": "/download/scenario-labs/Project_Mapping_Table.csv" }
       ],
       "submissionPrompt": "Paste: (1) the tool you used for each of the 8 problems, (2) your final cleaned row count, (3) the Tennessee Corridor and Texas Long-Haul totals (hours and $), and (4) the project with the largest cost overrun + your one-line flag.",
       "solution": "<p><strong>Eight fixes (tools):</strong> (1) Text-to-Columns on the date field, delimiter \"-\"; (2) TRIM + PROPER on vendor names, then Remove Duplicates on Task ID + Date + Vendor; (3) Remove Duplicates or pivot-count to surface duplicate task IDs; (4) Find/Replace + a helper column with a normalized key (spaces/dashes stripped) to unify the project codes; (5) SUBSTITUTE(\",\",\".\") or value-conversion on the comma-decimal column; (6) Flag the three $0/positive-hours rows in writing — likely a rate-missing error, do NOT silently zero-fill; route to the offshore PM for confirmation; (7) use UPPER() on both the lookup key and the master to fix the case mismatch, then VLOOKUP succeeds for all 47; (8) multiply the billing-rate column by each offshore office's currency-to-USD rate and store a single USD column.</p><p><strong>Clean row count</strong> ≈ 3,000 minus the duplicates removed (typically ~2,984 after the 16 duplicate rows are stripped).</p><p><strong>Tennessee Corridor</strong> should be the highest-volume project (hundreds of hours, the largest $ total — the dominant share of Q1 offshore drafting). <strong>Texas Long-Haul</strong> is the second-largest by hours.</p><p><strong>Cost-overrun flag:</strong> the project whose SUMIFS total exceeds the master-table budget for that project — flag it as \"Over budget — review with PM before next PO revision.\" The exact overrun dollar figure depends on the seeded data, but the comparison method is the deliverable.</p>"
