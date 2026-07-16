@@ -15,11 +15,165 @@
     window.SkarionSCORM.init();
     buildSidebar();
     loadModule(0);
+    restoreState();
+    wireMobileSidebar();
     window.addEventListener("keydown", function (e) {
       if (e.target.tagName === "TEXTAREA" || e.target.tagName === "SELECT" || e.target.tagName === "INPUT") return;
       if (e.key === "ArrowRight") next();
       if (e.key === "ArrowLeft") prev();
     });
+    window.addEventListener("beforeunload", function () { try { window.SkarionSCORM.finish(); } catch (e) {} });
+  }
+
+  // ---------- Persisted state (SCORM suspend_data + localStorage mirror) ----------
+  // Shape: { mod, current, quizScores: { chunkIdx: { qi: bool } }, jeSolved: { chunkIdx: bool },
+  //         drill: { chunkIdx: { correct, timedOut, total } }, openReview: { chunkIdx: bool },
+  //         script: { chunkIdx: bool }, spreadsheet: { chunkIdx: bool }, scenario: { chunkIdx: bool },
+  //         video: { chunkIdx: bool }, review: { chunkIdx: { qi: bool } } }
+  function saveState() {
+    var snap = {
+      mod: state.mod, current: state.current,
+      quizScores: state.quizScores || {}, jeSolved: state.jeSolved || {},
+      drill: SkarionPlayer._drill || {}, openReview: SkarionPlayer._openReview || {},
+      script: SkarionPlayer._scriptDone || {}, spreadsheet: SkarionPlayer._ssDone || {},
+      scenario: SkarionPlayer._scDone || {}, video: SkarionPlayer._vidDone || {},
+      review: SkarionPlayer._reviewState || {}
+    };
+    try { window.SkarionSCORM.saveState(snap); } catch (e) {}
+  }
+  // One-line recorder: mark a single chunk bucket as complete, mark satisfied, persist.
+  function record(kind, chunkIdx, extra) {
+    var buckets = {
+      je: "jeSolved", video: "_vidDone", script: "_scriptDone",
+      spreadsheet: "_ssDone", scenario: "_scDone", openReview: "_openReview"
+    };
+    if (kind === "je") { state.jeSolved[chunkIdx] = true; }
+    else if (kind === "review") { SkarionPlayer._reviewState = SkarionPlayer._reviewState || {}; }
+    else { var b = buckets[kind]; if (b) { var o = SkarionPlayer; o[b] = o[b] || {}; o[b][chunkIdx] = (extra === undefined ? true : extra); } }
+    chunks[chunkIdx + 1].satisfied = true;
+    updateNav();
+    saveState();
+  }
+  function restoreState() {
+    var snap;
+    try { snap = window.SkarionSCORM.loadState(); } catch (e) { snap = null; }
+    if (!snap) return;
+    if (snap.quizScores) state.quizScores = snap.quizScores;
+    if (snap.jeSolved) state.jeSolved = snap.jeSolved;
+    SkarionPlayer._drill = snap.drill || {};
+    SkarionPlayer._openReview = snap.openReview || {};
+    SkarionPlayer._scriptDone = snap.script || {};
+    SkarionPlayer._ssDone = snap.spreadsheet || {};
+    SkarionPlayer._scDone = snap.scenario || {};
+    SkarionPlayer._vidDone = snap.video || {};
+    SkarionPlayer._reviewState = snap.review || {};
+    // Defer visual restoration until after loadModule so the DOM exists.
+    setTimeout(function () {
+      try { if (typeof snap.mod === "number" && snap.mod !== state.mod) loadModule(snap.mod); } catch (e) {}
+      try { if (typeof snap.current === "number") goTo(snap.current); } catch (e) {}
+      setTimeout(function () { applySavedSatisfaction(snap); }, 220);
+    }, 60);
+  }
+
+  // Mark chunks satisfied from saved flags and visually mark the saved answers where the UI supports it.
+  function applySavedSatisfaction(snap) {
+    var restoreBtn = function (idx, sel, optCorrectIdx) { /* quiz/review button restore is visual-only */ };
+    var apply = function (idx) {
+      var chunkData = LESSON && LESSON.chunks[idx];
+      var screen = chunks[idx + 1] && chunks[idx + 1].el;
+      if (!chunkData || !screen) return;
+      var type = chunkData.type;
+
+      if (type === "quiz" || type === "review_quiz") {
+        var st = (type === "quiz" ? snap.quizScores : snap.review) || {};
+        var per = st[idx];
+        if (per) {
+          (chunkData.questions || []).forEach(function (q, qi) {
+            if (q.type === "open") return;
+            var chose = -1, disable = false;
+            // We only stored correctness booleans; mark the correct answer highlighted as a hint.
+            var qEl = (type === "quiz")
+              ? $('.quiz-q.gamified[data-qi="' + qi + '"]', screen) || $('.quiz-q[data-qi="' + qi + '"]', screen)
+              : $('.quiz-q.review[data-qi="' + qi + '"]', screen);
+            if (!qEl) return;
+            var btns = $all(".quiz-opt-card", qEl);
+            btns.forEach(function (b, oi) { b.disabled = true; if (oi === q.correct_index) b.classList.add("correct"); });
+            var ev = $((type === "quiz" ? "#explain-" : "#explain-r-") + idx + "-" + qi, screen);
+            if (ev) { ev.classList.add("show"); ev.className = "quiz-explain playful show success-text"; ev.innerHTML = "📌 <strong>Saved from last session.</strong> " + esc(q.explanation || ""); }
+          });
+          var banner = (type === "quiz") ? $("#score-" + idx, screen) : $("#score-r-" + idx, screen);
+          if (banner) { banner.classList.add("show"); banner.innerHTML = "📌 Answered in a previous session — saved."; }
+        }
+      }
+
+      if (type === "journal_entry_builder" && snap.jeSolved && snap.jeSolved[idx]) {
+        var fb = $("#je-feedback-" + idx, screen);
+        if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "📌 <strong>Saved.</strong> You solved this journal entry in a previous session."; }
+      }
+      if (type === "video" && snap.video && snap.video[idx]) {
+        var vfb = $("#video-fb-" + idx, screen);
+        if (vfb) { vfb.className = "je-feedback show correct"; vfb.innerHTML = "📌 Watched in a previous session."; }
+      }
+      if (type === "script_builder" && snap.script && snap.script[idx]) {
+        var sfb = $("#sb-fb-" + idx, screen);
+        if (sfb) { sfb.className = "je-feedback show correct"; sfb.innerHTML = "📌 Your 90-second intro was saved in a previous session."; }
+      }
+      if (type === "spreadsheet_lab" && snap.spreadsheet && snap.spreadsheet[idx]) {
+        var ssfb = $("#ss-fb-" + idx, screen);
+        if (ssfb) { ssfb.className = "je-feedback show correct"; ssfb.innerHTML = "📌 Lab solved in a previous session."; }
+      }
+      if (type === "scenario_lab" && snap.scenario && snap.scenario[idx]) {
+        var scfb = $("#sc-fb-" + idx, screen);
+        if (scfb) { scfb.className = "je-feedback show correct"; scfb.innerHTML = "📌 Submitted in a previous session."; }
+      }
+      if (type === "timed_drill" && snap.drill && snap.drill[idx]) {
+        var d = snap.drill[idx];
+        var db = $("#drill-score-" + idx, screen);
+        if (db) { db.classList.add("show"); db.innerHTML = "📌 Drill saved — " + d.correct + "/" + d.total + " correct (" + (d.timedOut || 0) + " timed out)."; }
+      }
+      // Reapply satisfied flag for the saved chunk
+      if (isSatisfiedInSnap(snap, idx)) { chunks[idx + 1].satisfied = true; }
+    };
+    if (!LESSON) return;
+    LESSON.chunks.forEach(function (_, i) { apply(i); });
+    updateNav();
+  }
+
+  function isSatisfiedInSnap(snap, idx) {
+    var c = LESSON && LESSON.chunks[idx];
+    if (!c) return false;
+    var t = c.type;
+    if (t === "quiz") return snap.quizScores && snap.quizScores[idx] && Object.keys(snap.quizScores[idx]).length >= (c.questions || []).filter(function (q) { return q.type !== "open"; }).length;
+    if (t === "review_quiz") {
+      var qs = c.questions || []; var ok = true;
+      qs.forEach(function (q, qi) {
+        if (q.type === "open") return;
+        if (!(snap.review && snap.review[idx] && snap.review[idx][qi])) ok = false;
+      });
+      return ok;
+    }
+    if (t === "journal_entry_builder") return !!(snap.jeSolved && snap.jeSolved[idx]);
+    if (t === "video") return !!(snap.video && snap.video[idx]);
+    if (t === "script_builder") return !!(snap.script && snap.script[idx]);
+    if (t === "spreadsheet_lab") return !!(snap.spreadsheet && snap.spreadsheet[idx]);
+    if (t === "scenario_lab") return !!(snap.scenario && snap.scenario[idx]);
+    if (t === "timed_drill") return !!(snap.drill && snap.drill[idx] && snap.drill[idx].total > 0 && (snap.drill[idx].answered || snap.drill[idx].total));
+    return false;
+  }
+
+  // ---------- Mobile sidebar (off-canvas drawer) ----------
+  function wireMobileSidebar() {
+    var sb = $("#catalog-sidebar"), backdrop = $("#sidebar-backdrop");
+    var open = function () { sb.classList.add("open"); if (backdrop) backdrop.classList.add("show"); };
+    var close = function () { sb.classList.remove("open"); if (backdrop) backdrop.classList.remove("show"); };
+    var openBtn = $("#menu-open"), closeBtn = $("#menu-close");
+    if (openBtn) openBtn.addEventListener("click", open);
+    if (closeBtn) closeBtn.addEventListener("click", close);
+    if (backdrop) backdrop.addEventListener("click", close);
+    // Auto-close after a nav action on mobile
+    document.addEventListener("skarion:nav", close);
+    // Debounced resize
+    var rt; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { if (window.innerWidth > 900) close(); }, 150); });
   }
 
   function buildSidebar() {
@@ -142,7 +296,8 @@
 
   function requiresInteraction(c) {
     return c.type === "quiz" || c.type === "review_quiz" || c.type === "journal_entry_builder" ||
-           c.type === "timed_drill" || c.type === "scenario_lab";
+           c.type === "timed_drill" || c.type === "scenario_lab" || c.type === "spreadsheet_lab" ||
+           c.type === "script_builder" || c.type === "completion";
   }
 
   function renderChunk(c, idx) {
@@ -152,7 +307,10 @@
       case "quiz": return renderQuiz(c, idx);
       case "review_quiz": return renderReviewQuiz(c, idx);
       case "timed_drill": return renderTimedDrill(c, idx);
+      case "script_builder": return renderScriptBuilder(c, idx);
       case "scenario_lab": return renderScenarioLab(c, idx);
+      case "spreadsheet_lab": return renderSpreadsheetLab(c, idx);
+      case "completion": return renderCompletion(c, idx);
       case "video": return renderVideo(c, idx);
       case "journal_entry_builder": return renderJE(c, idx);
       case "exercise": return renderExercise(c);
@@ -254,7 +412,7 @@
     if (c.files && c.files.length) {
       html += '<div class="exercise-files">';
       c.files.forEach(function (f) {
-        html += '<a class="file-chip" href="' + esc(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
+        html += '<a class="file-chip" href="' + assetHref(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
       });
       html += "</div>";
     }
@@ -265,6 +423,75 @@
     html += '<div class="scenario-panel" id="sp-sol-' + idx + '" style="display:none;">';
     html += '<div class="prose">' + (c.solution || "<em>Model solution available after you submit your own work.</em>") + "</div>";
     html += "</div>";
+    return html;
+  }
+
+  function renderSpreadsheetLab(c, idx) {
+    var html = '<div class="chunk-kicker spreadsheet-kicker">Live in-browser Excel lab ⧉</div>';
+    html += '<h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<div class="je-scenario">' + (c.scenarioHtml || "") + "</div>";
+    html += '<div class="ss-toolbar"><span class="ss-tag">Skarion Excel Simulator</span><span class="ss-help">Edit white cells; shaded cells are given/locked. Target cells validate automatically.</span></div>';
+    html += '<div class="ss-wrap" id="ss-wrap-' + idx + '"><div class="ss-table" id="ss-' + idx + '"></div></div>';
+    html += '<div class="je-feedback" id="ss-fb-' + idx + '"></div>';
+    if (c.journalSection) {
+      html += '<div class="ss-je"><div class="chunk-kicker">' + esc(c.journalSection.label || "Correcting journal entries") + '</div>';
+      html += '<table class="je-table" id="ss-je-' + idx + '"><thead><tr><th>Account</th><th>Debit</th><th>Credit</th></tr></thead><tbody>';
+      var rows = c.journalSection.rows || 3;
+      var opts = (c.journalSection.accounts || c.accounts || []).map(function (a) { return "<option>" + esc(a) + "</option>"; }).join("");
+      for (var r = 0; r < rows; r++) {
+        html += '<tr class="je-row"><td><select><option value="">— choose —</option>' + opts + '</select></td><td><input type="number" step="0.01" placeholder="0.00"></td><td><input type="number" step="0.01" placeholder="0.00"></td></tr>';
+      }
+      html += '</tbody></table>';
+      html += '<button type="button" class="je-add-row" onclick="SkarionPlayer.addSSJERow(' + idx + ')">+ Add line</button> &nbsp;';
+      html += '<button type="button" class="je-check-btn" onclick="SkarionPlayer.checkSSJE(' + idx + ')">Check journal entries</button><div class="je-feedback" id="ss-je-fb-' + idx + '"></div></div>';
+    }
+    html += '<button type="button" class="nav-btn primary" style="margin-top:16px;" onclick="SkarionPlayer.checkSpreadsheet(' + idx + ')">Check reconciliation</button>';
+    setTimeout(function () { initSpreadsheet(idx); }, 120);
+    return html;
+  }
+
+  function renderScriptBuilder(c, idx) {
+    var html = '<div class="chunk-kicker">Guided script builder ▶</div><h2 class="chunk-title">' + esc(c.title) + "</h2>";
+    html += '<p class="prose">' + (c.intro || "") + "</p>";
+    c.fields.forEach(function (f, i) {
+      html += '<div class="script-field">';
+      html += '<label class="chunk-kicker">' + esc(f.label) + '</label>';
+      html += '<p class="prose ss-help">' + esc(f.hint || "") + "</p>";
+      html += '<textarea id="sb-' + idx + '-' + i + '" data-field="' + i + '" placeholder="' + esc(f.placeholder || "") + '" oninput="SkarionPlayer.updateScript(' + idx + ')"></textarea>';
+      html += '<span class="ss-wordcount" id="sb-wc-' + idx + '-' + i + '">0 words</span>';
+      html += "</div>";
+    });
+    html += '<div class="script-preview-wrap"><div class="chunk-kicker">Preview — your 90-second intro</div><div class="script-preview" id="sb-preview-' + idx + '"></div>';
+    html += '<span class="ss-wordcount" id="sb-total-' + idx + '">0 words total · target ' + (c.minWords || 180) + "–" + (c.maxWords || 220) + "</span></div>";
+    if (c.traps && c.traps.length) {
+      html += '<div class="callout warning"><div><strong>Traps to avoid:</strong><ul>';
+      c.traps.forEach(function (t) { html += "<li>" + t + "</li>"; });
+      html += "</ul></div></div>";
+    }
+    html += '<button type="button" class="nav-btn primary" style="margin-top:16px;" onclick="SkarionPlayer.submitScript(' + idx + ',' + (c.minWords || 180) + ',' + (c.maxWords || 220) + ')">Save my intro script</button>';
+    html += '<div class="je-feedback" id="sb-fb-' + idx + '"></div>';
+    return html;
+  }
+
+  function renderCompletion(c, idx) {
+    var html = '<div class="chunk-kicker" style="text-align:center;">Course Completion 🎓</div>';
+    html += '<h2 class="chunk-title" style="text-align:center;">' + esc(c.title || "Skarion Accounting Track — Complete") + "</h2>";
+    html += '<div class="completion-banner">Skarion Accounting Track — Complete</div>';
+    html += '<div class="completion-summary"><div class="cs-line"><strong>Modules completed:</strong> <span id="cs-modules">' + (c.modules || 9) + '</span></div><div class="cs-line"><strong>Total chunks:</strong> <span id="cs-chunks">' + (c.totalChunks || 60) + '</span></div><div class="cs-line"><strong>Estimated course time:</strong> ~40 hours</div></div>';
+    html += '<div class="certificate">';
+    html += '<div class="cert-stamp">Certificate of Completion</div>';
+    html += '<div class="cert-title">Skarion Accounting Track</div>';
+    html += '<div class="cert-body">This is to certify that</div>';
+    html += '<input type="text" id="cert-name-' + idx + '" class="cert-name-input" placeholder="Enter your name" oninput="SkarionPlayer.maybeCompleteCert(' + idx + ')" />';
+    html += '<div class="cert-body">has successfully completed the full accounting simulation — covering GAAP, the accounting cycle, accounts payable &amp; payroll, accounts receivable &amp; billing, bank reconciliation, month-end close, advanced Excel, SkarionBooks, and interview preparation.</div>';
+    html += '<div class="cert-date" id="cert-date-' + idx + '"></div>';
+    html += '<div class="cert-sign">Skarion Learning — Accounting Track</div>';
+    html += '<div class="cert-actions"><button type="button" class="nav-btn primary" onclick="SkarionPlayer.printCertificate(' + idx + ')">Download Certificate (Print to PDF)</button>';
+    if (c.nextActions) {
+      c.nextActions.forEach(function (a) { html += '<button type="button" class="nav-btn secondary" onclick="SkarionPlayer.certAction(\'' + esc(a.label).replace(/'/g, "\\'") + "')\">" + esc(a.label) + "</button>"; });
+    }
+    html += '</div>';
+    html += '<div class="je-feedback" id="cert-fb-' + idx + '"></div></div>';
     return html;
   }
 
@@ -418,7 +645,7 @@
     if (c.files && c.files.length) {
       html += '<div class="exercise-files">';
       c.files.forEach(function (f) {
-        html += '<a class="file-chip" href="' + esc(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
+        html += '<a class="file-chip" href="' + assetHref(f.href) + '" target="_blank" rel="noopener">📄 ' + esc(f.label) + "</a>";
       });
       html += "</div>";
     }
@@ -432,6 +659,12 @@
   function esc(s) {
     if (s == null) return "";
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function assetHref(href) {
+    // Make /download/... relative so links resolve under master-course/ or SCORM zip root.
+    if (typeof href !== "string") return href;
+    if (href.indexOf("/download/") === 0) return "download/" + href.slice("/download/".length);
+    return href;
   }
 
   // ---------- Interaction handlers ----------
@@ -477,7 +710,9 @@
         banner.classList.add("show");
         chunks[chunkIdx + 1].satisfied = true;
         updateNav();
+        saveState();
       }
+      saveState();
     },
 
     addJERow: function (chunkIdx) {
@@ -522,11 +757,16 @@
       } else {
         fb.innerHTML = "❌ Debits and credits balance, but the accounts or amounts don't match the expected entry. Re-read the scenario and try again.";
       }
-      if (correct) {
+if (correct) {
         state.jeSolved[chunkIdx] = true;
         chunks[chunkIdx + 1].satisfied = true;
         updateNav();
+        saveState();
       }
+    },
+
+    markVideoDone: function (chunkIdx) {
+      record("video", chunkIdx);
     },
 
     markVideoDone: function (chunkIdx) {
@@ -549,9 +789,13 @@
       var explainBox = $("#explain-r-" + chunkIdx + "-" + qi);
       var isCorrect = (oi === qDef.correct_index);
       qEl.classList.add(isCorrect ? "animate-burst" : "animate-shake");
-      explainBox.innerHTML = (isCorrect ? "🎉 <strong>Locked in.</strong> " : "💡 <strong>Recall gap.</strong> ") + esc(qDef.explanation || "");
+      explainBox.innerHTML = (isCorrect ? "Locked in. " : "Recall gap. ") + esc(qDef.explanation || "");
       explainBox.className = "quiz-explain playful show " + (isCorrect ? "success-text" : "error-text");
+      SkarionPlayer._reviewState = SkarionPlayer._reviewState || {};
+      SkarionPlayer._reviewState[chunkIdx] = SkarionPlayer._reviewState[chunkIdx] || {};
+      SkarionPlayer._reviewState[chunkIdx][qi] = isCorrect;
       finishReview(chunkIdx);
+      saveState();
     },
 
     submitOpenReview: function (chunkIdx) {
@@ -576,9 +820,15 @@
           explainBox.className = "quiz-explain playful show success-text";
         }
         ta.readOnly = true;
+        SkarionPlayer._reviewState = SkarionPlayer._reviewState || {};
+        SkarionPlayer._reviewState[chunkIdx] = SkarionPlayer._reviewState[chunkIdx] || {};
+        SkarionPlayer._reviewState[chunkIdx][ta.dataset.qi] = true;
       });
-      if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Review complete — answers saved locally."; }
+      SkarionPlayer._openReview = SkarionPlayer._openReview || {};
+      SkarionPlayer._openReview[chunkIdx] = true;
+      if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "Review complete — answers saved locally."; }
       finishReview(chunkIdx);
+      saveState();
     },
 
     startDrill: function (chunkIdx) {
@@ -638,10 +888,13 @@
           var banner = $("#drill-score-" + chunkIdx);
           banner.innerHTML = "⏱️ <strong>Drill complete.</strong> " + drill.correct + "/" + total + " correct · " + drill.timedOut + " timed out.";
           banner.classList.add("show");
+          drill.total = total; drill.answered = total;
           chunks[chunkIdx + 1].satisfied = true;
           updateNav();
+          saveState();
         }, 1300);
       }
+      saveState();
     },
 
     scenarioTab: function (chunkIdx, which) {
@@ -668,8 +921,218 @@
       }
       fb.className = "je-feedback show correct";
       fb.innerHTML = "✅ <strong>Submitted.</strong> Your work is saved locally. The Model Solution tab is now unlocked — compare your approach.";
-      chunks[chunkIdx + 1].satisfied = true;
-      updateNav();
+      record("scenario", chunkIdx);
+    },
+
+    // ---------- In-browser spreadsheet labs (jspreadsheet CE) ----------
+    initSS: function (chunkIdx, opts) {
+      var el = document.getElementById("ss-" + chunkIdx);
+      if (!el || !window.jspreadsheet) return null;
+      // lock cells via readOnly columns / rows by wrapping pre-filled data
+      var cfg = {
+        data: opts.rows || [],
+        columns: (opts.columns || []).map(function (col) {
+          return {
+            title: col.title,
+            width: col.width || 140,
+            type: col.type || "text",
+            mask: col.mask || (col.type === "numeric" ? "#,##0.00" : undefined),
+            readOnly: !!col.readOnly
+          };
+        }),
+        contextMenu: false,
+        allowInsertRow: false, allowInsertColumn: false, allowDeleteRow: false, allowDeleteColumn: false,
+        wordWrap: false,
+        license: "MIT-licensed CE build"
+      };
+      return jspreadsheet(el, cfg);
+    },
+
+    addSSJERow: function (chunkIdx) {
+      var tbody = document.querySelector("#ss-je-" + chunkIdx + " tbody");
+      var c = LESSON.chunks[chunkIdx];
+      var opts = (c.journalSection.accounts || []).map(function (a) { return "<option>" + esc(a) + "</option>"; }).join("");
+      var tr = document.createElement("tr");
+      tr.className = "je-row";
+      tr.innerHTML = '<td><select><option value="">— choose —</option>' + opts + '</select></td><td><input type="number" step="0.01" placeholder="0.00"></td><td><input type="number" step="0.01" placeholder="0.00"></td>';
+      tbody.appendChild(tr);
+    },
+
+    checkSSJE: function (chunkIdx) {
+      var rows = $all("#ss-je-" + chunkIdx + " tbody tr");
+      var sol = (LESSON.chunks[chunkIdx].journalSection && LESSON.chunks[chunkIdx].journalSection.solution) || [];
+      var totalD = 0, totalC = 0, ok = sol.length === 0;
+      var used = 0;
+      rows.forEach(function (r) {
+        var sel = r.querySelector("select").value;
+        var d = parseFloat(r.querySelector("td:nth-child(2) input").value) || 0;
+        var cc = parseFloat(r.querySelector("td:nth-child(3) input").value) || 0;
+        if (sel && (d || cc)) { totalD += d; totalC += cc; used++; }
+      });
+      var fb = $("#ss-je-fb-" + chunkIdx);
+      if (sol.length) {
+        var matched = 0;
+        sol.forEach(function (line) {
+          var hit = Array.prototype.some.call(rows, function (r) {
+            var sel = r.querySelector("select").value;
+            var d = parseFloat(r.querySelector("td:nth-child(2) input").value) || 0;
+            var c = parseFloat(r.querySelector("td:nth-child(3) input").value) || 0;
+            return sel === line.account &&
+              ((line.side === "debit" && Math.abs(d - line.amount) < 0.01 && c === 0) ||
+               (line.side === "credit" && Math.abs(c - line.amount) < 0.01 && d === 0));
+          });
+          if (hit) matched++;
+        });
+        ok = (matched === sol.length) && Math.abs(totalD - totalC) < 0.01 && totalD > 0;
+      }
+      fb.className = "je-feedback show " + (ok ? "correct" : "incorrect");
+      fb.innerHTML = ok ? "✅ <strong>Journal entries correct.</strong> Debits = Credits = $" + totalD.toFixed(2) + "." :
+        (Math.abs(totalD - totalC) > 0.01 && totalD > 0 ? "⚠️ Debits ($" + totalD.toFixed(2) + ") ≠ Credits ($" + totalC.toFixed(2) + ") — balance before checking." :
+         "❌ Accounts or amounts don't match the expected correcting entries yet.");
+      return ok;
+    },
+
+    checkSpreadsheet: function (chunkIdx) {
+      var c = LESSON.chunks[chunkIdx];
+      var fb = $("#ss-fb-" + chunkIdx);
+      var dim = window["SkarionSS_" + chunkIdx];
+      var targets = c.targetCells || {};
+      var ok = true;
+      var detail = [];
+      Object.keys(targets).forEach(function (cellRef) {
+        var m = cellRef.match(/^([A-Z]+)(\d+)$/);
+        if (!m) return;
+        var col = m[1].charCodeAt(0) - 65;
+        var row = parseInt(m[2], 10) - 1;
+        if (dim && dim.el && typeof dim.el.jspreadsheet === "function" && typeof SkarionPlayer._ssVal === "function") {
+          var actual = SkarionPlayer._ssVal(chunkIdx, row, col);
+          var target = targets[cellRef];
+          var matched = (target === null) ? (actual !== null && actual !== "") : (Math.abs((parseFloat(actual) || 0) - target) < 0.01);
+          if (!matched) ok = false;
+          detail.push(cellRef + " = " + (actual === null || actual === "" ? "—" : (typeof target === "number" ? "$" + (parseFloat(actual) || 0).toFixed(2) : actual)) + (matched ? " ✓" : " ✗ (want " + (typeof target === "number" ? "$" + target.toFixed(2) : target) + ")"));
+        }
+      });
+      var jeOK = true;
+      if (c.journalSection && c.journalSection.solution && c.journalSection.solution.length) {
+        jeOK = SkarionPlayer.checkSSJE(chunkIdx);
+      }
+      if (Object.keys(targets).length === 0) ok = false;
+      var bothSides = ok;
+      if (c.requireBothSidesEqual && Object.keys(targets).length >= 2 && ok) {
+        var vals = Object.keys(targets).map(function (ref) { return parseFloat(SkarionPlayer._ssVal(chunkIdx, parseInt(ref.match(/(\d+)/)[1]) - 1, ref.match(/([A-Z]+)/)[1].charCodeAt(0) - 65)) || 0; });
+        bothSides = Math.abs(vals[0] - vals[1]) < 0.01;
+      }
+      var finalOK = ok && bothSides && jeOK;
+      fb.className = "je-feedback show " + (finalOK ? "correct" : "incorrect");
+      if (finalOK) {
+        fb.innerHTML = (c.successMessage || "✅ Target cells match — lab complete.") + " <em>" + (detail.length ? detail.join(" · ") : "") + "</em>";
+        record("spreadsheet", chunkIdx);
+      } else {
+        fb.innerHTML = (c.errorMessage || "❌ Not quite yet — check the highlighted cells.") + " <em>" + (detail.length ? "Targets: " + detail.join(" · ") : "") + "</em>";
+      }
+    },
+
+    _ssVal: function (chunkIdx, row, col) {
+      var dim = window["SkarionSS_" + chunkIdx];
+      try {
+        var v = dim && jspreadsheet && jspreadsheet.getValueFromCoords ? jspreadsheet.getValueFromCoords(dim, col, row) : null;
+        return v;
+      } catch (e) { return null; }
+    },
+
+    // ---------- Script builder (90-second intro) ----------
+    updateScript: function (chunkIdx) {
+      var c = LESSON.chunks[chunkIdx];
+      var parts = [];
+      var total = 0;
+      c.fields.forEach(function (f, i) {
+        var ta = document.getElementById("sb-" + chunkIdx + "-" + i);
+        var txt = (ta && ta.value) || "";
+        var wc = SkarionPlayer._wordCount(txt);
+        var span = document.getElementById("sb-wc-" + chunkIdx + "-" + i);
+        if (span) span.textContent = wc + " words" + (f.minWords ? " · target " + (f.minWords || 40) + "+" : "");
+        if (txt.trim()) parts.push(txt.trim());
+        total += wc;
+      });
+      var prev = document.getElementById("sb-preview-" + chunkIdx);
+      if (prev) prev.textContent = parts.join("  ");
+      var tot = document.getElementById("sb-total-" + chunkIdx);
+      if (tot) tot.textContent = total + " words total · target " + (c.minWords || 180) + "–" + (c.maxWords || 220);
+    },
+
+    _wordCount: function (s) { return ((s || "").trim().match(/\S+/g) || []).length; },
+
+    submitScript: function (chunkIdx, minW, maxW) {
+      var c = LESSON.chunks[chunkIdx];
+      var total = 0, allFilled = true;
+      c.fields.forEach(function (f, i) {
+        var ta = document.getElementById("sb-" + chunkIdx + "-" + i);
+        var txt = (ta && ta.value) || "";
+        if (txt.trim().length < (f.minLength || 30)) allFilled = false;
+        total += SkarionPlayer._wordCount(txt);
+      });
+      var fb = $("#sb-fb-" + chunkIdx);
+      if (!allFilled) {
+        fb.className = "je-feedback show incorrect";
+        fb.innerHTML = "⚠️ Fill in all three sections with at least a couple of real sentences each.";
+        return;
+      }
+      if (total < minW || total > maxW) {
+        fb.className = "je-feedback show incorrect";
+        fb.innerHTML = "⚠️ Your script is " + total + " words — aim for " + minW + "–" + maxW + " (about 90 seconds spoken). Trim or expand, then save.";
+        return;
+      }
+      c.fields.forEach(function (f, i) { var ta = document.getElementById("sb-" + chunkIdx + "-" + i); if (ta) ta.readOnly = true; });
+      fb.className = "je-feedback show correct";
+      fb.innerHTML = "✅ <strong>Intro script saved</strong> (" + total + " words). Practice it out loud — aim for 90 seconds flat. Your script is stored locally in this browser.";
+      record("script", chunkIdx);
+    },
+
+    // ---------- Cert completion ----------
+    maybeCompleteCert: function (chunkIdx) {
+      var nameEl = document.getElementById("cert-name-" + chunkIdx);
+      var fb = $("#cert-fb-" + chunkIdx);
+      if (nameEl && (nameEl.value || "").trim().length >= 2) {
+        chunks[chunkIdx + 1].satisfied = true;
+        if (fb) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Name entered — you can download your certificate."; }
+        try { window.SkarionSCORM.complete(true); } catch (e) {}
+        updateNav();
+        saveState();
+      }
+    },
+
+    printCertificate: function (chunkIdx) {
+      var name = (document.getElementById("cert-name-" + chunkIdx) || {}).value || "";
+      if ((name || "").trim().length < 2) {
+        var fb = $("#cert-fb-" + chunkIdx);
+        fb.className = "je-feedback show incorrect";
+        fb.innerHTML = "⚠️ Enter your name on the certificate first.";
+        return;
+      }
+      var dateEl = document.getElementById("cert-date-" + chunkIdx);
+      if (dateEl) dateEl.textContent = new Date().toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+      var cert = document.querySelector(".certificate");
+      var w = window.open("", "_blank");
+      w.document.write("<html><head><title>Skarion Accounting Track — Certificate</title><style>" +
+        "body{font-family:Georgia,'Times New Roman',serif;text-align:center;padding:40px;background:#fff;color:#14304a;}" +
+        ".stamp{letter-spacing:3px;text-transform:uppercase;font-size:14px;color:#0a4d2c;margin-bottom:10px;}" +
+        ".title{font-size:38px;font-weight:bold;margin:6px 0 26px;}" +
+        ".body{font-size:18px;line-height:1.6;margin:14px 0;}" +
+        ".name{font-size:30px;font-weight:bold;border-bottom:2px solid #14304a;display:inline-block;padding:4px 40px;margin:18px 0;}" +
+        ".date{margin-top:20px;color:#444;font-size:15px;}" +
+        ".sign{margin-top:18px;font-size:15px;color:#0a4d2c;font-weight:bold;}</style></head><body>" +
+        cert.innerHTML.replace(/<button[^>]*>.*?<\/button>/gi, "").replace(/<input[^>]*>/gi, function (m) {
+          return m.replace(/type="text"/i, 'type="text" value="' + name.replace(/"/g, "&quot;") + '" readonly');
+        }) + "</body></html>");
+      w.document.close();
+      setTimeout(function () { w.print(); }, 400);
+    },
+
+    certAction: function (label) {
+      // Navigate within the course based on the chosen action
+      if (/portfolio/i.test(label) || /checklist/i.test(label)) { goTo(0); return; }
+      if (/job search|30-day/i.test(label)) { next(); return; }
+      next();
     },
     nextModule: function() {
       if (state.mod < CATALOG.length - 1) {
@@ -705,6 +1168,53 @@
     if (state.mod === CATALOG.length - 1 && i === chunks.length - 1) {
       window.SkarionSCORM.complete(true);
     }
+    saveState();
+    document.dispatchEvent(new CustomEvent("skarion:nav", { detail: { mod: state.mod, current: state.current } }));
+  }
+
+  function initSpreadsheet(chunkIdx) {
+    var c = LESSON.chunks[chunkIdx];
+    var el = document.getElementById("ss-" + chunkIdx);
+    if (!el) return;
+    if (!window.jspreadsheet) {
+      el.innerHTML = '<p class="prose" style="color:#b00020;">⚠️ Excel simulator library failed to load (offline/CDN blocked). The download-only version of this lab still works — see the exercise chunk in the sidebar rail.</p>';
+      return;
+    }
+    var rows = (c.data || []).map(function (r) { return r.slice(); });
+    var cols = (c.columns || []).map(function (col) {
+      return {
+        title: col.title || "",
+        width: col.width || 160,
+        type: col.type || "text",
+        mask: col.mask || (col.type === "numeric" ? "#,##0.00" : undefined),
+        readOnly: !!col.readOnly,
+        decimal: col.type === "numeric" ? "." : undefined
+      };
+    });
+    // Apply per-cell lock from lockedCells ([cellRef]) -> set readOnly on matching column
+    if (c.lockedCells && c.lockedCells.length) {
+      c.lockedCells.forEach(function (ref) {
+        var m = ref.match(/^([A-Z]+)(\d+)$/);
+        if (!m) return;
+        var colIdx = m[1].charCodeAt(0) - 65;
+        var rowIdx = parseInt(m[2], 10) - 1;
+        if (cols[colIdx]) cols[colIdx]._lockRows = cols[colIdx]._lockRows || {};
+        if (cols[colIdx]) cols[colIdx]._lockRows[rowIdx] = true;
+      });
+    }
+    try {
+      window["SkarionSS_" + chunkIdx] = jspreadsheet(el, {
+        data: rows,
+        columns: cols,
+        contextMenu: false,
+        allowInsertRow: false, allowInsertColumn: false, allowDeleteRow: false, allowDeleteColumn: false,
+        wordWrap: false,
+        rowDrag: false,
+        onchange: function () { /* validated on button click */ }
+      });
+    } catch (e) {
+      el.innerHTML = '<p class="prose" style="color:#b00020;">⚠️ Could not initialize the Excel simulator: ' + esc(String(e && e.message || e)) + "</p>";
+    }
   }
 
   function finishReview(chunkIdx) {
@@ -727,6 +1237,7 @@
       if (banner) { banner.innerHTML = "✅ <strong>Review complete.</strong> Recall reinforced — let's continue."; banner.classList.add("show"); }
       chunks[chunkIdx + 1].satisfied = true;
       updateNav();
+      saveState();
     }
   }
 
@@ -739,6 +1250,7 @@
         chunks[idx + 1].satisfied = true;
         var fb = $("#video-fb-" + idx);
         if (fb && !fb.classList.contains("correct")) { fb.className = "je-feedback show correct"; fb.innerHTML = "✅ Watched 80% — complete."; updateNav(); }
+        saveState();
       }
     });
   }

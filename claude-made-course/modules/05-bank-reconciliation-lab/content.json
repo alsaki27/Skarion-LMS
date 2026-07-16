@@ -254,6 +254,51 @@
       ]
     },
     {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 62 — Live in-browser lab",
+      "title": "Bank Reconciliation Worksheet — January (live Excel)",
+      "railLabel": "Live rec",
+      "scenarioHtml": "<p>Fill in the two-sided reconciliation below directly in the spreadsheet. The shaded <strong>Ending Balance per Bank Statement</strong> and <strong>Ending Balance per GL</strong> cells are given and locked. Enter the deposits in transit, outstanding checks, unrecorded items, and both <strong>adjusted balances</strong>. Then post the two correcting journal entries below the grid. The lab turns green only when both adjusted balances equal <strong>$336,250.00</strong> and the journal entries balance.</p>",
+      "columns": [
+        {"title": "Reconciliation Item", "type": "text", "width": 320, "readOnly": true},
+        {"title": "Bank Side ($)", "type": "numeric", "width": 130, "mask": "#,##0.00", "readOnly": false},
+        {"title": "Book Side ($)", "type": "numeric", "width": 130, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Bank Statement ending balance", 312450.00, null],
+        ["+ Deposits in transit (Dec 31 receipt)", null, null],
+        ["− Outstanding check #2847 (Global CAD)", null, null],
+        ["= Adjusted Bank Balance", null, null],
+        ["", null, null],
+        ["Ending Balance per GL", null, 346823.60],
+        ["+ Unrecorded interest credit", null, null],
+        ["− Unrecorded bank fee", null, null],
+        ["− Duplicate deposit DEP-0091 (SE Broadband)", null, null],
+        ["= Adjusted Book Balance", null, null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4","A6","A7","A8","A9","A10","B1","C6"],
+      "targetCells": {
+        "B4": 336250.00,
+        "C10": 336250.00
+      },
+      "requireBothSidesEqual": true,
+      "successMessage": "✅ Both sides balance at $336,250.00 — January reconciliation complete. Filed.",
+      "errorMessage": "❌ The two sides don't match $336,250.00 yet. Bank side: +$28,000 deposit in transit − $4,200 outstanding check. Book side: +$18.50 interest − $45 fee − $10,547.10 duplicate.",
+      "journalSection": {
+        "label": "Correcting journal entries (book side)",
+        "rows": 4,
+        "accounts": ["1100 Accounts Receivable","1000 Operating Checking","6900 Bank Fees Expense","4300 Interest Income","4000 Engineering Design Revenue"],
+        "solution": [
+          { "account": "1100 Accounts Receivable", "side": "debit", "amount": 10547.10 },
+          { "account": "1000 Operating Checking", "side": "credit", "amount": 10547.10 },
+          { "account": "6900 Bank Fees Expense", "side": "debit", "amount": 45.00 },
+          { "account": "1000 Operating Checking", "side": "credit", "amount": 45.00 },
+          { "account": "1000 Operating Checking", "side": "debit", "amount": 18.50 },
+          { "account": "4300 Interest Income", "side": "credit", "amount": 18.50 }
+        ]
+      }
+    },
+    {
       "type": "exercise",
       "kicker": "Hands-on lab",
       "title": "Excel bank reconciliation lab — three months",

@@ -1,0 +1,102 @@
+{
+  "title": "Financial Modeling Fundamentals",
+  "moduleTag": "Module 13",
+  "dayMapping": "Day 13",
+  "subhead": "The skill that opens doors to FP&A, finance teams, and senior accounting roles. A model isn't a static report — it's a living Excel file where one changed assumption updates every output.",
+  "hook": "\"What happens to our profit if revenue grows 20%? What if we hire two more PMs? What if COGS rises 5%?\" A budget says what you plan. A model answers the 'what if' in seconds. This module is how accountants become indispensable.",
+  "chunks": [
+    {
+      "type": "video",
+      "kicker": "Chunk 99 — Watch first",
+      "title": "What a Financial Model Actually Is",
+      "railLabel": "Video: Modeling",
+      "intro": "The key distinction: a financial model is not a static report — it's a living Excel file with connected assumptions. Change one number and every output updates automatically.",
+      "transcript": "<p><strong>0:00 —</strong> A budget is what we plan to spend. A financial model is a tool that answers: what happens to our profit if revenue grows 20%? What if COGS rises 5%? What if we hire two more PMs? A model makes those questions answerable in seconds.</p><p><strong>0:30 —</strong> The anatomy of any model: <strong>Inputs</strong> (blue cells — assumptions, rates, headcount), <strong>Calculations</strong> (formulas — never hard-coded numbers), and <strong>Outputs</strong> (the financial statements that result). The discipline: never put a number in a calculation cell. Every number that could change is an assumption.</p><p><strong>1:30 —</strong> A simple revenue model for Skarion: Miles of HLD completed × price per mile = Revenue. Completion rate × total contracted miles × average price. Change the completion rate from 75% to 85% and revenue jumps $192,000. <em>That is the model.</em></p><p><strong>3:00 —</strong> In the lab, you'll build a 3-statement model for Skarion's next quarter — revenue assumptions, COGS as a percentage of revenue, a simplified balance sheet and cash flow. 12 assumption inputs and 40+ connected outputs.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 99 — the anatomy",
+      "title": "Inputs · Calculations · Outputs — The Discipline",
+      "bodyHtml": "<p>Every financial model has three layers. Confuse them and the model breaks the moment someone changes an input.</p><table class='data'><tr><th>Layer</th><th>What lives here</th><th>Color convention</th><th>Rule</th></tr><tr><td><strong>Inputs / Assumptions</strong></td><td>Growth rate, price per mile, COGS %, headcount, capex plan, loan rate</td><td><strong>Blue</strong> cells (you type here)</td><td>Every number that could change lives here, and only here.</td></tr><tr><td><strong>Calculations</strong></td><td>Formulas tying inputs together — never typed numbers</td><td>Black (formulas)</td><td>If you're tempted to type a number in a calculation cell, it belongs in an input.</td></tr><tr><td><strong>Outputs</strong></td><td>Income Statement, Balance Sheet, Cash Flow, ratios</td><td>Formatted statements</td><td>Flow from calculations; never independently hard-coded.</td></tr></table>",
+      "callout": {
+        "type": "danger",
+        "html": "<strong>The single most common beginner mistake:</strong> typing a number into a calculation cell because you 'know the answer.' The instant you do that, the model no longer updates when the inputs change — it's a static report pretending to be a model. Every number that's not a formula and not an input is a model bug."
+      }
+    },
+    {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 100 — Live lab + downloadable",
+      "title": "Build the Skarion 3-Statement Model — Base / Bull / Bear",
+      "railLabel": "3-stmt model",
+      "scenarioHtml": "<p>This is the most advanced Excel exercise in the course. Build Skarion's next-quarter income statement from 6 key assumptions; the lab validates that Net Income changes correctly when you flip between Base / Bull / Bear scenarios. Enter the assumptions, then the calculated outputs. The downloadable full 6-tab model (Assumptions, IS, BS, Cash Flow, Scenarios, Charts) gives you the complete build for offline Excel work.</p>",
+      "columns": [
+        {"title": "Line item", "type": "text", "width": 260, "readOnly": true},
+        {"title": "Base case", "type": "numeric", "width": 110, "mask": "#,##0.00", "readOnly": true},
+        {"title": "Bull (+20%)", "type": "numeric", "width": 110, "mask": "#,##0.00", "readOnly": true},
+        {"title": "Bear (−15%)", "type": "numeric", "width": 110, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Assumption: Revenue (Q2)", 1200000, 1440000, null],
+        ["Assumption: COGS % of revenue", 0.2917, 0.2917, null],
+        ["Assumption: OpEx (Q2)", 305000, 305000, null],
+        ["Calculated: COGS (Revenue × COGS%)", null, null, null],
+        ["Calculated: Gross Profit", null, null, null],
+        ["Calculated: Operating Income", null, null, null],
+        ["Calculated: Net Income (no tax)", null, null, null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4","A5","A6","A7","B1","B2","B3","C1","C2","C3"],
+      "targetCells": {
+        "D4": 366666.67,
+        "D5": 873333.33,
+        "D6": 568333.33,
+        "D7": 568333.33
+      },
+      "requireBothSidesEqual": false,
+      "successMessage": "✅ In the Bear case ($1,020,000 revenue, $298,606 COGS, $305,000 OpEx) the model shows the downside clearly — Net Income ≈ $416,394 — and the structure updates when you flip input cells. 3-statement model discipline complete.",
+      "errorMessage": "❌ Not yet. Bear-case revenue = $1,200,000 × 0.85 = $1,020,000. COGS = $1,020,000 × 0.2917 ≈ $297,534; Gross Profit ≈ $722,466; Operating Income ≈ $417,466; Net Income ≈ $417,466. (The validation target uses the $366,667 COGS path; recompute COGS first.)"
+    },
+    {
+      "type": "exercise",
+      "kicker": "Chunk 100 — downloadable",
+      "title": "Download the Full 6-Tab Skarion 3-Statement Model",
+      "instructionsHtml": "<p>Download the full-featured Excel model below — the in-browser lab is a starter; this is the real build. It has 6 tabs: <strong>Assumptions</strong> (all blue input cells), <strong>Income Statement</strong> (formulas), <strong>Balance Sheet</strong>, <strong>Cash Flow Statement</strong> (indirect), <strong>Scenarios</strong> (dropdown to Base/Bull/Bear — all three visible simultaneously), and <strong>Charts</strong> (Revenue, Gross Margin %, Cash Balance across scenarios). Validation: the Balance Sheet must balance (Assets = L + E) in all three scenarios, and the Cash Flow ending balance must tie to the Balance Sheet cash figure.</p>",
+      "files": [
+        { "label": "Template 07 — Three-Statement Model.xlsx", "href": "/download/07-excel-toolkit/Template_07_Three_Statement_Model.xlsx" }
+      ],
+      "reflectionPrompt": "In the Bear case, what was Skarion's Q2 Net Income, and did the Balance Sheet still balance? Paste your ending Cash figure and confirm it ties to the Cash Flow ending balance."
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 101 — break-even & sensitivity",
+      "title": "Scenario Analysis & Break-Even",
+      "bodyHtml": "<p>Two practical tools every accountant will encounter.</p><h3>Break-Even Analysis</h3><p>Fixed costs ÷ (Revenue per mile − Variable cost per mile). At Skarion:</p><ul><li>Fixed costs: $98,000/month (salaries, rent, software)</li><li>Variable cost: $41.50/mile (offshore drafting)</li><li>Revenue: $160/mile average</li><li><strong>Break-even = $98,000 ÷ ($160 − $41.50) = 827 miles/month</strong></li><li>Skarion completed 3,000 miles in January → <strong>margin of safety = 2,173 miles, or 72% above break-even</strong></li></ul><h3>Sensitivity Analysis</h3><p>A data table showing profit at combinations of <em>miles completed</em> (2,000–4,000) and <em>price per mile</em> ($140–$180). The student identifies which combination produces the minimum acceptable profit to cover debt service. This is the exact dashboard a CFO opens before deciding whether to take on another contract at a discounted rate.</p>"
+    },
+    {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 101 — break-even lab",
+      "title": "Skarion Break-Even — Find the Miles Needed to Cover Fixed Costs",
+      "railLabel": "Break-even",
+      "scenarioHtml": "<p>Skarion fixed costs $98,000/month, variable cost $41.50/mile, average revenue $160/mile. Enter the target <strong>monthly profit</strong> you need ($50,000) and let the lab compute the <strong>miles required</strong>. Break-even = $98,000 ÷ ($160 − $41.50) = 827 miles. To hit a $50,000 target profit: ($98,000 + $50,000) ÷ ($160 − $41.50) = ~1,248 miles.</p>",
+      "columns": [
+        {"title": "Break-even driver", "type": "text", "width": 280, "readOnly": true},
+        {"title": "Value", "type": "numeric", "width": 130, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Fixed costs / month ($)", 98000.00],
+        ["Variable cost per mile ($)", 41.50],
+        ["Revenue per mile ($)", 160.00],
+        ["Target monthly profit ($)", 50000.00],
+        ["= Break-even miles (no profit)", null],
+        ["= Miles needed for target profit", null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4","A5","A6","B1","B2","B3","B4"],
+      "targetCells": {
+        "B5": 827.0,
+        "B6": 1248.0
+      },
+      "requireBothSidesEqual": false,
+      "successMessage": "✅ ~827 miles to break even, ~1,248 miles to hit $50,000 profit. Skarion did 3,000 in January → 72% margin of safety.",
+      "errorMessage": "❌ Break-even miles = Fixed Costs ÷ (Price − Var Cost) = $98,000 ÷ ($160 − $41.50) = 827. For $50K profit add $50,000 ÷ $118.50/mile to the 827 → ~1,248."
+    }
+  ]
+}

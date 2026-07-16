@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>SkarionBooks</title>
+  <title>SkarionBooks — QuickBooks Simulator</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -14,30 +14,33 @@
         <div class="brand-name">SkarionBooks</div>
       </div>
       <ul class="nav-links">
-        <li><a href="#" data-view="dashboard" class="active">Dashboard</a></li>
-        <li><a href="#" data-view="journal">Journal Entries</a></li>
-        <li><a href="#" data-view="reports">Reports</a></li>
-        <li><a href="#" data-view="coa">Chart of Accounts</a></li>
+        <li><a href="#" data-view="dashboard" class="active"><span class="ni">📊</span> Dashboard</a></li>
+        <li><a href="#" data-view="coa"><span class="ni">🗂</span> Chart of Accounts</a></li>
+        <li><a href="#" data-view="bills"><span class="ni">🧾</span> Expenses (Bills)</a></li>
+        <li><a href="#" data-view="payments"><span class="ni">💵</span> Sales (Payments)</a></li>
+        <li><a href="#" data-view="journal"><span class="ni">📒</span> Journal Entries</a></li>
+        <li><a href="#" data-view="bankrec"><span class="ni">🏦</span> Bank Rec</a></li>
+        <li><a href="#" data-view="reports"><span class="ni">📈</span> Reports</a></li>
       </ul>
       <div class="sidebar-footer">
-        <button id="reset-data" class="btn-text">Reset Company Data</button>
+        <button id="reset-data" class="btn-text">↺ Reset Company Data</button>
+        <button class="btn-text" onclick="window.open('../index.html', '_self')">← Back to Course</button>
       </div>
     </nav>
     <main class="main-content">
       <header class="topbar">
         <h1 id="view-title">Dashboard</h1>
         <div class="topbar-actions" style="display:flex; gap:12px;">
-          <button class="btn secondary" onclick="window.open('../index.html', '_self')">← Back to Course</button>
+          <button class="btn secondary btn-bill">+ Enter Bill</button>
+          <button class="btn secondary btn-pay">+ Receive Payment</button>
           <button class="btn primary" id="btn-new-je">+ New Journal Entry</button>
         </div>
       </header>
-      <div class="content-area" id="content-area">
-        <!-- Views injected here by app.js -->
-      </div>
+      <div class="content-area" id="content-area"></div>
     </main>
   </div>
 
-  <!-- Modal for New Journal Entry -->
+  <!-- Modal: New Journal Entry -->
   <div class="modal-overlay" id="je-modal">
     <div class="modal">
       <div class="modal-header">
@@ -45,41 +48,55 @@
         <button class="btn-close" id="btn-close-je">×</button>
       </div>
       <div class="modal-body">
-        <div class="form-row">
-          <label>Date</label>
-          <input type="date" id="je-date" value="2026-01-31">
-        </div>
-        <div class="form-row">
-          <label>Memo</label>
-          <input type="text" id="je-memo" placeholder="Description of transaction...">
-        </div>
+        <div class="form-row"><label>Date</label><input type="date" id="je-date" value="2026-01-31"></div>
+        <div class="form-row"><label>Memo</label><input type="text" id="je-memo" placeholder="Description of transaction..."></div>
         <table class="je-table">
-          <thead>
-            <tr>
-              <th style="width: 50%;">Account</th>
-              <th>Debits</th>
-              <th>Credits</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody id="je-lines">
-            <!-- Lines added via JS -->
-          </tbody>
+          <thead><tr><th style="width:50%">Account</th><th>Debits</th><th>Credits</th><th></th></tr></thead>
+          <tbody id="je-lines"></tbody>
         </table>
-        <div class="je-summary">
-          <div class="je-total">Total Debits: <span id="je-total-dr">$0.00</span></div>
-          <div class="je-total">Total Credits: <span id="je-total-cr">$0.00</span></div>
-        </div>
+        <div class="je-summary"><div class="je-total">Total Debits: <span id="je-total-dr">$0.00</span></div><div class="je-total">Total Credits: <span id="je-total-cr">$0.00</span></div></div>
         <button class="btn secondary" id="btn-add-line">+ Add Line</button>
       </div>
       <div class="modal-footer">
         <div id="je-error" class="error-msg"></div>
-        <button class="btn secondary" id="btn-cancel-je">Cancel</button>
-        <button class="btn primary" id="btn-save-je">Save and Close</button>
+        <button class="btn secondary" id="btn-cancel-je">Cancel</button><button class="btn primary" id="btn-save-je">Save and Close</button>
       </div>
     </div>
   </div>
 
+  <!-- Slide-in panel: Enter Bill -->
+  <div class="slide-overlay" id="bill-overlay"></div>
+  <aside class="slide-panel" id="bill-panel">
+    <div class="panel-header"><h2>Enter Bill</h2><button class="btn-close" id="bill-close">×</button></div>
+    <div class="panel-body">
+      <label>Vendor</label><select id="bill-vendor"></select>
+      <label>Bill Date</label><input type="date" id="bill-date" value="2026-01-15">
+      <label>Due Date</label><input type="date" id="bill-due" value="2026-02-14">
+      <label>Account (expense)</label><select id="bill-account"></select>
+      <label>Reference / Invoice #</label><input type="text" id="bill-ref" placeholder="e.g. GCS-2026-091">
+      <label>Amount</label><input type="number" id="bill-amount" step="0.01" placeholder="0.00">
+      <div id="bill-error" class="error-msg"></div>
+    </div>
+    <div class="panel-footer"><button class="btn secondary" id="bill-cancel">Cancel</button><button class="btn primary" id="bill-save">Save &amp; Close</button></div>
+  </aside>
+
+  <!-- Slide-in panel: Receive Payment -->
+  <div class="slide-overlay" id="pay-overlay"></div>
+  <aside class="slide-panel" id="pay-panel">
+    <div class="panel-header"><h2>Receive Payment</h2><button class="btn-close" id="pay-close">×</button></div>
+    <div class="panel-body">
+      <label>Customer</label><select id="pay-customer"></select>
+      <label>Open Invoice</label><select id="pay-invoice"></select>
+      <label>Payment Method</label><select id="pay-method"><option>Wire</option><option>ACH</option><option>Check</option></select>
+      <label>Amount Received</label><input type="number" id="pay-amount" step="0.01" placeholder="0.00">
+      <label>Bank Fee (if any)</label><input type="number" id="pay-fee" step="0.01" placeholder="0.00">
+      <div id="pay-note" class="hint"></div>
+      <div id="pay-error" class="error-msg"></div>
+    </div>
+    <div class="panel-footer"><button class="btn secondary" id="pay-cancel">Cancel</button><button class="btn primary" id="pay-save">Save &amp; Close</button></div>
+  </aside>
+
+  <div class="toast" id="toast"></div>
   <script src="app.js"></script>
 </body>
 </html>

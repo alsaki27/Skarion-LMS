@@ -1,0 +1,61 @@
+{
+  "title": "Cost Accounting & Managerial Basics",
+  "moduleTag": "Module 11",
+  "dayMapping": "Day 11",
+  "subhead": "The accounting that runs the inside of the business — job costing, variance analysis, and cost centers. Getting this right turns a single P&L into a project-by-project profitability map.",
+  "hook": "\"Is this project actually making money?\" Every services firm with multiple jobs asks it monthly, and a single blended gross margin hides the answer. Job costing reveals it. Variance analysis explains why it moved. Both get you promoted to senior.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "Chunk 94 — job vs process",
+      "title": "Job Costing vs. Process Costing — Which One Applies to You",
+      "bodyHtml": "<p>Every services firm and manufacturer tracks costs differently. Getting the model wrong makes your P&amp;L by project useless.</p><p><strong>Job Costing:</strong> costs tracked <em>per specific job/project</em>. Every cost (labor, materials, overhead) is assigned to a specific job number. <strong>This is Skarion's model</strong> — every fiber-design project has its own job code (Tennessee Corridor, Texas Long-Haul, Virginia Metro).</p><p><strong>Process Costing:</strong> costs averaged across a continuous production process (paint factory, oil refinery, bottling line). Not relevant to Skarion, but you must recognize it — it's what a manufacturer's books look like and what gets tested in interviews.</p><p><strong>Direct vs. Indirect costs — the distinction that drives everything:</strong></p><ul><li><strong>Direct:</strong> easily traced to a specific job — offshore drafting hours on Project Alpha, dedicated software licenses for a project.</li><li><strong>Indirect / Overhead:</strong> cannot be directly traced — office rent, utilities, management salaries. These must be <em>allocated</em> across jobs by some fair basis (revenue %, headcount %, hours %).</li></ul>"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 94 — the lab",
+      "title": "Skarion Job Costing Lab — Gross Profit by Project",
+      "bodyHtml": "<p>Three active Skarion projects. Allocate costs correctly to each and reveal gross profit per project.</p><table class='data'><tr><th>Project</th><th>Contract value</th><th>Direct offshore labor (at $38.50/mi × billed miles)</th><th>Direct software (allocated by project hours)</th><th>Indirect overhead (rent + utilities, allocated by revenue %)</th><th>Total cost</th><th>Gross profit</th><th>GM %</th></tr><tr><td>Tennessee Corridor</td><td>$1,200,000</td><td>$462,000</td><td>$72,000</td><td>$20,000</td><td>$554,000</td><td>$646,000</td><td>53.8%</td></tr><tr><td>Texas Long-Haul</td><td>$800,000</td><td>$327,250</td><td>$48,000</td><td>$13,333</td><td>$388,583</td><td>$411,417</td><td>51.4%</td></tr><tr><td>Virginia Metro</td><td>$350,000</td><td>$308,000</td><td>$21,000</td><td>$5,833</td><td>$334,833</td><td>$15,167</td><td>4.3%</td></tr></table>",
+      "callout": {
+        "type": "warning",
+        "html": "<strong>The key insight.</strong> Skarion's blended 70.8% gross margin hides that Tennessee Corridor is making 53.8% (on contract value) while Virginia Metro is barely break-even at 4.3% — its offshore labor cost swallowed almost the entire contract. <em>Job costing reveals which projects to renew, renegotiate, or sunset.</em> A single blended number never tells you that."
+      }
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 95 — variance analysis",
+      "title": "Variance Analysis — What Went Wrong and Where",
+      "bodyHtml": "<p>Variance analysis explains why actual results differ from budget. It's the skill that gets accountants promoted to senior faster than anything else.</p><p><strong>The vocabulary:</strong></p><ul><li><strong>Budget vs. Actual</strong> — every month differs; variance analysis explains why.</li><li><strong>Favorable variance (F)</strong> — actual is better than budget (lower cost or higher revenue).</li><li><strong>Unfavorable variance (U)</strong> — actual is worse than budget.</li><li><strong>Price variance</strong> — the cost per unit was different from budget.</li><li><strong>Volume/Efficiency variance</strong> — you used more or fewer units than budgeted.</li></ul><p><strong>Skarion January example — decompose the total variance into its two causes:</strong></p><ul><li>Budgeted offshore drafting: $38.00/mi × 3,200 mi = $121,600</li><li>Actual offshore drafting: $41.50/mi × 3,380 mi = $140,270</li><li><strong>Total variance: $18,670 Unfavorable</strong></li><li><strong>Price variance:</strong> ($41.50 − $38.00) × 3,380 mi = <strong>$11,830 U</strong> (paid more per mile than budgeted)</li><li><strong>Volume variance:</strong> (3,380 − 3,200) × $38.00 = <strong>$6,840 U</strong> (used more miles than budgeted)</li></ul><p>Splitting the variance tells the PM two different stories: the <em>price</em> variance means renegotiate the rate; the <em>volume</em> variance means the scope estimate was wrong. Different causes, different fixes.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 95 — vocabulary",
+      "title": "Variance Vocabulary — 5 Cards with Skarion Examples",
+      "railLabel": "Variance cards",
+      "cards": [
+        {"front": "Budget variance", "back": "Total Actual − Total Budget. Skarion January offshore drafting: $140,270 actual − $121,600 budget = $18,670 Unfavorable. The top-line gap before you decompose it."},
+        {"front": "Price variance", "back": "(Actual price − Budget price) × Actual volume. Skarion: ($41.50 − $38.00) × 3,380 = $11,830 U. Tells you the rate was wrong — renegotiate the MSA or the PO."},
+        {"front": "Volume / Efficiency variance", "back": "(Actual volume − Budget volume) × Budget price. Skarion: (3,380 − 3,200) × $38.00 = $6,840 U. Tells you the scope/estimate was wrong — fix the planning, not the rate."},
+        {"front": "Favorable (F)", "back": "Actual is better than budget — lower cost or higher revenue. Skarion example: if actual miles came in at 3,000 vs 3,200 budgeted, the volume variance is $7,600 Favorable (you used fewer miles than planned)."},
+        {"front": "Unfavorable (U)", "back": "Actual is worse than budget — higher cost or lower revenue. Skarion's January offshore drafting was $18,670 U, split into $11,830 U price + $6,840 U volume. Always decompose before you act."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 96 — cost centers",
+      "title": "Cost Centers, Profit Centers, and How Big Companies Think",
+      "bodyHtml": "<p>Once you move beyond a 10-person company, accounting is organized by <em>segment</em>. Understanding this gets you hired at larger firms.</p><table class='data'><tr><th>Segment type</th><th>Definition</th><th>Example</th></tr><tr><td><strong>Cost Center</strong></td><td>Incurs costs but doesn't directly generate revenue</td><td>IT, HR, Legal — and the accounting team itself</td></tr><tr><td><strong>Profit Center</strong></td><td>Generates its own revenue and has its own P&L</td><td>Each regional office, each product line</td></tr><tr><td><strong>Investment Center</strong></td><td>A profit center that also controls its own capital investment decisions</td><td>A division that approves its own capex</td></tr></table><p><strong>How this shows up:</strong> cost-center accounting requires <em>allocating shared costs</em> (rent, utilities, management overhead) across departments. Three common allocation bases — by headcount %, by square footage, or by revenue %. Each gives a different answer; the \"right\" method depends on what drives the cost (rent → square footage; IT support → headcount).</p><p><strong>Intercompany transactions:</strong> when a cost center in <em>one entity</em> charges another entity, it creates an intercompany receivable/payable that <strong>must be eliminated in consolidation</strong> — otherwise the group's total revenue/expenses are inflated by what one part charged another.</p><p><strong>Skarion context:</strong> if Skarion expands to two offices (Virginia = HLD, Texas = LLD), each is a profit center; the IT team supporting both is a cost center; the controller must allocate IT costs to both offices fairly — and eliminate the internal charges when consolidating.</p>"
+    },
+    {
+      "type": "quiz",
+      "kicker": "Chunk 96 — allocation methods",
+      "title": "Allocation Methods Quiz — Which Is Most Equitable?",
+      "intro": "Skarion has $8,000/month of IT and office overhead to allocate across three cost centers (Engineering 12 staff, Sales 4 staff, Accounting 2 staff). Pick the method and defend it.",
+      "questions": [
+        {"q":"Allocating the $8,000 IT overhead by headcount — Engineering pays how much?","options":["$4,800 (12 of 18 staff)","$3,200","$8,000","$0"],"correct_index":0,"explanation":"Headcount allocation: 12/18 = 66.7% × $8,000 = $5,333... actually $8,000 × 12/18 = $5,333. Use revenue % if IT tracks projects (which it does at Skarion)."},
+        {"q":"If the IT team tracks its time per project, which allocation base is MOST equitable for IT cost?","options":["Revenue %","Headcount %","Actual project hours consumed (a usage/driver base)","Equal split"],"correct_index":2,"explanation":"When a usage driver (project hours) is measurable, allocate by it — it ties cost to the actual consumption, not an arbitrary proxy. This is activity-based costing at its simplest."},
+        {"q":"Two subsidiaries share a $50K cost center. Sub A charges Sub B $30K for services. At consolidation, what happens to the $30K?","options":["It's eliminated entirely (offset against B's payable to A)","It's recorded as consolidated revenue","It's recorded twice — once per entity","It's written off as bad debt"],"correct_index":0,"explanation":"Intercompany elimination: the $30K receivable on A's books offsets the $30K payable on B's, and the revenue/expense from the charge cancels out. Consolidated numbers must reflect only external transactions."}
+      ]
+    }
+  ]
+}

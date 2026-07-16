@@ -1,0 +1,49 @@
+{
+  "title": "Understanding Audits & Internal Controls",
+  "moduleTag": "Module 14",
+  "dayMapping": "Day 14",
+  "subhead": "Every accountant interacts with auditors, and every accountant operates inside internal controls. Knowing both removes fear and builds the documentation habit that keeps financials trustworthy.",
+  "hook": "\"The auditors are coming next week.\" To a new staff accountant that sounds like a threat. After this module it sounds like a calendar item — you know exactly what they test, what to prepare, and why they're actually on your side.",
+  "chunks": [
+    {
+      "type": "video",
+      "kicker": "Chunk 102 — Watch first",
+      "title": "What Happens During an Audit — From the Accountant's Seat",
+      "railLabel": "Video: Audit",
+      "intro": "Auditors aren't looking for what you did wrong — they're hired to verify you got it right. Know what they test and audit prep becomes organizing work you already did.",
+      "transcript": "<p><strong>0:00 —</strong> The first time auditors walk in, it feels like a tax audit — like they're looking for something you did wrong. They're not. Financial statement auditors are hired by the company's board to verify the numbers are fairly presented. They want to help you prove your numbers are right.</p><p><strong>0:30 —</strong> What auditors actually test: <strong>existence</strong> (does the asset exist?), <strong>completeness</strong> (are all transactions recorded?), <strong>accuracy</strong> (are the amounts correct?), <strong>cutoff</strong> (are things in the right period?), and <strong>valuation</strong> (are things valued correctly?). For each assertion, they select a sample of transactions and trace them to source documents.</p><p><strong>1:30 —</strong> What an accountant prepares for audit: a complete reconciliation package (every balance sheet account tied to its subledger), a depreciation schedule with asset receipts attached, the payroll summary tied to W-2s, and all adjusting entries with approval documentation. If you've done the close properly every month, audit prep is just organizing what you already have.</p><p><strong>3:00 —</strong> The most common audit finding for small companies: <em>missing supporting documentation</em>. The fix: every journal entry, every adjustment, every unusual transaction — there's a document attached <em>before</em> you post it. Not after. Before.</p>"
+    },
+    {
+      "type": "timeline",
+      "kicker": "Chunk 102 — the calendar",
+      "title": "A 6-Week Audit — From Field Work to Opinion",
+      "steps": [
+        {"title": "Week 1 — PBC list", "desc": "Auditors send the 'Prepared By Client' list — every support document they want, organized by account. You gather the reconciliation package and source files."},
+        {"title": "Week 2 — Field work begins", "desc": "Auditors test samples of transactions — vouching AP to POs and receiving reports, confirming AR with customers, reconciling the bank rec math."},
+        {"title": "Week 3 — Auditor queries", "desc": "They ask clarifying questions and request additional support. You answer in writing and attach what they need."},
+        {"title": "Week 4 — Adjusting journal entries", "desc": "Auditors may propose entries for items they found — unrecorded accruals, miscoded transactions, cutoff errors. You post with supervisor sign-off."},
+        {"title": "Week 5 — Management representation letter", "desc": "Controller/CFO signs the letter affirming the accuracy of the financial statements and disclosures — a formal assertion of responsibility."},
+        {"title": "Week 6 — Audit opinion issued", "desc": "Unqualified ('clean'), qualified, or adverse. Almost all small private companies aim for an unqualified opinion — and earn it with clean documentation all year."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 103 — internal controls",
+      "title": "Internal Controls — and Why You Enforce Them When Nobody's Watching",
+      "bodyHtml": "<p>The 5 key internal controls every staff accountant operates within — these aren't bureaucracy, they're the reason the financials are trustworthy.</p><ol><li><strong>Segregation of duties:</strong> the person who approves spending ≠ the person who enters it ≠ the person who signs the check. For small companies where one person wears multiple hats: <em>compensating controls</em> — e.g. the manager reviews the bank statement monthly.</li><li><strong>Authorization:</strong> no payment without documented approval above a threshold. Skarion's policy: invoices &lt; $5,000 PM approval; $5,000–$50,000 controller approval; &gt; $50,000 CEO approval.</li><li><strong>Reconciliation:</strong> every balance sheet account reconciled monthly to a source document. The control that catches both errors <em>and</em> fraud.</li><li><strong>Physical controls:</strong> locked check stock, password-protected accounting software, MFA on banking portals. Not glamorous. Non-negotiable.</li><li><strong>Independent verification:</strong> the bank rec is reviewed by someone who didn't prepare it. The controller signs off on the close package they didn't personally prepare.</li></ol>"
+    },
+    {
+      "type": "quiz",
+      "kicker": "Chunk 103 — ethical scenarios",
+      "title": "Internal Control Ethical Scenarios — Hold / Correct / Escalate / Document?",
+      "intro": "5 real ethical situations. For each, pick the textbook response AND name the documentation you create. There are no 'just fix it quietly' answers here.",
+      "questions": [
+        {"q":"You notice the controller approved their own $8,500 expense reimbursement with no second approver. What do you do?","options":["Escalate in writing to the CEO/owner, document the missing second approver, and do not process until rectified","Quietly post it — they're the controller","Confront the controller publicly","Delete the entry"],"correct_index":0,"explanation":"Segregation-of-duties violation and a self-approval control breach. Escalate above the controller (the owner/CEO or external auditor) in writing, document, and hold processing. This is a classic control-failure test."},
+        {"q":"A vendor offers you a $200 gift card in exchange for expediting their invoice payment. What do you do?","options":["Thank them, decline, document the interaction in writing as a matter of record — never let a gift accelerate the payment cycle","Accept it — it's under the gift threshold","Report them to the police immediately and block the vendor","Expedite the invoice to keep the relationship"],"correct_index":0,"explanation":"Decline politely + document. A vendor gift tied to a payment decision creates a conflict of interest regardless of size; document it so it's on record that the payment schedule was unchanged."},
+        {"q":"You find an unfamiliar $4,200 ACH debit on the bank statement with no internal authorization. What do you do?","options":["Flag immediately, file a bank dispute within the allowed window, hold the transaction, and notify the controller — possible fraud","Ignore it — the bank must know what it's for","Reverse it yourself without telling anyone","Wait until next month to see if it recurs"],"correct_index":0,"explanation":"Unknown ACH = potential fraud. Bank dispute windows are short (often 24–48 hours for unauthorized ACH). Notify the controller, file the dispute, post a holding entry (Dr Due from Bank / Cr Cash) pending the outcome, and document."},
+        {"q":"Your manager asks you to back-date a journal entry so this quarter's numbers look better. What do you do?","options":["Refuse, document the request in writing, and escalate to the controller/owner or internal audit — this is financial fraud","Do it — the manager authorized it","Quietly fix it next quarter","Ask a coworker to do it instead"],"correct_index":0,"explanation":"Back-dating to improve reported results is financial-statement fraud. Document the request in writing (timestamp + your notes), escalate to the controller, owner, internal audit, or the external auditors — never comply, and never stay silent."},
+        {"q":"A colleague mentions they've been 'borrowing' petty cash and paying it back the next day. What do you do?","options":["Document the conversation, report it to the manager/controller — 'borrowing' company funds without authorization is a control breach even if repaid","Ignore it — they pay it back","Lend them your own money to stop it","Tell other coworkers"],"correct_index":0,"explanation":"Unauthorized use of company cash is a control breach regardless of repayment — and the pattern almost always escalates. Document what was said, report to the controller, and let them investigate. Do not confront the colleague yourself."}
+      ]
+    }
+  ]
+}

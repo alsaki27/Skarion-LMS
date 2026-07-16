@@ -3,21 +3,28 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>{{TITLE}} — Skarion Accounting Track</title>
+<title>Skarion Accounting Track — Job Simulation Course</title>
 <style>{{THEME_CSS}}</style>
-</head>
+  <link rel="stylesheet" href="https://bossanova.uk/jspreadsheet/v4/jspreadsheet.css" />
+  <link rel="stylesheet" href="https://bossanova.uk/jsuites/v2/jsuites.css" />
+  <script src="https://bossanova.uk/jsuites/v2/jsuites.js"></script>
+  <script src="https://bossanova.uk/jspreadsheet/v4/jspreadsheet.js"></script>
+  </head>
 <body>
 <div class="layout">
-  <div class="sidebar" id="catalog-sidebar">
-    <div class="sidebar-header">
-      <div class="sidebar-title">Skarion Accounting Track</div>
-    </div>
-    <div class="sidebar-nav" id="sidebar-nav"></div>
-  </div>
+   <div class="sidebar-backdrop" id="sidebar-backdrop"></div>
+   <div class="sidebar" id="catalog-sidebar">
+     <div class="sidebar-header">
+       <div class="sidebar-title">Skarion Accounting Track</div>
+       <button class="menu-toggle" id="menu-close" title="Close menu" aria-label="Close menu">×</button>
+     </div>
+     <div class="sidebar-nav" id="sidebar-nav"></div>
+   </div>
   <div class="app">
-    <div class="topbar">
-      <span class="module-tag" id="module-tag"></span>
-      <span class="module-title" id="module-title"></span>
+<div class="topbar">
+       <button class="menu-toggle" id="menu-open" title="Open menu" aria-label="Open menu" style="margin-right:8px;">≡</button>
+       <span class="module-tag" id="module-tag"></span>
+       <span class="module-title" id="module-title"></span>
       <button onclick="window.open('skarionbooks/index.html', '_self')" style="margin-left:auto; margin-right:20px; padding:6px 12px; background:#1E2761; color:white; border:none; border-radius:4px; cursor:pointer; font-weight:bold; font-size:13px;">Launch SkarionBooks 🚀</button>
       <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
       <span class="progress-label" id="progress-label">0%</span>

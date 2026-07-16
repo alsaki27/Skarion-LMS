@@ -122,6 +122,36 @@
       "bodyHtml": "<p>The <strong>AR Aging Report</strong> is the single most important AR management tool. It buckets every customer's outstanding invoices by how long they have been unpaid. As buckets grow to 90+ days, the firm escalates: dunning letters, account-manager outreach, and eventually collections or write-off.</p><p><strong>Skarion's AR aging snapshot:</strong></p><table class='data'><tr><th>Customer</th><th>0–30 days</th><th>31–60 days</th><th>61–90 days</th><th>90+ days</th><th>Total</th></tr><tr><td>Atlantic Fiber Co.</td><td>$480,000</td><td>—</td><td>—</td><td>—</td><td>$480,000</td></tr><tr><td>Southeast Broadband</td><td>$215,000</td><td>$190,000</td><td>—</td><td>—</td><td>$405,000</td></tr><tr><td>TeleCom Builders</td><td>—</td><td>—</td><td>$78,500</td><td>$34,200</td><td>$112,700</td></tr><tr><td><strong>Total</strong></td><td><strong>$695,000</strong></td><td><strong>$190,000</strong></td><td><strong>$78,500</strong></td><td><strong>$34,200</strong></td><td><strong>$997,700</strong></td></tr></table><p>TeleCom Builders is the problem customer here: $112,700 sitting entirely in the older buckets, $34,200 of it past 90 days. That calls for a dunning letter and an account-manager call this week.</p><p><strong>Allowance for Doubtful Accounts.</strong> GAAP requires you to <em>estimate</em> uncollectible AR as you earn revenue — not wait until a specific invoice goes bad. This is the <em>allowance method</em>, and it matches the bad debt expense to the period that produced the revenue (the matching principle).</p><ul><li><strong>Establish the allowance:</strong> Debit Bad Debt Expense / Credit Allowance for Doubtful Accounts (a contra-asset that reduces net AR).</li><li><strong>Write off a specific invoice:</strong> Debit Allowance for Doubtful Accounts / Credit Accounts Receivable. <em>Expense is NOT affected</em> at write-off — the expense was already recorded when the allowance was established.</li></ul><p><strong>DSO (Days Sales Outstanding):</strong> Average AR ÷ Credit Revenue × Days. Skarion: $997,700 ÷ $4.8M × 365 ≈ <strong>75.8 days</strong> — meaning it takes roughly 76 days to collect a dollar of billed revenue. The lower, the better; controllers watch DSO month-over-month as a leading cash-flow indicator.</p>"
     },
     {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 63 — Live in-browser lab",
+      "title": "AR Aging Worksheet — Skarion (live Excel)",
+      "railLabel": "Live aging",
+      "scenarioHtml": "<p>Build Skarion's AR aging analysis directly in the spreadsheet. Fill in the four aging buckets (0–30, 31–60, 61–90, 90+) per customer from the AR subledger snapshot in Module 04. The lab validates when the four bucket columns each total correctly, the grand total equals <strong>$997,700</strong>, and the sum of all bucket totals equals the total AR. The TeleCom Builders 90+ balance is the red flag — note it.</p>",
+      "columns": [
+        {"title": "Customer", "type": "text", "width": 200, "readOnly": true},
+        {"title": "0–30 ($)", "type": "numeric", "width": 120, "mask": "#,##0.00", "readOnly": false},
+        {"title": "31–60 ($)", "type": "numeric", "width": 120, "mask": "#,##0.00", "readOnly": false},
+        {"title": "61–90 ($)", "type": "numeric", "width": 120, "mask": "#,##0.00", "readOnly": false},
+        {"title": "90+ ($)", "type": "numeric", "width": 120, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Atlantic Fiber Co.", null, null, null, null],
+        ["Southeast Broadband", null, null, null, null],
+        ["TeleCom Builders", null, null, null, null],
+        ["TOTAL", null, null, null, null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4"],
+      "targetCells": {
+        "B4": 695000.00,
+        "C4": 190000.00,
+        "D4": 78500.00,
+        "E4": 34200.00
+      },
+      "requireBothSidesEqual": false,
+      "successMessage": "✅ Aging balances to $997,700 total. TeleCom Builders' $34,200 in the 90+ bucket is the red flag — dunning letter this week.",
+      "errorMessage": "❌ Bucket totals don't match yet. Totals should be 0–30=$695,000 · 31–60=$190,000 · 61–90=$78,500 · 90+=$34,200 (sum $997,700). Check Atlantic Fiber ($480,000 all current) and TeleCom ($78,500 / $34,200 in the older buckets)."
+    },
+    {
       "type": "video",
       "kicker": "Chunk 42 — Watch first",
       "title": "Bad Debt — Estimating What You Won't Collect (Allowance Method)",

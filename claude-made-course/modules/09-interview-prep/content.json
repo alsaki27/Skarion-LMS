@@ -216,6 +216,371 @@
         { "label": "Interview Question Bank — 126 Questions.docx", "href": "/download/06-interview-preparation/Interview_Question_Bank_126Q.docx" }
       ],
       "reflectionPrompt": "Which module's content was hardest to explain out loud without your notes? That is the one to re-do. Write your 5 answers below, in your own words, with real simulation numbers."
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 76 — Watch first",
+      "title": "The STAR Method in 4 Minutes — With Real Accounting Examples",
+      "railLabel": "Video: STAR",
+      "intro": "Every behavioral question tests one thing: a specific, believable story with a real outcome. STAR is the structure that forces you to do that.",
+      "transcript": "<p><strong>0:00 —</strong> Every behavioral interview question is a test of one thing: can you give me a specific, believable story with a real outcome? The STAR method forces you to.</p><p><strong>0:20 —</strong> Situation: the context — who, what, where, when, one to two sentences. Task: what you were specifically responsible for. Action: the steps YOU took, not the team, not your manager. Result: what happened because of your actions — numbers if possible.</p><p><strong>1:00 —</strong> Weak version of \"found an error in the books\": \"I found an error and fixed it.\" That's not a story. Strong version: during January's bank rec, QuickBooks showed $34,000 more cash than the bank — Situation. My task was to trace it before close — Task. I compared every deposit by date and amount, found a $10,547.10 Southeast Broadband payment entered twice, confirmed the bank received it once, posted Dr AR / Cr Cash — Action. The rec balanced to $336,250 — Result.</p><p><strong>2:30 —</strong> Notice it takes 45 seconds, names a real number, company, and journal entry. It doesn't say \"I'm detail-oriented\" — it proves it. That's the only thing that works in a technical interview.</p><p><strong>3:30 —</strong> Your job: take the 8 questions in the next section and write STAR answers with your Skarion numbers. Don't memorize — internalize the structure.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 77 — Watch",
+      "title": "How to Research a Company in 20 Minutes Before an Interview",
+      "railLabel": "Video: Research",
+      "intro": "Walk through the 20-minute framework on screen — Google News, the LinkedIn company page, Glassdoor, and the JD side by side.",
+      "transcript": "<p><strong>0:00 —</strong> The 20 minutes before an interview matter more than the last week of cramming. Here's the framework.</p><p><strong>0:10 —</strong> Ten minutes on the company: industry (how does accounting differ there?), size (team of 2 or a 40-person department?), recent news (Google \"company name news 2025\" — raises, acquisitions, layoffs, new contracts), Glassdoor reviews (what does the accounting team culture sound like?), and fiscal year-end (non-December close = no holiday slam).</p><p><strong>0:50 —</strong> Five minutes on the role: what functions does the JD emphasize (AP, AR, close, payroll)? Match your strongest stories to those. What software — if it's NetSuite/Sage/SAP, Google how it differs from QuickBooks so you can speak about the learning curve. How much autonomy — \"supports the controller\" means oversight; \"owns reconciliations\" means independence.</p><p><strong>1:20 —</strong> Five minutes on your interviewer: LinkedIn background — public accounting or industry? How senior? If they're the controller, they go technical. If HR, behavioral. Prepare accordingly.</p><p><strong>1:45 —</strong> The three things to say in the first five minutes that prove you did your homework: a recent company news item, a specific phrase from their JD tied to your experience, and a question only someone who'd read their last 10-K / company page would ask. Research is preparation, not flattery.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 78 — Watch",
+      "title": "Salary Negotiation — What to Say When They Make the Offer",
+      "railLabel": "Video: Salary",
+      "intro": "Role-play through the three salary moments — application form, verbal offer, and benefits — with the exact counter-offer phrase word for word.",
+      "transcript": "<p><strong>0:00 —</strong> Salary negotiation happens in three moments, and the words differ in each. (Interviewer off-screen voice; candidate text on screen.)</p><p><strong>0:15 —</strong> Moment 1, the application form \"What are your salary expectations?\": \"I'm open to competitive compensation for this role and location. Based on my research the range for entry-level staff accountants in [city] is $X–$Y, and I'm flexible within that range based on the full package.\" If you can leave it blank, do.</p><p><strong>1:10 —</strong> Moment 2, the verbal offer — do NOT accept on the spot: \"Thank you — I'm very excited about this opportunity. Can I take 48 hours to review the details?\" Then the counter-offer, word for word: \"Based on my research and the full scope of the role, I was hoping for [10–15% above their number]. Is there flexibility there?\" Say the number — vague counters get vague responses.</p><p><strong>2:10 —</strong> If they say no: \"Could we revisit compensation after 6 months if my performance meets expectations?\" — and get that in the offer letter.</p><p><strong>2:45 —</strong> Moment 3, when salary is fixed — negotiate benefits: remote work days, a CPA/professional-development budget, start-date flexibility, a sign-on bonus if relocation is required.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 79 — Watch",
+      "title": "How to Use AI Tools in Accounting — Without Getting in Trouble",
+      "railLabel": "Video: AI in acct",
+      "intro": "AI handles the volume layer; you handle the judgment layer. The safe interview answer learns the line.",
+      "transcript": "<p><strong>0:00 —</strong> Every accounting firm now uses some form of AI. The question isn't whether you'll work alongside it — it's whether you understand what it can and can't do.</p><p><strong>0:30 —</strong> What AI is genuinely good at now: categorizing transactions, matching invoices to POs at scale, flagging anomalies in large GL exports, auto-generating first-draft journal-entry memos. Five thousand expense lines mapped to GL accounts — AI does that faster than any human.</p><p><strong>1:30 —</strong> What AI is not good at: judgment on anything context-dependent. Does the expense belong in this period? Is this really an asset or an expense? Is this discount legitimately earned? AI doesn't know your policies, your contract terms, or what your CFO cares about. You do.</p><p><strong>2:30 —</strong> The interview answer: \"I use AI tools for the volume layer — categorization, anomaly flagging, first-draft memos. But every AI output gets reviewed before it hits the ledger. The AI suggests, I verify, I post.\" That shows you're current AND you understand that responsibility can't be delegated to software.</p><p><strong>3:30 —</strong> Practically: learn ChatGPT for reconciliation-memo drafts, Excel Copilot for SUMIFS formulas, and how to spot when an AI-assigned category is wrong. That combination makes you more productive, not replaceable.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 80 — Watch",
+      "title": "Your First Week on the Job — Don't Do These Things",
+      "railLabel": "Video: First week",
+      "intro": "Five moves that tank your reputation in week one, and five that build a great one.",
+      "transcript": "<p><strong>0:00 —</strong> Your reputation in a new accounting job is mostly set in the first week. Five things new hires do that tank it immediately:</p><p><strong>0:15 —</strong> 1) Post an entry without checking with the manager first. 2) Assume you know the company's system because it looks like one you've seen. 3) Fix a mistake quietly instead of disclosing it. 4) Ask the same question twice without writing down the answer the first time. 5) Miss a deadline and not flag it until it's already late.</p><p><strong>1:30 —</strong> Five things that build a great reputation in week one:</p><p><strong>1:40 —</strong> 1) Ask to see last month's close package and read every entry. 2) Build your own COA cheat sheet on Day 1. 3) Confirm every task assignment in writing with the due date. 4) Never send anything without reviewing it twice. 5) Send a Friday wrap-up email to your manager — what you completed and what's pending.</p><p><strong>2:50 —</strong> The theme: be a low-risk, high-clarity presence. Documentation beats talent in the first month, because trust isn't built from brilliance — it's built from not being a surprise.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 81 — Watch",
+      "title": "What the CPA Exam Is — Do You Need It?",
+      "railLabel": "Video: CPA",
+      "intro": "What the CPA is, the four sections, who needs it, the cost and timeline — and whether you should start it in year one.",
+      "transcript": "<p><strong>0:00 —</strong> CPA — Certified Public Accountant. The credential is issued by state boards and administered through the AICPA. It's the gatekeeper for signing audit reports and filing with the SEC.</p><p><strong>0:20 —</strong> Four exam sections under the 2024 structure: FAR (Financial Accounting & Reporting), AUD (Auditing), REG (Regulation/Tax), and BAR or ISC (Business Analysis & Reporting, or Information Systems & Controls).</p><p><strong>0:55 —</strong> Who needs it: public accounting (audit, tax) — generally required for advancement. Industry accounting — often not required but valued, especially as you move up.</p><p><strong>1:20 —</strong> Timeline and cost: typically 18 months to complete all four sections, ~$3,000–$5,000 in exam fees plus prep materials. There's a 150-credit-hour education requirement in most states beyond the bachelor's degree.</p><p><strong>1:50 —</strong> The real question: do you want public accounting or industry? That answer decides whether the CPA is essential or optional. Strong advice regardless: even if you don't need it, start FAR in year one. It reinforces exactly what this course covered — GAAP, the accounting cycle, financial statements, revenue recognition. Studying FAR makes you a better staff accountant immediately, not just a future CPA.</p>"
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 82 — Watch",
+      "title": "Building Your Accounting Portfolio Before Your First Job",
+      "railLabel": "Video: Portfolio",
+      "intro": "An accounting portfolio isn't a design portfolio — it's a document that proves you did real work. Here's what to include and where to keep it.",
+      "transcript": "<p><strong>0:00 —</strong> An accounting portfolio isn't visual design. It's a document that proves you did real work. Here's what to include.</p><p><strong>0:15 —</strong> 1) A one-page simulation summary: \"I performed the following tasks for Skarion Engineering's January–March close cycle\" — bullet points and specific dollar figures.</p><p><strong>0:45 —</strong> 2) Screenshots of completed reconciliations — with numbers visible, company name anonymized if needed. 3) A completed financial statement package (P&L, Balance Sheet, Cash Flow) produced during the course. 4) Your STAR answer document — the 8 questions written out with specific numbers. 5) Your salary research notes — shows you think strategically, not just technically.</p><p><strong>1:40 —</strong> Where to keep it: a PDF linked from your LinkedIn Featured section; a Notion page with embedded tables and screenshots; a GitHub repo if you're targeting tech-forward firms (shows comfort with documentation tools).</p><p><strong>2:10 —</strong> The one sentence that kills interviews: \"I don't have anything to show you yet.\" You do. It's this course. Present it like the work it is.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 72 — salary negotiation",
+      "title": "Salary Negotiation — The Three Moments",
+      "bodyHtml": "<p>The question \"What are your salary expectations?\" shows up three times, and each is a different conversation.</p><p><strong>Moment 1 — The application form.</strong> If you can leave it blank, do. If you must answer: \"I am open to competitive compensation for this role and location. Based on my research, the range for entry-level staff accountants in [city] is $X–$Y, and I'm flexible within that range based on the full package.\" Research sources: BLS.gov occupational outlook, the Robert Half Salary Guide (annual), LinkedIn Salary Insights for your city.</p><p><strong>Moment 2 — The verbal offer.</strong> Do not accept on the spot. \"Thank you — I'm very excited. Can I have 48 hours to review the details?\" Then counter at 10–15% above their number: \"Based on my research and the full scope of the role, I was hoping for [X]. Is there flexibility there?\" If they say no: \"Could we revisit compensation after 6 months if my performance meets expectations?\" — get that in writing.</p><p><strong>Moment 3 — Benefits (when salary is fixed).</strong> Remote days, a CPA/professional-development budget, start-date flexibility, and a sign-on bonus if relocation is required.</p><p><strong>2025–2026 market benchmarks:</strong> entry-level staff accountant, no CPA — national average ~$45,000–$62,000; top markets (NYC, SF, Chicago) ~$58,000–$78,000. Know your floor before you walk in.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 72 — exact words",
+      "title": "4 Salary Phrases — One Per Negotiation Moment",
+      "railLabel": "Salary lines",
+      "cards": [
+        {"front": "On the application form", "back": "\"I'm open to competitive compensation for this role and location. Based on my research the range for entry-level staff accountants in [city] is $X–$Y, and I'm flexible within that range based on the full compensation package.\""},
+        {"front": "When they make the verbal offer", "back": "\"Thank you — I'm very excited about this opportunity. Can I take 48 hours to review the full details?\" Never accept on the spot; the offer is the anchor you'll counter from."},
+        {"front": "The counter-offer phrase", "back": "\"Based on my research and the full scope of the role, I was hoping for [10–15% above their number]. Is there flexibility there?\" Say the number — vague counter-offers get vague responses."},
+        {"front": "When salary is fixed", "back": "\"I understand. Could we revisit compensation after 6 months if my performance meets expectations — and put that in the offer letter?\" Also ask for remote days, a CPA-study budget, or start-date flexibility."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 73 — LinkedIn & resume",
+      "title": "LinkedIn Profile & Resume Checklist",
+      "bodyHtml": "<p><strong>LinkedIn checklist (14 items):</strong></p><ol><li><strong>Headline:</strong> \"Staff Accountant | Full Accounting Cycle | Bank Reconciliation | QBO | Excel\" — not \"Accounting Student Looking for Opportunities.\"</li><li><strong>About:</strong> Present → Past → Future, 120–200 words.</li><li><strong>Experience:</strong> list the simulation as a real entry — \"Accounting Simulation Project — Skarion Engineering (2026)\" with 5 quantified bullets.</li><li><strong>Skills:</strong> Accounts Payable, Accounts Receivable, Bank Reconciliation, Month-End Close, General Ledger, GAAP, Accrual Accounting, Microsoft Excel, QuickBooks Online.</li><li><strong>Featured:</strong> link a one-page summary/PDF of your simulation work.</li><li>Certifications (QuickBooks ProAdvisor, Excel MOS, bookkeeping).</li><li>\"Open to Work\" set to <em>recruiters only</em> — not the green banner (it signals desperation).</li><li>Connect with accounting recruiters at Robert Half, Kforce, Ledgent Finance — a personalized note, not the generic request.</li></ol><p><strong>Resume bullet formula:</strong> [Action verb] + [specific task] + [quantified result/scope].</p><p><strong>Before / after:</strong></p><ul><li>❌ \"Helped with month-end close\"</li><li>✅ \"Executed 12 adjusting journal entries (depreciation, accruals, prepaids) during January close; contributed to a financial package delivered on Day 5 of a 5-day cycle.\"</li></ul><p><strong>5 strong accounting verbs:</strong> Reconciled · Posted · Processed · Analyzed · Identified.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 74 — pre-interview research",
+      "title": "Research the Company in 20 Minutes (framework)",
+      "bodyHtml": "<p>The first five minutes of any interview reward research you did in the twenty before it.</p><p><strong>10 minutes on the company:</strong></p><ol><li><strong>Industry</strong> (manufacturing, services, healthcare, tech) — how does accounting differ in their context?</li><li><strong>Size</strong> (headcount, revenue if public) — team of 2 or a department of 40?</li><li><strong>Recent news</strong> (Google \"company name news 2025\") — raised capital, acquired someone, layoffs, won a contract?</li><li><strong>Glassdoor</strong> reviews — what do current/former employees say about the accounting team culture?</li><li><strong>Fiscal year-end</strong> — December or non-December? Non-December close means you won't be slammed during the holidays.</li></ol><p><strong>5 minutes on the role:</strong></p><ol start='6'><li>What functions does the JD emphasize (AP, AR, close, payroll)? Match your strongest stories to those.</li><li>What software do they list? If NetSuite/Sage/SAP — Google how it differs from QuickBooks so you can speak about the learning curve intelligently.</li><li>What autonomy does the role have? \"Supports the controller\" = high oversight. \"Owns reconciliations\" = independence expected.</li></ol><p><strong>5 minutes on your interviewer:</strong></p><ol start='9'><li>LinkedIn background — public accounting? Industry? How senior?</li><li>If they're the controller, they'll go technical. If HR, they'll go behavioral. Prepare accordingly.</li></ol>"
+    },
+    {
+      "type": "timed_drill",
+      "kicker": "Chunk 75 — 60-second verbal drill",
+      "title": "60-Second Verbal Answer Drill",
+      "railLabel": "Verbal drill",
+      "intro": "10 questions, 60 seconds each. Say accounting words out loud, fast, without hesitation — that's the real interview condition. Pick the correct structured answer for each; the goal is recall fluency, not perfection.",
+      "questions": [
+        {"q": "What is a bank reconciliation and how do you do one?", "options": ["Two-sided proof: Bank side = statement + deposits in transit − outstanding checks; Book side = GL + credits − fees recorded; they must meet exactly. Found a $10,547.10 duplicate, balanced to $336,250.", "Reconcile means the bank and books match, you just adjust the difference.", "I ask my manager and copy the bank's number.", "Reconciliation means checking the receipts."], "correct_index": 0, "explanation": "Name the two-sided method + a real outcome ($336,250, the $10,547.10 duplicate). Fluency beats a textbook definition."},
+        {"q": "Walk me through a journal entry from source document to GL posting.", "options": ["Source document → identify accounts → record debits/credits (equal) with memo & reference → post to GL → trial balance must still balance.", "You type it into QuickBooks.", "Journal entry is just a debit and a credit.", "I post it and hope it balances."], "correct_index": 0, "explanation": "Five beats: document, accounts, balanced line, memo/reference, post, verify. Covers the cycle in 60 seconds."},
+        {"q": "What do you do if a vendor invoice doesn't match the PO?", "options": ["Hold it, document the discrepancy, request a corrected invoice or credit memo — never pay through a failed 3-way match.", "Pay it and fix later.", "Ignore the PO; trust the vendor.", "Split the difference and pay the average."], "correct_index": 0, "explanation": "Hold, document, resolve. Reference GCS-2026-087's $178.75 variance if you have time."},
+        {"q": "What is accrual accounting?", "options": ["Record economic events when they happen, not when cash moves — match expenses to the revenue they help generate.", "Record when cash is received or paid.", "It's the same as cash basis.", "Accrual means waiting for the invoice."], "correct_index": 0, "explanation": "One line: record when earned/incurred, not when cash moves. Add the matching principle and the Vetro $3,000/month if time."},
+        {"q": "Give me an example of an adjusting entry.", "options": ["Monthly Vetro amortization: Dr Software Expense $3,000 / Cr Prepaid Software $3,000 — moves one month off the asset onto the P&L.", "An entry made at year-end only.", "Adjusting entries reverse last year.", "Any entry you change later."], "correct_index": 0, "explanation": "A concrete monthly amortization entry is the cleanest 60-second example — names accounts and amounts."},
+        {"q": "What is COGS and how does it differ from operating expenses?", "options": ["COGS is the direct cost of producing the work (subcontractor drafting); OpEx is everything else to run the business (salaries, rent, software). Gross profit sits between them.", "COGS and OpEx are the same thing.", "COGS is a liability.", "OpEx is always larger than COGS."], "correct_index": 0, "explanation": "Direct vs. indirect cost, and the gross-profit line between them. Skarion: $140,000 COGS vs $98,000 OpEx."},
+        {"q": "Difference between gross profit and net income?", "options": ["Gross profit = Revenue − COGS. Net income = Revenue − COGS − OpEx (+/- taxes). Skarion Jan: gross $340,000, net $242,000.", "Gross profit is the final number on the P&L.", "Net income is always higher than gross profit.", "They are the same."], "correct_index": 0, "explanation": "Name the formulas and the Skarion January figures — that's the specificity that lands."},
+        {"q": "What happens to Retained Earnings at year-end?", "options": ["Temporary accounts (Revenue and Expense) close to Retained Earnings via Income Summary; net income flows into RE. Permanent accounts carry forward.", "Retained Earnings is deleted.", "RE stays exactly the same regardless of net income.", "Only dividends affect RE."], "correct_index": 0, "explanation": "Closing entries: revenue and expense → Income Summary → Retained Earnings. Net income raises RE."},
+        {"q": "How do you apply a customer payment to an open invoice?", "options": ["Receive payment → confirm remittance → Dr Cash / Cr AR, apply to the specific invoice, close it in the subledger. Handle fees (Dr Bank Fees) and short pays (leave balance open + dispute).", "Just deposit the check.", "Record it as revenue.", "Apply it to the wrong customer and fix later."], "correct_index": 0, "explanation": "Apply to specific invoice, not just 'cash in.' Cover the fee and short-pay edge cases — interviewers love them."},
+        {"q": "What is the allowance method for bad debt?", "options": ["Estimate uncollectible AR in the period of sale: Dr Bad Debt Expense / Cr Allowance (contra-asset). Write off later against the allowance, not expense. Required by GAAP — matching principle.", "Wait until a customer defaults, then write it off.", "Bad debt is never recorded until bankruptcy.", "Allowance is a cash reserve account."], "correct_index": 0, "explanation": "Estimate in-period, contra-asset, GAAP-required. 1.5% of $997,700 = $14,965.50 is your live example."}
+      ]
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 68 — STAR technical",
+      "title": "8 STAR Behavioral Answers — Technical Situations (Skarion)",
+      "railLabel": "STAR: technical",
+      "intro": "Flip each card and say the answer out loud in your own words. Keep the real numbers — the $10,547.10 duplicate, the $336,250 rec, the $178.75 variance — those are what make an answer unfakeable.",
+      "cards": [
+        {"front": "Q1: Tell me about a time you found an error in the financial records.", "back": "S: During Skarion's January bank rec, the GL showed $34,000 more cash than the bank statement. T: Find and correct the source before close. A: Compared deposits line by line — found a $10,547.10 Southeast Broadband ACH entered twice. Confirmed the bank received it once, posted Dr AR $10,547.10 / Cr Cash $10,547.10. R: Rec balanced to $336,250.00; AR reinstated correctly, Sales Revenue never touched."},
+        {"front": "Q2: Describe a time you met a strict deadline under pressure.", "back": "S: Skarion's January close — 5-day window, 12 adjusting entries, statements due Day 5. T: Owned the offshore accrual, Vetro amortization, and loan interest entries. A: Built a checklist tied to the close calendar, worked entries in dependency order, flagged a missing vendor invoice on Day 2. R: All three entries correct by Day 3; package delivered Day 5 with zero open items; net income $242,000."},
+        {"front": "Q3: Tell me about a time you identified a process improvement.", "back": "S: Offshore vendor invoices were matched to POs manually — bottleneck and mismatches. T: Speed up matching without losing accuracy. A: Built a VLOOKUP tool that pulls the approved PO unit price next to each invoice line; rows where invoice price > PO price highlight red. R: First batch caught a $178.75 GCS overbilling that would have passed unseen; tool adopted for every monthly batch."},
+        {"front": "Q4: Give an example of working with incomplete information.", "back": "S: A $190,000 wire arrived with no remittance advice and no reference. T: Apply it to the correct invoices without an unapplied balance. A: Contacted the client's AP directly, identified the two most likely invoices from the aging, waited for written remittance — confirmed my read. R: Applied correctly within 48 hours, fully documented; led to a 'unidentified wire > $5,000 → remittance request within 2 hours' standard process."},
+        {"front": "Q5: Tell me about explaining a financial concept to a non-finance person.", "back": "S: A PM asked why January's P&L showed high expenses though we'd paid vendors in December. T: Explain accrual without condescension. A: \"If you hire a contractor in December and they finish in January, the expense belongs in January — when the work happened.\" Showed the December payment vs January expense recognition side by side. R: They understood; PM now flags large accruals before close to plan headcount conversations."},
+        {"front": "Q6: Describe pushing back on an instruction you thought was wrong.", "back": "S: During a quarterly close my manager suggested rounding up a $340 rec difference because the audit was next morning. T: Push back without confrontation. A: \"Can I have 20 minutes to trace it? If I can't, I'll document the unresolved item with an explanation — that gives us a clean paper trail either way.\" R: Found it in 12 minutes — a transposition; corrected; audit clean. Manager appreciated the path forward, not just a no."},
+        {"front": "Q7: Tell me about managing multiple competing priorities.", "back": "S: Day 3 of close: a vendor dispute, a new AR wire to apply, and the depreciation deadline — all at once. T: Triage without dropping any. A: Hardest deadline first (depreciation before the 4 PM trial-balance run); escalated the vendor dispute with a written summary; posted the AR payment immediately (5 min). R: All three resolved by 2 PM; depreciation in the trial balance; dispute decided and documented by 3 PM; no deadline missed."},
+        {"front": "Q8: Tell me about adapting to a new system quickly.", "back": "S: SkarionBooks (custom simulator) used different workflows than a standard package. T: Become proficient fast enough to run a full close. A: Reviewed the COA structure, ran one small vendor invoice end-to-end first, built a personal reference card of common entry workflows. R: Completed the full January close — 12 journal entries, bank rec, three financial statements, AR aging — with no system errors or re-entries."}
+      ]
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 69 — STAR soft skills",
+      "title": "8 STAR Behavioral Answers — Soft Skills & Ethics",
+      "railLabel": "STAR: soft",
+      "cards": [
+        {"front": "Q9: Describe a mistake at work and how you handled it.", "back": "Posted a depreciation entry to 6500 Software instead of 6700 Depreciation. Caught it at trial-balance review. Self-reported to the controller immediately, reversed and reposted correctly with documentation. Lesson: verify account numbers against the COA before posting, not after."},
+        {"front": "Q10: Tell me about a time you maintained confidentiality.", "back": "Payroll and vendor contract terms are strictly confidential. In training I treated every Skarion figure with the same care as real client data — no screenshots, no discussion outside context, files protected. This was an assumption I came in with, not something I waited to be taught."},
+        {"front": "Q11: How do you handle a teammate not pulling their weight?", "back": "Sequence: clarify whether they're aware of the issue, document what isn't happening, then flag to a manager only if a deliverable is at risk. Never silently absorb their work without raising it — that hides the problem and threatens your own deliverables."},
+        {"front": "Q12: Tell me about meeting a high standard of accuracy.", "back": "Every entry in this course balanced to the cent. Walk through the January rec — exact $336,250.00 balance. The detail interviewers want: how you self-verify — does the trial balance balance? Does the AR subledger tie to the GL control account? Those checks are the accuracy habit, not just 'I'm careful.'"},
+        {"front": "Q13: A vendor offers lunch to approve their invoice faster. What do you do?", "back": "Thank them, decline. Explain invoice processing follows a fixed schedule (3-way match → approval → payment run) and the offer can't change it. Document the interaction in writing as a matter of record. Never let a personal relationship accelerate the payment cycle."},
+        {"front": "Q14: Describe delivering bad news to a manager.", "back": "The February close scenario (7 seeded errors). The skill is communicating each finding clearly — root cause, fix, status — not dumping the list. \"Here are the 7 I found, here's the entry that fixes each, here's the one that needs your sign-off.\" Lead with the resolution, not the alarm."},
+        {"front": "Q15: What do you do when you're stuck and don't know the answer?", "back": "Step 1: try to solve it yourself for a fixed time (15–20 min). Step 2: document what you've tried and what you're seeing. Step 3: escalate with that documentation — \"I've looked at X, tried Y, getting Z which doesn't make sense because of A. Can I get 5 minutes?\" Never sit stuck silently and never just guess."},
+        {"front": "Q16: Where do you see yourself in 3 years?", "back": "Year 1: become genuinely fast and reliable on the full close cycle. Year 2: own at least one reconciliation area end-to-end. Year 3: be the person my manager turns to for the harder items — the judgment calls, not just the execution. That's a growth ladder, not a title wish."}
+      ]
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 70 — 20 real technical",
+      "title": "20 Real Technical Interview Questions (answered fully)",
+      "railLabel": "20 technical",
+      "intro": "These are phrased exactly as interviewers ask them. Flip each card and verify you can answer without notes.",
+      "cards": [
+        {"front": "Walk me through the accounting cycle.", "back": "8 steps: Source document → Journal entry → Post to GL → Trial balance → Adjusting entries → Adjusted trial balance → Financial statements → Close temporary accounts. Each exists because skipping it breaks accuracy or completeness — the trial balance doesn't prove correctness, only that debits = credits."},
+        {"front": "Difference between the income statement and the balance sheet?", "back": "Temporary vs. permanent accounts. The income statement is a movie (performance over a period); the balance sheet is a photo (position at a point in time). One closes to Retained Earnings; the other carries forward."},
+        {"front": "If cash increases, what else changes?", "back": "Depends on the reason. Customer payment → AR decreases. Borrowing → Loan Payable increases. Owner investment → Equity increases. Never answer in isolation — name the paired account and the direction."},
+        {"front": "What is goodwill and when does it appear?", "back": "Only on the balance sheet after a business acquisition — the excess of purchase price over the fair value of net identifiable assets. It cannot be internally generated."},
+        {"front": "How do you record a prepaid expense?", "back": "Debit Prepaid (Asset), Credit Cash. Then monthly: Debit Expense, Credit Prepaid as the benefit is consumed. Skarion's $36,000 Vetro license = $3,000/month."},
+        {"front": "What is EBITDA?", "back": "Earnings Before Interest, Taxes, Depreciation, and Amortization. A common metric for comparing operating performance across companies with different capital structures or asset bases."},
+        {"front": "Walk me through closing the books at year-end.", "back": "Four closing entries: (1) close Revenue to Income Summary, (2) close Expenses to Income Summary, (3) close Income Summary to Retained Earnings, (4) close Drawings/Distributions to Retained Earnings. Temporary accounts end at zero."},
+        {"front": "Difference between AP and accrued liabilities?", "back": "AP: you have the vendor invoice. Accrued: the expense is incurred but no invoice yet (offshore work done, invoice arrives next month). Accruals get reversed on the 1st."},
+        {"front": "What is depreciation, and why not expense the full cost when you buy it?", "back": "Matching principle. The asset generates revenue over multiple years; its cost should be spread across the same periods it helps produce revenue, so each period's profit reflects the cost it actually used."},
+        {"front": "How do you calculate straight-line depreciation?", "back": "(Cost − Salvage Value) ÷ Useful Life in years. Monthly: divide by 12. Skarion: 5 workstations, $12,000 each, 5-yr life, $0 salvage = $200/month each = $1,000/month total."},
+        {"front": "Difference between revenue recognition and cash receipt?", "back": "Revenue is recognized when earned (performance obligation satisfied). Cash receipt is when money arrives. Often different dates under accrual — that's the whole point of accrual accounting."},
+        {"front": "What is an accrual, with an example.", "back": "Recording an expense before the invoice arrives. Offshore drafting completed Jan 31, invoice arrives Feb 4 — accrue in January: Dr COGS $14,800 / Cr Accrued Liabilities $14,800. Reverse Feb 1."},
+        {"front": "What is a contra account? Give an example.", "back": "An account that offsets another. Accumulated Depreciation offsets Fixed Assets (reduces net book value). Allowance for Doubtful Accounts offsets AR."},
+        {"front": "What is the matching principle?", "back": "Expenses should be recognized in the same period as the revenue they help generate. It's why we accrue, amortize prepaids, and depreciate rather than expense everything up front."},
+        {"front": "What is working capital and how is it calculated?", "back": "Current Assets minus Current Liabilities. Measures short-term liquidity — whether the company can cover near-term obligations. Positive and healthy is the goal; negative is a red flag."},
+        {"front": "Difference between a debit memo and a credit memo?", "back": "Debit memo: increases what a customer owes (or reduces a credit). Credit memo: reduces what a customer owes — issued for returns, disputes, overpayments."},
+        {"front": "What software have you used for accounting?", "back": "SkarionBooks (custom simulation — full journal/AR/AP/reconciliation), QuickBooks Online (conceptual), Excel — VLOOKUP, SUMIFS, PivotTables with specific lab examples. Name the functions, not the product brochure."},
+        {"front": "What is a journal entry? Give an example.", "back": "The formal record of a financial transaction — debits and credits that always balance. Example: monthly Vetro amortization — Dr Software Expense $3,000 / Cr Prepaid Software $3,000."},
+        {"front": "What is internal control and why does it matter?", "back": "Policies and procedures designed to prevent errors and fraud. Examples: the 3-way match, bank reconciliation, segregation of duties (the person who approves a payment should never be the one who enters it)."},
+        {"front": "Why do you want to work in accounting?", "back": "\"Accounting is the language every business runs on, and I want to be fluent in it. I find real satisfaction in accuracy under pressure, and I like that the work is specific and verifiable — the reconciliation either balances or it doesn't. I prefer that clarity.\""}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 71 — firm-specific",
+      "title": "Real Firm Questions — Big 4 vs. Mid-Size vs. Industry",
+      "bodyHtml": "<p>Know what each firm type is actually assessing before you walk in. The opening question signals it.</p><table class='data'><tr><th>Firm type</th><th>Primary filter</th><th>Common opener</th><th>What they're really asking</th></tr><tr><td>Big 4 (Deloitte, EY, KPMG, PwC)</td><td>Culture fit + learning agility + leadership</td><td>\"Tell me about a time you showed leadership.\"</td><td>Can you manage up, manage peers, thrive in a structured hierarchy?</td></tr><tr><td>Regional (RSM, GT, BDO)</td><td>Technical readiness + client communication</td><td>\"How do you explain a complex issue to a non-finance person?\"</td><td>Will you represent the firm well to clients immediately?</td></tr><tr><td>Industry (corporate/manufacturing)</td><td>Close cycle ownership + systems proficiency</td><td>\"What does your month-end close process look like?\"</td><td>Can you own tasks with minimal supervision from day 1?</td></tr><tr><td>Startup / fast-growth</td><td>Generalist skills + comfort with ambiguity</td><td>\"How do you build a process when there isn't one?\"</td><td>Will you create structure, not just follow it?</td></tr></table>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 71 — real questions",
+      "title": "6 Questions From Real Firms (Glassdoor/Reddit 2024)",
+      "railLabel": "Firm Qs",
+      "cards": [
+        {"front": "Big 4 — Deloitte: \"Give me an example of managing a project where you didn't have all the information you needed.\"", "back": "Use the unidentified Southeast Broadband wire (no remittance, no reference). Context: $190,000 received blind. Action: contacted the client's AP, identified likely invoices from aging, waited for written remittance, applied and documented. Result: applied correctly in 48 hours; set a standard process for blind wires > $5,000."},
+        {"front": "EY: \"Describe a time you had to quickly learn something completely new. How did you approach it?\"", "back": "Use the SkarionBooks/new-system story from Q8. Reviewed the COA structure, ran one small vendor entry end-to-end first, built a personal reference card of entry workflows. Result: full January close with no re-entries. Shows deliberate ramp-up, not luck."},
+        {"front": "RSM (technical): \"If I give you a trial balance with a $7,500 imbalance, where do you start?\"", "back": "Divide by 2 first — $3,750, see if it matches an account balance (a posting to the wrong side). Then check divisibility by 9 (a transposition indicator). Then sort transactions by amount and scan for the exact $7,500 figure. Methodical, not panicked."},
+        {"front": "Grant Thornton (scenario): \"A client calls Friday — their bank needs audited financials by Monday or no credit line. What do you do?\"", "back": "A staff accountant doesn't commit to audit timelines. Gather information, escalate to the manager immediately, and prepare whatever supporting documentation is requested. Set expectations honestly — never promise what you can't deliver, especially under deadline pressure."},
+        {"front": "Industry (mid-size manufacturer): \"What's the first thing you do when you get a new invoice?\"", "back": "Check for 3-way match: does the PO exist? Does the receiving report confirm delivery? Do amount and description match? Only then does it get entered. Walk them through the Dominion Aluminum DAF-2601-014 example where PO and invoice diverged."},
+        {"front": "Startup: \"We don't have a month-end close process. How would you build one?\"", "back": "Start with the balance-sheet reconciliations (cash, AR, AP) because those accounts compound errors fastest. Add depreciation and accruals, run the trial balance, then build a close checklist others can follow. Document the reason for each entry, not just the entry itself."}
+      ]
+    },
+    {
+      "type": "video",
+      "kicker": "Chunk 66 — Watch first",
+      "title": "Tell Me About Yourself — The 90-Second Version",
+      "railLabel": "Video: Intro",
+      "intro": "The most common interview mistake: reciting your resume. They already have it. This question asks why you are in the room.",
+      "transcript": "<p><strong>0:00 —</strong> The most common interview mistake: answering \"Tell me about yourself\" by reciting your resume. The interviewer already has your resume. This question is an invitation to tell them <em>why</em> you are in this room.</p><p><strong>0:20 —</strong> Use the Present → Past → Future structure. Present: where you are right now and what you've been doing to prepare. Past: what relevant experience or transferable skills you bring, even from a different field. Future: why this specific role at this specific company, connected to a real thing you know about them.</p><p><strong>1:00 —</strong> A real example for a career-changer: \"Right now I'm actively building accounting skills — I completed a full simulation where I handled the entire accounting cycle for a $2M manufacturer, including month-end close, bank reconciliations, and AP. Before that I was in operations management, where I was responsible for budget tracking and cost variance analysis — strong analytical instincts I now apply to accounting. I'm looking for a staff accountant role where I can build real depth in the GL and close cycle, and I'm particularly interested in your firm because of [something specific].\"</p><p><strong>2:00 —</strong> Notice: no apology for the career change. No over-explanation of the gap. The simulation is real work — present it that way. The last sentence shows you actually researched the company.</p><p><strong>2:40 —</strong> Next, you'll build your own version in the script builder below. 90 seconds. Record yourself. Watch it back.</p>"
+    },
+    {
+      "type": "script_builder",
+      "kicker": "Chunk 67 — build your intro",
+      "title": "Build Your 90-Second Intro (personal script builder)",
+      "railLabel": "Intro builder",
+      "intro": "Write your own 90-second intro in three fields. Aim for 180–220 words total — about 90 seconds spoken. The preview combines them live.",
+      "minWords": 180,
+      "maxWords": 220,
+      "fields": [
+        { "label": "Present", "hint": "Where you are right now and what you've actively done to prepare. Name the simulation: \"In my Skarion Engineering accounting simulation, I performed the full accounting cycle...\"", "placeholder": "Right now I am... I have completed... My key skills from this training are...", "minLength": 60 },
+        { "label": "Past", "hint": "Relevant prior experience or transferable skills — quantified. Connect it to the role you want.", "placeholder": "Before this, I was in [X] where I [quantified achievement]. This gave me [transferable skill].", "minLength": 60 },
+        { "label": "Future", "hint": "The specific role you want + one real, researched thing about this company. End on the company, not on yourself.", "placeholder": "I'm looking for [specific role]. I'm interested in [company/firm type] because [something real and specific].", "minLength": 60 }
+      ],
+      "traps": [
+        "Don't start with \"I was born in...\" or \"I've always loved numbers...\"",
+        "Don't say \"I don't have much experience but...\"",
+        "Don't just list your resume chronologically",
+        "Do lead with what you've actively done to prepare",
+        "Do connect your past to this specific role",
+        "Do end with something specific about the company"
+      ]
+    },
+    {
+      "type": "scenario_lab",
+      "kicker": "Chunk 83 — THE CAPSTONE",
+      "title": "Capstone: Full Quarter Close — Skarion Q1 2026",
+      "railLabel": "Capstone",
+      "time": "3–4 hrs",
+      "intro": "The boss level. Three months of data. Five deliverables. Everything you learned — bank rec, AR, AP, payroll, adjusting entries, financial statements — in one comprehensive close. Save your Controller's Memo as a portfolio writing sample.",
+      "setup": "<p>You receive the complete <strong>Q1 2026 data package</strong> for Skarion Engineering below: 90 days of summarized transactions, all vendor invoices (AP), all customer invoices (AR) with payment histories, January/February/March bank statements, monthly payroll summaries, and the fixed-asset depreciation schedule.</p><p><strong>Five deliverables (submit in the text area + the live spreadsheet labs earlier in the course):</strong></p><ol><li>Month-end close <strong>journal entries for all three months</strong> — every adjusting entry (offshore accruals, prepaid amortization, depreciation, loan interest, WIP), posted in correct dependency order.</li><li><strong>Three-month bank reconciliation pack</strong> — all three months balanced; January to the canonical $336,250.00.</li><li><strong>Q1 P&L</strong> — three-column (Jan, Feb, Mar, Q1 Total), with Gross Margin % and Operating Margin % per month.</li><li><strong>Q1 Balance Sheet as of March 31</strong> and a simplified <strong>Q1 Cash Flow Statement</strong> (indirect) ending at the March 31 cash balance.</li><li>A <strong>400-word Controller's Memo</strong>: \"Q1 Financial Summary and Observations for Leadership\" — using the actual numbers, pointing out the two biggest trends, one concern, and one recommendation.</li></ol>",
+      "tasks": [
+        "Download the Q1 data package and the financial statement package template.",
+        "Post January's close entries in the Module 05/06 spreadsheet labs and SkarionBooks; confirm January's bank rec balances to $336,250.00.",
+        "Post February and March adjusting entries; balance February and March bank reconciliations. Document any seeded discrepancies you find (the February close has the seven seeded errors from the Chunk 49 lab — re-apply those fixes here).",
+        "Build the Q1 P&L (Jan/Feb/Mar/Q1 Total) and Q1 Balance Sheet (as of March 31) in the Financial Statement Package template.",
+        "Build the simplified Q1 Cash Flow Statement (indirect) and reconcile ending cash to the March 31 bank-rec adjusted balance.",
+        "Write the 400-word Controller's Memo with two trends, one concern, one recommendation — using real figures (revenue, margins, DSO, the TeleCom Builders recovery)."
+      ],
+      "files": [
+        { "label": "Q1 2026 Data Package.xlsx", "href": "/download/capstone/Q1_2026_Data_Package.xlsx" },
+        { "label": "Template 06 — Financial Statement Package.xlsx", "href": "/download/07-excel-toolkit/Template_06_Financial_Statement_Package.xlsx" },
+        { "label": "Month_End_Close_Playbook.xlsx", "href": "/download/09-month-end-close/Month_End_Close_Playbook.xlsx" }
+      ],
+      "submissionPrompt": "Paste your Q1 P&L (Jan/Feb/Mar/Q1 totals + both margins), the March 31 Balance Sheet bottom line (Assets = Liabilities + Equity), the Q1 Cash Flow ending cash, and your 400-word Controller's Memo (two trends, one concern, one recommendation).",
+      "solution": "<p><strong>Q1 P&L (illustrative shape):</strong> January revenue $480,000 / COGS $140,000 / OpEx $98,000 / Net $242,000; February and March follow the same structure scaled by the AR invoicing in the data package; the Q1 Total column sums each line. Watch for the seven seeded February errors (Chunk 49) — corrected, February's net income rises by the net of payroll understatement, skipped amortization, un-reversed accrual, wrong-customer cash, depreciation typo, bank fee, and missing insurance.</p><p><strong>Q1 Balance Sheet (3/31):</strong> Assets = Cash (reconciled to the March 31 bank-rec adjusted balance) + AR ($997,700 minus collections) + Prepaids (Vetro $9,000 remaining) + Net fixed assets + Allowance contra = Liabilities (AP + Accrued Interest + Loan $500K − principal paid) + Equity (Owner's + RE raised by Q1 net income). Confirms Assets = Liabilities + Equity.</p><p><strong>Q1 Cash Flow (indirect):</strong> Net income + depreciation (3 × $1,000) − change in AR − change in AP + change in accrued liabilities = cash from operations; subtract any loan principal repaid (financing); ending cash must tie to the March 31 bank rec — every cent.</p><p><strong>Controller's Memo shape:</strong> Trend 1 — Gross margin held at ~70.8% across Q1 (stable cost structure). Trend 2 — DSO shortened as TeleCom's $40,000 settlement post-recovery lands in March. Concern — TeleCom's residual $82,700 still at risk; collection plan must complete in April. Recommendation — establish a dedicated reserve review each month-end so surprises don't appear once in the quarter; build a close checklist template that ties the bank rec, AR subledger and AP subledger to the GL before the trial balance is run.</p>"
+    },
+    {
+      "type": "exercise",
+      "kicker": "Chunk 84 — mock interview",
+      "title": "Mock Interview — Full-Length Simulation (with rubric)",
+      "railLabel": "Mock interview",
+      "instructionsHtml": "<p>A 30-minute mock interview with a study partner, mentor, or (alone) a self-recording. Download the interview pack below: 5 questions for the interviewer (one per category — technical, behavioral, scenario, software, \"why accounting\"), each with a scoring rubric on Accuracy, Specificity, Workflow, Judgment, and Communication (1–5 each). After the interview, fill in the self-assessment sheet — what landed, what felt weak, what to re-practice.</p><p><strong>If you have no partner:</strong> record yourself on your phone. Watch it back. Count the filler words (\"um,\" \"basically,\" \"kind of\"). More than 3 in any 60-second answer = you need another take.</p>",
+      "files": [
+        { "label": "Mock Interview Pack (questions + rubric).docx", "href": "/download/portfolio-templates/Mock_Interview_Pack.docx" }
+      ],
+      "reflectionPrompt": "Paste the 5 chosen questions and your scores per rubric criterion. Which criterion scored lowest — Accuracy, Specificity, Workflow, Judgment, or Communication? Re-practice that category this week."
+    },
+    {
+      "type": "exercise",
+      "kicker": "Chunk 85 — portfolio assembly",
+      "title": "Portfolio Assembly Guide & Checklist (14 items)",
+      "railLabel": "Portfolio",
+      "instructionsHtml": "<p>Build your accounting portfolio — a document that proves you did real work, not a visual design portfolio. Work through the 14-item checklist and download the templates.</p><p><strong>14-item checklist:</strong></p><ol><li>Simulation summary document (1 page, PDF)</li><li>Q1 Controller's Memo (from the capstone)</li><li>Bank reconciliation screenshot (January, balanced to $336,250.00)</li><li>Q1 P&L PDF</li><li>STAR answer document (8 questions written out with real numbers)</li><li>LinkedIn profile updated with simulation experience</li><li>Resume bullet points rewritten with action verb + scope + result</li><li>Salary research documented ($X–$Y for your city, source cited)</li><li>3 target companies researched (name, role, what you'd say about them)</li><li>90-second intro script written and rehearsed</li><li>Mock interview completed and scored</li><li>LinkedIn accounting recruiters followed (Robert Half, Kforce, Ledgent)</li><li>QuickBooks ProAdvisor free certification started/completed</li><li>Excel skills documented in resume/LinkedIn (VLOOKUP, SUMIFS, PivotTables — with example)</li></ol>",
+      "files": [
+        { "label": "Portfolio_Summary_Template.docx", "href": "/download/portfolio-templates/Portfolio_Summary_Template.docx" },
+        { "label": "Controllers_Memo_Template.docx", "href": "/download/portfolio-templates/Controllers_Memo_Template.docx" },
+        { "label": "STAR_Answer_Worksheet.docx", "href": "/download/portfolio-templates/STAR_Answer_Worksheet.docx" },
+        { "label": "Resume_Bullet_Rewrite_Template.docx", "href": "/download/portfolio-templates/Resume_Bullet_Rewrite_Template.docx" }
+      ],
+      "reflectionPrompt": "Which of the 14 items are you missing? Write your plan to complete each one by your target application date. The one sentence that kills interviews: \"I don't have anything to show you yet.\" You do — it's this course. Present it like the work it is."
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 60 — the first 30 days",
+      "title": "The First 30 Days on the Job — A Playbook",
+      "bodyHtml": "<p>Most new accounting hires fail not because of technical gaps but because they mismanage the first 30 days. This is the concrete playbook.</p>",
+      "callout": {
+        "type": "danger",
+        "html": "<strong>The three rules of the first 30 days:</strong> 1) Never post without documentation. Not one entry. 2) Ask questions <em>before</em> the deadline, not after. 3) The close is a team sport — your error affects everyone's night."
+      }
+    },
+    {
+      "type": "timeline",
+      "title": "Your first 30 days, week by week",
+      "steps": [
+        {"title": "Days 1–3 — Learn the COA", "desc": "Read the Chart of Accounts, the accounting policies, and last month's close package — every entry. Don't post anything yet."},
+        {"title": "Days 4–7 — Shadow AP", "desc": "Shadow AP processing. Ask about the 3-way match policy, who approves what, and the payment run schedule."},
+        {"title": "Days 8–14 — Own one task", "desc": "Take ownership of one recurring task (AP entry, cash posting, or bank rec prep). Do it, show your work to your manager, ask for feedback before the deadline."},
+        {"title": "Days 15–21 — Sit in on close", "desc": "Ask to sit in on a close meeting. Take notes. Build your own close checklist based on what you observe."},
+        {"title": "Days 22–30 — First solo close contribution", "desc": "Complete your first solo close contribution (even if just one assigned journal entry). Ask for review before submitting."}
+      ]
+    },
+    {
+      "type": "exercise",
+      "kicker": "Downloadable playbook",
+      "title": "Download your \"My First 30 Days\" checklist",
+      "instructionsHtml": "<p>Download the fillable checklist below. It mirrors the timeline above and adds space for the company-specific questions to ask at each stage: who approves payments? what's the close calendar? what system do you use? what reports does the controller want first? Fill it in during your first week — and re-read it every Friday.</p>",
+      "files": [
+        { "label": "My First 30 Days Checklist.docx", "href": "/download/shared/First_30_Days_Checklist.docx" }
+      ],
+      "reflectionPrompt": "Write out the three rules and the single most important question to ask your manager in your first week. Then close this course — you're ready."
+    },
+    {
+      "type": "timeline",
+      "kicker": "Chunk 86 — job search plan",
+      "title": "The Accounting Job Search — A 30-Day Plan",
+      "steps": [
+        {"title": "Week 1 — Foundation", "desc": "Day 1 finalize LinkedIn & resume. Day 2 build the portfolio PDF. Day 3 research 10 target companies (5 local, 5 remote). Day 4 set job alerts on LinkedIn, Indeed, Robert Half, Ledgent, Kforce. Day 5 connect with 5 accounting recruiters on LinkedIn with a personalized note."},
+        {"title": "Week 2 — Outreach", "desc": "Apply to 3 roles/day — quality over quantity, tailor each cover letter. Follow up on any application over 10 days old. Comment substantively on 2 accounting/finance LinkedIn posts/day."},
+        {"title": "Week 3 — Interviews begin", "desc": "Use the 20-minute pre-interview research framework before every call. Practice the 90-second intro out loud before every interview. Send a thank-you email within 2 hours of every interview."},
+        {"title": "Week 4 — Negotiation & decision", "desc": "With an offer: wait 48 hours before accepting, counter at 10–15% above. Without an offer: review application→interview conversion (<10%? rewrite resume). Interview→offer low? re-practice the STAR answers."}
+      ]
+    },
+    {
+      "type": "quiz",
+      "kicker": "Chunks 87–88 — final assessment",
+      "title": "Final Course Assessment — 30 Questions Across All 9 Modules",
+      "railLabel": "Final quiz",
+      "intro": "30 interleaved questions from every module. This is the comprehensive final. Score 27/30 = elite and ready; 22–26 = strong, review flagged modules; below 22 = re-do the specific modules named in the explanations.",
+      "questions": [
+        {"q":"Under accrual accounting, Skarion delivers an HLD on Jan 28 and is paid March 15. When is revenue recognized?","options":["March 15","January 28","At year-end","When the contract was signed"],"correct_index":1,"explanation":"Accrual records revenue when earned (Jan 28, HLD delivered). Mod 01/02."},
+        {"q":"The normal balance of Accumulated Depreciation is:","options":["Debit","Credit","Zero","Debit in year one, credit after"],"correct_index":1,"explanation":"Contra-asset, credit-normal. Mod 02."},
+        {"q":"Skarion's $500K loan at 6.5% — January interest accrual?","options":["$1,510.42","$2,708.33","$1,000.00","$18,125.00"],"correct_index":1,"explanation":"$500,000 × 6.5% ÷ 12 = $2,708.33. Mod 06."},
+        {"q":"Which three documents make up a 3-way match?","options":["Bank statement, GL, trial balance","PO, Receiving Report, Vendor Invoice","Contract, timesheet, payroll register","Invoice, check, deposit slip"],"correct_index":1,"explanation":"Mod 03."},
+        {"q":"January bank rec: statement $312,450, deposits in transit +$28,000, outstanding check −$4,200. Adjusted bank balance?","options":["$336,250.00","$312,450.00","$340,650.00","$328,050.00"],"correct_index":0,"explanation":"$312,450 + $28,000 − $4,200 = $336,250. Mod 05."},
+        {"q":"GAAP is written by which body?","options":["The IRS","The FASB","The SEC","The AICPA"],"correct_index":1,"explanation":"Financial Accounting Standards Board. Mod 01."},
+        {"q":"A $36,000 12-month Vetro license paid July 1 — Prepaid balance on Oct 31?","options":["$36,000","$9,000","$21,000","$3,000"],"correct_index":2,"explanation":"5 months amortized × $3,000 = $15,000; $36,000 − $15,000 = $21,000. Mod 03."},
+        {"q":"ASC 606 revenue recognition triggers at which step?","options":["Step 1 — identify the contract","Step 5 — when/as each obligation is satisfied","When the invoice is sent","When cash is received"],"correct_index":1,"explanation":"Mod 04."},
+        {"q":"A client prepays $120,000 before work begins. What account is credited?","options":["Engineering Design Revenue","Accounts Receivable","Deferred Revenue","Unbilled AR (WIP)"],"correct_index":2,"explanation":"Liability, not yet earned. Mod 04."},
+        {"q":"Write off TeleCom Builders' $112,700 balance — the entry?","options":["Dr Bad Debt Expense / Cr AR","Dr Allowance for Doubtful Accounts / Cr AR","Dr Allowance / Cr Bad Debt Expense","Dr AR / Cr Cash"],"correct_index":1,"explanation":"Goes against the existing allowance. Expense not touched at write-off. Mod 04."},
+        {"q":"DSO for $997,700 AR and $4.8M annual credit revenue?","options":["45.6 days","60.1 days","75.8 days","112.7 days"],"correct_index":2,"explanation":"$997,700 ÷ $4.8M × 365 ≈ 75.8 days. Mod 04."},
+        {"q":"Skarion's January revenue $480,000, COGS $140,000 — gross margin %?","options":["29.2%","50.4%","70.8%","242,000"],"correct_index":2,"explanation":"($480K − $140K) ÷ $480K = 70.8%. Mod 06."},
+        {"q":"Correcting entry for a $10,547.10 duplicate customer deposit?","options":["Dr Sales Revenue / Cr Cash","Dr AR / Cr Cash","Dr Cash / Cr AR","Dr Bad Debt / Cr Allowance"],"correct_index":1,"explanation":"Reverse the duplicate — revenue never overstated. Mod 05."},
+        {"q":"January payroll: gross $79,167, withholdings $21,056, net pay to Cash?","options":["$79,167","$58,111","$85,423","$21,056"],"correct_index":1,"explanation":"$79,167 − $21,056 = $58,111 net pay. Mod 03."},
+        {"q":"Monthly straight-line depreciation for 5 workstations @ $200/month each?","options":["$200","$1,000","$5,000","$60,000"],"correct_index":1,"explanation":"5 × $200 = $1,000/month total. Mod 06."},
+        {"q":"Posting an offshore drafting invoice (no cash yet) — debited account?","options":["2000 Accounts Payable","5100 COGS — Subcontractor Drafting","1000 Operating Checking","4000 Revenue"],"correct_index":1,"explanation":"Dr COGS / Cr AP at receipt. Mod 03."},
+        {"q":"The accounting equation is:","options":["Debits = Credits","Assets = Liabilities + Equity","Revenue − Expenses = Net Income","Beginning RE + NI − Dividends"],"correct_index":1,"explanation":"Mod 02."},
+        {"q":"A $500K TB imbalance first step: divide by 2 → $250K matches an account — likely what?","options":["A transposition","A posting to the wrong side","A fraud","A rounding error"],"correct_index":1,"explanation":"Half the imbalance matching an account = a posting on the wrong side. Mod 09 technical."},
+        {"q":"STAR stands for:","options":["Situation, Task, Action, Result","Story, Timing, Action, Review","Standard, Test, Apply, Record","Situation, Theory, Assessment, Result"],"correct_index":0,"explanation":"Mod 09 behavioral."},
+        {"q":"Which Excel function sums across multiple conditions?","options":["VLOOKUP","SUMIFS","TRIM","PROPER"],"correct_index":1,"explanation":"SUMIFS. Mod 07."},
+        {"q":"Power Query's main advantage over manual cleaning?","options":["Faster files","Records steps & replays on refresh — automates monthly cleanup","Writes journal entries","Replaces PivotTables"],"correct_index":1,"explanation":"Mod 07."},
+        {"q":"Allowance method: Dr Bad Debt Expense $14,965.50 / Cr what?","options":["1100 AR","1200 Allowance for Doubtful Accounts","1000 Cash","4000 Revenue"],"correct_index":1,"explanation":"Contra-asset. Mod 04."},
+        {"q":"An NSF $50,000 check reverses + $35 fee — the entry?","options":["Dr AR $50,000 + Dr Bank Fees $35 / Cr Cash $50,035","Dr Cash / Cr AR","Dr Bad Debt / Cr AR","No entry until re-sent"],"correct_index":0,"explanation":"Reinstate the receivable, record the fee. Mod 05."},
+        {"q":"Which financial statement shows short-term liquidity (can we pay next month)?","options":["Income Statement","Balance Sheet","Cash Flow Statement","Trial Balance"],"correct_index":1,"explanation":"Current Assets vs Current Liabilities = Current Ratio. Mod 06."},
+        {"q":"A profitable company running out of cash — which statement reveals why?","options":["Income Statement","Balance Sheet","Cash Flow Statement","Statement of Retained Earnings"],"correct_index":2,"explanation":"Operating section shows uncollected AR. Mod 06."},
+        {"q":"Recording offshore work done Jan 31, invoiced Feb 4 — the Jan 31 entry?","options":["Dr COGS $14,800 / Cr Accrued Liabilities $14,800","Wait for the invoice","Dr AP / Cr Cash","Dr Prepaid / Cr Cash"],"correct_index":0,"explanation":"Accrue in the period incurred; reverse Feb 1. Mod 03."},
+        {"q":"At year-end, which accounts are closed to Retained Earnings?","options":["Permanent accounts","Temporary accounts (Revenue & Expense)","All accounts","Only Cash"],"correct_index":1,"explanation":"Mod 06/02."},
+        {"q":"Vendor invoices Skarion at $42.00/mile; MSA rate $38.50/mile. What do you do?","options":["Pay it and fix later","Hold it, document, request a credit memo","Split the difference","Pay the PO price"],"correct_index":1,"explanation":"Never pay through a failed match. Mod 03/09 ethical."},
+        {"q":"A manager tells you to \"plug\" a $340 rec difference because audit is tomorrow. What do you do?","options":["Plug it","Politely request 20 min to trace, document either way, escalate if unresolved","Refuse outright and leave","Adjust the bank statement"],"correct_index":1,"explanation":"Push back with a path forward — this is the judgment interviewers are scoring. Mod 09 ethical."},
+        {"q":"Record a $480,000 HLD milestone AR invoice?","options":["Dr AR $480,000 / Cr Engineering Design Revenue $480,000","Dr Cash / Cr Revenue","Dr Deferred Revenue / Cr AR","Dr COGS / Cr AR"],"correct_index":0,"explanation":"Mod 04."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 89 — after the job",
+      "title": "What Happens After You Get the Job",
+      "bodyHtml": "<p>You got the offer. Here's what determines year-1 success.</p><p><strong>Three things:</strong></p><ol><li><strong>You document everything.</strong> Every entry has a ticket or email chain. Every adjustment has a supervisor sign-off. You never post without paper.</li><li><strong>You ask before the deadline, not after.</strong> Something doesn't make sense and you're 6 hours from the trial-balance run? Raise it now, not at 11 PM.</li><li><strong>You build systems, not just process tasks.</strong> Don't just do the bank rec — build the template so anyone could do it from your notes. That's what gets you from staff to senior.</li></ol><p><strong>The mindset shift:</strong> as a student, a mistake is a learning moment. As an accountant, a mistake means someone's financials are wrong and real decisions get made on bad information. The bridge between those two is documentation, verification, and escalation. Those aren't bureaucratic habits — they're the reason accounting is trustworthy.</p>"
+    },
+    {
+      "type": "completion",
+      "kicker": "Chunk 90 — completion & certificate",
+      "title": "Skarion Accounting Track — Complete",
+      "railLabel": "Certificate",
+      "modules": 9,
+      "totalChunks": 90,
+      "nextActions": [
+        {"label": "View Portfolio Checklist"},
+        {"label": "Start the 30-Day Job Search Plan"}
+      ]
     }
   ]
 }

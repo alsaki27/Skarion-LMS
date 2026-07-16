@@ -73,6 +73,30 @@
         this.api.LMSFinish("");
       }
     },
+
+    // ---------- Persisted course state (interactive progress) ----------
+    // SCORM 1.2 gives us cmi.suspend_data (string, ~4096 chars typical).
+    // We also mirror to localStorage so standalone preview (no LMS) still restores.
+    LS_KEY: "skarion_course_state_v1",
+
+    saveState: function (obj) {
+      var s;
+      try { s = JSON.stringify(obj); } catch (e) { return; }
+      try { localStorage.setItem(this.LS_KEY, s); } catch (e) {}
+      if (this.initialized) {
+        // SCORM 1.2 suspend_data is a string; many LMSs accept ~4096 chars.
+        this.setValue("cmi.suspend_data", s);
+        this.commit();
+      }
+    },
+
+    loadState: function () {
+      var s = "";
+      if (this.initialized) s = this.getValue("cmi.suspend_data") || "";
+      if (!s) { try { s = localStorage.getItem(this.LS_KEY) || ""; } catch (e) {} }
+      if (!s) return null;
+      try { return JSON.parse(s); } catch (e) { return null; }
+    },
   };
 
   global.SkarionSCORM = SCORM;

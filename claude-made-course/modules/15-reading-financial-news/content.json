@@ -1,0 +1,45 @@
+{
+  "title": "Reading Financial News Like an Accountant",
+  "moduleTag": "Module 15",
+  "dayMapping": "Day 15",
+  "subhead": "An accountant who can't connect business news to accounting treatment is operating with one hand tied behind their back — and it impresses the hell out of interviewers. Five headlines, the journal entries behind each, and the language CFOs use on earnings calls.",
+  "hook": "\"So, did you see what the Fed did Tuesday?\" In an interview that's a soft screening question — do you follow the news, and can you connect it to the books? Most candidates freeze. After this module, you can name the journal entry.",
+  "chunks": [
+    {
+      "type": "content",
+      "kicker": "Chunk 104 — headlines → JEs",
+      "title": "The Wall Street Journal for Accountants — Translating Headlines into Journal Entries",
+      "bodyHtml": "<h3>Headline 1: \"Fed Raises Interest Rates by 0.25%\"</h3><p>Accounting impact: variable-rate debt (like a line of credit) now carries more interest expense next month — accrue more. The fair value of fixed-rate bonds on your balance sheet decreases (relevant if you hold an investment portfolio).</p><p><em>Skarion impact:</em> its $500K term loan at 6.5% — if variable, a 0.25% hike = $1,250 more interest/year ≈ $104/month. Post more Dr Interest Expense / Cr Accrued Interest.</p><h3>Headline 2: \"Tech Firm X Files for Chapter 11 Bankruptcy\"</h3><p>Accounting impact: if they owe you money (they're in your AR), write that receivable off <em>now</em>. Don't wait.</p><p><em>Skarion impact:</em> if TeleCom Builders files Chapter 11, the $112,700 balance → Dr Allowance for Doubtful Accounts / Cr Accounts Receivable immediately.</p><h3>Headline 3: \"Company Y Announces Acquisition of Company Z for $800M\"</h3><p>Accounting impact: the acquirer records the acquired company's assets at <em>fair value</em>; any excess of purchase price over fair value of net assets becomes <strong>Goodwill</strong>. Goodwill is not amortized under GAAP but tested annually for impairment.</p><h3>Headline 4: \"Inflation Running at 4.2% — Input Costs Rising\"</h3><p>Accounting impact: COGS rises faster than prices = margin compression. Inventory-carrying businesses may need to weigh LIFO vs FIFO more carefully; services firms like Skarion feel it through wage pressure — review the offshore MSA rates and the payroll budget.</p><h3>Headline 5: \"Cryptocurrency Exchange Collapses\"</h3><p>Accounting impact: any crypto held as an asset must be marked to fair value immediately. Under ASC 350-60 (the 2024 FASB rule), crypto now requires fair-value accounting — losses and gains flow to the income statement.</p>"
+    },
+    {
+      "type": "flip_cards",
+      "kicker": "Chunk 104 — 5 headline cards",
+      "title": "5 Headlines → 5 Journal Entries",
+      "railLabel": "News cards",
+      "cards": [
+        {"front": "\"Fed hikes rates 0.25%\"", "back": "Variable-rate debt accrues more interest — Dr Interest Expense / Cr Accrued Interest (Skarion's $500K loan ≈ +$104/month if variable). Fixed-rate bond fair values on your balance sheet also decline."},
+        {"front": "\"A major client files Chapter 11\"", "back": "Write the AR off now — Dr Allowance for Doubtful Accounts / Cr Accounts Receivable. Don't wait for final settlement; the receivable is impaired the day they file. Skarion + TeleCom Builders = $112,700."},
+        {"front": "\"Company Y acquires Company Z for $800M\"", "back": "Acquirer records acquired net assets at fair value; the premium over fair value becomes Goodwill (an intangible asset). Goodwill is NOT amortized under GAAP — it's tested annually for impairment."},
+        {"front": "\"Inflation at 4.2% — input costs rising\"", "back": "Margin compression: COGS rises faster than prices. Inventory businesses revisit LIFO/FIFO; services firms like Skarion face wage pressure and renegotiated offshore rates. Watch gross margin month-over-month."},
+        {"front": "\"Crypto exchange collapses\"", "back": "Crypto held as an asset is marked to fair value immediately — Dr Impairment Loss / Cr Crypto Asset. Under ASC 350-60 (2024 FASB), losses and gains now flow through the income statement."}
+      ]
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 105 — earnings-call language",
+      "title": "Quarterly Earnings Calls — What the CFO Is Actually Saying",
+      "bodyHtml": "<p>Investor language isn't jargon for its own sake — each phrase points at a number the accounting team maintains. Learning it makes you a better communicator at every level.</p><ol><li><strong>\"Revenue grew 18% YoY\"</strong> — year-over-year. You need to know how to calculate it and what drives it: <em>volume vs. price vs. mix</em>. (A services firm's growth should be split between more jobs vs higher rates vs a shift toward higher-margin deliverables.)</li><li><strong>\"EBITDA margin expanded 200 basis points\"</strong> — a basis point is 0.01%, so 200 bps = 2%. EBITDA margin went from, say, 22% to 24%. EBITDA strips out interest, tax, depreciation, and amortization — a cleaner view of operating performance.</li><li><strong>\"We saw a $4M headwind from FX\"</strong> — foreign-exchange impact. Revenue in multiple currencies is affected by currency moves; a strengthening dollar reduces reported USD revenue from foreign operations. You hedge or explain it.</li><li><strong>\"Organic growth of 12% excluding the Westfield acquisition\"</strong> — stripping out growth from acquisitions shows what the underlying business did on its own. Accountants maintain the segment-level data that makes organic vs. inorganic growth separable.</li><li><strong>\"We're reaffirming guidance\"</strong> — the company's own public forecast for next quarter/year. The accountant maintains the financial model that <em>feeds</em> this guidance, which is exactly what you'll build in Module 13.</li></ol>"
+    },
+    {
+      "type": "quiz",
+      "kicker": "Chunk 105 — read a CFO commentary",
+      "title": "Read a Mock CFO Earnings Commentary — 3 Questions",
+      "intro": "Read this Skarion Q1 commentary, then answer. (Mock commentary: \"Skarion delivered Q1 revenue of $1.44M, up 18% from $1.22M in the prior-year quarter, driven by a 14% increase in billed miles and a 3.5% improvement in average price per mile. EBITDA margin expanded 200 basis points to 52%, helped primarily by the Tennessee Corridor segment's contribution. Excluding the broadline contract win, organic growth was 9%.\")",
+      "questions": [
+        {"q":"What was Skarion's YoY revenue growth, and approximately how much of it came from volume (miles) vs price?","options":["~18% total — ~14% from billed-miles volume, ~3.5% from price (rest = mix)","18% all from price","14% volume, 4% from FX","All 18% organic, none from price"],"correct_index":0,"explanation":"$1.44M vs $1.22M = ~18% YoY. The commentary attributes ~14% to miles (volume) and ~3.5% to price — the residual small slice is mix/refinement. Splitting growth by driver is exactly what an accountant does behind the headline."},
+        {"q":"If Skarion's prior-year EBITDA margin was 50%, what does 'EBITDA margin expanded 200 basis points to 52%' actually mean?","options":["EBITDA margin rose from 50% to 52% (200 bps = 2 percentage points)","EBITDA doubled","EBITDA fell 200%","Margin went from 52% to 54%"],"correct_index":0,"explanation":"200 basis points = 2.0 percentage points. So margin moved from the prior year's 50% to 52%. Basis points exist to remove the ambiguity between '% of revenue' and 'percent change.'"},
+        {"q":"The commentary credits 'the Tennessee Corridor segment' as the biggest contributor to margin improvement. As the accountant, what data do you maintain that proves this claim?","options":["A segment-level (job-cost) P&L showing each project's revenue, COGS, and gross margin — exactly the job-costing work from Module 11","A single blended company-wide margin","Last quarter's bank reconciliation","The payroll register"],"correct_index":0,"explanation":"The claim is segment-attributable, so the proof is the job-cost P&L: Tennessee Corridor vs Texas Long-Haul vs Virginia Metro, each with its own revenue, COGS, and margin. Same job-cost work from Mod 11 — which segment drove margin expansion is a narrative built on that data."}
+      ]
+    }
+  ]
+}

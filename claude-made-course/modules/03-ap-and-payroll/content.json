@@ -151,6 +151,51 @@
       "bodyHtml": "<p>The US tax system draws a hard line between two ways a person can do work for your company:</p><table class='data'><tr><th>W2 Employee</th><th>1099 Contractor</th></tr><tr><td>On US payroll; Skarion withholds income tax, Social Security, and Medicare.</td><td>Self-employed; Skarion pays a flat invoice and the contractor handles their own taxes.</td></tr><tr><td>Creates <strong>payroll tax liabilities</strong> — employer FICA, FUTA, SUTA.</td><td>Routed straight through <strong>Accounts Payable</strong> as a vendor invoice.</td></tr><tr><td>Skarion's 10 US Engineering Project Managers.</td><td>Offshore drafting firms like Global CAD Solutions.</td></tr></table><p><strong>Why accounting cares:</strong> a W2 run touches Cash, a Salary Expense account, and multiple payroll tax liability accounts in one compound entry. A 1099 contractor is a single AP entry. Getting that backwards creates IRS exposure for the company. This is the kind of distinction an interviewer probes to see whether you've actually run payroll.</p><p><strong>Skarion's payroll economics:</strong></p><ul><li>US Team (W2): 10 Project Managers, avg $95,000/year ≈ <strong>$79,167/month</strong> gross.</li><li>Employer taxes: FICA 7.65% ≈ $6,056/month, FUTA/SUTA ≈ $200/month.</li><li>Offshore contractors (1099/AP): ≈ <strong>$42,000–$60,000/month</strong> in drafting invoices.</li></ul>"
     },
     {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 64 — Live in-browser lab",
+      "title": "Payroll Journal Entry Builder — January (live Excel)",
+      "railLabel": "Live payroll",
+      "scenarioHtml": "<p>Calculate Skarion's January US payroll in the live sheet below. Enter the <strong>gross wages</strong> ($79,167) — it's pre-filled and locked. Then compute each withholding, the employer taxes, total withholdings, and net pay. The lab validates when Total Withholdings = <strong>$21,056</strong>, Net Pay = <strong>$58,111</strong>, and the journal entry you post below the grid balances ($85,423 DR = $85,423 CR).</p><p><em>Rates: Federal income tax 19% of gross; Social Security 6.2%; Medicare 1.45%; State 4%. Employer totals $6,256 (FICA match + FUTA/SUTA).</em></p>",
+      "columns": [
+        {"title": "Payroll component", "type": "text", "width": 280, "readOnly": true},
+        {"title": "Rate", "type": "text", "width": 110, "readOnly": true},
+        {"title": "Amount ($)", "type": "numeric", "width": 130, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Gross wages (W2, 10 US PMs)", "given", 79167.00],
+        ["Employee — Federal income tax", "19.00%", null],
+        ["Employee — Social Security", "6.20%", null],
+        ["Employee — Medicare", "1.45%", null],
+        ["Employee — State income tax", "4.00%", null],
+        ["= Total employee withholdings", "sum", null],
+        ["Employer taxes (FICA + FUTA/SUTA)", "given", 6256.00],
+        ["= Net pay to employees", "given-calc", null],
+        ["Total debits (Salaries + Payroll Tax Exp)", "sum", null],
+        ["Total credits (Liabilities + Cash)", "sum", null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4","A5","A6","A7","A8","A9","A10","B1","B2","B3","B4","B5","B6","B7","B8","C1","C7"],
+      "targetCells": {
+        "C6": 21056.00,
+        "C8": 58111.00,
+        "C9": 85423.00,
+        "C10": 85423.00
+      },
+      "requireBothSidesEqual": true,
+      "successMessage": "✅ Payroll balances: $85,423 debits = $85,423 credits, net pay $58,111. Payroll entry complete.",
+      "errorMessage": "❌ Not balanced yet. Withholdings should total $21,056; net pay $58,111; debits & credits each $85,423. Check your rate × gross calculations.",
+      "journalSection": {
+        "label": "Post the full payroll journal entry",
+        "rows": 4,
+        "accounts": ["6000 Salaries — US Engineering PMs","6100 Payroll Tax Expense","2200 Payroll Tax Liabilities","1000 Operating Checking","2100 Accrued Wages","1100 Accounts Receivable"],
+        "solution": [
+          { "account": "6000 Salaries — US Engineering PMs", "side": "debit", "amount": 79167.00 },
+          { "account": "6100 Payroll Tax Expense", "side": "debit", "amount": 6256.00 },
+          { "account": "2200 Payroll Tax Liabilities", "side": "credit", "amount": 27312.00 },
+          { "account": "1000 Operating Checking", "side": "credit", "amount": 58111.00 }
+        ]
+      }
+    },
+    {
       "type": "journal_entry_builder",
       "kicker": "Skarion JE builder — full payroll",
       "title": "Record the full US payroll run",
@@ -203,10 +248,10 @@
           "explanation": "The expense belongs in January because that is when the work was performed. Accrue it: debit the expense, credit an accrued liability. The entry reverses on Feb 1 so the real Feb 3 invoice doesn't double-count it."
         },
         {
-          "q": "Skarion paid $36,000 for a 12-month Vetro license on July 1st, recorded as a prepaid. What is the balance of Prepaid Software Licenses on October 31st?",
+          "q": "Skarion paid $36,000 for a 12-month Vetro license on July 1st, recorded as a prepaid. What is the balance of Prepaid Software Licenses on November 30th?",
           "options": ["$36,000", "$3,000", "$15,000", "$21,000"],
           "correct_index": 3,
-          "explanation": "From July 1 to Oct 31 is 5 months of amortization at $3,000/month = $15,000 expensed. Remaining prepaid = $36,000 − $15,000 = $21,000 (7 months of benefit left)."
+          "explanation": "From July 1 to Nov 30 is 5 months of amortization at $3,000/month = $15,000 expensed. Remaining prepaid = $36,000 − $15,000 = $21,000 (7 months of benefit left)."
         },
         {
           "q": "What is the employer's portion of FICA tax as a percentage of gross wages?",

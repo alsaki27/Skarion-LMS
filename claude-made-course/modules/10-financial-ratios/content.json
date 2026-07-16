@@ -1,0 +1,75 @@
+{
+  "title": "Financial Ratios & Reading the Numbers Like a CFO",
+  "moduleTag": "Module 10",
+  "dayMapping": "Day 10",
+  "subhead": "The module that separates a bookkeeper from an accountant. Producing the numbers is bookkeeping — interpreting them is accounting. Eight ratios, three months of Skarion data, and the narrative the numbers are telling you.",
+  "hook": "\"What does this P&L tell you?\" Every controller, every CFO, and every interviewer asks this. The bookkeeper prints the statement. The accountant reads it. This module is the difference.",
+  "chunks": [
+    {
+      "type": "video",
+      "kicker": "Chunk 91 — Watch first",
+      "title": "The 8 Ratios Every Accountant Must Know Cold",
+      "railLabel": "Video: 8 ratios",
+      "intro": "A controller doesn't just close the books — they read them. These 8 ratios are how senior accountants immediately know whether a month was actually good or just looks good on the surface.",
+      "transcript": "<p><strong>0:00 —</strong> A controller doesn't just close the books. They read them. These 8 ratios are how senior accountants immediately know whether a month was actually good or just looks good on the surface.</p><p><strong>0:30 —</strong> The 8, with Skarion's January numbers: Gross Profit Margin (Revenue − COGS) ÷ Revenue = ($480K − $140K) ÷ $480K = 70.8% — how profitable the core service is before overhead. Operating Profit Margin = Operating Income ÷ Revenue = $242K ÷ $480K = 50.4% — after all operating costs. Current Ratio = Current Assets ÷ Current Liabilities = $1.6M ÷ $340K = 4.7x — can the company pay short-term bills? >2x is healthy. Quick Ratio = (Cash + AR) ÷ Current Liabilities = ($336K + $997K) ÷ $340K = 3.9x — more conservative, excludes prepaids/inventory.</p><p><strong>1:30 —</strong> DSO = AR ÷ (Revenue ÷ 365 days) = $997K ÷ ($4.8M ÷ 365) = 75.8 days — how long to collect; >60 flags a cash risk. DPO = AP ÷ (COGS ÷ 365) = $280K ÷ ($1.68M ÷ 365) = 60.8 days — how long before you pay vendors. Debt-to-Equity = Total Liabilities ÷ Total Equity = $820K ÷ $2.1M = 0.39x — leverage; <1x is conservative. Return on Assets = Net Income ÷ Total Assets = $242K ÷ $4.02M = 6.0% — how efficiently assets generate profit.</p><p><strong>2:30 —</strong> Here is the real skill: knowing when a ratio changes and why. Gross margin dropped from 70.8% to 65.2% between January and February. That tells you COGS went up faster than revenue — before you even look at the detail. The ratio is the canary; the detail is the mine.</p><p><strong>4:00 —</strong> In the lab, you'll calculate all 8 ratios from Skarion's Q1 data and write one sentence of interpretation for each. That sentence is the start of your controller's commentary.</p>"
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 91 — the numbers",
+      "title": "The 8 Ratios — Formulas, Skarion January, and What Each Tells You",
+      "bodyHtml": "<p>Skarion's January financials: Revenue $480,000 · COGS $140,000 · Operating Expenses $98,000 · Net Income $242,000. Current Assets ≈ $1.6M (Cash $336,250 + AR $997,700 + prepaids), Current Liabilities ≈ $340K, Total Liabilities ≈ $820K, Total Equity ≈ $2.1M, Total Assets ≈ $4.02M, annualized revenue ≈ $4.8M, annualized COGS ≈ $1.68M.</p><table class='data'><tr><th>Ratio</th><th>Formula</th><th>Skarion Jan</th><th>What it tells you</th></tr><tr><td><strong>Gross Profit Margin</strong></td><td>(Revenue − COGS) ÷ Revenue</td><td>70.8%</td><td>Profitability of the core service before overhead</td></tr><tr><td><strong>Operating Profit Margin</strong></td><td>Operating Income ÷ Revenue</td><td>50.4%</td><td>Profitability after all operating costs</td></tr><tr><td><strong>Current Ratio</strong></td><td>Current Assets ÷ Current Liabilities</td><td>4.7x</td><td>Can the company pay short-term bills? &gt;2x healthy</td></tr><tr><td><strong>Quick Ratio</strong></td><td>(Cash + AR) ÷ Current Liabilities</td><td>3.9x</td><td>Conservative liquidity (excludes prepaids/inventory)</td></tr><tr><td><strong>DSO</strong></td><td>AR ÷ (Revenue ÷ 365)</td><td>75.8 days</td><td>How long to collect; &gt;60 flags a cash risk</td></tr><tr><td><strong>DPO</strong></td><td>AP ÷ (COGS ÷ 365)</td><td>60.8 days</td><td>How long before you pay vendors</td></tr><tr><td><strong>Debt-to-Equity</strong></td><td>Total Liabilities ÷ Total Equity</td><td>0.39x</td><td>Financial leverage; &lt;1x is conservative</td></tr><tr><td><strong>Return on Assets</strong></td><td>Net Income ÷ Total Assets</td><td>6.0%</td><td>How efficiently assets generate profit</td></tr></table>",
+      "callout": {
+        "type": "tip",
+        "html": "<strong>Read the ratio like a sentence.</strong> 70.8% gross margin + 75.8 day DSO + 0.39x leverage reads as: \"The core business is highly profitable, but we're slow to collect, and we run almost no debt.\" One sentence that a CFO would say is worth more than ten decimal places of calculation."
+      }
+    },
+    {
+      "type": "spreadsheet_lab",
+      "kicker": "Chunk 92 — Live in-browser lab",
+      "title": "Ratio Dashboard — Calculate All 8 From Skarion January",
+      "railLabel": "Ratio lab",
+      "scenarioHtml": "<p>Calculate Skarion's 8 financial ratios live in the spreadsheet. The P&L and Balance Sheet figures (Revenue, COGS, OpEx, Cash, AR, AP, Total Liabilities, Total Equity, Total Assets) are pre-filled and locked in column A. Enter each ratio <em>formula result</em> in column C. The lab validates when all 8 match the target values within 0.1.</p>",
+      "columns": [
+        {"title": "Ratio", "type": "text", "width": 260, "readOnly": true},
+        {"title": "Target (Skarion Jan)", "type": "text", "width": 150, "readOnly": true},
+        {"title": "Your answer", "type": "numeric", "width": 130, "mask": "#,##0.00", "readOnly": false}
+      ],
+      "data": [
+        ["Gross Profit Margin (%)", "70.8", null],
+        ["Operating Profit Margin (%)", "50.4", null],
+        ["Current Ratio (x)", "4.7", null],
+        ["Quick Ratio (x)", "3.9", null],
+        ["DSO (days)", "75.8", null],
+        ["DPO (days)", "60.8", null],
+        ["Debt-to-Equity (x)", "0.39", null],
+        ["Return on Assets (%)", "6.0", null]
+      ],
+      "lockedCells": ["A1","A2","A3","A4","A5","A6","A7","A8","B1","B2","B3","B4","B5","B6","B7","B8"],
+      "targetCells": {
+        "C1": 70.8, "C2": 50.4, "C3": 4.7, "C4": 3.9,
+        "C5": 75.8, "C6": 60.8, "C7": 0.39, "C8": 6.0
+      },
+      "requireBothSidesEqual": false,
+      "successMessage": "✅ All 8 ratios within tolerance — ratio analysis complete. You're reading financials like a CFO.",
+      "errorMessage": "❌ One or more ratios are off. Check the formulas in the Chunk 91 table — e.g. Gross Margin = (480−140)/480 × 100 = 70.8; DSO = 997700/(4800000/365) = 75.8."
+    },
+    {
+      "type": "content",
+      "kicker": "Chunk 93 — the narrative",
+      "title": "What the Numbers Are Trying to Tell You — Reading the Story",
+      "bodyHtml": "<p>The hardest skill: interpreting a set of ratios <em>as a narrative</em>. A single ratio is a number. Three ratios together tell a story.</p><p><strong>Scenario A — Revenue up 15%, gross margin down 8%, DSO up from 45 to 72 days.</strong> What's happening? Revenue growth is <em>hollow</em> — COGS is rising faster, and clients are paying slower. Cash is about to tighten despite the revenue number looking good. The wrong reads: \"business is growing well\" (ignores the margin) or \"costs are under control\" (ignores DSO).</p><p><strong>Scenario B — Net income up 20%, current ratio down from 3.2x to 1.4x, DPO down from 45 to 22 days.</strong> Profitability improved but <em>liquidity is deteriorating</em> — the company is paying vendors faster than it's collecting, and cash is being squeezed. Profit without liquidity is how profitable companies miss payroll.</p><p><strong>Scenario C — Gross margin stable, operating margin declining, return on assets declining.</strong> The core business is fine; <em>operating expenses are growing</em> — probably headcount or SG&amp;A — eating into profits the core business is generating. The fix is overhead, not pricing.</p>"
+    },
+    {
+      "type": "quiz",
+      "kicker": "Chunk 93 — interpretation",
+      "title": "Reading Skarion's Q1 Ratios — Spot the Real Story",
+      "intro": "Apply ratio interpretation to Skarion's Q1 data. Don't just calculate — say what the number means.",
+      "questions": [
+        {"q":"Skarion's Q1 ratio dashboard shows January gross margin 70.8%, February 65.2%, March 62.1%. What is the most likely root cause?","options":["Offshore drafting rates rose faster than Skarion raised its client prices","Skarion's clients started paying slower","Skarion took on too much debt","Office rent increased"],"correct_index":0,"explanation":"Margin compression at a services firm with stable revenue usually means input costs (offshore drafting) rose faster than pricing. DSO would show a collection story; debt/rent land in OpEx, not Gross Margin."},
+        {"q":"Which Q1 month had the worst DSO, and what does it flag?","options":["January (75.8 days) — collections trending slow, watch TeleCom Builders","February, because OpEx was highest","March, because net income was highest","All three were equal"],"correct_index":0,"explanation":"January carries the 75.8-day DSO (the TeleCom 90+ bucket before the settlement arrives). Slowing DSO is a leading cash-flow indicator — it flags itself before cash actually dips."},
+        {"q":"Skarion's current ratio is 4.7x and quick ratio is 3.9x. What concern, if any, should the controller raise?","options":["None on liquidity — both ratios are strong; the concern is DSO, not solvency","The current ratio is dangerously low","The quick ratio being lower than current ratio means fraud","Debt-to-equity must be negative"],"correct_index":0,"explanation":"Strong liquidity both ways. The flagged concern is the 75.8-day DSO tying up cash in slow AR — liquidity is fine today, but watch the collections trend."},
+        {"q":"Net income is strong and rising, but cash is flat. Which two ratios together explain the disconnect?","options":["High DSO (cash stuck in AR) + low DPO (paying vendors fast)","Low debt-to-equity + high ROA","High gross margin + low operating margin","High current ratio + high quick ratio"],"correct_index":0,"explanation":"Profit → Cash gap is almost always the working-capital combination: slow collections (high DSO) + fast payments (low DPO). The Cash Flow Statement's operating section makes this exact gap visible."}
+      ]
+    }
+  ]
+}
